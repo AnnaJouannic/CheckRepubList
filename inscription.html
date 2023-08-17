@@ -1,0 +1,87 @@
+
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="inscription.css">
+    <title>Formulaire d'inscription</title>
+</head>
+
+<body>
+
+
+
+
+
+    <h1>Inscription</h1>
+<form >
+
+        <h4>Informations générales</h4>
+    <label for="Nom"> Nom : *  </label> <input required id="Nom" name="Nom" type="text" placeholder="Saisir votre nom" ><br>
+        <label for="prénom"> Prénom : *  </label> <input required id="prénom" name="prenom" type="text" placeholder="Saisir votre prénom" ><br>
+        <label for="Age"> Date de naissance: *  </label> <input required id="Age" type="date" name="date" value="2000-01-01"><br>
+        <label for="Sexe"> Sexe :  </label>
+          <select name="civilite" >
+            <option> Homme </option>
+            <option selected> Femme </option>
+            <option> NB </option>
+          </select><br>
+
+        <label for="email">  Email : * </label> <input required id="email" name="email" type="email" placeholder="saisir votre mail" ><br>
+         <label for="Tel">N° Tel :</label> <input id="Tel" type="Tel" placeholder="Saisir votre tel" placeholder="Saisir votre tel"><br><br>
+
+
+
+        <h4>Adresse</h4>
+
+      <label for="Num">Numero : *</label>   <input required id="Num" type="text" title="Format du message" minlength="1" placeholder="Saisir le numero de la rue" ><br>
+        <label for="Voie">Voie : * </label><input required id="Voie" type="text" title="Format du message" minlength="1" placeholder="Saisir la voie" ><br>
+        <label for="Ville">Ville : * </label><input required id="Ville" type="text" title="Format du message" minlength="1" placeholder="Saisir la ville" ><br>
+        <label for="CP">CP : *</label> <input required id="CP" type="text" title="Format du message" minlength="1" placeholder="Saisir le code postal" ><br><br>
+
+        <h4>Animal</h4>
+
+
+          <input name="Type" class="Type" value="Chien" id="Chien "type="checkbox">  <label for="Chien"> Chien   </label>
+          <input name="Type" class="Type"value="Chat" id="Chat" type="checkbox">  <label for="Chat"> Chat   </label>
+          <input name="Type" class="Type"value="Rongeur" id="Rongeur" type="checkbox">  <label for="Rongeur"> Rongeur</label>
+          <input name="Type" class="Type"value="Lapin" id="Lapin" type="checkbox">  <label for="Lapin"> Lapin </label>
+          <input name="Type" class="Type"value="Autre" id="Autre "type="checkbox">  <label for="Autre"> Autre   </label><br>
+
+        <label for="Nom"> Nom :   </label><input id="Nom" name="Nom" type="text" placeholder="Entrer votre nom" value=""><br>
+      <label for="Nom"> Nom : </label><input id="Nom"  name="Nom" type="text" placeholder="Entrer votre nom" value=""><br>
+      <label for="Nom"> Nom : </label><input id="Nom" name="Nom" type="text" placeholder="Entrer votre nom" value=""><br><br>
+
+
+        <h4>Informations de connexion</h4>
+        <label for="Login"> Login: *  </label> <input required id="Login" minlength="5" maxlength="10" type="text" placeholder="Saisir votre login"><br>
+        <label for="mdp"> Mot de passe : *  </label> <input required id="mdp" pattern="[A-z0-9!#@$*?-]{5,12}" title="Format du message" type="password" minlength="5" placeholder="Saisir votre mot de passe"><br>
+        <label for="confmdp">Confirmer le mot de passe : *</label><input required id="confmdp" pattern="[A-z0-9!#@$*?-]{5,10}" title="Format du message" type="password" minlength="5" placeholder="Confirmer votre mot de passe">
+
+
+  <a href="">  <input id="btnEnvoyer" type="submit" class="btn btn-success" value="Envoyer">
+  <a href="accueil.html"> <input id="btnRetour" type="reset" class="btn btn-success" value="Retour">
+</form>
+
+</body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+     const password = document.getElementById('mdp');
+     const confirmPassword = document.getElementById('confmdp');
+     const submitButton = document.getElementById('btnEnvoyer');
+
+     confirmPassword.addEventListener('input', function() {
+         if (password.value === confirmPassword.value) {
+             confirmPassword.setCustomValidity('');
+         } else {
+             confirmPassword.setCustomValidity("Les mots de passe ne correspondent pas.");
+         }
+     });
+
+     submitButton.addEventListener('click', function() {
+         confirmPassword.reportValidity();
+     });
+ });
+</script>
+</html>
