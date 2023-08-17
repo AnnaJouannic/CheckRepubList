@@ -1,0 +1,143 @@
+<style>
+
+body
+{
+	margin:0;
+}
+
+#header
+{
+  display:flex;
+  border:solid 1px black;
+  height:160px;
+}
+#logo
+{
+  margin-left:0.5%;
+	float:left;
+	width: 15%;
+	height:100px;
+  align-items : center;
+
+}
+#imgLogo
+{
+
+  
+  position:relative;
+
+}
+
+
+#CheckRepublist
+{
+
+	text-align:center;
+	width: 85%;
+	background-color: grey;
+
+}
+
+#textCheckRepublist
+{
+	position: relative;
+	top:40px;
+	font-size:40px;
+}
+
+#content
+{
+  display:flex;
+  justify-content : center;
+	align-content:center;
+	height:100%;
+
+}
+
+#nouveau
+{
+    width=100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+#voyage
+{
+  display:none;
+  width:700px;
+    height:700px;
+}
+
+
+li
+{
+	list-style: none;
+}
+
+#center
+{
+	float:left;
+	width:70%;
+}
+
+</style>
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <div id="site">
+      <div id="header">
+        <div id="logo"><img id="imgLogo" src="assets/logo.png"></img></div>
+        <div id="CheckRepublist"><span id="textCheckRepublist">Check Republist</span>
+      </div>
+      </div>
+  </head>
+
+
+  <body>
+    <div id="content">
+    <div id="nouveau">
+      <h1>Un nouveau Voyage?</h1>
+      <p><input id="btnStart"  value="Commencer" type="button"></p>
+    </div>
+
+    <div id="voyage">
+      <table>
+        <tr>
+          <td>Climat : </td>
+          <td><input checked name="climat" type="radio"> Chaud <input checked name="climat" type="radio"> Froid <input checked name="climat" type="radio"> Tempéré <input checked name="climat" type="radio"> Tropical <input checked name="climat" type="radio"> Désertique <input checked name="climat" type="radio"> Autre</td>
+        </tr>
+
+        <tr>
+          <td>Logement : </td>
+          <td><input checked name="logement" type="radio"> Hotel <input checked name="logement" type="radio"> Auberge <input checked name="logement" type="radio"> Air B&B <input checked name="logement" type="radio"> Van/Camping Car <input checked name="logement" type="radio"> Tente <input checked name="logement" type="radio"> Voiture <input checked name="logement" type="radio"> Gîte <input checked name="logement" type="radio"> Autre</td>
+        </tr>
+
+        <tr>
+          <td>Mode de Deplacement: </td>
+          <td><input checked name="deplacement" type="radio"> Voiture <input checked name="deplacement" type="radio"> Train <input checked name="deplacement" type="radio"> Avion <input checked name="deplacement" type="radio"> Moto <input checked name="deplacement" type="radio"> Velo <input checked name="deplacement" type="radio"> Bateau/Croisière <input checked name="deplacement" type="radio"> Van/Camping Car <input checked name="deplacement" type="radio"> Kayak <input checked name="deplacement" type="radio"> A pied </td>
+        </tr>
+      </table>
+    </div>
+
+
+    </div>
+  </body>
+</html>
+
+
+<script>
+
+btnStart.onclick=commencerVoyage;
+
+function commencerVoyage ()
+{
+  nouveau.style.display="none";
+  voyage.style.display="block";
+}
+
+
+
+</script>
