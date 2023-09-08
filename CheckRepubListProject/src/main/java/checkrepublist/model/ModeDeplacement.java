@@ -1,4 +1,4 @@
-package model;
+package checkrepublist.model;
 
 public enum ModeDeplacement {
 	

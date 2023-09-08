@@ -1,21 +1,33 @@
-package model;
+package checkrepublist.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "activite")
 public class Activite {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column (length = 25)
 	private String libelle;
 	
-		public Activite(Integer id, String libelle) {
+	public Activite() {}
+
+	public Activite(Integer id, String libelle) {
 		this.id = id;
 		this.libelle = libelle;
 	}
 
-		public Activite(String libelle) {
+	public Activite(String libelle) {
 		this.libelle = libelle;
 	}
 
-	
-	
 	public Integer getId() {
 		return id;
 	}
@@ -36,6 +48,5 @@ public class Activite {
 	public String toString() {
 		return "Activite [id=" + id + ", libelle=" + libelle + "]";
 	}
-	
-	
+
 }
