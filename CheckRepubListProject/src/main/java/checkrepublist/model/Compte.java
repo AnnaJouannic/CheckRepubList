@@ -1,14 +1,19 @@
 package checkrepublist.model;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "compte")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type_compte")
 public abstract class Compte {
 
 	@Id
@@ -22,7 +27,12 @@ public abstract class Compte {
 	protected String login;
 	@Column(length = 130)
 	protected String password;
+	
+	
 	protected boolean isAdmin;
+
+	
+	
 	
 	
 	public Compte() {}
@@ -34,6 +44,7 @@ public abstract class Compte {
 		this.login = login;
 		this.password = password;
 		this.isAdmin = isAdmin;
+
 	}
 
 	public Compte(String nom, String prenom, String login, String password, boolean isAdmin) {
@@ -68,6 +79,7 @@ public abstract class Compte {
 		return isAdmin;
 	}
 
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -88,14 +100,12 @@ public abstract class Compte {
 		this.password = password;
 	}
 
+
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 
-	@Override
-	public String toString() {
-		return "Compte [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", login=" + login + ", password="
-				+ password + ", isAdmin=" + isAdmin + "]";
-	}
+
+	
 
 }
