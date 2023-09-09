@@ -8,25 +8,28 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "logement")
-public class Logement {
+@Table(name = "materielref")
+public class MaterielRef {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column(length = 25)
 	private String libelle;
+	@Column(length = 25)
+	private double qteMateriel;
 
-	public Logement() {
-	}
+	public MaterielRef() {}
 
-	public Logement(Integer id, String libelle) {
+	public MaterielRef(Integer id, String libelle, double qteMateriel) {
 		this.id = id;
 		this.libelle = libelle;
+		this.qteMateriel = qteMateriel;
 	}
 
-	public Logement(String libelle) {
+	public MaterielRef(String libelle, double qteMateriel) {
 		this.libelle = libelle;
+		this.qteMateriel = qteMateriel;
 	}
 
 	public Integer getId() {
@@ -37,6 +40,10 @@ public class Logement {
 		return libelle;
 	}
 
+	public double getQteMateriel() {
+		return qteMateriel;
+	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -45,9 +52,13 @@ public class Logement {
 		this.libelle = libelle;
 	}
 
+	public void setQteMateriel(double qteMateriel) {
+		this.qteMateriel = qteMateriel;
+	}
+
 	@Override
 	public String toString() {
-		return "Logement [id=" + id + ", libelle=" + libelle + "]";
+		return "Materiel [id=" + id + ", libelle=" + libelle + ", qteMateriel=" + qteMateriel + "]";
 	}
 
 }

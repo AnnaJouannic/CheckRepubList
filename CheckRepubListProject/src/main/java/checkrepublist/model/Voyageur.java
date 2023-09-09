@@ -1,10 +1,16 @@
 package checkrepublist.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +29,12 @@ public class Voyageur {
 	private boolean animal;
 	@Column(length = 10)
 	private boolean accessibilite;
+	
+	@ManyToMany
+	@JoinTable(name="inscription",joinColumns = @JoinColumn(name="voyageur"),inverseJoinColumns = @JoinColumn(name="voyage"))
+	private List<Voyage> voyages=new ArrayList();
+	
+	
 
 	public Voyageur() {}
 

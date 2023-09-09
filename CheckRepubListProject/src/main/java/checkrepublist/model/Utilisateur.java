@@ -1,18 +1,30 @@
 
 package checkrepublist.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="utilisateur")
+@DiscriminatorValue("utilisateur")
 public class Utilisateur extends Compte {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	private String mail;
+	
 	private String tel;
+	
+	
+	@OneToMany
+	private List<Voyageur> voyageurs=new ArrayList<>();
+	
+	@OneToMany
+	private List <Voyage> voyages = new ArrayList<>();
 	
 
 	public Utilisateur() {}
@@ -45,6 +57,24 @@ public class Utilisateur extends Compte {
 
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	
+	
+	
+	public List<Voyageur> getVoyageurs() {
+		return voyageurs;
+	}
+
+	public List<Voyage> getVoyages() {
+		return voyages;
+	}
+
+	public void setVoyageurs(List<Voyageur> voyageurs) {
+		this.voyageurs = voyageurs;
+	}
+
+	public void setVoyages(List<Voyage> voyages) {
+		this.voyages = voyages;
 	}
 
 	@Override

@@ -1,12 +1,17 @@
 package checkrepublist.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,36 +27,43 @@ public class Voyage {
 	private String libelle;
 	@Column(length = 25)
 	private String pays;
+	
+	
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('Hotel','Gite','ChambreDHote','Location', 'AirBnB', 'MobilHome', 'Van', 'CampingCar', 'Tente', 'Voiture', Autre)")
+	private TypeLogement logement;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('Randonnee','Velo','Voiture','Van', 'Campingcar', 'Kayak', 'Croisiere', 'Train', 'Avion', 'Moto', 'Autre')")
+	private TypeDeplacement deplacement;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(columnDefinition = "ENUM('Froid','Chaud','Tempere','Tropical', 'Desertique', 'Autre')")
+	private TypeClimat climat;
+	
+	@OneToMany
 	@Column(length = 25)
-	private Logement logement;
-	@Column(length = 25)
-	private Activite activite;
-	@Column(length = 25, nullable = false)
-	private ModeDeplacement deplacement;
-	@Column(length = 25, nullable = false)
-	private Climat climat;
+	private List<ActiviteRef> activites = new ArrayList<>();
+	
 
-	public Voyage(Integer id, LocalDate dateVoyage, int duree, String libelle, String pays, Logement logement,
-			Activite activite, ModeDeplacement deplacement, Climat climat) {
+	public Voyage(Integer id, LocalDate dateVoyage, int duree, String libelle, String pays, TypeLogement logement, TypeDeplacement deplacement, TypeClimat climat) {
 		this.id = id;
 		this.dateVoyage = dateVoyage;
 		this.duree = duree;
 		this.libelle = libelle;
 		this.pays = pays;
 		this.logement = logement;
-		this.activite = activite;
 		this.deplacement = deplacement;
 		this.climat = climat;
 	}
 
-	public Voyage(LocalDate dateVoyage, int duree, String libelle, String pays, Logement logement, Activite activite,
-			ModeDeplacement deplacement, Climat climat) {
+	public Voyage(LocalDate dateVoyage, int duree, String libelle, String pays, TypeLogement logement,
+			TypeDeplacement deplacement, TypeClimat climat) {
 		this.dateVoyage = dateVoyage;
 		this.duree = duree;
 		this.libelle = libelle;
 		this.pays = pays;
 		this.logement = logement;
-		this.activite = activite;
 		this.deplacement = deplacement;
 		this.climat = climat;
 	}
@@ -76,19 +88,19 @@ public class Voyage {
 		return pays;
 	}
 
-	public Logement getLogement() {
+	public TypeLogement getLogement() {
 		return logement;
 	}
 
-	public Activite getActivite() {
-		return activite;
+	public List<ActiviteRef> getActivite() {
+		return activites;
 	}
 
-	public ModeDeplacement getDeplacement() {
+	public TypeDeplacement getDeplacement() {
 		return deplacement;
 	}
 
-	public Climat getClimat() {
+	public TypeClimat getClimat() {
 		return climat;
 	}
 
@@ -112,26 +124,26 @@ public class Voyage {
 		this.pays = pays;
 	}
 
-	public void setLogement(Logement logement) {
+	public void setLogement(TypeLogement logement) {
 		this.logement = logement;
 	}
 
-	public void setActivite(Activite activite) {
-		this.activite = activite;
+	public void setActivite(List<ActiviteRef> activites) {
+		this.activites = activites;
 	}
 
-	public void setDeplacement(ModeDeplacement deplacement) {
+	public void setDeplacement(TypeDeplacement deplacement) {
 		this.deplacement = deplacement;
 	}
 
-	public void setClimat(Climat climat) {
+	public void setClimat(TypeClimat climat) {
 		this.climat = climat;
 	}
 
 	@Override
 	public String toString() {
 		return "Voyage [id=" + id + ", dateVoyage=" + dateVoyage + ", duree=" + duree + ", libelle=" + libelle
-				+ ", pays=" + pays + ", logement=" + logement + ", activite=" + activite + ", deplacement="
+				+ ", pays=" + pays + ", logement=" + logement + ", activite=" + activites + ", deplacement="
 				+ deplacement + ", climat=" + climat + "]";
 	}
 
