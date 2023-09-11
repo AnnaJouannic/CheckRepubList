@@ -20,6 +20,9 @@ public class Test {
 	Voyage v2 = new Voyage(LocalDate.parse("2023-07-09"), 07, "Vacances d'été !!", "Espagne", TypeLogement.Van, TypeDeplacement.Van, TypeClimat.Chaud );
 	Voyage v3 = new Voyage(LocalDate.parse("2023-05-23"), 10, "Vacances de printemps !!", "Italie", TypeLogement.AirBnB, TypeDeplacement.Moto, TypeClimat.Chaud );
 	
+	//attacher un voyageur à aux voyages 
+	//Attacher les voyageurs à l'utilisateur comme pour escape game 
+	
 	Voyageur p1 = new Voyageur("Even","Manon",25, true, false);
 	Voyageur p2 = new Voyageur("Andraos","Rawad",26, false, false);
 	Voyageur p3 = new Voyageur("Portet","Anais",25, true, false);
@@ -29,6 +32,16 @@ public class Test {
 	
 	MaterielRef m1 = new MaterielRef("Maillot de bain",Categorie.Vetement);
 	//Critere cr1 = new Critere ("Maillot de bain", TypeLogement.Hotel,);
+	
+	MaterielRef m2 = new MaterielRef("T-shirt",Categorie.Vetement);
+	
+	MaterielRef m3 = new MaterielRef("Pull",Categorie.Vetement);
+	
+	MaterielRef m4 = new MaterielRef("Pantalon",Categorie.Vetement);
+	
+	MaterielRef m5 = new MaterielRef("Short",Categorie.Vetement);
+	
+	MaterielRef m6 = new MaterielRef("Robe",Categorie.Vetement); //trouver une solution pour avoir des vetements en fct du genre?
 	
 	
 	}
