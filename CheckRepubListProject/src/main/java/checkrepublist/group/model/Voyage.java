@@ -11,6 +11,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -45,7 +48,10 @@ public class Voyage {
 	@Column(length = 25)
 	private List<ActiviteRef> activites = new ArrayList<>();
 	
-
+	@ManyToMany
+	@JoinTable(name="voyagematerielref",joinColumns = @JoinColumn(name="voyage"),inverseJoinColumns = @JoinColumn(name="materielref"))
+	private List<MaterielRef> materiels = new ArrayList();
+	
 	public Voyage(Integer id, LocalDate dateVoyage, int duree, String libelle, String pays, TypeLogement logement, TypeDeplacement deplacement, TypeClimat climat) {
 		this.id = id;
 		this.dateVoyage = dateVoyage;
@@ -131,6 +137,10 @@ public class Voyage {
 	public void setActivite(List<ActiviteRef> activites) {
 		this.activites = activites;
 	}
+	
+	public List<ActiviteRef> getActivites() {
+		return activites;
+	}
 
 	public void setDeplacement(TypeDeplacement deplacement) {
 		this.deplacement = deplacement;
@@ -138,6 +148,14 @@ public class Voyage {
 
 	public void setClimat(TypeClimat climat) {
 		this.climat = climat;
+	}
+
+	public List<MaterielRef> getMateriels() {
+		return materiels;
+	}
+
+	public void setMateriels(List<MaterielRef> materiels) {
+		this.materiels = materiels;
 	}
 
 	@Override
