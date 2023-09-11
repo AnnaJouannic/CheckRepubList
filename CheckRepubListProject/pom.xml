@@ -9,10 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>spring.formation</groupId>
-	<artifactId>eshop-boot</artifactId>
+	<artifactId>checkrepublist</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>eshop-boot</name>
-	<description>Demo project for Spring Boot</description>
+	<name>checkrepublist</name>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

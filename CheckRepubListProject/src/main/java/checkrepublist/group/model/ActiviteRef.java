@@ -1,35 +1,37 @@
-package checkrepublist.model;
+package checkrepublist.group.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "materielref")
-public class MaterielRef {
+@Table(name = "activite")
+public class ActiviteRef {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(length = 25)
+	@Column (length = 25)
 	private String libelle;
-	@Column(length = 25)
-	private double qteMateriel;
+	
+	@ManyToOne
+	@JoinColumn(name="critere")
+	private Critere critere;
+	
+	public ActiviteRef() {}
 
-	public MaterielRef() {}
-
-	public MaterielRef(Integer id, String libelle, double qteMateriel) {
+	public ActiviteRef(Integer id, String libelle) {
 		this.id = id;
 		this.libelle = libelle;
-		this.qteMateriel = qteMateriel;
 	}
 
-	public MaterielRef(String libelle, double qteMateriel) {
+	public ActiviteRef(String libelle) {
 		this.libelle = libelle;
-		this.qteMateriel = qteMateriel;
 	}
 
 	public Integer getId() {
@@ -40,10 +42,6 @@ public class MaterielRef {
 		return libelle;
 	}
 
-	public double getQteMateriel() {
-		return qteMateriel;
-	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -52,13 +50,9 @@ public class MaterielRef {
 		this.libelle = libelle;
 	}
 
-	public void setQteMateriel(double qteMateriel) {
-		this.qteMateriel = qteMateriel;
-	}
-
 	@Override
 	public String toString() {
-		return "Materiel [id=" + id + ", libelle=" + libelle + ", qteMateriel=" + qteMateriel + "]";
+		return "Activite [id=" + id + ", libelle=" + libelle + "]";
 	}
 
 }
