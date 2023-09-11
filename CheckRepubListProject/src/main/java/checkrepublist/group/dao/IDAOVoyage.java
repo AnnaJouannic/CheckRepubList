@@ -1,8 +1,8 @@
-package checkrepublist.dao;
+package checkrepublist.group.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import checkrepublist.model.Voyage;
+import checkrepublist.group.model.Voyage;
 
 public interface IDAOVoyage extends JpaRepository<Voyage, Integer> {
 

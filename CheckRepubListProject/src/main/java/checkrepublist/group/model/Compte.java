@@ -1,4 +1,4 @@
-package checkrepublist.model;
+package checkrepublist.group.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;

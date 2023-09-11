@@ -1,4 +1,4 @@
-package checkrepublist.model;
+package checkrepublist.group.model;
 
 import java.util.ArrayList;
 import java.util.List;
