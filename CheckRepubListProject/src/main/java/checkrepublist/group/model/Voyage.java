@@ -45,7 +45,9 @@ public class Voyage {
 	private TypeClimat climat;
 	
 	@OneToMany
-	@Column(length = 25)
+	@JoinTable(name="activite_voyage",
+	joinColumns= @JoinColumn (name="voyage"),
+	inverseJoinColumns = @JoinColumn(name="activite"))
 	private List<ActiviteRef> activites = new ArrayList<>();
 	
 	@ManyToMany
