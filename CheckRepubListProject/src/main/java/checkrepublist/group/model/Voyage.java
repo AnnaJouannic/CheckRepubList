@@ -1,4 +1,4 @@
-package checkrepublist.model;
+package checkrepublist.group.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class Voyage {
 	private TypeLogement logement;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(columnDefinition = "ENUM('Randonnee','Velo','Voiture','Van', 'Campingcar', 'Kayak', 'Croisiere', 'Train', 'Avion', 'Moto', 'Autre')")
+	@Column(columnDefinition = "ENUM('Marche','Velo','Voiture','Van', 'Campingcar', 'Bateau', 'Train', 'Avion', 'Moto', 'Autre')")
 	private TypeDeplacement deplacement;
 	
 	@Enumerated(EnumType.STRING)

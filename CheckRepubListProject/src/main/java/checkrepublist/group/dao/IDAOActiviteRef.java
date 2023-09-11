@@ -1,8 +1,8 @@
-package checkrepublist.dao;
+package checkrepublist.group.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import checkrepublist.model.ActiviteRef;
+import checkrepublist.group.model.ActiviteRef;
 
 public interface IDAOActiviteRef extends JpaRepository<ActiviteRef, Integer> {
 

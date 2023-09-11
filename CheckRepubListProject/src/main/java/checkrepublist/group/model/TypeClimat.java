@@ -1,4 +1,4 @@
-package checkrepublist.model;
+package checkrepublist.group.model;
 
 public enum TypeClimat {
 
