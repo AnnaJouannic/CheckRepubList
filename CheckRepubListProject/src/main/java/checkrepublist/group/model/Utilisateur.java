@@ -6,6 +6,8 @@ import java.util.List;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -21,9 +23,15 @@ public class Utilisateur extends Compte {
 	
 	
 	@OneToMany
+	@JoinTable(name="mes_voyageurs",
+	joinColumns= @JoinColumn (name="utilisateur"),
+	inverseJoinColumns = @JoinColumn(name="voyageur"))
 	private List<Voyageur> voyageurs=new ArrayList<>();
 	
 	@OneToMany
+	@JoinTable(name="mes_voyages",
+	joinColumns= @JoinColumn (name="utilisateur"),
+	inverseJoinColumns = @JoinColumn(name="voyages"))
 	private List <Voyage> voyages = new ArrayList<>();
 	
 
