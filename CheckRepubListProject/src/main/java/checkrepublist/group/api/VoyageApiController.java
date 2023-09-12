@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import checkrepublist.group.dao.IDAOVoyage;
+import checkrepublist.group.exception.VoyageNotFoundException;
+import checkrepublist.group.exception.VoyageNotValidException;
 import checkrepublist.group.model.Voyage;
 import jakarta.validation.Valid;
 
