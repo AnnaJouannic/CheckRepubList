@@ -46,6 +46,7 @@ public class Critere {
 	public Critere() {
 	}
 	
+	
 	public Critere(Integer id, MaterielRef libelleMateriel, TypeLogement logement, TypeDeplacement deplacement,
 			TypeClimat climat) {
 		this.id = id;
@@ -61,6 +62,12 @@ public class Critere {
 		this.deplacement = deplacement;
 		this.climat = climat;
 	}
+
+
+	public Critere(MaterielRef libelleMateriel) {
+		this.libelleMateriel = libelleMateriel;
+	}
+
 
 	public Integer getId() {
 		return id;
