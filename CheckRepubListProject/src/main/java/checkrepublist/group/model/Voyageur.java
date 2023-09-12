@@ -105,6 +105,14 @@ public class Voyageur {
 		this.accessibilite = accessibilite;
 	}
 
+	public List<Voyage> getVoyages() {
+		return voyages;
+	}
+
+	public void setVoyages(List<Voyage> voyages) {
+		this.voyages = voyages;
+	}
+
 	@Override
 	public String toString() {
 		return "Voyageur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", naissance=" + naissance + ", animal=" + animal
