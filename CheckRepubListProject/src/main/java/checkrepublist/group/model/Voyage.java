@@ -24,8 +24,8 @@ public class Voyage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private LocalDate dateVoyage;
-	private int duree;
+	private LocalDate dateDebutVoyage;
+	private LocalDate dateFinVoyage;
 	@Column(length = 25)
 	private String libelle;
 	@Column(length = 25)
@@ -54,10 +54,10 @@ public class Voyage {
 	@JoinTable(name="voyagematerielref",joinColumns = @JoinColumn(name="voyage"),inverseJoinColumns = @JoinColumn(name="materielref"))
 	private List<MaterielRef> materiels = new ArrayList();
 	
-	public Voyage(Integer id, LocalDate dateVoyage, int duree, String libelle, String pays, TypeLogement logement, TypeDeplacement deplacement, TypeClimat climat) {
+	public Voyage(Integer id, LocalDate dateDebutVoyage, LocalDate dateFinVoyage, String libelle, String pays, TypeLogement logement, TypeDeplacement deplacement, TypeClimat climat) {
 		this.id = id;
-		this.dateVoyage = dateVoyage;
-		this.duree = duree;
+		this.dateDebutVoyage = dateDebutVoyage;
+		this.dateFinVoyage = dateFinVoyage;
 		this.libelle = libelle;
 		this.pays = pays;
 		this.logement = logement;
@@ -65,10 +65,10 @@ public class Voyage {
 		this.climat = climat;
 	}
 
-	public Voyage(LocalDate dateVoyage, int duree, String libelle, String pays, TypeLogement logement,
+	public Voyage(LocalDate dateDebutVoyage, LocalDate dateFinVoyage, String libelle, String pays, TypeLogement logement,
 			TypeDeplacement deplacement, TypeClimat climat) {
-		this.dateVoyage = dateVoyage;
-		this.duree = duree;
+		this.dateDebutVoyage = dateDebutVoyage;
+		this.dateFinVoyage = dateFinVoyage;
 		this.libelle = libelle;
 		this.pays = pays;
 		this.logement = logement;
@@ -80,12 +80,12 @@ public class Voyage {
 		return id;
 	}
 
-	public LocalDate getDateVoyage() {
-		return dateVoyage;
+	public LocalDate getdateDebutVoyage() {
+		return dateDebutVoyage;
 	}
 
-	public int getDuree() {
-		return duree;
+	public LocalDate dateFinVoyage() {
+		return dateFinVoyage;
 	}
 
 	public String getLibelle() {
@@ -116,12 +116,12 @@ public class Voyage {
 		this.id = id;
 	}
 
-	public void setDateVoyage(LocalDate dateVoyage) {
-		this.dateVoyage = dateVoyage;
+	public void setdateDebutVoyage(LocalDate dateDebutVoyage) {
+		this.dateDebutVoyage = dateDebutVoyage;
 	}
 
-	public void setDuree(int duree) {
-		this.duree = duree;
+	public void setdateFinVoyage(LocalDate dateFinVoyage) {
+		this.dateFinVoyage = dateFinVoyage;
 	}
 
 	public void setLibelle(String libelle) {
@@ -160,11 +160,6 @@ public class Voyage {
 		this.materiels = materiels;
 	}
 
-	@Override
-	public String toString() {
-		return "Voyage [id=" + id + ", dateVoyage=" + dateVoyage + ", duree=" + duree + ", libelle=" + libelle
-				+ ", pays=" + pays + ", logement=" + logement + ", activite=" + activites + ", deplacement="
-				+ deplacement + ", climat=" + climat + "]";
-	}
+	
 
 }

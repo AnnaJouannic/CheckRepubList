@@ -1,5 +1,6 @@
 package checkrepublist.group.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class Voyageur {
 	private String nom;
 	@Column(length = 25)
 	private String prenom;
-	private Integer age;
+	private LocalDate naissance;
 	@Column(length = 10)
 	private boolean animal;
 	@Column(length = 10)
@@ -38,20 +39,20 @@ public class Voyageur {
 
 	public Voyageur() {}
 
-	public Voyageur(Integer id, String nom, String prenom, Integer age, boolean animal, boolean accessibilite) {
+	public Voyageur(Integer id, String nom, String prenom, LocalDate naissance, boolean animal, boolean accessibilite) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
-		this.age = age;
+		this.naissance = naissance;
 		this.animal = animal;
 		this.accessibilite = accessibilite;
 	}
 
-	public Voyageur(String nom, String prenom, Integer age, boolean animal, boolean accessibilite) {
+	public Voyageur(String nom, String prenom, LocalDate naissance, boolean animal, boolean accessibilite) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
-		this.age = age;
+		this.naissance= naissance;
 		this.animal = animal;
 		this.accessibilite = accessibilite;
 	}
@@ -68,8 +69,8 @@ public class Voyageur {
 		return prenom;
 	}
 
-	public Integer getAge() {
-		return age;
+	public LocalDate getNaissance() {
+		return naissance;
 	}
 
 	public boolean isAnimal() {
@@ -92,8 +93,8 @@ public class Voyageur {
 		this.prenom = prenom;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setNaissance(LocalDate naissance) {
+		this.naissance = naissance;
 	}
 
 	public void setAnimal(boolean animal) {
@@ -106,7 +107,7 @@ public class Voyageur {
 
 	@Override
 	public String toString() {
-		return "Voyageur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", age=" + age + ", animal=" + animal
+		return "Voyageur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", naissance=" + naissance + ", animal=" + animal
 				+ ", accessibilite=" + accessibilite + "]";
 	}
 
