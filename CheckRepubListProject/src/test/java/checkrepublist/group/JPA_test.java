@@ -1,4 +1,4 @@
-package test;
+package checkrepublist.group;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

@@ -21,7 +21,7 @@ public class MaterielRef {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(length = 25)
+	
 	private String libelleMateriel;
 	
 	@Enumerated(EnumType.STRING)
