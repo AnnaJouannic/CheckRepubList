@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import checkrepublist.group.dao.IDAOActiviteRef;
-import checkrepublist.group.dao.IDAOCompte;
 import checkrepublist.group.dao.IDAOCritere;
 import checkrepublist.group.dao.IDAOMaterielRef;
+import checkrepublist.group.dao.IDAOUtilisateur;
 import checkrepublist.group.dao.IDAOVoyage;
 import checkrepublist.group.dao.IDAOVoyageur;
 import checkrepublist.group.model.ActiviteRef;
@@ -35,7 +35,7 @@ class CheckRepublistApplicationTest {
 	private IDAOActiviteRef activiteRefRepo;
 	
 	@Autowired
-	private IDAOCompte compteRepo;
+	private IDAOUtilisateur utilisateurRepo;
 	
 	@Autowired
 	private  IDAOCritere critereRepo;
@@ -103,13 +103,13 @@ class CheckRepublistApplicationTest {
 	Utilisateur c1 = new Utilisateur("Even","Manon", "Manondu56", "12345", false, "manoneven@gmail.com", "0650265588");
 	c1.setVoyageurs(utilisateur1);
 	c1.setVoyages(Voyage1);
-	c1 = compteRepo.save(c1);
+	c1 = utilisateurRepo.save(c1);
 	
 	Utilisateur c2 = new Utilisateur("Andraos","Rawad", "Rads", "12345", true, "rawadandraos@gmail.com", "0778050623");
 	c2.setVoyageurs(utilisateur2);
 	c2.setVoyages(Voyage1);
 	c2.setVoyages(Voyage2);
-	c2 = compteRepo.save(c2);
+	c2 = utilisateurRepo.save(c2);
 	
 
 	
