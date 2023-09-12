@@ -28,6 +28,20 @@ public class ActiviteRef {
 	public ActiviteRef(Integer id, String libelle) {
 		this.id = id;
 		this.libelle = libelle;
+		
+	}
+
+	public ActiviteRef(Integer id, String libelle, Critere critere) {
+		super();
+		this.id = id;
+		this.libelle = libelle;
+		this.critere = critere;
+	}
+	
+	public ActiviteRef(String libelle, Critere critere) {
+		super();
+		this.libelle = libelle;
+		this.critere = critere;
 	}
 
 	public ActiviteRef(String libelle) {
@@ -48,6 +62,16 @@ public class ActiviteRef {
 
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
+	}
+
+	
+	
+	public Critere getCritere() {
+		return critere;
+	}
+
+	public void setCritere(Critere critere) {
+		this.critere = critere;
 	}
 
 	@Override
