@@ -32,7 +32,7 @@ public class Voyageur {
 	private boolean accessibilite;
 	
 	@ManyToMany
-	@JoinTable(name="inscription",joinColumns = @JoinColumn(name="voyageur"),inverseJoinColumns = @JoinColumn(name="voyage"))
+	@JoinTable(name="enregistrement",joinColumns = @JoinColumn(name="voyageur"),inverseJoinColumns = @JoinColumn(name="voyage"))
 	private List<Voyage> voyages=new ArrayList();
 	
 	

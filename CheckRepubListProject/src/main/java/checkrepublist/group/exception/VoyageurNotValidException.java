@@ -1,9 +1,9 @@
-package checkrepublist.group.api;
+package checkrepublist.group.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class VoyageNotValidException extends RuntimeException {
+public class VoyageurNotValidException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 }
