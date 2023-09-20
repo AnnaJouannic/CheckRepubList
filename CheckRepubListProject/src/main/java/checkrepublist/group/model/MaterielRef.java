@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -27,8 +31,15 @@ public class MaterielRef {
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Vetement','Numerique', 'Outils', 'Toilette', 'Animaux', 'Pharmacie', 'Administratif')")
 	private Categorie categorie;
+	
+	
 
-	@OneToMany(mappedBy="libelleMateriel")
+	@OneToMany
+	@JoinTable(
+			name="materiel_critere",
+			joinColumns = @JoinColumn(name="materiel"),
+			inverseJoinColumns = @JoinColumn(name="critere")
+			)
 	List<Critere> criteres = new ArrayList<>();
 	
 	public MaterielRef() {}
