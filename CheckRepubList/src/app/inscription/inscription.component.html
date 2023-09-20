@@ -1,0 +1,64 @@
+<div class="card mt-3">
+   
+    <form  (ngSubmit)="inscriptionForm.form.valid && save()" novalidate autocomplete="off" [appMatchPassword]="['password', 'passwordVerif']">
+    <div class="card-header bg-primary text-white display-6">Inscription</div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="nom">Nom:</label> <input type="text" required class="form-control" id="nom" name="nom"  formControlName="nom"/>
+            <span class="text-danger" *ngIf="inscriptionForm.get('nom').hasError('required')">
+                Le nom  est obligatoire.
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="prenom">Prenom:</label> <input type="text" required class="form-control" id="prenom" name="prenom" formControlName="prenom"/>
+            <span class="text-danger" *ngIf="inscriptionForm.get('prenom').hasError('required')">
+                Le prénom est obligatoire.
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="login">Login:</label> <input type="text" required class="form-control" id="login" name="login" formControlName="login"/>
+            <span class="text-danger" *ngIf="inscriptionForm.get('login').hasError('required')">
+                Le login est obligatoire.
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe:</label> <input type="password" class="form-control" id="password" name="password"  formControlName="password"/>
+            <span class="text-danger" *ngIf="inscriptionForm.get('password').hasError('required')">
+                Le mot de passe est obligatoire.
+            </span>
+            <span class="text-danger" *ngIf="inscriptionForm.get('password').hasError('minLength')">
+                Le mot de passe doit comporter au moins 4 caractères
+            </span>
+            <span class="text-danger" *ngIf="inscriptionForm.get('password').hasError('maxLength')">
+                Le mot de passe ne doit pas dépasser 130 caractères.
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="passwordVerif">Confirmation de mot de passe:</label> <input type="password" class="form-control" id="passwordVerif" name="passwordVerif" formControlName="password"/>
+            <span class="text-danger"  *ngIf="inscriptionForm.get('password')?.hasError('required')">
+                Veuillez confirmer votre mot de passe
+            </span>
+            <span class="text-danger" *ngIf="inscriptionForm.get('password')?.dirty ">
+                Mot de passe incorrect
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label> <input type="email" required class="form-control" id="email" name="email" formControlName="mail" />
+            <span class="text-danger" *ngIf="inscriptionForm.get('mail').hasError('required') && inscriptionForm.get('mail').hasError('email')">
+                L'adresse mail  est obligatoire.
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="tel">Login:</label> <input type="text" required class="form-control" id="tel" name="tel" formControlName="tel"  />
+            <span class="text-danger" *ngIf="inscriptionForm.get('mail').hasError('required')">
+                Le numéro de téléphone est obligatoire.
+            </span>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group btn-group-lg float-right">
+            <button type="submit" class="btn btn-success"><i class="bi bi-check-square-fill"></i></button>
+        </div>
+    </div>
+    </form>
+</div>
