@@ -2,23 +2,24 @@
   <body>
       <h1>Connexion</h1>
       <form (ngSubmit)="auth()" [formGroup]="connexionForm" novalidate autocomplete="off">
-      
+      <div>
           <label for="login">Identifiant :</label>
           <input type="text" id="login" name="login"   placeholder="Saisir votre identifiant" required formControlName="login"><br>
           <span class="text-danger" *ngIf="connexionForm.get('login')?.hasError('required')">
             Le nom d'utilisateur est obligatoire.
         </span>
-
+      </div>
+      <div>
           <label for="mdp">Mot de passe :</label>
-          <input required id="mdp" ctype="password"  placeholder="Saisir votre mot de passe"  formControlName="password"><br>
+          <input required id="mdp" type="password"  placeholder="Saisir votre mot de passe"  formControlName="password"><br>
           <span class="text-danger" *ngIf="connexionForm.get('password')?.dirty && connexionForm.get('password')?.hasError('required')">
             Le mot de passe est obligatoire.
        </span>
        <span *ngIf="connexionForm.get('password')?.hasError('minlength')  && connexionForm.get('password')?.hasError('pattern') ">
         Le mot de passe doit contenir au moins 5 caractères, au moins une majuscule, un chiffre et un caractère spécial.
        </span>
-     
-            <button type="submit" class="btn btn-success" [disabled]="connexionForm.invalid" value="Se connecter"></button>
+      </div>
+            <button type="submit" class="btn btn-success" value="Se connecter"  [disabled]="connexionForm.invalid"><i class="bi bi-check-square-fill"></i></button>
  
       </form>
   </body>

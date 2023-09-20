@@ -37,9 +37,15 @@ export class AuthService {
     return this.getUtilisateur() != null;
   }
 
+<<<<<<< HEAD
   hasRole(role: string): boolean {
     return this.getUtilisateur().roles.indexOf(role) > -1;
   }
+=======
+   hasRole(role: string): boolean {
+     return this.getUtilisateur().roles.indexOf(role) > -1;
+   }
+>>>>>>> main
 
   
 }

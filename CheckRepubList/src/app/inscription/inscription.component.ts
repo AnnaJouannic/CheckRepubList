@@ -10,7 +10,7 @@ import { UtilisateurService } from '../utilisateur/utilisateur.service';
 })
 export class InscriptionComponent  implements OnInit {
 
-  inscriptionForm!: FormGroup;
+  inscriptionForm: FormGroup;
   showForm: boolean = false;
   constructor(private utilisateurService: UtilisateurService, private router: Router, private formBuilder: FormBuilder) {
   }
@@ -25,7 +25,9 @@ export class InscriptionComponent  implements OnInit {
     this.inscriptionForm = this.formBuilder.group({
       nom: this.formBuilder.control('', Validators.required),
       prenom: this.formBuilder.control('', Validators.required),
-      password: this.formBuilder.control('', [Validators.required, Validators.minLength(4), Validators.maxLength(130)]),
+      login: this.formBuilder.control('', Validators.required),
+      password: this.formBuilder.control('', [Validators.required, Validators.minLength(5), Validators.pattern("[A-z0-9!#@$*?-]{5,10}")]),
+      passwordVerif: this.formBuilder.control('', Validators.required),
       mail: this.formBuilder.control('', [Validators.required, Validators.email]),
       tel: this.formBuilder.control('', Validators.required),
      
@@ -35,6 +37,19 @@ export class InscriptionComponent  implements OnInit {
   save() {
     this.utilisateurService.save(this.inscriptionForm.value);
     this.cancel();
+
+    if (this.inscriptionForm.valid) {
+      const password = this.inscriptionForm.value.password;
+      const passwordVerif = this.inscriptionForm.value.passwordVerif;
+  
+      if (password === passwordVerif) {
+        
+        console.log('Mot de passe confirmé : ', password);
+      } else {
+        
+        console.error('Les mots de passe ne correspondent pas.');
+      }
+    }
   }
 
   cancel() {
