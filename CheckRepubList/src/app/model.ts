@@ -28,3 +28,51 @@ export class Utilisateur {
         this.tel = tel;
     }
 }
+
+ export enum TypeLogement {
+    Hotel, Gite, ChambreDHote,Location, AirBnB, AubergeDeJeunesse, 
+	MobilHome, Van, CampingCar, Tente, Voiture, Autre
+ }
+
+ export enum TypeDeplacement {
+    Marche, Velo, Voiture, Van, Campingcar, 
+	Bateau, Train, Avion, Moto, Autre 
+}
+
+export enum TypeClimat {
+    Froid, Chaud, Tempere, Tropical, Desertique, Autre
+}
+ 
+export class Voyage {
+    dateDebutVoyage: Date;
+    dateFinVoyage: Date;
+    libelle: string;
+    login: string;
+    password: string;
+    pays: string;
+    logement: TypeLogement;
+    deplacement: TypeDeplacement;
+    climat: TypeClimat;
+
+    constructor(
+       dateDebutVoyage: Date,
+       dateFinVoyage: Date,
+       libelle: string,
+       login: string,
+       password: string,
+       pays: string,
+       logement: TypeLogement,
+       deplacement: TypeDeplacement,
+       climat: TypeClimat,
+    ) {
+        this.dateDebutVoyage = dateDebutVoyage;
+        this.dateFinVoyage = dateFinVoyage;
+        this.libelle = libelle;
+        this.login = login;
+        this.password = password;
+        this.pays = pays;
+        this.logement = logement;
+        this.deplacement = deplacement;
+        this.climat=climat;
+    }
+}
