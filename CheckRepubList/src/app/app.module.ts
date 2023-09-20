@@ -31,4 +31,6 @@ import { InscriptionComponent } from './inscription/inscription.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+}
