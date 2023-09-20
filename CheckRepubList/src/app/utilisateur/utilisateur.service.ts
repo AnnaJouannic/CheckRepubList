@@ -9,9 +9,9 @@ export class UtilisateurService {
   utilisateurs: Array<Utilisateur> = new Array<Utilisateur>();
 
   constructor() {
-    this.utilisateurs.push(new Utilisateur(3, "manon@gamil.com", "manon", "123456", "EVEN", "Manon", 7712489581, false));
-    this.utilisateurs.push(new Utilisateur(5, "tidiane@gamil.com", "Tidiane", "123456", "DIALLO", "Tidiane", 7712489581, false));
-    this.utilisateurs.push(new Utilisateur(13, "rawad@gamil.com", "rawad", "123456", "ANDRAOS", "Rawad", 7712489581, false));
+    this.utilisateurs.push(new Utilisateur(3, "manon@gamil.com", "manon", "Manon12?", "EVEN", "Manon", 7712489581, false, "user"));
+    this.utilisateurs.push(new Utilisateur(5, "tidiane@gamil.com", "Tidiane", "123456", "DIALLO", "Tidiane", 7712489581, false, "ADMIN"));
+    this.utilisateurs.push(new Utilisateur(13, "rawad@gamil.com", "rawad", "123456", "ANDRAOS", "Rawad", 7712489581, false, "user"));
    }
 
 
@@ -47,9 +47,9 @@ export class UtilisateurService {
     this.utilisateurs.splice(pos, 1);
    }
 
-   inscription(login: string, password: string, mail: string, tel: number) {
+   inscription() {
     let utilisateur: Utilisateur = new Utilisateur();
-    //utilisateur.roles.push("USER");
+    utilisateur.roles.push("user");
 
     this.save(utilisateur);
    }

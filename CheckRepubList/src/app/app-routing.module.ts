@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 const routes: Routes = [
+  {path: "", component: AccueilComponent, pathMatch: "full" },
   {path: "utilisateur", component: UtilisateurComponent },
   {path: "inscription", component: InscriptionComponent},
   // {path: "voyage", component: VoyageComponent},
