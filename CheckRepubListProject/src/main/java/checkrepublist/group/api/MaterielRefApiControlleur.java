@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ReflectionUtils;
@@ -21,6 +22,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import checkrepublist.group.dao.IDAOCritere;
 import checkrepublist.group.dao.IDAOMaterielRef;
+import checkrepublist.group.exception.CritereNotValidException;
+import checkrepublist.group.exception.CritereRefNotFoundException;
+import checkrepublist.group.exception.MaterielRefNotFoundException;
+import checkrepublist.group.exception.MaterielRefNotValidException;
 import checkrepublist.group.model.Critere;
 import checkrepublist.group.model.MaterielRef;
 import jakarta.validation.Valid;
@@ -35,56 +40,50 @@ public class MaterielRefApiControlleur {
 	@Autowired
 	IDAOCritere repoCritere;
 	
-	@GetMapping("")
-	public List<MaterielRef> findAll() {
-		return this.repoMaterielRef.findAll();
-	}
-	
+
 	@GetMapping("/{id}")
-	public MaterielRef findById(@PathVariable int id) {
-		return repoMaterielRef.findById(id).get();
+	public MaterielRefResponse findById(@PathVariable Integer id) {
+		MaterielRef materielRef = this.repoMaterielRef.findById(id).orElseThrow(MaterielRefNotFoundException::new);
+		MaterielRefResponse response = new MaterielRefResponse();
+		
+		BeanUtils.copyProperties(materielRef, response);
+		
+		return response;
 	}
 	
 	@PostMapping("")
-	public MaterielRef create(@Valid @RequestBody MaterielRef materielRef, BindingResult result) {
+	public MaterielRef add(@Valid @RequestBody MaterielRefRequest materielRefRequest, BindingResult result) {
 		if (result.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "MaterielRef invalide");
+			throw new MaterielRefNotValidException();
 		}
-		//Critere critere = (Critere) repoCritere.findAll();
-		//materielRef.setCritere(critere);
-		materielRef = repoMaterielRef.save(materielRef);
+		
+		MaterielRef materielRef = new MaterielRef();
+		
+		BeanUtils.copyProperties(materielRefRequest, materielRef);
+		
 
-		return materielRef;
+		return this.repoMaterielRef.save(materielRef);
 	}
 	
 	@PutMapping("/{id}")
-	public MaterielRef update(@RequestBody MaterielRef materielRef, @PathVariable int id) {
-		materielRef = repoMaterielRef.save(materielRef);
+	public MaterielRef edit(@PathVariable Integer id, @Valid @RequestBody MaterielRefRequest materielRefRequest, BindingResult result) {
+		if (result.hasErrors()) {
+			throw new MaterielRefNotValidException();
+		}
 
-		return materielRef;
+		MaterielRef materielRef = new MaterielRef();
+		
+		BeanUtils.copyProperties(materielRefRequest, materielRef);
+		
+
+		return this.repoMaterielRef.save(materielRef);
 	}
 	
-	@PatchMapping("/{id}")
-	public MaterielRef partialEdit(@RequestBody Map<String, Object> fields, @PathVariable int id) {
-		MaterielRef materielRef = this.repoMaterielRef.findById(id).get();
-		
-		fields.forEach((key, value) -> {
-			Field field = ReflectionUtils.findField(MaterielRef.class, key);
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, materielRef, value);
-		});
-		
-		MaterielRef materielRefReturn = repoMaterielRef.save(materielRef);
-		
-		return materielRefReturn;
-	}
+
 	
 	@DeleteMapping("/{id}")
-	public void remove(@PathVariable int id) {
-		if(!repoMaterielRef.existsById(id)) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-		}
-		
-		repoMaterielRef.deleteById(id);
+	public void deleteById(@PathVariable Integer id) {
+		this.repoMaterielRef.deleteById(id);
 	}
 }
+
