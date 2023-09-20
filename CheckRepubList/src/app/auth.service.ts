@@ -10,18 +10,11 @@ export class AuthService {
 
   constructor(private utilisateurService: UtilisateurService, private router: Router) { }
 
-  // authentification(login: string, password: string) {
-  //   this.utilisateurService.connexion(login, password).subscribe(r => {
-  //     sessionStorage.setItem("user", JSON.stringify(r));
-  //     this.router.navigate(["/"]);
-  //   });
-  // }
-
   authentification(login: string, password: string) {
-    let utilisateur = this.utilisateurService.connexion(login, password);
-
-    sessionStorage.setItem("user", JSON.stringify(utilisateur));
-    
+    this.utilisateurService.connexion(login, password).subscribe(r => {
+      sessionStorage.setItem("user", JSON.stringify(r));
+      this.router.navigate(["/"]);
+    });
   }
 
   deconnexion() {
@@ -44,9 +37,9 @@ export class AuthService {
     return this.getUtilisateur() != null;
   }
 
-  // hasRole(role: string): boolean {
-  //   return this.getUtilisateur().roles.indexOf(role) > -1;
-  // }
+  hasRole(role: string): boolean {
+    return this.getUtilisateur().roles.indexOf(role) > -1;
+  }
 
   
 }
