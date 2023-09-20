@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.ReflectionUtils;
@@ -20,7 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import checkrepublist.group.dao.IDAOCritere;
+import checkrepublist.group.exception.ActiviteRefNotFoundException;
+import checkrepublist.group.exception.CritereNotFoundException;
+import checkrepublist.group.exception.CritereNotValidException;
+import checkrepublist.group.exception.CritereRefNotFoundException;
 import checkrepublist.group.model.Critere;
+import eshop.formation.exception.FournisseurNotValidException;
 import jakarta.validation.Valid;
 
 @RestController
@@ -37,49 +43,47 @@ public class CritereApiController {
 	}
 	
 	@GetMapping("/{id}")
-	public Critere findById(@PathVariable int id) {
-		return repoCritere.findById(id).get();
+	public CritereResponse findById(@PathVariable Integer id) {
+		Critere critere = this.repoCritere.findById(id).orElseThrow(CritereNotFoundException::new);
+		CritereResponse response = new CritereResponse();
+		
+		BeanUtils.copyProperties(critere, response);
+		
+		return response);
 	}
 	
 	@PostMapping("")
-	public Critere create(@Valid @RequestBody Critere critere, BindingResult result) {
+	public Critere add(@Valid @RequestBody CritereRequest critereRequest, BindingResult result) {
 		if (result.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Critere invalide");
+			throw new CritereNotValidException();
 		}
 		
-		critere = repoCritere.save(critere);
+		Critere critere = new Critere();
+		
+		BeanUtils.copyProperties(critereRequest, critere);
+		
 
-		return critere;
+		return this.repoCritere.save(critere);
 	}
 	
 	@PutMapping("/{id}")
-	public Critere update(@RequestBody Critere critere, @PathVariable int id) {
-		critere = repoCritere.save(critere);
+	public Critere edit(@PathVariable Integer id, @Valid @RequestBody CritereRequest critereRequest, BindingResult result) {
+		if (result.hasErrors()) {
+			throw new CritereNotValidException();
+		}
 
-		return critere;
+		Critere critere = new Critere();
+		
+		BeanUtils.copyProperties(critereRequest, critere);
+		
+
+		return this.repoCritere.save(critere);
 	}
 	
-	@PatchMapping("/{id}")
-	public Critere partialEdit(@RequestBody Map<String, Object> fields, @PathVariable int id) {
-		Critere critere = this.repoCritere.findById(id).get();
-		
-		fields.forEach((key, value) -> {
-			Field field = ReflectionUtils.findField(Critere.class, key);
-			ReflectionUtils.makeAccessible(field);
-			ReflectionUtils.setField(field, critere, value);
-		});
-		
-		Critere critereReturn = repoCritere.save(critere);
-		
-		return critereReturn;
-	}
+
 	
 	@DeleteMapping("/{id}")
-	public void remove(@PathVariable int id) {
-		if(!repoCritere.existsById(id)) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-		}
-		
-		repoCritere.deleteById(id);
+	public void deleteById(@PathVariable Integer id) {
+		this.repoCritere.deleteById(id);
 	}
 }
