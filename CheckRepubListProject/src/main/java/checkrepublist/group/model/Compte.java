@@ -28,12 +28,7 @@ public abstract class Compte {
 	@Column(length = 130)
 	protected String password;
 	
-	
 	protected boolean isAdmin;
-
-	
-	
-	
 	
 	public Compte() {}
 	
