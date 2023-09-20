@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterielRefComponent } from './materiel-ref/materiel-ref.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 
 
 
@@ -17,7 +18,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
     NavBarComponent,
     ConnexionComponent,
     MaterielRefComponent,
-    //InscriptionComponent
+    InscriptionComponent,
+    UtilisateurComponent
 
   ],
 

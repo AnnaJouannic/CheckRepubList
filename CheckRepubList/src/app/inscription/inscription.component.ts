@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UtilisateurService } from '../utilisateur/utilisateur.service';
 
 @Component({
   selector: 'app-inscription',
@@ -11,7 +12,7 @@ export class InscriptionComponent  implements OnInit {
 
   inscriptionForm!: FormGroup;
   showForm: boolean = false;
-  constructor(private utilisateurHttpService: UtilisateurHttpService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private utilisateurService: UtilisateurService, private router: Router, private formBuilder: FormBuilder) {
   }
 
   /*valider() {
@@ -32,7 +33,7 @@ export class InscriptionComponent  implements OnInit {
     });
   }
   save() {
-    this.utilisateurHttpService.save(this.inscriptionForm.value);
+    this.utilisateurService.save(this.inscriptionForm.value);
     this.cancel();
   }
 

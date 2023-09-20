@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { UtilisateurService } from './utilisateur/utilisateur.service';
+import { Utilisateur } from './model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +10,18 @@ export class AuthService {
 
   constructor(private utilisateurService: UtilisateurService, private router: Router) { }
 
+  // authentification(login: string, password: string) {
+  //   this.utilisateurService.connexion(login, password).subscribe(r => {
+  //     sessionStorage.setItem("user", JSON.stringify(r));
+  //     this.router.navigate(["/"]);
+  //   });
+  // }
+
   authentification(login: string, password: string) {
-    this.utilisateurService.connexion(login, password).subscribe(r => {
-      sessionStorage.setItem("user", JSON.stringify(r));
-      this.router.navigate(["/"]);
-    });
+    let utilisateur = this.utilisateurService.connexion(login, password);
+
+    sessionStorage.setItem("user", JSON.stringify(utilisateur));
+    
   }
 
   deconnexion() {
@@ -35,9 +44,9 @@ export class AuthService {
     return this.getUtilisateur() != null;
   }
 
-  hasRole(role: string): boolean {
-    return this.getUtilisateur().roles.indexOf(role) > -1;
-  }
+  // hasRole(role: string): boolean {
+  //   return this.getUtilisateur().roles.indexOf(role) > -1;
+  // }
 
   
 }

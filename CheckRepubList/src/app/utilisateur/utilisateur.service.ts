@@ -54,8 +54,8 @@ export class UtilisateurService {
     this.save(utilisateur);
    }
 
-   connexion(mail: string, login: string, tel: number, password: string):Utilisateur {
-    return this.utilisateurs.find(u => u.mail == mail &&  u.login == login  && u.password == password && u.tel == tel);
+   connexion(login: string, password: string):Utilisateur {
+    return this.utilisateurs.find(u => u.login == login  && u.password == password);
    }
 
 }
