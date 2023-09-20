@@ -6,12 +6,14 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConnexionComponent } from './connexion/connexion.component';
+import { MaterielRefComponent } from './materiel-ref/materiel-ref.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
-    ConnexionComponent
+    ConnexionComponent,
+    MaterielRefComponent
     
   ],
   imports: [
