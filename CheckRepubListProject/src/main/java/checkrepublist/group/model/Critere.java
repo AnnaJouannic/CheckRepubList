@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -23,9 +24,10 @@ public class Critere {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	
 	@ManyToOne
-	@JoinColumn(name="libelleMateriel")
-	private MaterielRef libelleMateriel;
+	@JoinColumn(name="id_materiel")
+	private MaterielRef materielref;
 
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Hotel','Gite','ChambreDHote','Location', 'AirBnB', 'MobilHome', 'Van', 'CampingCar', 'Tente', 'Voiture', Autre)")
@@ -47,25 +49,25 @@ public class Critere {
 	}
 	
 	
-	public Critere(Integer id, MaterielRef libelleMateriel, TypeLogement logement, TypeDeplacement deplacement,
+	public Critere(Integer id, MaterielRef materielref, TypeLogement logement, TypeDeplacement deplacement,
 			TypeClimat climat) {
 		this.id = id;
-		this.libelleMateriel = libelleMateriel;
+		this.materielref = materielref;
 		this.logement = logement;
 		this.deplacement = deplacement;
 		this.climat = climat;
 	}
 
-	public Critere(MaterielRef libelleMateriel, TypeLogement logement, TypeDeplacement deplacement, TypeClimat climat) {
-		this.libelleMateriel = libelleMateriel;
+	public Critere(MaterielRef materielref, TypeLogement logement, TypeDeplacement deplacement, TypeClimat climat) {
+		this.materielref = materielref;
 		this.logement = logement;
 		this.deplacement = deplacement;
 		this.climat = climat;
 	}
 
 
-	public Critere(MaterielRef libelleMateriel) {
-		this.libelleMateriel = libelleMateriel;
+	public Critere(MaterielRef materielref) {
+		this.materielref = materielref;
 	}
 
 
@@ -77,12 +79,12 @@ public class Critere {
 		this.id = id;
 	}
 
-	public MaterielRef getLibelleMateriel() {
-		return libelleMateriel;
+	public MaterielRef getMaterielref() {
+		return materielref;
 	}
 
-	public void setLibelleMateriel(MaterielRef libelleMateriel) {
-		this.libelleMateriel = libelleMateriel;
+	public void setMaterielref(MaterielRef materielref) {
+		this.materielref = materielref;
 	}
 
 	public TypeLogement getLogement() {

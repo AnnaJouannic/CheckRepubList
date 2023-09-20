@@ -54,7 +54,7 @@ class CheckRepublistApplicationTest {
 	void contextLoads() {
 		
 		//Activite:
-		ActiviteRef a1= new ActiviteRef("piscine");
+		/*ActiviteRef a1= new ActiviteRef("piscine");
 		ActiviteRef a2= new ActiviteRef("plage");
 		ActiviteRef a3= new ActiviteRef("lac");
 		
@@ -63,10 +63,10 @@ class CheckRepublistApplicationTest {
 		a3 = activiteRefRepo.save(a3);
 		
 		List<ActiviteRef> aquatique = new ArrayList();
-		Collections.addAll(aquatique, a1,a2,a3);
+		Collections.addAll(aquatique, a1,a2,a3);*/
 		
 	Voyage voyage1 = new Voyage(LocalDate.parse("2023-09-11"), LocalDate.parse("2023-09-25"), "Vacances fin d'été !!", "Japon", TypeLogement.Hotel, TypeDeplacement.Avion, TypeClimat.Tempere );
-	voyage1.setActivite(aquatique);
+	//voyage1.setActivite(aquatique);
 	voyage1 = voyageRepo.save(voyage1);
 	
 	
@@ -111,323 +111,483 @@ class CheckRepublistApplicationTest {
 	c2.setVoyages(Voyage2);
 	c2 = utilisateurRepo.save(c2);
 	
+	
+	
+	
+	
 
+	
+	Critere crvoitured1 = new Critere ();
+	crvoitured1.setDeplacement(TypeDeplacement.Voiture);
+	crvoitured1= critereRepo.save(crvoitured1);
+	
+	Critere crvand = new Critere ();
+	crvand.setDeplacement(TypeDeplacement.Van);
+	crvand= critereRepo.save(crvand);
+	
+	Critere crccd1 = new Critere ();
+	crccd1.setDeplacement(TypeDeplacement.Campingcar);
+	crccd1= critereRepo.save(crccd1);
+	
+	Critere crbateau1 = new Critere ();
+	crbateau1.setDeplacement(TypeDeplacement.Bateau);
+	crbateau1= critereRepo.save(crbateau1);
+	
+	Critere crtrain1 = new Critere ();
+	crtrain1.setDeplacement(TypeDeplacement.Train);
+	crtrain1= critereRepo.save(crtrain1);
+	
+	Critere cravion1 = new Critere ();
+	cravion1.setDeplacement(TypeDeplacement.Avion);
+	cravion1= critereRepo.save(cravion1);
+	
+	Critere crmoto1 = new Critere ();
+	crmoto1.setDeplacement(TypeDeplacement.Moto);
+	crmoto1= critereRepo.save(crmoto1);
+	
+	Critere crhotel1 = new Critere ();
+	crhotel1.setLogement(TypeLogement.Hotel);
+	crhotel1= critereRepo.save(crhotel1);
+	
+	Critere crgite1 = new Critere ();
+	crgite1.setLogement(TypeLogement.Gite);
+	crgite1= critereRepo.save(crgite1);
+	
+	Critere crcdh1 = new Critere ();
+	crcdh1.setLogement(TypeLogement.ChambreDHote);
+	crcdh1= critereRepo.save(crcdh1);
+	
+	Critere crlocation1 = new Critere ();
+	crlocation1.setLogement(TypeLogement.Location);
+	crlocation1= critereRepo.save(crlocation1);
+	
+	Critere crairbnb1 = new Critere ();
+	crairbnb1.setLogement(TypeLogement.AirBnB);
+	crairbnb1= critereRepo.save(crairbnb1);
+	
+	Critere cradj1 = new Critere ();
+	cradj1.setLogement(TypeLogement.AubergeDeJeunesse);
+	cradj1= critereRepo.save(cradj1);
+	
+	Critere crmh1 = new Critere ();
+	crmh1.setLogement(TypeLogement.MobilHome);
+	crmh1= critereRepo.save(crmh1);
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*Critere craquatique = new Critere ();
+	craquatique.setActivites(aquatique);*/
 	
 	//Catégorie Vêtement
 	MaterielRef v1 = new MaterielRef("Maillot de bain", Categorie.Vetement);
 	v1 = materielRefRepo.save(v1);
-	Critere cri1 = new Critere (v1);
-	Critere cri2 = new Critere (v1);
-	Critere cri3 = new Critere (v1);
-	
-	cri1.setClimat(TypeClimat.Chaud);
-	cri2.setClimat(TypeClimat.Tropical);
-	cri3.setActivites(aquatique);
-	
-	cri1 = critereRepo.save(cri1);
-	cri2 = critereRepo.save(cri2);
-	cri3 = critereRepo.save(cri3);
+	Critere crchaud1 = new Critere ();
+	crchaud1.setClimat(TypeClimat.Chaud);
+	crchaud1.setMaterielref(v1);
+	crchaud1 = critereRepo.save(crchaud1);
+	Critere crtropical1 = new Critere ();
+	crtropical1.setClimat(TypeClimat.Tropical);
+	crtropical1.setMaterielref(v1);
+	crtropical1 = critereRepo.save(crtropical1);
+
+	//craquatique = critereRepo.save(craquatique);
 
 	
 	MaterielRef v2 = new MaterielRef("T-shirt",Categorie.Vetement);
 	v2 = materielRefRepo.save(v2);
-	Critere cri4 = new Critere (v2);
-	cri4 = critereRepo.save(cri4);
+	Critere crnull1 = new Critere ();
+	crnull1.setMaterielref(v2);
+	crnull1 = critereRepo.save(crnull1);
 	
 	
 	MaterielRef v3 = new MaterielRef("Pull",Categorie.Vetement);
 	v3 = materielRefRepo.save(v3);
+	Critere crfroid1 = new Critere ();
+	crfroid1.setClimat(TypeClimat.Froid);
+	crfroid1.setMaterielref(v3);
+	crfroid1 = critereRepo.save(crfroid1);
+	Critere crtempere1 = new Critere ();
+	crtempere1.setClimat(TypeClimat.Tempere);
+	crtempere1.setMaterielref(v3);
+	crtempere1 = critereRepo.save(crtempere1);
 	
-	Critere cri5 = new Critere (v3);
-	Critere cri6= new Critere (v3);
-	
-	cri5.setClimat(TypeClimat.Froid);
-	cri6.setClimat(TypeClimat.Tempere);
-	
-	cri5 = critereRepo.save(cri5);
-	cri6 = critereRepo.save(cri6);
 	
 	MaterielRef v4 = new MaterielRef("Pantalon",Categorie.Vetement);
 	v4 = materielRefRepo.save(v4);
-	Critere cri7 = new Critere (v4);
-	cri7 = critereRepo.save(cri7);
-
+	Critere crnull2 = new Critere ();
+	crnull2.setMaterielref(v4);
+	crnull2 = critereRepo.save(crnull2);
 	
 	MaterielRef v5 = new MaterielRef("Short",Categorie.Vetement);
 	v5 = materielRefRepo.save(v5);
-	Critere cri8 = new Critere (v5);
-	Critere cri9 = new Critere (v5);
-	
-	cri8.setClimat(TypeClimat.Chaud);
-	cri9.setClimat(TypeClimat.Tropical);
+	Critere crchaud2 = new Critere ();
+	crchaud2.setClimat(TypeClimat.Chaud);
+	crchaud2.setMaterielref(v5);
+	crchaud2 = critereRepo.save(crchaud2);
+	Critere crtropical2 = new Critere ();
+	crtropical2.setClimat(TypeClimat.Tropical);
+	crtropical2.setMaterielref(v5);
+	crtropical2 = critereRepo.save(crtropical2);
 
-	cri8 = critereRepo.save(cri8);
-	cri9 = critereRepo.save(cri9);
-	
 	MaterielRef v6 = new MaterielRef("Robe",Categorie.Vetement); 
 	v6 = materielRefRepo.save(v6);
-	Critere cri10 = new Critere (v6);
-	cri10 = critereRepo.save(cri10);
+	Critere crnull34 = new Critere ();
+	crnull34.setMaterielref(v6);
+	crnull34 = critereRepo.save(crnull34);
+	
 	
 	MaterielRef v7 = new MaterielRef("Jupe",Categorie.Vetement);
 	v7 = materielRefRepo.save(v7);
-	Critere cri11 = new Critere (v7);
-	Critere cri12 = new Critere (v7);
+	Critere crchaud3 = new Critere ();
+	crchaud3.setClimat(TypeClimat.Chaud);
+	crchaud3.setMaterielref(v1);
+	crchaud3 = critereRepo.save(crchaud3);
+	Critere crtropical3 = new Critere ();
+	crtropical3.setClimat(TypeClimat.Tropical);
+	crtropical3.setMaterielref(v7);
+	crtropical3 = critereRepo.save(crtropical3);
 	
-	cri11.setClimat(TypeClimat.Chaud);
-	cri12.setClimat(TypeClimat.Tropical);
-
-	cri11 = critereRepo.save(cri11);
-	cri12 = critereRepo.save(cri12);
 	
 	MaterielRef v8 = new MaterielRef("Pyjama",Categorie.Vetement);
 	v8 = materielRefRepo.save(v8);
+	Critere crnull3 = new Critere ();
+	crnull3.setMaterielref(v8);
+	crnull3 = critereRepo.save(crnull3);
 	
-	Critere cri13 = new Critere (v8);
-	cri13 = critereRepo.save(cri13);
 	
 	MaterielRef v9 = new MaterielRef("Sous-vêtement",Categorie.Vetement);
 	v9 = materielRefRepo.save(v9);
-	
-	Critere cri14 = new Critere (v9);
-	cri14 = critereRepo.save(cri14);
+	Critere crnull4 = new Critere ();
+	crnull4.setMaterielref(v9);
+	crnull4 = critereRepo.save(crnull4);
 	
 	MaterielRef v10 = new MaterielRef("Basket",Categorie.Vetement);
 	v10 = materielRefRepo.save(v10);
-	
-	Critere cri15 = new Critere (v10);
-	cri15 = critereRepo.save(cri15);
+	Critere crnull5 = new Critere ();
+	crnull5.setMaterielref(v10);
+	crnull5 = critereRepo.save(crnull5);
+
 	
 	MaterielRef v11 = new MaterielRef("Sandales",Categorie.Vetement);
 	v11 = materielRefRepo.save(v11);
-	Critere cri16 = new Critere (v11);
-	Critere cri17 = new Critere (v11);
-	Critere cri18 = new Critere (v11);
+	Critere crchaud4 = new Critere ();
+	crchaud4.setClimat(TypeClimat.Chaud);
+	crchaud4.setMaterielref(v11);
+	crchaud4 = critereRepo.save(crchaud4);
+	Critere crtropical4 = new Critere ();
+	crtropical4.setClimat(TypeClimat.Tropical);
+	crtropical4.setMaterielref(v11);
+	crtropical4 = critereRepo.save(crtropical4);
+	Critere crdesertique1 = new Critere ();
+	crdesertique1.setClimat(TypeClimat.Desertique);
+	crdesertique1.setMaterielref(v11);
+	crdesertique1 = critereRepo.save(crdesertique1);
 	
-	cri16.setClimat(TypeClimat.Chaud);
-	cri17.setClimat(TypeClimat.Tropical);
-	cri18.setClimat(TypeClimat.Desertique);
-	
-	cri16 = critereRepo.save(cri16);
-	cri17 = critereRepo.save(cri17);
-	cri18 = critereRepo.save(cri18);
 	
 	MaterielRef v12 = new MaterielRef("Chaussure de rando",Categorie.Vetement);
 	v12 = materielRefRepo.save(v12);
 	Critere cri19 = new Critere (v12);
+	Critere crmarche1 = new Critere ();
+	crmarche1.setDeplacement(TypeDeplacement.Marche);
+	crmarche1.setMaterielref(v12);
+	crmarche1 = critereRepo.save(crmarche1);
 	
-	cri19.setDeplacement(TypeDeplacement.Marche);
-	
-	cri19 = critereRepo.save(cri19);
 	
 	MaterielRef v13 = new MaterielRef("Bottes",Categorie.Vetement);
 	v13 = materielRefRepo.save(v13);
-	Critere cri20 = new Critere (v13);
-	
-	cri20.setClimat(TypeClimat.Froid);
-	
-	cri20 = critereRepo.save(cri20);
-	
+	Critere crfroid2 = new Critere ();
+	crfroid2.setClimat(TypeClimat.Froid);
+	crfroid2.setMaterielref(v13);
+	crfroid2 = critereRepo.save(crfroid2);
+
 
 	//Catégorie Pharmacie
 	MaterielRef ph1 = new MaterielRef("Pansements",Categorie.Pharmacie);
 	ph1=materielRefRepo.save(ph1);
-	Critere cr2=new Critere(ph1);
-	cr2=critereRepo.save(cr2);
-	
+	Critere crnull6 = new Critere ();
+	crnull6.setMaterielref(ph1);
+	crnull6 = critereRepo.save(crnull6);
 	
 	MaterielRef ph2 = new MaterielRef("Desinfectant",Categorie.Pharmacie);
 	ph2=materielRefRepo.save(ph2);
-	Critere cr3=new Critere(ph2);
-	cr3=critereRepo.save(cr3);
+	Critere crnull7 = new Critere ();
+	crnull7.setMaterielref(ph2);
+	crnull7 = critereRepo.save(crnull7);
 	
 	MaterielRef ph3 = new MaterielRef("Prescription médicale",Categorie.Pharmacie);
 	ph3=materielRefRepo.save(ph3);
-	Critere cr4=new Critere(ph3);
-	cr4=critereRepo.save(cr4);
+	Critere crnull8 = new Critere ();
+	crnull8.setMaterielref(ph3);
+	crnull8 = critereRepo.save(crnull8);
 	
 	MaterielRef ph4 = new MaterielRef("Compresse",Categorie.Pharmacie);
 	ph4=materielRefRepo.save(ph4);
-	Critere crt5=new Critere(ph4);
-	crt5=critereRepo.save(crt5);
+	Critere crnull9 = new Critere ();
+	crnull9.setMaterielref(ph4);
+	crnull9 = critereRepo.save(crnull9);
 	
 	MaterielRef ph5 = new MaterielRef("Anti-douleurs (Paracétamol)",Categorie.Pharmacie);
 	ph3=materielRefRepo.save(ph5);
-	Critere crt6=new Critere(ph5);
-	crt6=critereRepo.save(crt6);
+	Critere crnull10 = new Critere ();
+	crnull10.setMaterielref(ph5);
+	crnull10 = critereRepo.save(crnull10);
 	
 	MaterielRef ph6 = new MaterielRef("Biafine",Categorie.Pharmacie);
 	ph6=materielRefRepo.save(ph6);
-	Critere crt7=new Critere(ph6);
-	crt7=critereRepo.save(crt7);
-	crt7.setClimat(TypeClimat.Chaud);
-	Critere crt8=new Critere(ph6);
-	crt8=critereRepo.save(crt8);
-	crt8.setClimat(TypeClimat.Tropical);
-	Critere crt9=new Critere(ph6);
-	crt9=critereRepo.save(crt9);
-	crt9.setClimat(TypeClimat.Tempere);
-	Critere crt10=new Critere(ph6);
-	crt10=critereRepo.save(crt10);
-	crt10.setClimat(TypeClimat.Desertique);
+	Critere crchaud5 = new Critere ();
+	crchaud5.setClimat(TypeClimat.Chaud);
+	crchaud5.setMaterielref(ph6);
+	crchaud5 = critereRepo.save(crchaud5);
+	Critere crtropical5 = new Critere ();
+	crtropical5.setClimat(TypeClimat.Tropical);
+	crtropical5.setMaterielref(ph6);
+	crtropical5 = critereRepo.save(crtropical5);
+	Critere crtempere2 = new Critere ();
+	crtempere2.setClimat(TypeClimat.Tempere);
+	crtempere2.setMaterielref(ph6);
+	crtempere2 = critereRepo.save(crtempere2);
+	Critere crdesertique2 = new Critere ();
+	crdesertique2.setClimat(TypeClimat.Desertique);
+	crdesertique2.setMaterielref(ph6);
+	crdesertique2 = critereRepo.save(crdesertique2);
+	
 	
 	
 	//Catégorie Numérique
 	MaterielRef n1 = new MaterielRef("Téléphone",Categorie.Numerique);
 	n1=materielRefRepo.save(n1);
-	Critere crit1=new Critere(n1);
-	crit1=critereRepo.save(crit1);
+	Critere crnull11 = new Critere ();
+	crnull11.setMaterielref(n1);
+	crnull11 = critereRepo.save(crnull11);
 	
 	MaterielRef n2 = new MaterielRef("Tablette",Categorie.Numerique);
 	n2=materielRefRepo.save(n2);
-	Critere crit2=new Critere(n2);
-	crit2=critereRepo.save(crit2);
+	Critere crnull12 = new Critere ();
+	crnull12.setMaterielref(n2);
+	crnull12 = critereRepo.save(crnull12);
 	
 	MaterielRef n3 = new MaterielRef("Ordinateur",Categorie.Numerique);
 	n3=materielRefRepo.save(n3);
-	Critere crit3=new Critere(n3);
-	crit3=critereRepo.save(crit3);
+	Critere crnull13 = new Critere ();
+	crnull13.setMaterielref(n3);
+	crnull13 = critereRepo.save(crnull13);
 	
 	MaterielRef n4 = new MaterielRef("Chargeur",Categorie.Numerique);
 	n4=materielRefRepo.save(n4);
-	Critere crit4=new Critere(n4);
-	crit4=critereRepo.save(crit4);
+	Critere crnull14 = new Critere ();
+	crnull14.setMaterielref(n4);
+	crnull14 = critereRepo.save(crnull14);
 	
 	MaterielRef n5 = new MaterielRef("Ecouteurs",Categorie.Numerique);
 	n5=materielRefRepo.save(n5);
-	Critere crit5=new Critere(n5);
-	crit5=critereRepo.save(crit5);
+	Critere crnull15 = new Critere ();
+	crnull15.setMaterielref(n5);
+	crnull15 = critereRepo.save(crnull15);
 	
 	//Catégorie Administratif
 	MaterielRef adm1 = new MaterielRef("Carte Identité/Passeport",Categorie.Administratif);
 	adm1=materielRefRepo.save(adm1);
-	Critere cr10=new Critere(adm1);
-	cr10=critereRepo.save(cr10);
+	Critere crnull16 = new Critere ();
+	crnull16.setMaterielref(adm1);
+	crnull16 = critereRepo.save(crnull16);
 	
 	MaterielRef adm2 = new MaterielRef("Permis de conduire",Categorie.Administratif);
 	adm2=materielRefRepo.save(adm2);
-	Critere cr11=new Critere(adm2);
-	cr11=critereRepo.save(cr11);
+	Critere crnull17 = new Critere ();
+	crnull17.setMaterielref(adm1);
+	crnull17 = critereRepo.save(crnull17);
 	
 	//Catégorie Animaux
 	MaterielRef ani1 = new MaterielRef("Harnais",Categorie.Animaux);
 	ani1=materielRefRepo.save(ani1);
-	Critere cr12=new Critere(ani1);
-	cr12=critereRepo.save(cr12);
+	Critere crnull19 = new Critere ();
+	crnull19.setMaterielref(ani1);
+	crnull19 = critereRepo.save(crnull19);
 	
 	MaterielRef ani2 = new MaterielRef("Laisse",Categorie.Animaux);
 	ani2=materielRefRepo.save(ani2);
-	Critere cr13=new Critere(ani2);
-	cr13=critereRepo.save(cr13);
+	Critere crnull20 = new Critere ();
+	crnull20.setMaterielref(ani2);
+	crnull20 = critereRepo.save(crnull20);
 	
 	MaterielRef ani3 = new MaterielRef("Jouet",Categorie.Animaux);
 	ani3=materielRefRepo.save(ani3);
-	Critere cr14=new Critere(ani3);
-	cr14=critereRepo.save(cr14);
+	Critere crnull21 = new Critere ();
+	crnull21.setMaterielref(ani3);
+	crnull21 = critereRepo.save(crnull21);
 	
 	//Catégorie Outils
 	
-	MaterielRef o1 = new MaterielRef("Tente",Categorie.Outils);
-	o1=materielRefRepo.save(o1);
-	Critere cr15=new Critere(o1);
-	cr15=critereRepo.save(cr15);
-	cr15.setLogement(TypeLogement.Tente);
-	cr15.setDeplacement(TypeDeplacement.Marche);
-	
-	MaterielRef o2 = new MaterielRef("Sac de couchage",Categorie.Outils);
-	o2=materielRefRepo.save(o2);
-	Critere cr16=new Critere(o2);
-	cr16=critereRepo.save(cr16);
-	cr16.setLogement(TypeLogement.Tente);
-	cr16.setLogement(TypeLogement.Van);
-	cr16.setLogement(TypeLogement.CampingCar);
-	cr16.setLogement(TypeLogement.Voiture);
-	
-	MaterielRef o3 = new MaterielRef("Couteaux",Categorie.Outils);
-	o3=materielRefRepo.save(o3);
-	Critere cr17=new Critere(o3);
-	cr17=critereRepo.save(cr17);
-	cr17.setLogement(TypeLogement.Tente);
-	cr17.setDeplacement(TypeDeplacement.Velo);
-	cr17.setLogement(TypeLogement.Van);
-	cr17.setLogement(TypeLogement.CampingCar);
-	
-	
-	MaterielRef o4 = new MaterielRef("Réchaud",Categorie.Outils);
-	o4=materielRefRepo.save(o4);
-	Critere cr18=new Critere(o4);
-	cr18=critereRepo.save(cr18);
-	cr18.setLogement(TypeLogement.Tente);
-	cr18.setLogement(TypeLogement.Van);
-	cr18.setLogement(TypeLogement.CampingCar);
-	cr18.setLogement(TypeLogement.Voiture);
-	
+	 MaterielRef o1 = new MaterielRef("Tente",Categorie.Outils);
+	    o1=materielRefRepo.save(o1);
+	    Critere crtente1 = new Critere ();
+		crtente1.setLogement(TypeLogement.Tente);
+		crtente1.setMaterielref(o1);
+		crtente1= critereRepo.save(crtente1);
+	   
+	 
+	    
+	    MaterielRef o2 = new MaterielRef("Sac de couchage",Categorie.Outils);
+	    o2=materielRefRepo.save(o2);
+	    Critere crtente2 = new Critere ();
+			crtente2.setLogement(TypeLogement.Tente);
+			crtente2.setMaterielref(o2);
+			crtente2= critereRepo.save(crtente2);
+	    Critere crvanl1 = new Critere ();
+			crvanl1.setLogement(TypeLogement.Van);
+			crvanl1.setMaterielref(o2);
+			crvanl1= critereRepo.save(crvanl1);
+		Critere crccl1 = new Critere ();
+			crccl1.setLogement(TypeLogement.CampingCar);
+			crccl1.setMaterielref(o2);
+			crccl1= critereRepo.save(crccl1);
+		Critere crvoiturel1 = new Critere ();
+			crvoiturel1.setLogement(TypeLogement.Voiture);
+			crvoiturel1.setMaterielref(o2);
+			crvoiturel1= critereRepo.save(crvoiturel1);
+			
+	    
+	    
+	    MaterielRef o3 = new MaterielRef("Couteaux",Categorie.Outils);
+	    o3=materielRefRepo.save(o3);
+	    Critere crvanl2 = new Critere ();
+			crvanl2.setLogement(TypeLogement.Van);
+			crvanl2.setMaterielref(o3);
+			crvanl2= critereRepo.save(crvanl2);
+		Critere crtente3 = new Critere ();
+			crtente3.setLogement(TypeLogement.Tente);
+			crtente3.setMaterielref(o3);
+			crtente3= critereRepo.save(crtente3);
+		Critere crvelo1 = new Critere ();
+			crvelo1.setDeplacement(TypeDeplacement.Velo);
+		    crvelo1.setMaterielref(o3);
+		    crvelo1 = critereRepo.save(crvelo1);
+		Critere crccl2 = new Critere ();
+			crccl2.setLogement(TypeLogement.CampingCar);
+			crccl2.setMaterielref(o3);
+			crccl2= critereRepo.save(crccl2);
+
+	    
+	    
+	    MaterielRef o4 = new MaterielRef("Réchaud",Categorie.Outils);
+	    o4=materielRefRepo.save(o4);
+	    Critere crtente4 = new Critere ();
+			crtente4.setLogement(TypeLogement.Tente);
+			crtente4.setMaterielref(o2);
+			crtente4= critereRepo.save(crtente4);
+	    Critere crvanl3 = new Critere ();
+			crvanl3.setLogement(TypeLogement.Van);
+			crvanl3.setMaterielref(o4);
+			crvanl3= critereRepo.save(crvanl3);
+		Critere crccl3 = new Critere ();
+			crccl3.setLogement(TypeLogement.CampingCar);
+			crccl3.setMaterielref(o4);
+			crccl3= critereRepo.save(crccl3);
+		Critere crvoiturel2 = new Critere ();
+			crvoiturel2.setLogement(TypeLogement.Voiture);
+			crvoiturel2.setMaterielref(o4);
+			crvoiturel2= critereRepo.save(crvoiturel2);
 	
 	//Catégorie Toilette
 	MaterielRef t1 = new MaterielRef("Brosse à dent",Categorie.Toilette);
 	t1=materielRefRepo.save(t1);
-	Critere cr19=new Critere(t1);
-	cr19=critereRepo.save(cr19);
+	Critere crnull22 = new Critere ();
+	crnull22.setMaterielref(t1);
+	crnull22 = critereRepo.save(crnull22);
 	
 	MaterielRef t2 = new MaterielRef("Dentifrice",Categorie.Toilette);
 	t2=materielRefRepo.save(t2);
-	Critere cr20=new Critere(t2);
-	cr20=critereRepo.save(cr20);
+	Critere crnull23 = new Critere ();
+	crnull23.setMaterielref(t2);
+	crnull23 = critereRepo.save(crnull23);
 	
 	MaterielRef t3 = new MaterielRef("Shampooing",Categorie.Toilette);
 	t3=materielRefRepo.save(t3);
-	Critere cr21=new Critere(t3);
-	cr21=critereRepo.save(cr21);
+	Critere crnull24 = new Critere ();
+	crnull24.setMaterielref(t3);
+	crnull24 = critereRepo.save(crnull24);
 	
 	MaterielRef t4 = new MaterielRef("Gel Douche",Categorie.Toilette);
 	t4=materielRefRepo.save(t4);
-	Critere cr22=new Critere(t4);
-	cr22=critereRepo.save(cr22);
+	Critere crnull25 = new Critere ();
+	crnull25.setMaterielref(t4);
+	crnull25 = critereRepo.save(crnull25);
 	
 	MaterielRef t5 = new MaterielRef("Crème de jour/nuit",Categorie.Toilette);
 	t5=materielRefRepo.save(t5);
-	Critere cr23=new Critere(t5);
-	cr23=critereRepo.save(cr23);
+	Critere crnull26 = new Critere ();
+	crnull26.setMaterielref(t5);
+	crnull26 = critereRepo.save(crnull26);
 	
 	MaterielRef t6 = new MaterielRef("Bain de bouche",Categorie.Toilette);
 	t6=materielRefRepo.save(t6);
-	Critere cr24=new Critere(t6);
-	cr24=critereRepo.save(cr24);
+	Critere crnull27 = new Critere ();
+	crnull27.setMaterielref(t6);
+	crnull27 = critereRepo.save(crnull27);
 	
 	MaterielRef t7 = new MaterielRef("Boules quiès",Categorie.Toilette);
 	t7=materielRefRepo.save(t7);
-	Critere cr25=new Critere(t7);
-	cr25=critereRepo.save(cr25);
+	Critere crnull28 = new Critere ();
+	crnull28.setMaterielref(t7);
+	crnull28 = critereRepo.save(crnull28);
 	
 	MaterielRef t8 = new MaterielRef("Brosse à cheveux/Peigne",Categorie.Toilette);
 	t8=materielRefRepo.save(t8);
-	Critere cr26=new Critere(t8);
-	cr26=critereRepo.save(cr26);
+	Critere crnull29 = new Critere ();
+	crnull29.setMaterielref(t8);
+	crnull29 = critereRepo.save(crnull29);
 	
 	MaterielRef t9 = new MaterielRef("Savon",Categorie.Toilette);
 	t9=materielRefRepo.save(t9);
-	Critere cr27=new Critere(t9);
-	cr27=critereRepo.save(cr27);
+	Critere crnull30 = new Critere ();
+	crnull30.setMaterielref(t9);
+	crnull30 = critereRepo.save(crnull30);
 	
 	MaterielRef t10 = new MaterielRef("Déodorant",Categorie.Toilette);
 	t10=materielRefRepo.save(t10);
-	Critere cr28=new Critere(t10);
-	cr28=critereRepo.save(cr28);
+	Critere crnull31 = new Critere ();
+	crnull31.setMaterielref(t10);
+	crnull31 = critereRepo.save(crnull31);
 	
 	MaterielRef t11 = new MaterielRef("Parfum",Categorie.Toilette);
 	t11=materielRefRepo.save(t11);
-	Critere cr29=new Critere(t11);
-	cr29=critereRepo.save(cr29);
+	Critere crnull32 = new Critere ();
+	crnull32.setMaterielref(t11);
+	crnull32 = critereRepo.save(crnull32);
 	
 	MaterielRef t12 = new MaterielRef("Crème solaire",Categorie.Toilette);
 	t11=materielRefRepo.save(t12);
-	Critere cr30=new Critere(t12);
-	cr30=critereRepo.save(cr30);
+	Critere crnull33 = new Critere ();
+	crnull33.setMaterielref(t12);
+	crnull33 = critereRepo.save(crnull33);
 	
 	
 	
 	
 	
+
+	
+
+
+
 	
 	
 	
