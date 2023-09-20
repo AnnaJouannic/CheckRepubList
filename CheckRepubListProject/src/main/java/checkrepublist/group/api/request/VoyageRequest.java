@@ -30,7 +30,7 @@ public class VoyageRequest {
 	@NotBlank
 	private TypeClimat climat;
 	
-	private List<ActiviteRef> activites= new ArrayList<>();
+	//private List<ActiviteRef> activites= new ArrayList<>();
 
 	public LocalDate getDateDebutVoyage() {
 		return dateDebutVoyage;
@@ -80,13 +80,13 @@ public class VoyageRequest {
 		this.climat = climat;
 	}
 
-	public List<ActiviteRef> getActivites() {
+	/*public List<ActiviteRef> getActivites() {
 		return activites;
 	}
 
 	public void setActivites(List<ActiviteRef> activites) {
 		this.activites = activites;
-	}
+	}*/
 
 	
 }
