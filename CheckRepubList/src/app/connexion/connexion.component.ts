@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-connexion',
@@ -21,6 +22,6 @@ export class ConnexionComponent implements OnInit{
     })
   }
   auth() {
-   this.authService.authentification(this.connexionForm.value);
+   this.authService.authentification(this.connexionForm.get('login')?.value, this.connexionForm.get('password')?.value);
  }
 }
