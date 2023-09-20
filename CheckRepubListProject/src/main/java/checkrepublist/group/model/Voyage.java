@@ -54,6 +54,10 @@ public class Voyage {
 	@JoinTable(name="voyagematerielref",joinColumns = @JoinColumn(name="voyage"),inverseJoinColumns = @JoinColumn(name="materielref"))
 	private List<MaterielRef> materiels = new ArrayList();
 	
+
+	public Voyage() {
+	}
+	
 	public Voyage(Integer id, LocalDate dateDebutVoyage, LocalDate dateFinVoyage, String libelle, String pays, TypeLogement logement, TypeDeplacement deplacement, TypeClimat climat) {
 		this.id = id;
 		this.dateDebutVoyage = dateDebutVoyage;
@@ -75,6 +79,7 @@ public class Voyage {
 		this.deplacement = deplacement;
 		this.climat = climat;
 	}
+	
 
 	public Integer getId() {
 		return id;

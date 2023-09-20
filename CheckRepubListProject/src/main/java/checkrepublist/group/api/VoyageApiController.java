@@ -1,5 +1,6 @@
 package checkrepublist.group.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -17,13 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 import checkrepublist.group.api.request.VoyageRequest;
 import checkrepublist.group.api.response.VoyageResponse;
 import checkrepublist.group.dao.IDAOCritere;
+import checkrepublist.group.dao.IDAOMaterielRef;
 import checkrepublist.group.dao.IDAOVoyage;
 import checkrepublist.group.exception.VoyageNotFoundException;
 import checkrepublist.group.exception.VoyageNotValidException;
+import checkrepublist.group.model.MaterielRef;
+import checkrepublist.group.model.TypeClimat;
+import checkrepublist.group.model.TypeDeplacement;
+import checkrepublist.group.model.TypeLogement;
 import checkrepublist.group.model.Voyage;
-import eshop.formation.api.response.VoyageDetailResponse;
-import eshop.formation.exception.VoyageNotFoundException;
-import eshop.formation.model.Voyage;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -36,7 +39,10 @@ public class VoyageApiController {
 	
 	@Autowired
 	private IDAOCritere critereRepo;
-
+	
+	@Autowired
+	IDAOMaterielRef repoMaterielRef;
+	
 	@GetMapping
 	public List<Voyage> findAll() {
 		return this.voyageRepo.findAll();
@@ -60,16 +66,29 @@ public class VoyageApiController {
 		if (result.hasErrors()) {
 			throw new VoyageNotValidException();
 		}
+		
+		Voyage voyage = new Voyage();
 
-		return this.voyageRepo.save(voyageRequest);
+		BeanUtils.copyProperties(voyageRequest, voyage);
+		
+		
+		List<MaterielRef> materiels = this.repoMaterielRef.findAll();
+		
+		
+		return this.voyageRepo.save(voyage);
 	}
+	
 
 	@PutMapping("/{id}")
-	public Voyage edit(@PathVariable Integer id, @Valid @RequestBody Voyage voyage,
+	public Voyage edit(@PathVariable Integer id, @Valid @RequestBody VoyageRequest voyageRequest,
 			BindingResult result) {
 		if (result.hasErrors()) {
 			throw new VoyageNotValidException();
 		}
+
+		Voyage voyage = this.voyageRepo.findById(id).orElseThrow(VoyageNotFoundException::new);
+
+		BeanUtils.copyProperties(voyageRequest, voyage);
 
 		return this.voyageRepo.save(voyage);
 	}
@@ -78,4 +97,20 @@ public class VoyageApiController {
 	public void deleteById(@PathVariable Integer id) {
 		this.voyageRepo.deleteById(id);
 	}
+	
+	public List<MaterielRef> filtreParCritere(List <MaterielRef> materiels, TypeDeplacement deplacement,TypeClimat climat, TypeLogement logement){
+		
+		List<MaterielRef> listeFiltree = new ArrayList<>();
+		
+		/*for mat in materiels
+		
+				if deplacement= marche
+					listefiltree.add ((mat)*/
+		
+		
+		return listeFiltree;
+		
+		
+	}
+	
 }
