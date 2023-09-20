@@ -6,8 +6,8 @@ export class Utilisateur {
     password: string;
     tel: number;
     mail: string;
-    disabled: boolean
-
+    disabled: boolean;
+    roles: Array<string> = new Array<string>;
     constructor(
         id?: number,
         nom?: string,
@@ -17,6 +17,7 @@ export class Utilisateur {
         mail?: string,
         tel?: number,
         disabled?: boolean,
+        ...roles: string[]
     ) {
         this.id = id;
         this.nom = nom;
@@ -26,5 +27,6 @@ export class Utilisateur {
         this.disabled = disabled;
         this.mail = mail;
         this.tel = tel;
+        this.roles = roles;
     }
 }

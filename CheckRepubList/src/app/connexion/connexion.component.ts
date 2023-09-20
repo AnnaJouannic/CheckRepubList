@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
 })
 export class ConnexionComponent implements OnInit{
   
- connexionForm!: FormGroup;
+ connexionForm: FormGroup;
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder) { 
   

@@ -9,6 +9,7 @@ import { MaterielRefComponent } from './materiel-ref/materiel-ref.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 
@@ -19,7 +20,8 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
     ConnexionComponent,
     MaterielRefComponent,
     InscriptionComponent,
-    UtilisateurComponent
+    UtilisateurComponent,
+    AccueilComponent
 
   ],
 
