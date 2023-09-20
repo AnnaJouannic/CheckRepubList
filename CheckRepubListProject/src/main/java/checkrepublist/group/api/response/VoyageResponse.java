@@ -25,10 +25,11 @@ public class VoyageResponse {
 	
 	private TypeClimat climat;
 	
-	private List<ActiviteRef> activites= new ArrayList<>();
+	//private List<ActiviteRef> activites= new ArrayList<>();
 	
-	private List<MaterielRef> listeMateriel= new ArrayList<>();
+	private List<MaterielRef> listeMateriel;
 
+	
 	
 	public Integer getId() {
 		return id;
@@ -86,13 +87,13 @@ public class VoyageResponse {
 		this.climat = climat;
 	}
 
-	public List<ActiviteRef> getActivites() {
+	/*public List<ActiviteRef> getActivites() {
 		return activites;
 	}
 
 	public void setActivites(List<ActiviteRef> activites) {
 		this.activites = activites;
-	}
+	}*/
 
 	public List<MaterielRef> getListeMateriel() {
 		return listeMateriel;
