@@ -5,17 +5,22 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ConnexionComponent } from './connexion/connexion.component';
 import { MaterielRefComponent } from './materiel-ref/materiel-ref.component';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { InscriptionComponent } from './inscription/inscription.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     ConnexionComponent,
-    MaterielRefComponent
-    
+    MaterielRefComponent,
+    //InscriptionComponent
+
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,

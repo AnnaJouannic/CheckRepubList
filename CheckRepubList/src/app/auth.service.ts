@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private utilisateurHttpService: UtilisateurHttpService, private router: Router) { }
+  constructor(private utilisateurService: UtilisateurService, private router: Router) { }
 
   authentification(login: string, password: string) {
-    this.utilisateurHttpService.connexion(login, password).subscribe(resp => {
-      sessionStorage.setItem("user", JSON.stringify(resp));
+    this.utilisateurService.connexion(login, password).subscribe(r => {
+      sessionStorage.setItem("user", JSON.stringify(r));
       this.router.navigate(["/"]);
     });
   }
