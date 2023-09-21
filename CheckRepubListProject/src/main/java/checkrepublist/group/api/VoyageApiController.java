@@ -53,21 +53,20 @@ public class VoyageApiController {
 	}
 
 	@GetMapping("/{id}")
-	@Transactional // Important pour garder l'EntityManager pour récupérer getProduits()
-	@JsonView(Views.VoyageDetail.class)
+	@Transactional 
 	public VoyageResponse findById(@PathVariable Integer id) {
 		Voyage voyage = this.repoVoyage.findById(id).orElseThrow(VoyageNotFoundException::new);
 		VoyageResponse response = new VoyageResponse();
 
 		BeanUtils.copyProperties(voyage, response);
 
-		response.setListeMateriel(voyage.getMateriels());
+		//response.setListeMateriel(voyage.getMateriels());
 
 		return response;
 	}
 
 	@PostMapping
-	@JsonView(Views.Voyage.class)
+	@Transactional 
 	public Voyage add(@Valid @RequestBody VoyageRequest voyageRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new VoyageNotValidException();
@@ -78,16 +77,17 @@ public class VoyageApiController {
 		BeanUtils.copyProperties(voyageRequest, voyage);
 		
 		
-		List<Critere> criteres = this.repoCritere.findAll();
-		List<MaterielRef> listeMateriel = materielFiltre(criteres, voyageRequest.getDeplacement(), voyageRequest.getClimat(), voyageRequest.getLogement());
+		List<Critere> criteres = this.repoCritere.findAllTest(voyage.getLogement(), voyage.getDeplacement(), voyage.getClimat());
+		//List<MaterielRef> listeMateriel = materielFiltre(criteres, voyageRequest.getDeplacement(), voyageRequest.getClimat(), voyageRequest.getLogement());
 		
-		voyage.setMateriels(listeMateriel);
+		//voyage.setMateriels(listeMateriel);
 
 		return this.repoVoyage.save(voyage);
 	}
 	
-	@JsonView(Views.Voyage.class)
+	 
 	@PutMapping("/{id}")
+	@Transactional
 	public Voyage edit(@PathVariable Integer id, @Valid @RequestBody VoyageRequest voyageRequest,
 			BindingResult result) {
 		if (result.hasErrors()) {

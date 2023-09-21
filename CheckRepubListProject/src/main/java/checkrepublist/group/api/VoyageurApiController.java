@@ -40,7 +40,7 @@ public class VoyageurApiController {
 	}
 
 	@GetMapping("/{id}")
-	@Transactional // Important pour garder l'EntityManager pour récupérer getProduits()
+	@Transactional 
 	@JsonView(Views.VoyageurDetail.class)
 	public VoyageurResponse findById(@PathVariable Integer id) {
 		Voyageur voyageur = this.repoVoyageur.findById(id).orElseThrow(VoyageurNotFoundException::new);

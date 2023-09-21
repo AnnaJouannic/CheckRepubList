@@ -27,7 +27,7 @@ public class VoyageResponse {
 	
 	//private List<ActiviteRef> activites= new ArrayList<>();
 	
-	private List<MaterielRef> listeMateriel;
+	//private List<MaterielRef> listeMateriel;
 
 	
 	
@@ -93,15 +93,14 @@ public class VoyageResponse {
 
 	public void setActivites(List<ActiviteRef> activites) {
 		this.activites = activites;
-	}*/
-
+	}
 	public List<MaterielRef> getListeMateriel() {
 		return listeMateriel;
 	}
 
 	public void setListeMateriel(List<MaterielRef> listeMateriel) {
 		this.listeMateriel = listeMateriel;
-	}
+	}*/
 	
 	
 

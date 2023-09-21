@@ -18,4 +18,46 @@ public class CritereResponse {
 
 	private TypeClimat climat;
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getLibelleMateriel() {
+		return libelleMateriel;
+	}
+
+	public void setLibelleMateriel(String libelleMateriel) {
+		this.libelleMateriel = libelleMateriel;
+	}
+
+	public TypeLogement getLogement() {
+		return logement;
+	}
+
+	public void setLogement(TypeLogement logement) {
+		this.logement = logement;
+	}
+
+	public TypeDeplacement getDeplacement() {
+		return deplacement;
+	}
+
+	public void setDeplacement(TypeDeplacement deplacement) {
+		this.deplacement = deplacement;
+	}
+
+	public TypeClimat getClimat() {
+		return climat;
+	}
+
+	public void setClimat(TypeClimat climat) {
+		this.climat = climat;
+	}
+	
+	
+
 }

@@ -92,11 +92,11 @@ public class Voyage {
 		return id;
 	}
 
-	public LocalDate getdateDebutVoyage() {
+	public LocalDate getDateDebutVoyage() {
 		return dateDebutVoyage;
 	}
 
-	public LocalDate dateFinVoyage() {
+	public LocalDate getDateFinVoyage() {
 		return dateFinVoyage;
 	}
 
@@ -128,11 +128,11 @@ public class Voyage {
 		this.id = id;
 	}
 
-	public void setdateDebutVoyage(LocalDate dateDebutVoyage) {
+	public void setDateDebutVoyage(LocalDate dateDebutVoyage) {
 		this.dateDebutVoyage = dateDebutVoyage;
 	}
 
-	public void setdateFinVoyage(LocalDate dateFinVoyage) {
+	public void setDateFinVoyage(LocalDate dateFinVoyage) {
 		this.dateFinVoyage = dateFinVoyage;
 	}
 
