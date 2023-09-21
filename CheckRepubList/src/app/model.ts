@@ -105,14 +105,14 @@ export class Voyage {
 
 
     constructor(
-        id: number,
-       dateDebutVoyage: string,
-       dateFinVoyage: string,
-       libelle: string,
-       pays: string,
-       logement: TypeLogement,
-       deplacement: TypeDeplacement,
-       climat: TypeClimat,
+        id?: number,
+       dateDebutVoyage?: string,
+       dateFinVoyage?: string,
+       libelle?: string,
+       pays?: string,
+       logement?: TypeLogement,
+       deplacement?: TypeDeplacement,
+       climat?: TypeClimat,
     ) {
         this.id=id;
         this.dateDebutVoyage = dateDebutVoyage;

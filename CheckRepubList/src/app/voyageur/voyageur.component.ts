@@ -1,48 +1,77 @@
-/*import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { VoyageurService } from './voyageur.service';
-import { Voyageur } from '../model';
+import { Voyage, Voyageur } from '../model';
 import { Observable } from 'rxjs';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { VoyageHttpService } from '../voyage/voyage-http.service';
 
 @Component({
   selector: 'app-voyageur',
   templateUrl: './voyageur.component.html',
   styleUrls: ['./voyageur.component.scss']
 })
-export class VoyageurComponent {
+export class VoyageurComponent implements OnInit{
 
   voyageurs$: Observable<Voyageur[]>;
+  voyages$: Observable<Voyage[]>;
+  voyageurForm: FormGroup;
+  showForm: boolean = false
 
-  voyageurForm: Voyageur = null;
 
-  constructor(private voyageurService: VoyageurService) {
-
+  constructor(private formBuilder: FormBuilder, private voyageurService: VoyageurService, private voyageService: VoyageHttpService) {
   }
+  
   ngOnInit(): void {
-    this.voyageurs$ = this.voyageurService.findAll();
+   this.voyageurs$ = this.voyageurService.findAll();
+    // this.voyages$ = this.voyageService.findAll();
+
+    this.voyageurForm = this.formBuilder.group({
+      id: this.formBuilder.control('0'),
+      nom: this.formBuilder.control(''),
+      prenom: this.formBuilder.control(''),
+      naissance: this.formBuilder.control(''),
+      accessibilite:this.formBuilder.control(''),
+      voyage: this.formBuilder.control(''),
+    });
   }
 
-  list(): Array<Voyageur> {
-    return this.voyageurService.findAll();
-  }
+  // list(){
+  //    return this.voyageurService.findAll();
+  // }
+  // listVoyage(): Array<Voyage> {
+  //   return this.voyageService.findAll();
+  // }
 
   add() {
-    this.voyageurForm = new Voyageur();
+    this.voyageurForm.reset();
+    this.showForm = true;
   }
 
   edit(id: number) {
     this.voyageurService.findById(id).subscribe(resp => {
-      this.voyageurForm = resp;
+      this.voyageurForm.patchValue(resp);
+
+     // if(!this.voyageurForm.get('voyage')?.value) {
+       // this.voyageurForm = new Voyage();
+     // }
+      this.showForm = true;
     });
   }
 
-  save() {
-    this.voyageurService.save(this.voyageurForm).subscribe(resp => {
+  // majVoyage(event: any) {
+  //   if(!this.voyageurForm.voyage) {
+  //     this.voyageurForm.voyage = new Voyage(event);
+  //   }
+  // }
+
+  save() {  
+    this.voyageService.save(this.voyageurForm.value).subscribe(resp => {
       this.voyageurs$ = this.voyageurService.findAll();
     });
   }
 
   cancel() {
-    this.voyageurForm = null;
+    this.voyageurForm.reset();
   }
 
   remove(id: number) {
@@ -50,8 +79,8 @@ export class VoyageurComponent {
       this.voyageurs$ = this.voyageurService.findAll();
     });
   }
+
 }
 
 
-}
-*/
+
