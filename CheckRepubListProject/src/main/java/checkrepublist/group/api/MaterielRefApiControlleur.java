@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import checkrepublist.group.api.request.MaterielRefRequest;
 import checkrepublist.group.api.response.MaterielRefResponse;
 import checkrepublist.group.dao.IDAOCritere;
@@ -34,11 +36,13 @@ public class MaterielRefApiControlleur {
 	IDAOCritere repoCritere;
 	
 	@GetMapping
+	@JsonView(Views.Admin.class)
 	public List<MaterielRef> findAll() {
 		return this.repoMaterielRef.findAll();
 	}
 
 	@GetMapping("/{id}")
+	@JsonView(Views.MaterielDetail.class)
 	public MaterielRefResponse findById(@PathVariable Integer id) {
 		MaterielRef materielRef = this.repoMaterielRef.findById(id).orElseThrow(MaterielRefNotFoundException::new);
 		MaterielRefResponse response = new MaterielRefResponse();
@@ -49,6 +53,7 @@ public class MaterielRefApiControlleur {
 	}
 	
 	@PostMapping("")
+	@JsonView(Views.Admin.class)
 	public MaterielRef add(@Valid @RequestBody MaterielRefRequest materielRefRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new MaterielRefNotValidException();
@@ -63,6 +68,7 @@ public class MaterielRefApiControlleur {
 	}
 	
 	@PutMapping("/{id}")
+	@JsonView(Views.MaterielDetail.class)
 	public MaterielRef edit(@PathVariable Integer id, @Valid @RequestBody MaterielRefRequest materielRefRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new MaterielRefNotValidException();
@@ -79,6 +85,7 @@ public class MaterielRefApiControlleur {
 
 	
 	@DeleteMapping("/{id}")
+	@JsonView(Views.Admin.class)
 	public void deleteById(@PathVariable Integer id) {
 		this.repoMaterielRef.deleteById(id);
 	}

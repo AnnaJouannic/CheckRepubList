@@ -412,7 +412,7 @@ class CheckRepublistApplicationTest {
 	MaterielRef adm2 = new MaterielRef("Permis de conduire",Categorie.Administratif);
 	adm2=materielRefRepo.save(adm2);
 	Critere crnull17 = new Critere ();
-	crnull17.setMaterielref(adm1);
+	crnull17.setMaterielref(adm2);
 	crnull17 = critereRepo.save(crnull17);
 	
 	//Catégorie Animaux

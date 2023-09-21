@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import checkrepublist.group.api.request.VoyageurRequest;
 import checkrepublist.group.api.response.VoyageurResponse;
 import checkrepublist.group.dao.IDAOVoyageur;
@@ -32,13 +34,14 @@ public class VoyageurApiController {
 	private IDAOVoyageur repoVoyageur;
 
 	@GetMapping
-	
+	@JsonView(Views.Voyageur.class)
 	public List<Voyageur> findAll() {
 		return this.repoVoyageur.findAll();
 	}
 
 	@GetMapping("/{id}")
 	@Transactional // Important pour garder l'EntityManager pour récupérer getProduits()
+	@JsonView(Views.VoyageurDetail.class)
 	public VoyageurResponse findById(@PathVariable Integer id) {
 		Voyageur voyageur = this.repoVoyageur.findById(id).orElseThrow(VoyageurNotFoundException::new);
 		VoyageurResponse response = new VoyageurResponse();
@@ -49,6 +52,7 @@ public class VoyageurApiController {
 	}
 
 	@PostMapping
+	@JsonView(Views.Voyageur.class)
 	public Voyageur add(@Valid @RequestBody VoyageurRequest voyageurRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new VoyageurNotValidException();
@@ -62,6 +66,7 @@ public class VoyageurApiController {
 	}
 
 	@PutMapping("/{id}")
+	@JsonView(Views.Voyageur.class)
 	public Voyageur edit(@PathVariable Integer id, @Valid @RequestBody VoyageurRequest voyageurRequest,
 			BindingResult result) {
 		if (result.hasErrors()) {
@@ -76,6 +81,7 @@ public class VoyageurApiController {
 	}
 
 	@DeleteMapping("/{id}")
+	@JsonView(Views.Voyageur.class)
 	public void deleteById(@PathVariable Integer id) {
 		this.repoVoyageur.deleteById(id);
 	}
