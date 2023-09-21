@@ -129,14 +129,14 @@ export class Voyage {
 
 
     constructor(
-        id: number,
-       dateDebutVoyage: string,
-       dateFinVoyage: string,
-       libelle: string,
-       pays: string,
-       logement: TypeLogement,
-       deplacement: TypeDeplacement,
-       climat: TypeClimat,
+        id?: number,
+       dateDebutVoyage?: string,
+       dateFinVoyage?: string,
+       libelle?: string,
+       pays?: string,
+       logement?: TypeLogement,
+       deplacement?: TypeDeplacement,
+       climat?: TypeClimat,
     ) {
         this.id=id;
         this.dateDebutVoyage = dateDebutVoyage;
@@ -146,5 +146,31 @@ export class Voyage {
         this.logement = logement;
         this.deplacement = deplacement;
         this.climat=climat;
+    }
+}
+    
+export class Voyageur{
+    id: number;
+    nom: string;
+    prenom: string;
+    naissance: string;
+    accessibilite: boolean;
+    voyage: Array<Voyage> = new Array<Voyage>();
+
+    constructor(
+        id?: number,
+        nom?: string,
+        prenom?: string,
+        naissance?: string,
+        accessibilite?: boolean,
+        ...voyage: Voyage[]
+       
+    ) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.naissance = naissance;
+        this.accessibilite= accessibilite;
+        this.voyage= voyage;
     }
 }

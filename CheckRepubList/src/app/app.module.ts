@@ -8,27 +8,24 @@ import { MaterielRefComponent } from './materiel-ref/materiel-ref.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+
 import { AccueilComponent } from './accueil/accueil.component';
 import { VoyageComponent } from './voyage/voyage.component';
-//import { VoyageurComponent } from './voyageur/voyageur.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 
 @NgModule({
   declarations: [
-    ConnexionComponent,
-    MaterielRefComponent,
     AppComponent,
     NavBarComponent,
     ConnexionComponent,
     MaterielRefComponent,
     InscriptionComponent,
     UtilisateurComponent,
+    AccueilComponent,
+   // VoyageurComponent,
     VoyageComponent,
-    AccueilComponent,
-    AccueilComponent,
-    //VoyageurComponent,
 
 
   ],
@@ -38,6 +35,7 @@ import { VoyageComponent } from './voyage/voyage.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
 
     
   ],

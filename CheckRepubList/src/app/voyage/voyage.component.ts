@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { VoyageService } from './voyage.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { VoyageHttpService } from './voyage-http.service';
 import { TypeClimat, TypeDeplacement, TypeLogement } from '../model';
 
 @Component({
@@ -12,8 +14,10 @@ import { TypeClimat, TypeDeplacement, TypeLogement } from '../model';
 })
 export class VoyageComponent   implements OnInit{
 
+  voyages$: Observable<Voyage[]>;
   voyageForm!: FormGroup;
   showForm: boolean = false;
+  constructor( private router: Router, private formBuilder: FormBuilder, private voyageService: VoyageHttpService ) {
   modesLogement = Object.values(TypeLogement);
   modesDeplacement = Object.values(TypeDeplacement);
   modesClimat = Object.values(TypeClimat);
@@ -31,6 +35,8 @@ export class VoyageComponent   implements OnInit{
       deplacement:this.formBuilder.control('', [Validators.required]),
       climat:this.formBuilder.control('', [Validators.required]),
   });
+  
+  this.voyages$ = this.voyageService.findAll();
   
   }
 
@@ -53,7 +59,7 @@ add() {
 }
 */
 save() {
-  //this.voyageHttpService.save(this.voyageForm.value);
+  this.voyageService.save(this.voyageForm.value);
   this.cancel();
 }
 
