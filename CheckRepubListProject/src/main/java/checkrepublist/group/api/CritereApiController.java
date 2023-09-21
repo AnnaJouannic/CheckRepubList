@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import checkrepublist.group.api.request.CritereRequest;
 import checkrepublist.group.api.response.CritereResponse;
 import checkrepublist.group.dao.IDAOCritere;
@@ -24,6 +26,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/critere")
+
 public class CritereApiController {
 
 	@Autowired
@@ -31,10 +34,12 @@ public class CritereApiController {
 	
 	
 	@GetMapping("")
+	@JsonView(Views.Admin.class)
 	public List<Critere> findAll() {
 		return this.repoCritere.findAll();
 	}
 	
+	@JsonView(Views.CritereDetail.class)
 	@GetMapping("/{id}")
 	public CritereResponse findById(@PathVariable Integer id) {
 		Critere critere = this.repoCritere.findById(id).orElseThrow(CritereNotFoundException::new);
@@ -46,6 +51,7 @@ public class CritereApiController {
 	}
 	
 	@PostMapping("")
+	@JsonView(Views.CritereDetail.class)
 	public Critere add(@Valid @RequestBody CritereRequest critereRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new CritereNotValidException();
@@ -60,6 +66,7 @@ public class CritereApiController {
 	}
 	
 	@PutMapping("/{id}")
+	@JsonView(Views.CritereDetail.class)
 	public Critere edit(@PathVariable Integer id, @Valid @RequestBody CritereRequest critereRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new CritereNotValidException();
@@ -76,6 +83,7 @@ public class CritereApiController {
 
 	
 	@DeleteMapping("/{id}")
+	@JsonView(Views.Admin.class)
 	public void deleteById(@PathVariable Integer id) {
 		this.repoCritere.deleteById(id);
 	}
