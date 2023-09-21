@@ -10,7 +10,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { VoyageComponent } from './voyage/voyage.component';
-import { VoyageurComponent } from './voyageur/voyageur.component';
+//import { VoyageurComponent } from './voyageur/voyageur.component';
 
 
 
@@ -28,7 +28,7 @@ import { VoyageurComponent } from './voyageur/voyageur.component';
     VoyageComponent,
     AccueilComponent,
     AccueilComponent,
-    VoyageurComponent,
+    //VoyageurComponent,
 
 
   ],

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+/*import { Component } from '@angular/core';
 import { VoyageurService } from './voyageur.service';
 import { Voyageur } from '../model';
 import { Observable } from 'rxjs';
@@ -21,9 +21,9 @@ export class VoyageurComponent {
     this.voyageurs$ = this.voyageurService.findAll();
   }
 
-  // list(): Array<Voyageur> {
-  //   return this.voyageurService.findAll();
-  // }
+  list(): Array<Voyageur> {
+    return this.voyageurService.findAll();
+  }
 
   add() {
     this.voyageurForm = new Voyageur();
@@ -54,3 +54,4 @@ export class VoyageurComponent {
 
 
 }
+*/

@@ -47,19 +47,6 @@ export enum Categorie{
     Vetement, Numerique, Outils, Toilette, Animaux, Pharmacie, Administratif
 }
 
-export enum TypeLogement {
-    Hotel, Gite, ChambreDHote,Location, AirBnB, AubergeDeJeunesse, 
-    MobilHome, Van, CampingCar, Tente, Voiture, Autre
- }
-
- export enum TypeDeplacement {
-    Marche, Velo, Voiture, Van, Campingcar, 
-    Bateau, Train, Avion, Moto, Autre 
-}
-
-export enum TypeClimat {
-    Froid, Chaud, Tempere, Tropical, Desertique, Autre
-}
 
 export class Utilisateur {
     id: number;
