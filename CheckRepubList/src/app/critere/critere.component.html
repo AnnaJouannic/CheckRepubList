@@ -1,4 +1,4 @@
-<!-- <div class="card mt-3">
+<div class="card mt-3">
     <div class="card-header bg-primary text-white display-6">Liste des critéres</div>
     <div class="card-body">
         <table class="table table-striped">
@@ -42,19 +42,21 @@
     <div class="card-header bg-primary text-white display-6">Edition d'un critere</div>
     <div class="card-body">
         <div class="form-group">
-            <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" readonly [(ngModel)]="critereForm.id"/>
+            <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" readonly formControlName="id"/>
         </div>
         <div class="form-group">
-            <label for="materielRef">materielRef:</label> <input type="text" class="form-control" id="materielRef" name="materielRef" [(ngModel)]="critereForm.materielRef"/>
+            <label for="materielRef">materielRef:</label> <input type="text" class="form-control" id="materielRef" name="materielRef" readonly formControlName="materielRef"/>
+            <span class="text-danger" *ngIf="critereForm.get('materielRef')?.dirty && critereForm.get('materielRef')?.hasError('required')">Le materielRef est obligatoire</span>
+
         </div>
         <div class="form-group">
-            <label for="logement">logement:</label> <input type="text" class="form-control" id="logement" name="logement" [(ngModel)]="critereForm.logement"/>
+            <label for="logement">logement:</label> <input type="text" class="form-control" id="logement" name="logement" readonly formControlName="logement"/>
         </div>
         <div class="form-group">
-            <label for="deplacement">deplacement:</label> <input type="text" class="form-control" id="deplacement" name="deplacement" [(ngModel)]="critereForm.deplacement"/>
+            <label for="deplacement">deplacement:</label> <input type="text" class="form-control" id="deplacement" name="deplacement" readonly formControlName="deplacement"/>
         </div>
         <div class="form-group">
-            <label for="climat">climat:</label> <input type="text" class="form-control" id="climat" name="climat" [(ngModel)]="critereForm.climat"/>
+            <label for="climat">climat:</label> <input type="text" class="form-control" id="climat" name="climat" readonly formControlName="climat"/>
         </div>
     </div>
     <div class="card-footer">
@@ -65,4 +67,4 @@
     </div>
 </div>
 
- -->
+
