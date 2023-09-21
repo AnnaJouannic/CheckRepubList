@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -23,6 +24,7 @@ import checkrepublist.group.dao.IDAOMaterielRef;
 import checkrepublist.group.exception.MaterielRefNotFoundException;
 import checkrepublist.group.exception.MaterielRefNotValidException;
 import checkrepublist.group.model.MaterielRef;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @RestController
@@ -42,13 +44,12 @@ public class MaterielRefApiControlleur {
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(Views.MaterielDetail.class)
+	@Transactional
 	public MaterielRefResponse findById(@PathVariable Integer id) {
 		MaterielRef materielRef = this.repoMaterielRef.findById(id).orElseThrow(MaterielRefNotFoundException::new);
 		MaterielRefResponse response = new MaterielRefResponse();
 		
 		BeanUtils.copyProperties(materielRef, response);
-		
 		return response;
 	}
 	

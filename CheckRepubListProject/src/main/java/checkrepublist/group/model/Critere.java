@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import checkrepublist.group.api.Views;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -16,7 +15,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -32,11 +30,7 @@ public class Critere {
 
 	
 	@ManyToOne
-	@JoinTable(
-            name="materiel_critere",
-            joinColumns = @JoinColumn(name="critere"),
-            inverseJoinColumns = @JoinColumn(name="materiel")
-            )
+	@JoinColumn(name="materielref_id")
 	private MaterielRef materielref;
 
 	@Enumerated(EnumType.STRING)

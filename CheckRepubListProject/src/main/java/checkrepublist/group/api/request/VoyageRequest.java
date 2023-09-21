@@ -12,22 +12,18 @@ import jakarta.validation.constraints.NotBlank;
 
 public class VoyageRequest {
 	
-	@NotBlank
 	private LocalDate dateDebutVoyage;
 	
-	@NotBlank
+
 	private LocalDate dateFinVoyage;
 	
 	@NotBlank
 	private String libelle;
 	
-	@NotBlank
 	private TypeLogement logement;
 	
-	@NotBlank
 	private TypeDeplacement deplacement;
 	
-	@NotBlank
 	private TypeClimat climat;
 	
 	//private List<ActiviteRef> activites= new ArrayList<>();

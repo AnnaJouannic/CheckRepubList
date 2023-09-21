@@ -7,8 +7,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import checkrepublist.group.api.Views;
 import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -33,18 +31,15 @@ public class MaterielRef {
 	
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Vetement','Numerique', 'Outils', 'Toilette', 'Animaux', 'Pharmacie', 'Administratif')")
+
+	@JsonView(Views.Admin.class)
 	private Categorie categorie;
 	
 	
 
-	@OneToMany
-	@JoinTable(
-            name="materiel_critere",
-            joinColumns = @JoinColumn(name="materiel"),
-            inverseJoinColumns = @JoinColumn(name="critere")
-            )
+	@OneToMany(mappedBy = "materielRef")
 	@JsonView(Views.MaterielDetail.class)
-	List<Critere> criteres = new ArrayList<>();
+	private List<Critere> criteres = new ArrayList<>();
 	
 	public MaterielRef() {}
 
@@ -61,22 +56,34 @@ public class MaterielRef {
 		this.categorie = categorie;
 	}
 
+
 	public Integer getId() {
 		return id;
 	}
-
-	public String getLibelle() {
-		return libelleMateriel;
-	}
-
 
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public void setLibelle(String libelleMateriel) {
+
+	public String getLibelleMateriel() {
+		return libelleMateriel;
+	}
+
+
+	public void setLibelleMateriel(String libelleMateriel) {
 		this.libelleMateriel = libelleMateriel;
+	}
+
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 
@@ -88,6 +95,7 @@ public class MaterielRef {
 	public void setCriteres(List<Critere> criteres) {
 		this.criteres = criteres;
 	}
+
 
 	
 
