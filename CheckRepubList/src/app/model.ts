@@ -124,3 +124,29 @@ export class Voyage {
         this.climat=climat;
     }
 }
+    
+export class Voyageur{
+    id: number;
+    nom: string;
+    prenom: string;
+    naissance: string;
+    accessibilite: boolean;
+    voyage: Array<Voyage> = new Array<Voyage>();
+
+    constructor(
+        id?: number,
+        nom?: string,
+        prenom?: string,
+        naissance?: string,
+        accessibilite?: boolean,
+        ...voyage: Voyage[]
+       
+    ) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.naissance = naissance;
+        this.accessibilite= accessibilite;
+        this.voyage= voyage;
+    }
+}
