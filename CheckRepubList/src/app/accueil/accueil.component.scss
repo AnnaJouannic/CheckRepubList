@@ -1,9 +1,9 @@
 @font-face {
     font-family: "Playball";
-    src: url("assets/Playball-Regular.ttf") format("truetype");
+    src: url("/assets/Playball-Regular.ttf") format("truetype");
   }
    body {
-    background: url(assets/paccueil.jpg) center;
+    background: url(/assets/paccueil.jpg) center;
       background-size: 100% 100%;
     background-attachment : fixed;
       background-repeat: no-repeat;

@@ -11,10 +11,11 @@ export class AuthService {
   constructor(private utilisateurService: UtilisateurService, private router: Router) { }
 
   authentification(login: string, password: string) {
-    this.utilisateurService.connexion(login, password).subscribe(r => {
-      sessionStorage.setItem("user", JSON.stringify(r));
-      this.router.navigate(["/"]);
-    });
+    let utilisateur = this.utilisateurService.connexion(login, password);
+
+    sessionStorage.setItem("user", JSON.stringify(utilisateur));
+   
+    
   }
 
   deconnexion() {
@@ -34,7 +35,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return this.getUtilisateur() != null;
+    return this.getUtilisateur() != null ;
   }
 
 <<<<<<< HEAD

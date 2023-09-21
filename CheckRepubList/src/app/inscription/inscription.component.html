@@ -1,55 +1,68 @@
 <body>
-<div>
-   
-    <form  (ngSubmit)="save()" novalidate autocomplete="off">
-    <h1>Inscription</h1>
-    <div >
-        <div class="form-group" >
-            <label for="nom">Nom:</label> <input type="text"  class="form-control" id="nom" name="nom"  formControlName="nom"/>
-            <span class="text-danger" *ngIf="inscriptionForm.get('nom').hasError('required')">
-                Le nom  est obligatoire.
-            </span>
-        </div>
-        <div class="form-group">
-            <label for="prenom">Prenom:</label> <input type="text"  class="form-control" id="prenom" name="prenom" formControlName="prenom"/>
-            <span class="text-danger" *ngIf="inscriptionForm.get('prenom').hasError('required')">
+    <div>
+        <form (ngSubmit)="save()" novalidate autocomplete="off" [formGroup]="inscriptionForm">
+          <h1>Inscription</h1>
+          <div>
+            <div class="form-group">
+              <label for="nom">Nom:</label>
+              <input type="text" class="form-control" id="nom" name="nom" formControlName="nom" />
+              <span class="text-danger" *ngIf="inscriptionForm.get('nom').hasError('required')">
+                Le nom est obligatoire.
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="prenom">Prénom:</label>
+              <input type="text" class="form-control" id="prenom" name="prenom" formControlName="prenom" />
+              <span class="text-danger" *ngIf="inscriptionForm.get('prenom').hasError('required')">
                 Le prénom est obligatoire.
-            </span>
-        </div>
-        <div class="form-group">
-            <label for="login">Login:</label> <input type="text"  class="form-control" id="login" name="login" formControlName="login"/>
-            <span class="text-danger" *ngIf="inscriptionForm.get('login').hasError('required')">
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="login">Login:</label>
+              <input type="text" class="form-control" id="login" name="login" formControlName="login" />
+              <span class="text-danger" *ngIf="inscriptionForm.get('login').hasError('required')">
                 Le login est obligatoire.
-            </span>
-        </div>
-        <div class="form-group">
-            <label for="password">Mot de passe:</label> <input type="password" class="form-control" id="password" name="password"  formControlName="password"/>
-            <span class="text-danger" *ngIf="inscriptionForm.get('password')?.hasError('required')">
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="password">Mot de passe:</label>
+              <input type="password" class="form-control" id="password" name="password" formControlName="password" />
+              <span class="text-danger" *ngIf="inscriptionForm.get('password').hasError('required')">
                 Le mot de passe est obligatoire.
-            </span>
-            <span class="text-danger" *ngIf="inscriptionForm.get('password')?.hasError('minLength') && inscriptionForm.get('password')?.hasError('pattern')">
+              </span>
+              <span class="text-danger" *ngIf="inscriptionForm.get('password').hasError('minlength') || inscriptionForm.get('password').hasError('pattern')">
                 Le mot de passe doit contenir au moins 5 caractères, au moins une majuscule, un chiffre et un caractère spécial.
-            </span>
-            
-        </div>
-        <div class="form-group">
-            <label for="passwordVerif">Confirmation de mot de passe:</label> <input type="password" class="form-control" id="passwordVerif" name="passwordVerif" formControlName="passwordVerif"/>
-            <span class="text-danger"  *ngIf="inscriptionForm.get('password')?.hasError('required')">
-                Veuillez confirmer votre mot de passe
-            </span>
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label> <input type="email"  class="form-control" id="email" name="email" formControlName="mail" />
-            <span class="text-danger" *ngIf="inscriptionForm.get('mail').hasError('required') && inscriptionForm.get('mail').hasError('email')">
-                L'adresse mail  est obligatoire.
-            </span>
-        </div>
-    </div>
-   
-        <div class="btn-group btn-group-lg float-right">
-            <button type="submit" class="btn btn-success"  [disabled]="inscriptionForm.invalid"><i class="bi bi-check-square-fill"></i></button>
-        </div>
-  
-    </form>
-</div>
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="passwordVerif">Confirmation de mot de passe:</label>
+              <input type="password" class="form-control" id="passwordVerif" name="passwordVerif" formControlName="passwordVerif" />
+              <span class="text-danger" *ngIf="inscriptionForm.get('passwordVerif').hasError('required')">
+                Veuillez confirmer votre mot de passe.
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" name="email" formControlName="mail" />
+              <span class="text-danger" *ngIf="inscriptionForm.get('mail').hasError('required') && inscriptionForm.get('mail').hasError('email')">
+                L'adresse mail est obligatoire et doit être une adresse email valide.
+              </span>
+            </div>
+            <div class="form-group">
+              <label for="tel">Téléphone:</label>
+              <input type="text" class="form-control" id="tel" name="tel" formControlName="tel" />
+              <span class="text-danger" *ngIf="inscriptionForm.get('tel').hasError('required')">
+                Le numéro de téléphone est obligatoire.
+              </span>
+            </div>
+          </div>
+          <div class="btn-group btn-group-lg float-right">
+            <button type="submit" class="btn btn-success" [disabled]="inscriptionForm.invalid"><i class="bi bi-check-square-fill"></i> S'inscrire</button>
+          </div>
+        </form>
+      </div>
 </body>
+
+
+
+  

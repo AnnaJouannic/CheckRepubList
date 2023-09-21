@@ -13,7 +13,7 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { VoyageComponent } from './voyage/voyage.component';
 =======
 import { AccueilComponent } from './accueil/accueil.component';
->>>>>>> main
+import { VoyageurComponent } from './voyageur/voyageur.component';
 
 
 
@@ -25,11 +25,9 @@ import { AccueilComponent } from './accueil/accueil.component';
     MaterielRefComponent,
     InscriptionComponent,
     UtilisateurComponent,
-<<<<<<< HEAD
-    VoyageComponent
-=======
-    AccueilComponent
->>>>>>> main
+    AccueilComponent,
+    VoyageurComponent,
+
 
   ],
 
@@ -37,7 +35,8 @@ import { AccueilComponent } from './accueil/accueil.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
     
   ],
   providers: [],
