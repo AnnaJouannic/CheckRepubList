@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -26,7 +27,11 @@ public class Critere {
 
 	
 	@ManyToOne
-	@JoinColumn(name="id_materiel")
+	@JoinTable(
+            name="materiel_critere",
+            joinColumns = @JoinColumn(name="critere"),
+            inverseJoinColumns = @JoinColumn(name="materiel")
+            )
 	private MaterielRef materielref;
 
 	@Enumerated(EnumType.STRING)

@@ -1,12 +1,5 @@
 package checkrepublist.group.api.response;
 
-import java.util.stream.Collectors;
-
-import org.springframework.beans.BeanUtils;
-
-import eshop.formation.model.Roles;
-import eshop.formation.model.Utilisateur;
-
 public class UtilisateurResponse {
 	private Integer id;
 	
