@@ -46,32 +46,30 @@ export enum TypeClimat {
 }
  
 export class Voyage {
-    dateDebutVoyage: Date;
-    dateFinVoyage: Date;
+    id: number;
+    dateDebutVoyage: string;
+    dateFinVoyage: string;
     libelle: string;
-    login: string;
-    password: string;
     pays: string;
     logement: TypeLogement;
     deplacement: TypeDeplacement;
     climat: TypeClimat;
 
+
     constructor(
-       dateDebutVoyage: Date,
-       dateFinVoyage: Date,
+        id: number,
+       dateDebutVoyage: string,
+       dateFinVoyage: string,
        libelle: string,
-       login: string,
-       password: string,
        pays: string,
        logement: TypeLogement,
        deplacement: TypeDeplacement,
        climat: TypeClimat,
     ) {
+        this.id=id;
         this.dateDebutVoyage = dateDebutVoyage;
         this.dateFinVoyage = dateFinVoyage;
         this.libelle = libelle;
-        this.login = login;
-        this.password = password;
         this.pays = pays;
         this.logement = logement;
         this.deplacement = deplacement;

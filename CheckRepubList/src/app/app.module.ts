@@ -9,11 +9,9 @@ import { MaterielRefComponent } from './materiel-ref/materiel-ref.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
-<<<<<<< HEAD
-import { VoyageComponent } from './voyage/voyage.component';
-=======
 import { AccueilComponent } from './accueil/accueil.component';
->>>>>>> main
+import { VoyageComponent } from './voyage/voyage.component';
+
 
 
 
@@ -25,11 +23,9 @@ import { AccueilComponent } from './accueil/accueil.component';
     MaterielRefComponent,
     InscriptionComponent,
     UtilisateurComponent,
-<<<<<<< HEAD
-    VoyageComponent
-=======
-    AccueilComponent
->>>>>>> main
+    VoyageComponent,
+    AccueilComponent,
+
 
   ],
 
