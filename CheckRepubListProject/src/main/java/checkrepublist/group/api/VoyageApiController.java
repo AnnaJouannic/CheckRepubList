@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import checkrepublist.group.api.request.VoyageRequest;
 import checkrepublist.group.api.response.VoyageResponse;
 import checkrepublist.group.dao.IDAOCritere;
@@ -45,12 +47,14 @@ public class VoyageApiController {
 	IDAOMaterielRef repoMaterielRef;
 	
 	@GetMapping
+	@JsonView(Views.Voyage.class)
 	public List<Voyage> findAll() {
 		return this.repoVoyage.findAll();
 	}
 
 	@GetMapping("/{id}")
 	@Transactional // Important pour garder l'EntityManager pour récupérer getProduits()
+	@JsonView(Views.VoyageDetail.class)
 	public VoyageResponse findById(@PathVariable Integer id) {
 		Voyage voyage = this.repoVoyage.findById(id).orElseThrow(VoyageNotFoundException::new);
 		VoyageResponse response = new VoyageResponse();
@@ -63,6 +67,7 @@ public class VoyageApiController {
 	}
 
 	@PostMapping
+	@JsonView(Views.Voyage.class)
 	public Voyage add(@Valid @RequestBody VoyageRequest voyageRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new VoyageNotValidException();
@@ -81,7 +86,7 @@ public class VoyageApiController {
 		return this.repoVoyage.save(voyage);
 	}
 	
-
+	@JsonView(Views.Voyage.class)
 	@PutMapping("/{id}")
 	public Voyage edit(@PathVariable Integer id, @Valid @RequestBody VoyageRequest voyageRequest,
 			BindingResult result) {
@@ -106,7 +111,7 @@ public class VoyageApiController {
 		List<MaterielRef> listeMateriel = new ArrayList<>();
 		
 		for (Critere critere : criteres) {
-			if (climat != null && deplacement != null && logement != null) {
+			if (climat == null && deplacement == null && logement == null) {
 				listeMateriel.add(critere.getMaterielref());
 			}
             // Vérifiez si les trois critères correspondent.

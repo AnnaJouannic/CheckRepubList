@@ -3,6 +3,9 @@ package checkrepublist.group.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import checkrepublist.group.api.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Embedded;
@@ -19,7 +22,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "materielref")
-
+@JsonView(Views.Admin.class)
 public class MaterielRef {
 
 	@Id
@@ -40,6 +43,7 @@ public class MaterielRef {
             joinColumns = @JoinColumn(name="materiel"),
             inverseJoinColumns = @JoinColumn(name="critere")
             )
+	@JsonView(Views.MaterielDetail.class)
 	List<Critere> criteres = new ArrayList<>();
 	
 	public MaterielRef() {}

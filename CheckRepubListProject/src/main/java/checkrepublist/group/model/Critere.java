@@ -3,6 +3,10 @@ package checkrepublist.group.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import checkrepublist.group.api.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
@@ -19,6 +23,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "critere")
+@JsonView(Views.Admin.class)
 public class Critere {
 
 	@Id
@@ -46,6 +51,7 @@ public class Critere {
 	@Column(columnDefinition = "ENUM('Froid','Chaud','Tempere','Tropical', 'Desertique', 'Autre')")
 	private TypeClimat climat;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="critere")
 	private List<ActiviteRef> activites = new ArrayList<>();
 	

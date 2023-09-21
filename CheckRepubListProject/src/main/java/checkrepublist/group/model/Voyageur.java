@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import checkrepublist.group.api.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,6 +19,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "voyageur")
+@JsonView(Views.Common.class)
 public class Voyageur {
 
 	@Id
@@ -33,6 +37,7 @@ public class Voyageur {
 	
 	@ManyToMany
 	@JoinTable(name="enregistrement",joinColumns = @JoinColumn(name="voyageur"),inverseJoinColumns = @JoinColumn(name="voyage"))
+	@JsonView(Views.VoyageurDetail.class)
 	private List<Voyage> voyages=new ArrayList();
 	
 	
