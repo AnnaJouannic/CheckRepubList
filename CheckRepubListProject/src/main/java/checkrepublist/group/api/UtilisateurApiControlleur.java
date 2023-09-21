@@ -30,7 +30,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/utilisateur")
 public class UtilisateurApiControlleur {
 	@Autowired
-	private IDAOUtilisateur utilisateurRepo;
+	private IDAOUtilisateur repoUtilisateur;
 	
 	@Autowired 
 	private AuthenticationManager authenticationManager;
@@ -38,7 +38,7 @@ public class UtilisateurApiControlleur {
 	
 	@GetMapping
 	public List<Utilisateur> findAll() {
-		return this.utilisateurRepo.findAll();
+		return this.repoUtilisateur.findAll();
 	}
 	
 	@PostMapping
@@ -56,9 +56,9 @@ public class UtilisateurApiControlleur {
 		BeanUtils.copyProperties(inscriptionRequest, utilisateur);
 		
 		
-		this.utilisateurRepo.save(utilisateur);
+		this.repoUtilisateur.save(utilisateur);
 		
-		return (UtilisateurResponse) utilisateurRepo.findAll();
+		return (UtilisateurResponse) repoUtilisateur.findAll();
 	}
 	
 	@PostMapping("/connexion")
@@ -87,7 +87,7 @@ public class UtilisateurApiControlleur {
 	
 	@PostMapping("/authentification")
 	public Utilisateur authentification(@RequestBody ConnexionRequest connexionRequest) {
-		return this.utilisateurRepo.findByUsernameAndPassword(connexionRequest.getUsername(), connexionRequest.getPassword()).orElseThrow(UtilisateurNotFoundException::new);
+		return this.repoUtilisateur.findByUsernameAndPassword(connexionRequest.getUsername(), connexionRequest.getPassword()).orElseThrow(UtilisateurNotFoundException::new);
 	}
 	
 }

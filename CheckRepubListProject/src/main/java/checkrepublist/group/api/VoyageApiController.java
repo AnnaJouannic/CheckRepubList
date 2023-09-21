@@ -22,6 +22,7 @@ import checkrepublist.group.dao.IDAOMaterielRef;
 import checkrepublist.group.dao.IDAOVoyage;
 import checkrepublist.group.exception.VoyageNotFoundException;
 import checkrepublist.group.exception.VoyageNotValidException;
+import checkrepublist.group.model.Critere;
 import checkrepublist.group.model.MaterielRef;
 import checkrepublist.group.model.TypeClimat;
 import checkrepublist.group.model.TypeDeplacement;
@@ -35,23 +36,23 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/voyage")
 public class VoyageApiController {
 	@Autowired
-	private IDAOVoyage voyageRepo;
+	private IDAOVoyage repoVoyage;
 	
 	@Autowired
-	private IDAOCritere critereRepo;
+	private IDAOCritere repoCritere;
 	
 	@Autowired
 	IDAOMaterielRef repoMaterielRef;
 	
 	@GetMapping
 	public List<Voyage> findAll() {
-		return this.voyageRepo.findAll();
+		return this.repoVoyage.findAll();
 	}
 
 	@GetMapping("/{id}")
 	@Transactional // Important pour garder l'EntityManager pour récupérer getProduits()
 	public VoyageResponse findById(@PathVariable Integer id) {
-		Voyage voyage = this.voyageRepo.findById(id).orElseThrow(VoyageNotFoundException::new);
+		Voyage voyage = this.repoVoyage.findById(id).orElseThrow(VoyageNotFoundException::new);
 		VoyageResponse response = new VoyageResponse();
 
 		BeanUtils.copyProperties(voyage, response);
@@ -72,10 +73,12 @@ public class VoyageApiController {
 		BeanUtils.copyProperties(voyageRequest, voyage);
 		
 		
-		List<MaterielRef> materiels = this.repoMaterielRef.findAll();
+		List<Critere> criteres = this.repoCritere.findAll();
+		List<MaterielRef> listeMateriel = materielFiltre(criteres, voyageRequest.getDeplacement(), voyageRequest.getClimat(), voyageRequest.getLogement());
 		
-		
-		return this.voyageRepo.save(voyage);
+		voyage.setMateriels(listeMateriel);
+
+		return this.repoVoyage.save(voyage);
 	}
 	
 
@@ -86,31 +89,57 @@ public class VoyageApiController {
 			throw new VoyageNotValidException();
 		}
 
-		Voyage voyage = this.voyageRepo.findById(id).orElseThrow(VoyageNotFoundException::new);
+		Voyage voyage = this.repoVoyage.findById(id).orElseThrow(VoyageNotFoundException::new);
 
 		BeanUtils.copyProperties(voyageRequest, voyage);
 
-		return this.voyageRepo.save(voyage);
+		return this.repoVoyage.save(voyage);
 	}
 
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable Integer id) {
-		this.voyageRepo.deleteById(id);
+		this.repoVoyage.deleteById(id);
 	}
 	
-	public List<MaterielRef> filtreParCritere(List <MaterielRef> materiels, TypeDeplacement deplacement,TypeClimat climat, TypeLogement logement){
+	public List<MaterielRef> materielFiltre (List <Critere> criteres, TypeDeplacement deplacement,TypeClimat climat, TypeLogement logement){
 		
-		List<MaterielRef> listeFiltree = new ArrayList<>();
+		List<MaterielRef> listeMateriel = new ArrayList<>();
 		
-		/*for mat in materiels
-		
-				if deplacement= marche
-					listefiltree.add ((mat)*/
-		
-		
-		return listeFiltree;
-		
-		
+		for (Critere critere : criteres) {
+			if (climat != null && deplacement != null && logement != null) {
+				listeMateriel.add(critere.getMaterielref());
+			}
+            // Vérifiez si les trois critères correspondent.
+            if (critereMatch(critere, climat, deplacement, logement, 3)) {
+            	listeMateriel.add(critere.getMaterielref());
+            }
+            // Sinon, vérifiez si deux critères correspondent.
+            else if (critereMatch(critere, climat, deplacement, logement, 2)) {
+            	listeMateriel.add(critere.getMaterielref());
+            }
+            // Sinon, vérifiez si un critère correspond.
+            else if (critereMatch(critere, climat, deplacement, logement, 1)) {
+            	listeMateriel.add(critere.getMaterielref());
+            }
+        }
+		return listeMateriel;
 	}
+	
+
+	    private boolean critereMatch(Critere critere, TypeClimat climat, TypeDeplacement deplacement, TypeLogement logement, int numMatches) {
+	        int matches = 0;
+
+	        if (climat != null && climat.equals(critere.getClimat())) {
+	            matches++;
+	        }
+	        if (deplacement != null && deplacement.equals(critere.getDeplacement())) {
+	            matches++;
+	        }
+	        if (logement != null && logement.equals(critere.getLogement())) {
+	            matches++;
+	        }
+
+	        return matches == numMatches;
+	    }
 	
 }
