@@ -80,17 +80,41 @@ export class Utilisateur {
 }
 
  export enum TypeLogement {
-    Hotel, Gite, ChambreDHote,Location, AirBnB, AubergeDeJeunesse, 
-	MobilHome, Van, CampingCar, Tente, Voiture, Autre
+    Hotel='Hotel',
+    Gite='Gite',
+    ChambreDhote='ChambreDhote',
+    Location='Location',
+    AirBnB='AirBnB',
+    AubergeDeJeunesse='AubergeDeJeunesse',
+    MobilHome='MobilHome',
+    Van='Van',
+    CampingCar='CampingCar',
+    Tente='Tente',
+    Voiture='Voiture',
+    Autre='Autre'
  }
 
  export enum TypeDeplacement {
-    Marche, Velo, Voiture, Van, Campingcar, 
-	Bateau, Train, Avion, Moto, Autre 
+    Marche='Marche',
+    Velo='Velo',
+    Voiture='Voiture',
+    Van= 'Van',
+    Campingcar='Campingcar',
+    Bateau='Bateau',
+    Train='Train',
+    Avion='Avion',
+    Moto='Moto',
+    Autre='Autre',
+
 }
 
 export enum TypeClimat {
-    Froid, Chaud, Tempere, Tropical, Desertique, Autre
+  Chaud = 'Chaud',
+  Froid = 'Froid',
+  Tempere = 'Tempéré',
+  Tropical = 'Tropical',
+  Desertique = 'Désertique',
+  Autre = 'Autre'
 }
  
 export class Voyage {
