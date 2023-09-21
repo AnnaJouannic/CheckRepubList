@@ -29,18 +29,18 @@ import jakarta.validation.Valid;
 public class VoyageurApiController {
 
 	@Autowired
-	private IDAOVoyageur voyageurRepo;
+	private IDAOVoyageur repoVoyageur;
 
 	@GetMapping
 	
 	public List<Voyageur> findAll() {
-		return this.voyageurRepo.findAll();
+		return this.repoVoyageur.findAll();
 	}
 
 	@GetMapping("/{id}")
 	@Transactional // Important pour garder l'EntityManager pour récupérer getProduits()
 	public VoyageurResponse findById(@PathVariable Integer id) {
-		Voyageur voyageur = this.voyageurRepo.findById(id).orElseThrow(VoyageurNotFoundException::new);
+		Voyageur voyageur = this.repoVoyageur.findById(id).orElseThrow(VoyageurNotFoundException::new);
 		VoyageurResponse response = new VoyageurResponse();
 
 		BeanUtils.copyProperties(voyageur, response);
@@ -58,7 +58,7 @@ public class VoyageurApiController {
 
 		BeanUtils.copyProperties(voyageurRequest, voyageur);
 
-		return this.voyageurRepo.save(voyageur);
+		return this.repoVoyageur.save(voyageur);
 	}
 
 	@PutMapping("/{id}")
@@ -68,16 +68,16 @@ public class VoyageurApiController {
 			throw new VoyageurNotValidException();
 		}
 
-		Voyageur voyageur = this.voyageurRepo.findById(id).orElseThrow(VoyageurNotFoundException::new);
+		Voyageur voyageur = this.repoVoyageur.findById(id).orElseThrow(VoyageurNotFoundException::new);
 
 		BeanUtils.copyProperties(voyageurRequest, voyageur);
 
-		return this.voyageurRepo.save(voyageur);
+		return this.repoVoyageur.save(voyageur);
 	}
 
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable Integer id) {
-		this.voyageurRepo.deleteById(id);
+		this.repoVoyageur.deleteById(id);
 	}
 }
 	
