@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Voyage } from '../model';
+
 import { VoyageService } from './voyage.service';
 import { Router } from '@angular/router';
+import { TypeClimat, TypeDeplacement, TypeLogement } from '../model';
 
 @Component({
   selector: 'app-voyage',
@@ -13,6 +14,10 @@ export class VoyageComponent   implements OnInit{
 
   voyageForm!: FormGroup;
   showForm: boolean = false;
+  modesLogement = Object.values(TypeLogement);
+  modesDeplacement = Object.values(TypeDeplacement);
+  modesClimat = Object.values(TypeClimat);
+
   constructor( private router: Router, private formBuilder: FormBuilder) {
   }
 
