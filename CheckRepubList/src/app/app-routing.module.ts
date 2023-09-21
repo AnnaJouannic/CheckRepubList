@@ -17,7 +17,8 @@ const routes: Routes = [
   {path: "voyageur", component: VoyageurComponent},
   {path: "materielRef", component: MaterielRefComponent},
    // {path: "critere", component: CritereComponent},
-  {path: "connexion", component: ConnexionComponent}
+  {path: "connexion", component: ConnexionComponent},
+  
 ];
 
 @NgModule({
