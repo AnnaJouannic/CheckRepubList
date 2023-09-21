@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import checkrepublist.group.api.request.MaterielRefRequest;
 import checkrepublist.group.api.response.MaterielRefResponse;
 import checkrepublist.group.dao.IDAOCritere;
@@ -23,8 +21,6 @@ import checkrepublist.group.dao.IDAOMaterielRef;
 import checkrepublist.group.exception.MaterielRefNotFoundException;
 import checkrepublist.group.exception.MaterielRefNotValidException;
 import checkrepublist.group.model.MaterielRef;
-import eshop.formation.api.Views;
-import eshop.formation.model.Fournisseur;
 import jakarta.validation.Valid;
 
 @RestController
