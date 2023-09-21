@@ -14,7 +14,7 @@ export class VoyageurComponent implements OnInit{
 
   voyageurs$: Observable<Voyageur[]>;
   voyages$: Observable<Voyage[]>;
-  voyageurForm: FormGroup;
+  voyageurForm!: FormGroup;
   showForm: boolean = false
 
 
