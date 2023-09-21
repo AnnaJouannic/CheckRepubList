@@ -580,7 +580,13 @@ class CheckRepublistApplicationTest {
 	crnull33 = critereRepo.save(crnull33);
 	
 	
-	
+    MaterielRef v14 = new MaterielRef ("Lunette de Soleil", Categorie.Vetement);
+    v14=materielRefRepo.save(v14);
+    Critere crchaud6 = new Critere ();
+    crchaud6.setMaterielref(v14);
+    crchaud6 = critereRepo.save(crchaud6);
+   
+    
 	
 	
 

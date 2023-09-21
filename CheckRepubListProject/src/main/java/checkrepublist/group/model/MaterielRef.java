@@ -36,10 +36,10 @@ public class MaterielRef {
 
 	@OneToMany
 	@JoinTable(
-			name="materiel_critere",
-			joinColumns = @JoinColumn(name="materiel"),
-			inverseJoinColumns = @JoinColumn(name="critere")
-			)
+            name="materiel_critere",
+            joinColumns = @JoinColumn(name="materiel"),
+            inverseJoinColumns = @JoinColumn(name="critere")
+            )
 	List<Critere> criteres = new ArrayList<>();
 	
 	public MaterielRef() {}
