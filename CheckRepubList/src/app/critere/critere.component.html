@@ -1,0 +1,68 @@
+<div class="card mt-3">
+    <div class="card-header bg-primary text-white display-6">Liste des critéres</div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Identifiant</th>
+                    <th>MaterielRef</th>
+                    <th>TypeLogement</th>
+                    <th>TypeDeplacement</th>
+                    <th>TypeClimat</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let crit of list()">
+                    <td>{{crit.id}}</td>
+                    <td>{{crit.materielRef}}</td>
+                    <td>{{crit.logement}}</td>
+                    <td>{{crit.deplacement}}</td>
+                    <td>{{crit.climat}}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a class="btn btn-primary" (click)="edit(crit.id)"><i
+                                    class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-danger" (click)="remove(crit.id)"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div class="card-footer">
+        <a class="btn btn-success btn-lg" (click)="add()"><i
+            class="bi bi-plus-square"></i></a>
+    </div>
+</div>
+
+<div class="card mt-3" *ngIf="critereForm">
+    <div class="card-header bg-primary text-white display-6">Edition d'un critere</div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" readonly [(ngModel)]="critereForm.id"/>
+        </div>
+        <div class="form-group">
+            <label for="materielRef">materielRef:</label> <input type="text" class="form-control" id="materielRef" name="materielRef" [(ngModel)]="critereForm.materielRef"/>
+        </div>
+        <div class="form-group">
+            <label for="logement">logement:</label> <input type="text" class="form-control" id="logement" name="logement" [(ngModel)]="critereForm.logement"/>
+        </div>
+        <div class="form-group">
+            <label for="deplacement">deplacement:</label> <input type="text" class="form-control" id="deplacement" name="deplacement" [(ngModel)]="critereForm.deplacement"/>
+        </div>
+        <div class="form-group">
+            <label for="climat">climat:</label> <input type="text" class="form-control" id="climat" name="climat" [(ngModel)]="critereForm.climat"/>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group btn-group-lg float-right">
+            <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
+            <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
+        </div>
+    </div>
+</div>
+
+
