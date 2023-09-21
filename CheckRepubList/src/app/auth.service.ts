@@ -11,12 +11,11 @@ export class AuthService {
   constructor(private utilisateurService: UtilisateurService, private router: Router) { }
 
   authentification(login: string, password: string) {
-    let utilisateur = this.utilisateurService.connexion(login, password);
-
-    sessionStorage.setItem("user", JSON.stringify(utilisateur));
-   
-    
-  }
+     let utilisateur=this.utilisateurService.connexion(login, password);
+      sessionStorage.setItem("user", JSON.stringify( utilisateur));
+      this.router.navigate(["/"]);
+    };
+  
 
   deconnexion() {
     sessionStorage.removeItem("user");
@@ -38,15 +37,9 @@ export class AuthService {
     return this.getUtilisateur() != null ;
   }
 
-<<<<<<< HEAD
   hasRole(role: string): boolean {
     return this.getUtilisateur().roles.indexOf(role) > -1;
   }
-=======
-   hasRole(role: string): boolean {
-     return this.getUtilisateur().roles.indexOf(role) > -1;
-   }
->>>>>>> main
-
-  
 }
+
+

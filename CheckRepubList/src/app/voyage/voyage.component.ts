@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Voyage } from '../model';
+import { VoyageService } from './voyage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-voyage',
@@ -10,7 +13,7 @@ export class VoyageComponent   implements OnInit{
 
   voyageForm!: FormGroup;
   showForm: boolean = false;
-  constructor(private voyageService: VoyageService, private router: Router, private formBuilder: FormBuilder) {
+  constructor( private router: Router, private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
@@ -22,9 +25,37 @@ export class VoyageComponent   implements OnInit{
       logement:this.formBuilder.control('', [Validators.required]),
       deplacement:this.formBuilder.control('', [Validators.required]),
       climat:this.formBuilder.control('', [Validators.required]),
-   
-     
-    
+  });
+  
   }
+
+
+add() {
+  this.voyageForm.reset();
+  this.showForm = true;
+}
+
+/*edit(id: number) {
+  this.voyageService.findById(id).subscribe(response => {
+    this.voyageForm.patchValue(response);
+    this.showForm = true;
+  }); 
+
+}*/
+
+/*remove(id: number) {
+  this.voyageHttpService.deleteById(id);
+}
+*/
+save() {
+  //this.voyageHttpService.save(this.voyageForm.value);
+  this.cancel();
+}
+
+cancel() {
+  this.showForm = false;
+  this.voyageForm.reset();
+}
+
 
 }
