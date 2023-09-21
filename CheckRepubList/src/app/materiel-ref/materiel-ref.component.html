@@ -1,1 +1,62 @@
-<p>materiel-ref works!</p>
+<div class="card mt-3">
+    <div class="card-header bg-primary text-white display-6">Liste des materiels</div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Identifiant</th>
+                    <th>LibelleMateriel</th>
+                    <th>Categorie</th>
+                    <th>Critere</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let matRef of list()">
+                    <td>{{matRef.id}}</td>
+                    <td>{{matRef.libelleMateriel}}</td>
+                    <td>{{matRef.categorie}}</td>
+                    <td>{{matRef.critere?.id}}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a class="btn btn-primary" (click)="edit(matRef.id)"><i
+                                    class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-danger" (click)="remove(matRef.id)"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <a class="btn btn-success btn-lg" (click)="add()"><i
+            class="bi bi-plus-square"></i></a>
+    </div>
+</div>
+
+<div class="card mt-3" *ngIf="materielRefForm">
+    <div class="card-header bg-primary text-white display-6">Edition d'un materielRef</div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" readonly [(ngModel)]="materielRefForm.id"/>
+        </div>
+        <div class="form-group">
+            <label for="libelleMateriel">libellemateriel:</label> <input type="text" class="form-control" id="libelleMateriel" name="libelleMateriel" [(ngModel)]="materielRefForm.libelleMateriel"/>
+        </div>
+        <div class="form-group">
+            <label for="categorie">categorie:</label> <input type="text" class="form-control" id="categorie" name="categorie" [(ngModel)]="materielRefForm.categorie"/>
+        </div>
+        <div class="form-group">
+            <label for="critere">critere:</label> <input type="text" class="form-control" id="critere" name="critere" [(ngModel)]="materielRefForm.critere"/>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group btn-group-lg float-right">
+            <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
+            <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
+        </div>
+    </div>
+</div>
+
+
+

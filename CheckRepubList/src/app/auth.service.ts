@@ -48,5 +48,6 @@ export class AuthService {
   //   return this.getUtilisateur().roles.indexOf(role) > -1;
   // }
 
+
   
 }
