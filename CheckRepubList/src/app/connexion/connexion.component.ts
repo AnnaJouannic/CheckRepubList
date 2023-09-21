@@ -21,7 +21,26 @@ export class ConnexionComponent implements OnInit{
     password: this.formBuilder.control("", [Validators.required, Validators.minLength(5), Validators.pattern("[A-z0-9!#@$*?-]{5,10}")])
     })
   }
+
   auth() {
-   this.authService.authentification(this.connexionForm.get('login')?.value, this.connexionForm.get('password')?.value);
- }
+  if (this.connexionForm.valid) {
+    const login = this.connexionForm.get('login')?.value;
+   const  password = this.connexionForm.get('password')?.value;
+   this.authService.authentification(login, password);
+  } else {
+    this.markFormGroupTouched(this.connexionForm);
+  }
+}
+
+
+private markFormGroupTouched(formGroup: FormGroup) {
+  Object.values(formGroup.controls).forEach(control => {
+    if (control instanceof FormGroup) {
+      this.markFormGroupTouched(control);
+    } else {
+      control.markAsTouched();
+    }
+  });
+}
+
 }

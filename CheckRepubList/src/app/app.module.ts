@@ -10,6 +10,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { VoyageurComponent } from './voyageur/voyageur.component';
 
 
 
@@ -21,7 +22,9 @@ import { AccueilComponent } from './accueil/accueil.component';
     MaterielRefComponent,
     InscriptionComponent,
     UtilisateurComponent,
-    AccueilComponent
+    AccueilComponent,
+    VoyageurComponent,
+
 
   ],
 
@@ -29,7 +32,8 @@ import { AccueilComponent } from './accueil/accueil.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
     
   ],
   providers: [],

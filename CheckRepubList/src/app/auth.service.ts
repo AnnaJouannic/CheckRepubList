@@ -21,6 +21,7 @@ export class AuthService {
     let utilisateur = this.utilisateurService.connexion(login, password);
 
     sessionStorage.setItem("user", JSON.stringify(utilisateur));
+   
     
   }
 
@@ -41,7 +42,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return this.getUtilisateur() != null;
+    return this.getUtilisateur() != null ;
   }
 
    hasRole(role: string): boolean {

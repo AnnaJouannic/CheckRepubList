@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UtilisateurService } from '../utilisateur/utilisateur.service';
 
@@ -34,21 +34,24 @@ export class InscriptionComponent  implements OnInit {
 
     });
   }
-  save() {
-    this.utilisateurService.save(this.inscriptionForm.value);
-    this.cancel();
 
+  save() {
     if (this.inscriptionForm.valid) {
       const password = this.inscriptionForm.value.password;
       const passwordVerif = this.inscriptionForm.value.passwordVerif;
-  
+
       if (password === passwordVerif) {
-        
-        console.log('Mot de passe confirmé : ', password);
+       
+        this.utilisateurService.inscription(this.inscriptionForm.get('nom')?.value, this.inscriptionForm.get('prenom')?.value, this.inscriptionForm.get('login')?.value, this.inscriptionForm.get('password')?.value, 
+        this.inscriptionForm.get('tel')?.value,this.inscriptionForm.get('mail')?.value);
+            this.router.navigate(['/connexion']);
+  
       } else {
-        
         console.error('Les mots de passe ne correspondent pas.');
       }
+    } else {
+      // Afficher des messages d'erreur pour les champs non valides
+      this.markFormGroupTouched(this.inscriptionForm);
     }
   }
 
@@ -56,4 +59,14 @@ export class InscriptionComponent  implements OnInit {
     this.showForm = false;
     this.inscriptionForm.reset();
   }
+  
+  private markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach((control: AbstractControl) => {
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      } else {
+        control.markAsTouched();
+      }
+    });
+}
 }

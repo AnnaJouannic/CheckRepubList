@@ -4,10 +4,10 @@ export class Utilisateur {
     prenom: string;
     login: string;
     password: string;
-    tel: number;
+    tel: string;
     mail: string;
-    disabled: boolean;
     roles: Array<string> = new Array<string>;
+
     constructor(
         id?: number,
         nom?: string,
@@ -15,8 +15,7 @@ export class Utilisateur {
         login?: string,
         password?: string,
         mail?: string,
-        tel?: number,
-        disabled?: boolean,
+        tel?: string,
         ...roles: string[]
     ) {
         this.id = id;
@@ -24,9 +23,34 @@ export class Utilisateur {
         this.prenom = prenom;
         this.login = login;
         this.password = password;
-        this.disabled = disabled;
         this.mail = mail;
         this.tel = tel;
         this.roles = roles;
+    }
+}
+
+export class Voyageur{
+    id: number;
+    nom: string;
+    prenom: string;
+    naissance: string;
+    accessibilite: boolean;
+    voyage: Array<Voyage> = new Array<Voyage>();
+
+    constructor(
+        id?: number,
+        nom?: string,
+        prenom?: string,
+        naissance?: string,
+        accessibilite?: boolean,
+        ...voyage: Voyage[]
+       
+    ) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.naissance = naissance;
+        this.accessibilite= accessibilite;
+        this.voyage= voyage;
     }
 }
