@@ -1,11 +1,25 @@
-<body>
-    
+<html>
+<head>
+<div id="site">
+    <div id="header">
+          <div id="logo"><img id="imgLogo" src="/assets/logorond.png"/> </div>
+      <div id="CheckRepublist">
+          <h1><span id="textCheckRepublist">Check Republist</span></h1></div>
+    </div>
+  </div>
+  </head>
 
-<div class="card mt-3">
-    <div class="card-header bg-primary text-white display-6">Liste des voyageurs</div>
-    <div class="card-body">
-        <table class="table table-striped">
-            <thead>
+
+
+
+<body>
+<div class=" mt-3">
+    <form >
+    <h1 >Liste des voyageurs</h1>
+  <div >
+       <table class="table table-striped">
+      
+            <thead >
                 <tr>
                     <th>Identifiant</th>
                     <th>Nom</th>
@@ -13,7 +27,7 @@
                     <th>Naissance</th>
                     <th>Accessibilite</th>
                     <th>Voyage</th>
-                    <th></th>
+                    
                 </tr>
             </thead>
 
@@ -23,8 +37,8 @@
                     <td>{{voyageur.nom}}</td>
                     <td>{{voyageur.prenom}}</td>
                     <td>{{voyageur.naissance}}</td>
-                    <th>{{voyageur.accessibilite}}</th>
-                  <!-- <th>{{voyageur.voyage?.id}} - {{voyageur.voyage?.libelle}}</th>  -->
+                    <td>{{voyageur.accessibilite}}</td>
+                     <!-- //<td>{{voyageur.voyage?.id}} - {{voyageur.voyage?.libelle}}</td> -->
                     <td>
                         <div class="btn-group btn-group-sm">
                             <a class="btn btn-primary" (click)="edit(voyageur.id)"><i
@@ -34,19 +48,20 @@
                     </td>
                 </tr>
             </tbody>
-
         </table>
     </div>
+   
     <div class="card-footer">
         <a class="btn btn-success btn-lg" (click)="add()"><i
             class="bi bi-plus-square"></i></a>
+    
     </div>
+   </form>     
 </div>
-
-<div class="card mt-3" *ngIf="showForm">
-    <form (ngSubmit)="save()" formGroup="voyageurForm">
-    <div class="card-header bg-primary text-white display-6">Edition d'un voyageur</div>
-    <div class="card-body">
+    <div class="mt-3" *ngIf="showForm">
+    <form (ngSubmit)="save()" [formGroup]="voyageurForm">
+    <div >Edition d'un voyageur</div>
+    <div >
         <div class="form-group">
             <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" readonly formControlName="id"/>
         </div>
@@ -57,7 +72,7 @@
             <label for="prenom">Prenom:</label> <input type="text" class="form-control" id="prenom" name="prenom" formControlName="prenom"/>
         </div>
         <div class="form-group">
-            <label for="naissance">Naissance:</label> <input type="text" class="form-control" id="naissance" name="naissance" formControlName="naissance"/>
+            <label for="naissance">Date de naissance:</label> <input type="date" class="form-control" id="naissance" name="naissance" formControlName="naissance"/>
         </div>
         <div class="form-group mt-2">
             <div class="form-check">
@@ -81,5 +96,6 @@
         </div>
     </div>
     </form>
-</div>
+    </div>
 </body>
+</html>

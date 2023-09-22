@@ -12,6 +12,7 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { VoyageComponent } from './voyage/voyage.component';
 import { HttpClientModule } from '@angular/common/http';
+import { VoyageurComponent } from './voyageur/voyageur.component';
 
 
 
@@ -24,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     InscriptionComponent,
     UtilisateurComponent,
     AccueilComponent,
-   // VoyageurComponent,
+   VoyageurComponent,
     VoyageComponent,
 
 

@@ -14,7 +14,7 @@ export class VoyageurComponent implements OnInit{
 
   voyageurs$: Observable<Voyageur[]>;
   voyages$: Observable<Voyage[]>;
-  voyageurForm!: FormGroup;
+  voyageurForm: FormGroup;
   showForm: boolean = false
 
 
@@ -23,7 +23,7 @@ export class VoyageurComponent implements OnInit{
   
   ngOnInit(): void {
    this.voyageurs$ = this.voyageurService.findAll();
-    // this.voyages$ = this.voyageService.findAll();
+  this.voyages$ = this.voyageService.findAll();
 
     this.voyageurForm = this.formBuilder.group({
       id: this.formBuilder.control('0'),
@@ -51,9 +51,9 @@ export class VoyageurComponent implements OnInit{
     this.voyageurService.findById(id).subscribe(resp => {
       this.voyageurForm.patchValue(resp);
 
-     // if(!this.voyageurForm.get('voyage')?.value) {
-       // this.voyageurForm = new Voyage();
-     // }
+     if(!this.voyageurForm.get('voyage')?.value) {
+       this.voyageurForm.setValue(new Voyage());
+      }
       this.showForm = true;
     });
   }
@@ -65,7 +65,7 @@ export class VoyageurComponent implements OnInit{
   // }
 
   save() {  
-    this.voyageService.save(this.voyageurForm.value).subscribe(resp => {
+    this.voyageurService.save(this.voyageurForm.value).subscribe(resp => {
       this.voyageurs$ = this.voyageurService.findAll();
     });
   }
