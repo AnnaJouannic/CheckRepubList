@@ -38,7 +38,7 @@ public class Voyageur {
 	@ManyToMany
 	@JoinTable(name="enregistrement",joinColumns = @JoinColumn(name="voyageur"),inverseJoinColumns = @JoinColumn(name="voyage"))
 	@JsonView(Views.VoyageurDetail.class)
-	private List<Voyage> voyages=new ArrayList();
+	private List<Voyage> voyages=new ArrayList<>();
 	
 	
 
