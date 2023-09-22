@@ -1,10 +1,7 @@
 package checkrepublist.group.api.request;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-import checkrepublist.group.model.ActiviteRef;
 import checkrepublist.group.model.TypeClimat;
 import checkrepublist.group.model.TypeDeplacement;
 import checkrepublist.group.model.TypeLogement;
@@ -19,6 +16,8 @@ public class VoyageRequest {
 	
 	@NotBlank
 	private String libelle;
+	
+	private String pays;
 	
 	private TypeLogement logement;
 	
@@ -74,6 +73,14 @@ public class VoyageRequest {
 
 	public void setClimat(TypeClimat climat) {
 		this.climat = climat;
+	}
+
+	public String getPays() {
+		return pays;
+	}
+
+	public void setPays(String pays) {
+		this.pays = pays;
 	}
 
 	/*public List<ActiviteRef> getActivites() {

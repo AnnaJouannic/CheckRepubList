@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import checkrepublist.group.model.ActiviteRef;
 import checkrepublist.group.model.MaterielRef;
 import checkrepublist.group.model.TypeClimat;
 import checkrepublist.group.model.TypeDeplacement;
@@ -27,7 +26,7 @@ public class VoyageResponse {
 	
 	//private List<ActiviteRef> activites= new ArrayList<>();
 	
-	//private List<MaterielRef> listeMateriel;
+	private List<MaterielRef> materiels=new ArrayList<>();
 
 	
 	
@@ -93,14 +92,14 @@ public class VoyageResponse {
 
 	public void setActivites(List<ActiviteRef> activites) {
 		this.activites = activites;
-	}
-	public List<MaterielRef> getListeMateriel() {
-		return listeMateriel;
+	}*/
+	public List<MaterielRef> getMateriels() {
+		return materiels;
 	}
 
-	public void setListeMateriel(List<MaterielRef> listeMateriel) {
-		this.listeMateriel = listeMateriel;
-	}*/
+	public void setMateriels(List<MaterielRef> materiels) {
+		this.materiels = materiels;
+	}
 	
 	
 
