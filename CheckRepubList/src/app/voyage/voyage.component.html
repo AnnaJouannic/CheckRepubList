@@ -16,13 +16,13 @@
 		<div >
 			<div class="form-group" >
 				<div for="durée">Durée du voyage: </div> 
-				<label for="dateDebutVoyage">Départ</label> <input type="text"  class="form-control" id="dateDebutVoyage" name="dateDebutVoyage"  formControlName="dateDebutVoyage"/>
+				<label for="dateDebutVoyage">Départ</label> <input type="date"  class="form-control" id="dateDebutVoyage" name="dateDebutVoyage"  formControlName="dateDebutVoyage"/>
 				<span class="text-danger" *ngIf="voyageForm.get('dateDebutVoyage').hasError('required') ||voyageForm.get('dateDebutVoyage').hasError('pattern') ">
 					La date du départ  est obligatoire et doit être saisie au format jour-mois-année (DD-MM-YYYY).
 				</span>
 			</div>
 			<div class="form-group">
-				<label for="dateFinVoyage">Retour:</label> <input type="text" class="form-control" id="dateFinVoyage" name="dateFinVoyage" formControlName="dateFinVoyage"/>
+				<label for="dateFinVoyage">Retour:</label> <input type="date" class="form-control" id="dateFinVoyage" name="dateFinVoyage" formControlName="dateFinVoyage"/>
 				<span class="text-danger" *ngIf="voyageForm.get('dateFinVoyage').hasError('required') ||voyageForm.get('dateFinVoyage').hasError('pattern') ">
 					La date du retour est obligatoire et doit être saisie au format jour-mois-année (DD-MM-YYYY).
 				</span>
