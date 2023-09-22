@@ -12,13 +12,13 @@ public class VoyageurRequest {
 	@NotBlank
 	private String prenom;
 	
-	@NotBlank
+
 	private LocalDate naissance;
 	
-	@NotBlank
+	
 	private boolean animal;
 	
-	@NotBlank
+	
 	private boolean accessibilite;
 
 	public String getNom() {

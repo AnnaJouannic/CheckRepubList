@@ -39,7 +39,7 @@ public class CritereApiController {
 		return this.repoCritere.findAll();
 	}
 	
-	@JsonView(Views.CritereDetail.class)
+	
 	@GetMapping("/{id}")
 	public CritereResponse findById(@PathVariable Integer id) {
 		Critere critere = this.repoCritere.findById(id).orElseThrow(CritereNotFoundException::new);
@@ -47,11 +47,12 @@ public class CritereApiController {
 		
 		BeanUtils.copyProperties(critere, response);
 		
+		response.setMaterielref(critere.getMaterielref().getLibelleMateriel());
+		
 		return response;
 	}
 	
 	@PostMapping("")
-	@JsonView(Views.CritereDetail.class)
 	public Critere add(@Valid @RequestBody CritereRequest critereRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new CritereNotValidException();
@@ -61,22 +62,21 @@ public class CritereApiController {
 		
 		BeanUtils.copyProperties(critereRequest, critere);
 		
-
+		critere.setMaterielref(critereRequest.getMaterielref());
+		
 		return this.repoCritere.save(critere);
 	}
 	
 	@PutMapping("/{id}")
-	@JsonView(Views.CritereDetail.class)
 	public Critere edit(@PathVariable Integer id, @Valid @RequestBody CritereRequest critereRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new CritereNotValidException();
 		}
 
-		Critere critere = new Critere();
+		Critere critere = this.repoCritere.findById(id).orElseThrow(CritereNotFoundException::new);
 		
 		BeanUtils.copyProperties(critereRequest, critere);
 		
-
 		return this.repoCritere.save(critere);
 	}
 	

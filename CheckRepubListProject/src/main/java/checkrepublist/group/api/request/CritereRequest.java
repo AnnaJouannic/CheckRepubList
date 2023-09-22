@@ -1,5 +1,6 @@
 package checkrepublist.group.api.request;
 
+import checkrepublist.group.model.MaterielRef;
 import checkrepublist.group.model.TypeClimat;
 import checkrepublist.group.model.TypeDeplacement;
 import checkrepublist.group.model.TypeLogement;
@@ -7,8 +8,8 @@ import jakarta.validation.constraints.NotBlank;
 
 public class CritereRequest {
 
-	@NotBlank
-	private String libelleMateriel;
+	
+	private MaterielRef materielref;
 	
 	private TypeLogement logement;
 	
@@ -16,12 +17,12 @@ public class CritereRequest {
 
 	private TypeClimat climat;
 
-	public String getLibelleMateriel() {
-		return libelleMateriel;
+	public MaterielRef getMaterielref() {
+		return materielref;
 	}
 
-	public void setLibelleMateriel(String libelleMateriel) {
-		this.libelleMateriel = libelleMateriel;
+	public void setMaterielRef(MaterielRef materielref) {
+		this.materielref = materielref;
 	}
 
 	public TypeLogement getLogement() {
