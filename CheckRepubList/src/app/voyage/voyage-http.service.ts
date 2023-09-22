@@ -23,11 +23,11 @@ import { Injectable } from "@angular/core";
       return this.http.get<Voyage>(this.apiVoyageUrl+"/"+id);
     }
   
-    save(produit: Voyage): Observable<Voyage> {
-      if(produit.id) { // mise à jour
-        return this.http.put<Voyage>(this.apiVoyageUrl+"/"+produit.id, produit);
+    save(voyage: Voyage): Observable<Voyage> {
+      if(voyage.id) { // mise à jour
+        return this.http.put<Voyage>(this.apiVoyageUrl+"/"+voyage.id, voyage);
       } else { // création
-        return this.http.post<Voyage>(this.apiVoyageUrl, produit);;
+        return this.http.post<Voyage>(this.apiVoyageUrl, voyage);;
       }
      }
   

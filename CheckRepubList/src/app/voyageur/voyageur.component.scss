@@ -1,63 +1,52 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    margin: 0;
-    padding: 0;
+@font-face {
+    font-family: "Playball";
+    src: url("/assets/Playball-Regular.ttf") format("truetype");
 }
-
-h1 {
+body
+{
+	margin:0;
+	background-image : url("/assets/paccueil.jpg");
+	background-attachment : fixed;
+	background-repeat: no-repeat;
+	background-size:100% 100%;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+	overflow : hidden;
+}
+    
+    h1 {
     text-align: center;
     padding: 20px;
-    font-weight: bold;
-}
-
-
-table {
-  max-width: 800px;
-  margin: 0 auto;
-  background: #a4b7a885;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    
+    form {
+   max-width: 800px;
+    margin: 0 auto;
+    background: #a4b7a8;
     padding: 20px;
-}
-
-h4 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-/* Form Field Styles */
-label {
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    th, label {
     font-weight: bold;
-}
-
-input[type="text"],
-select {
+    }
+    
+    input[type="text"],
+    input[type="date"],
+    th
+    {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 3px;
-    transition: border-color 0.2s;
-}
-
-input[type="text"]:focus,
-select:focus {
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-input[type="checkbox"] {
-    margin-right: 5px;
-}
-
-/* Button Styles */
-.button {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.button input {
-    margin: 5px;
-}
+    }
+    
+    
+    input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0px 0px 5px rgba(52, 152, 219, 0.5);
+    }
