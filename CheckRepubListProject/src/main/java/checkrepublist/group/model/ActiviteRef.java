@@ -17,7 +17,7 @@ public class ActiviteRef {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@Column (length = 25)
-	private String libelle;
+	private String libelleActivite;
 	
 	@ManyToOne
 	@JoinColumn(name="critere")
@@ -25,43 +25,43 @@ public class ActiviteRef {
 	
 	public ActiviteRef() {}
 
-	public ActiviteRef(Integer id, String libelle) {
+	public ActiviteRef(Integer id, String libelleActivite) {
 		this.id = id;
-		this.libelle = libelle;
+		this.libelleActivite = libelleActivite;
 		
 	}
 
-	public ActiviteRef(Integer id, String libelle, Critere critere) {
+	public ActiviteRef(Integer id, String libelleActivite, Critere critere) {
 		super();
 		this.id = id;
-		this.libelle = libelle;
+		this.libelleActivite = libelleActivite;
 		this.critere = critere;
 	}
 	
-	public ActiviteRef(String libelle, Critere critere) {
+	public ActiviteRef(String libelleActivite, Critere critere) {
 		super();
-		this.libelle = libelle;
+		this.libelleActivite = libelleActivite;
 		this.critere = critere;
 	}
 
-	public ActiviteRef(String libelle) {
-		this.libelle = libelle;
+	public ActiviteRef(String libelleActivite) {
+		this.libelleActivite = libelleActivite;
 	}
 
 	public Integer getId() {
 		return id;
 	}
 
-	public String getLibelle() {
-		return libelle;
+	public String getLibelleActivite() {
+		return libelleActivite;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
+	public void setLibelleActivite(String libelleActivite) {
+		this.libelleActivite = libelleActivite;
 	}
 
 	
@@ -76,7 +76,7 @@ public class ActiviteRef {
 
 	@Override
 	public String toString() {
-		return "Activite [id=" + id + ", libelle=" + libelle + "]";
+		return "Activite [id=" + id + ", libelleActivite=" + libelleActivite + "]";
 	}
 
 }

@@ -34,15 +34,15 @@ public class Critere {
 	private MaterielRef materielref;
 
 	@Enumerated(EnumType.STRING)
-	@Column(columnDefinition = "ENUM('Hotel','Gite','ChambreDHote','Location', 'AirBnB', 'MobilHome', 'Van', 'CampingCar', 'Tente', 'Voiture', Autre)")
+	@Column(columnDefinition = "ENUM('Hotel','Gite','ChambreDHote','Location', 'AirBnB', 'MobilHome', 'Van', 'CampingCar', 'Tente', 'Voiture', Autre, 'Tous')")
 	private TypeLogement logement;
 
 	@Enumerated(EnumType.STRING)
-	@Column(columnDefinition = "ENUM('Marche','Velo','Voiture','Van', 'Campingcar', 'Bateau', 'Train', 'Avion', 'Moto', 'Autre')")
+	@Column(columnDefinition = "ENUM('Marche','Velo','Voiture','Van', 'Campingcar', 'Bateau', 'Train', 'Avion', 'Moto', 'Autre', 'Tous')")
 	private TypeDeplacement deplacement;
 
 	@Enumerated(EnumType.STRING)
-	@Column(columnDefinition = "ENUM('Froid','Chaud','Tempere','Tropical', 'Desertique', 'Autre')")
+	@Column(columnDefinition = "ENUM('Froid','Chaud','Tempere','Tropical', 'Desertique', 'Autre', 'Tous')")
 	private TypeClimat climat;
 	
 	@JsonIgnore
@@ -53,7 +53,19 @@ public class Critere {
 	public Critere() {
 	}
 	
+	public Critere(MaterielRef materielref) {
+		this.materielref = materielref;
+	}
 	
+	
+	
+	public Critere(TypeLogement logement, TypeDeplacement deplacement, TypeClimat climat) {
+		super();
+		this.logement = logement;
+		this.deplacement = deplacement;
+		this.climat = climat;
+	}
+
 	public Critere(Integer id, MaterielRef materielref, TypeLogement logement, TypeDeplacement deplacement,
 			TypeClimat climat) {
 		this.id = id;
@@ -71,9 +83,6 @@ public class Critere {
 	}
 
 
-	public Critere(MaterielRef materielref) {
-		this.materielref = materielref;
-	}
 
 
 	public Integer getId() {

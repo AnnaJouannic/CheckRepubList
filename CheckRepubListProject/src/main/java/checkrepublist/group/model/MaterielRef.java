@@ -37,7 +37,7 @@ public class MaterielRef {
 	
 	
 
-	@OneToMany(mappedBy = "materielRef")
+	@OneToMany(mappedBy = "materielref")
 	@JsonView(Views.MaterielDetail.class)
 	private List<Critere> criteres = new ArrayList<>();
 	

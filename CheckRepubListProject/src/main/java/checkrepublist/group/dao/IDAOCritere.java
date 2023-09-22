@@ -12,12 +12,12 @@ import checkrepublist.group.model.TypeLogement;
 
 public interface IDAOCritere  extends JpaRepository<Critere, Integer>  {
 	
-	@Query("select c from Critere c"
-			+ "where (c.logement = TypeLogement.TOUS and c.deplacement is null and c.climat is null)"
+	/*@Query("select c from Critere c"
+			+ "where (c.logement = TypeLogement.TOUS and c.deplacement = TypeDeplacement.Tous and c.climat = TypeLogement.Tous)"
 			+ "or (c.logement = ?1 or c.deplacement = ?2 or c.climat = ?3)"
 			+ "or (c.logement = ?1 and c.deplacement = ?2 and c.climat = ?3)"
-			+ "or (c.logement = ?1 and c.deplacement = ?2) "
+			+ "or (c.logement = ?1 and c.deplacement = ?2)"
 			+ "or (c.logement = ?1 and c.climat = ?3)"
 			+ "or (c.deplacement = ?2 and c.climat = ?3)")
-	List<Critere> findAllTest(TypeLogement logement, TypeDeplacement deplacement, TypeClimat climat);
+	List<Critere> findAllTest(TypeLogement logement, TypeDeplacement deplacement, TypeClimat climat);*/
 }
