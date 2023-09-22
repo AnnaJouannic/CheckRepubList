@@ -59,8 +59,8 @@ public class VoyageApiController {
 		VoyageResponse response = new VoyageResponse();
 
 		BeanUtils.copyProperties(voyage, response);
-
-		//response.setListeMateriel(voyage.getMateriels());
+		
+		response.setMateriels(voyage.getMateriels());
 
 		return response;
 	}
