@@ -3,7 +3,6 @@ package checkrepublist.group.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -21,25 +20,24 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "materielref")
-@JsonView(Views.Admin.class)
 public class MaterielRef{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.Common.class)
 	private Integer id;
 	
+	@JsonView(Views.Common.class)
 	private String libelleMateriel;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Vetement','Numerique', 'Outils', 'Toilette', 'Animaux', 'Pharmacie', 'Administratif')")
-
-	@JsonView(Views.Admin.class)
+	@JsonView(Views.Common.class)
 	private Categorie categorie;
 	
 
 	@OneToMany(mappedBy = "materielref")
-	@JsonView(Views.MaterielDetail.class)
-	@JsonIgnoreProperties("materiels")
+	@JsonIgnoreProperties("materielref")
 	private List<Critere> criteres = new ArrayList<>();
 	
 	
@@ -62,7 +60,8 @@ public class MaterielRef{
 		this.categorie = categorie;
 	}
 
-
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -100,6 +99,16 @@ public class MaterielRef{
 
 	public void setCriteres(List<Critere> criteres) {
 		this.criteres = criteres;
+	}
+
+
+	public List<Voyage> getVoyages() {
+		return voyages;
+	}
+
+
+	public void setVoyages(List<Voyage> voyages) {
+		this.voyages = voyages;
 	}
 
 

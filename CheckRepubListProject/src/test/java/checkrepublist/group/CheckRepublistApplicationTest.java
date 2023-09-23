@@ -9,13 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import checkrepublist.group.dao.IDAOActiviteRef;
 import checkrepublist.group.dao.IDAOCritere;
 import checkrepublist.group.dao.IDAOMaterielRef;
 import checkrepublist.group.dao.IDAOUtilisateur;
 import checkrepublist.group.dao.IDAOVoyage;
 import checkrepublist.group.dao.IDAOVoyageur;
-import checkrepublist.group.model.ActiviteRef;
 import checkrepublist.group.model.Categorie;
 import checkrepublist.group.model.Critere;
 import checkrepublist.group.model.MaterielRef;
@@ -31,8 +29,8 @@ import checkrepublist.group.model.Voyageur;
 @SpringBootTest
 class CheckRepublistApplicationTest {
 
-	@Autowired
-	private IDAOActiviteRef activiteRefRepo;
+	/*@Autowired
+	private IDAOActiviteRef activiteRefRepo;*/
 	
 	@Autowired
 	private IDAOUtilisateur utilisateurRepo;
@@ -230,7 +228,6 @@ class CheckRepublistApplicationTest {
 		
 		MaterielRef v12 = new MaterielRef("Chaussure de rando",Categorie.Vetement);
 		v12 = materielRefRepo.save(v12);
-		Critere cri19 = new Critere (v12);
 		Critere crmarche1 = new Critere ();
 		crmarche1.setDeplacement(TypeDeplacement.Marche);
 		crmarche1.setMaterielref(v12);
@@ -528,10 +525,10 @@ class CheckRepublistApplicationTest {
 	Voyage voyage3 = new Voyage(LocalDate.parse("2023-05-23"),LocalDate.parse("2023-06-02"), "Vacances de printemps !!", "Italie", TypeLogement.AirBnB, TypeDeplacement.Moto, TypeClimat.Chaud );
 	voyage3 = voyageRepo.save(voyage3);
 	
-	 List<Voyage> Voyage1 = new ArrayList();
+	 List<Voyage> Voyage1 = new ArrayList<>();
      Collections.addAll(Voyage1, voyage1);
      
-     List<Voyage> Voyage2 = new ArrayList();
+     List<Voyage> Voyage2 = new ArrayList<>();
      Collections.addAll(Voyage2, voyage2,voyage3);
      
 	Voyageur p1 = new Voyageur("Even","Manon",LocalDate.parse("1998-05-23"), true, false);
@@ -546,10 +543,10 @@ class CheckRepublistApplicationTest {
 	p3.setVoyages(Voyage2);
 	p3 = voyageurRepo.save(p3);
 	
-	List<Voyageur> utilisateur1 = new ArrayList();
+	List<Voyageur> utilisateur1 = new ArrayList<>();
 	Collections.addAll(utilisateur1, p1);
 	
-	List<Voyageur> utilisateur2 = new ArrayList();
+	List<Voyageur> utilisateur2 = new ArrayList<>();
 	Collections.addAll(utilisateur2, p2,p3);
 	
 	Utilisateur c1 = new Utilisateur("Even","Manon", "Manondu56", "12345", false, "manoneven@gmail.com", "0650265588");

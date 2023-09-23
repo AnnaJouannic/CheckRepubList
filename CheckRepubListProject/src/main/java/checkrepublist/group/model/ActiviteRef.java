@@ -1,5 +1,8 @@
 package checkrepublist.group.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import checkrepublist.group.api.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,12 +18,15 @@ public class ActiviteRef {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.Activite.class)
 	private Integer id;
 	@Column (length = 25)
+	@JsonView(Views.Activite.class)
 	private String libelleActivite;
 	
 	@ManyToOne
 	@JoinColumn(name="critere")
+	@JsonView(Views.ActiviteDetail.class)
 	private Critere critere;
 	
 	public ActiviteRef() {}

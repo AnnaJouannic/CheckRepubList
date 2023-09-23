@@ -8,6 +8,7 @@ import checkrepublist.group.model.MaterielRef;
 import checkrepublist.group.model.TypeClimat;
 import checkrepublist.group.model.TypeDeplacement;
 import checkrepublist.group.model.TypeLogement;
+import checkrepublist.group.model.Voyageur;
 
 public class VoyageResponse {
 	private Integer id;
@@ -18,6 +19,8 @@ public class VoyageResponse {
 	
 	private String libelle;
 	
+	private String pays;
+	
 	private TypeLogement logement;
 	
 	private TypeDeplacement deplacement;
@@ -27,6 +30,8 @@ public class VoyageResponse {
 	//private List<ActiviteRef> activites= new ArrayList<>();
 	
 	private List<MaterielRef> materiels=new ArrayList<>();
+	
+	private List<Voyageur> voyageurs=new ArrayList<>();
 
 	
 	
@@ -100,8 +105,24 @@ public class VoyageResponse {
 	public void setMateriels(List<MaterielRef> materiels) {
 		this.materiels = materiels;
 	}
-	
-	
 
+	public List<Voyageur> getVoyageurs() {
+		return voyageurs;
+	}
+
+	public void setVoyageurs(List<Voyageur> voyageurs) {
+		this.voyageurs = voyageurs;
+	}
+
+	public String getPays() {
+		return pays;
+	}
+
+	public void setPays(String pays) {
+		this.pays = pays;
+	}
+	
+	
+	
 	
 }

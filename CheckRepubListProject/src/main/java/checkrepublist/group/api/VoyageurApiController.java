@@ -41,7 +41,6 @@ public class VoyageurApiController {
 
 	@GetMapping("/{id}")
 	@Transactional 
-	@JsonView(Views.VoyageurDetail.class)
 	public VoyageurResponse findById(@PathVariable Integer id) {
 		Voyageur voyageur = this.repoVoyageur.findById(id).orElseThrow(VoyageurNotFoundException::new);
 		VoyageurResponse response = new VoyageurResponse();
@@ -81,7 +80,6 @@ public class VoyageurApiController {
 	}
 
 	@DeleteMapping("/{id}")
-	@JsonView(Views.Voyageur.class)
 	public void deleteById(@PathVariable Integer id) {
 		this.repoVoyageur.deleteById(id);
 	}

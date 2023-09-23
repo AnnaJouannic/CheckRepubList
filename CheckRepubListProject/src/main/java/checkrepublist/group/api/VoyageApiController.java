@@ -59,12 +59,17 @@ public class VoyageApiController {
         VoyageResponse response = new VoyageResponse();
 
         BeanUtils.copyProperties(voyage, response);
+        
+        response.setVoyageurs(voyage.getVoyageurs());
+        response.setMateriels(voyage.getMateriels());
+      
 
         return response;
 	}
 
 	@PostMapping
 	@Transactional 
+	@JsonView(Views.Voyage.class)
 	public Voyage add(@Valid @RequestBody VoyageRequest voyageRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new VoyageNotValidException();
@@ -75,7 +80,7 @@ public class VoyageApiController {
 		BeanUtils.copyProperties(voyageRequest, voyage);
 		
 		List<Critere> criteres = this.repoCritere.findAllTest(voyage.getLogement(), voyage.getDeplacement(), voyage.getClimat());
-		List<MaterielRef> listeMateriel = new ArrayList();
+		List<MaterielRef> listeMateriel = new ArrayList<>();
 		for (Critere critere : criteres) {
 	        listeMateriel.add(critere.getMaterielref());
 	    }
@@ -89,6 +94,7 @@ public class VoyageApiController {
 	 
 	@PutMapping("/{id}")
 	@Transactional
+	@JsonView(Views.Voyage.class)
 	public Voyage edit(@PathVariable Integer id, @Valid @RequestBody VoyageRequest voyageRequest,
 			BindingResult result) {
 		if (result.hasErrors()) {

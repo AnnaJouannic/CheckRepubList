@@ -34,7 +34,7 @@ public class CritereApiController {
 	
 	
 	@GetMapping("")
-	@JsonView(Views.Admin.class)
+	@JsonView(Views.Critere.class)
 	public List<Critere> findAll() {
 		return this.repoCritere.findAll();
 	}
@@ -47,12 +47,14 @@ public class CritereApiController {
 		
 		BeanUtils.copyProperties(critere, response);
 		
-		response.setMaterielref(critere.getMaterielref().getLibelleMateriel());
+		response.setLibelleMaterielref(critere.getMaterielref().getLibelleMateriel());
+		response.setCategorie(critere.getMaterielref().getCategorie());
 		
 		return response;
 	}
 	
 	@PostMapping("")
+	@JsonView(Views.Critere.class)
 	public Critere add(@Valid @RequestBody CritereRequest critereRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new CritereNotValidException();
@@ -68,6 +70,7 @@ public class CritereApiController {
 	}
 	
 	@PutMapping("/{id}")
+	@JsonView(Views.Critere.class)
 	public Critere edit(@PathVariable Integer id, @Valid @RequestBody CritereRequest critereRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new CritereNotValidException();
@@ -83,7 +86,6 @@ public class CritereApiController {
 
 	
 	@DeleteMapping("/{id}")
-	@JsonView(Views.Admin.class)
 	public void deleteById(@PathVariable Integer id) {
 		this.repoCritere.deleteById(id);
 	}

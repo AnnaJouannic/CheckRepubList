@@ -1,17 +1,19 @@
 package checkrepublist.group.api.response;
 
-import checkrepublist.group.model.MaterielRef;
+import checkrepublist.group.model.Categorie;
 import checkrepublist.group.model.TypeClimat;
 import checkrepublist.group.model.TypeDeplacement;
 import checkrepublist.group.model.TypeLogement;
-import jakarta.validation.constraints.NotBlank;
+
 
 public class CritereResponse {
 	
 	private Integer id;
 	
 	
-	private String materielref;
+	private String libelleMaterielref;
+	
+	private Categorie categorie;
 	
 	private TypeLogement logement;
 	
@@ -27,14 +29,20 @@ public class CritereResponse {
 		this.id = id;
 	}
 
-
-
-	public String getMaterielref() {
-		return materielref;
+	public String getLibelleMaterielref() {
+		return libelleMaterielref;
 	}
 
-	public void setMaterielref(String materielref) {
-		this.materielref = materielref;
+	public void setLibelleMaterielref(String libelleMaterielref) {
+		this.libelleMaterielref = libelleMaterielref;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 
 	public TypeLogement getLogement() {

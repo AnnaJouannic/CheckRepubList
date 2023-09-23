@@ -22,33 +22,38 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "critere")
-@JsonView(Views.Admin.class)
 public class Critere {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.Common.class)
 	private Integer id;
 
 	
 	@ManyToOne
 	@JoinColumn(name="materielref_id")
 	@JsonIgnoreProperties("criteres")
+	@JsonView(Views.CritereDetail.class)
 	private MaterielRef materielref;
 
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Hotel','Gite','ChambreDHote','Location', 'AirBnB', 'MobilHome', 'Van', 'CampingCar', 'Tente', 'Voiture', Autre, 'Tous')")
+	@JsonView(Views.Common.class)
 	private TypeLogement logement;
 
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Marche','Velo','Voiture','Van', 'Campingcar', 'Bateau', 'Train', 'Avion', 'Moto', 'Autre', 'Tous')")
+	@JsonView(Views.Common.class)
 	private TypeDeplacement deplacement;
 
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Froid','Chaud','Tempere','Tropical', 'Desertique', 'Autre', 'Tous')")
+	@JsonView(Views.Common.class)
 	private TypeClimat climat;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="critere")
+	@JsonView(Views.Critere.class)
 	private List<ActiviteRef> activites = new ArrayList<>();
 	
 
