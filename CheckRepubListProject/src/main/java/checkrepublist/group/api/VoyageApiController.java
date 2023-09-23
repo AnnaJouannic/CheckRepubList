@@ -60,9 +60,6 @@ public class VoyageApiController {
 
         BeanUtils.copyProperties(voyage, response);
 
-      
-    
-
         return response;
 	}
 
@@ -77,11 +74,14 @@ public class VoyageApiController {
 
 		BeanUtils.copyProperties(voyageRequest, voyage);
 		
+		List<Critere> criteres = this.repoCritere.findAllTest(voyage.getLogement(), voyage.getDeplacement(), voyage.getClimat());
+		List<MaterielRef> listeMateriel = new ArrayList();
+		for (Critere critere : criteres) {
+	        listeMateriel.add(critere.getMaterielref());
+	    }
 		
-		//List<Critere> criteres = this.repoCritere.findAllTest(voyage.getLogement(), voyage.getDeplacement(), voyage.getClimat());
-		//List<MaterielRef> listeMateriel = materielFiltre(criteres, voyageRequest.getDeplacement(), voyageRequest.getClimat(), voyageRequest.getLogement());
 		
-		//voyage.setMateriels(listeMateriel);
+		voyage.setMateriels(listeMateriel);
 
 		return this.repoVoyage.save(voyage);
 	}
