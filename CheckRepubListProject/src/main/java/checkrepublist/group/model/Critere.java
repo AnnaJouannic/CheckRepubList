@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import checkrepublist.group.api.Views;
@@ -31,6 +32,7 @@ public class Critere {
 	
 	@ManyToOne
 	@JoinColumn(name="materielref_id")
+	@JsonIgnoreProperties("criteres")
 	private MaterielRef materielref;
 
 	@Enumerated(EnumType.STRING)

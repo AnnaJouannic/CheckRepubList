@@ -4,10 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import checkrepublist.group.api.Views;
@@ -28,7 +26,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "voyage")
 @JsonView(Views.Common.class)
-public class Voyage {
+public class Voyage{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,10 +59,11 @@ public class Voyage {
 	private List<ActiviteRef> activites = new ArrayList<>();
 	
 	
-	@ManyToMany //(fetch= FetchType.EAGER)
+	@ManyToMany 
 	@JoinTable(name="voyagematerielref",joinColumns = @JoinColumn(name="voyage"),inverseJoinColumns = @JoinColumn(name="materielref"))
-	@JsonIgnoreProperties("voyage")
-	private List<MaterielRef> materiels = new ArrayList<>();
+	@JsonView(Views.VoyageDetail.class)
+	@JsonIgnoreProperties("voyages")
+	private List<MaterielRef> materiels;
 	
 
 	public Voyage() {

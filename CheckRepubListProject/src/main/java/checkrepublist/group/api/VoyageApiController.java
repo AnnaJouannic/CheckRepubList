@@ -55,14 +55,15 @@ public class VoyageApiController {
 	@GetMapping("/{id}")
 	@Transactional 
 	public VoyageResponse findById(@PathVariable Integer id) {
-		Voyage voyage = this.repoVoyage.findById(id).orElseThrow(VoyageNotFoundException::new);
-		VoyageResponse response = new VoyageResponse();
+        Voyage voyage = this.repoVoyage.findById(id).orElseThrow(VoyageNotFoundException::new);
+        VoyageResponse response = new VoyageResponse();
 
-		BeanUtils.copyProperties(voyage, response);
-		
-		response.setMateriels(voyage.getMateriels());
+        BeanUtils.copyProperties(voyage, response);
 
-		return response;
+      
+    
+
+        return response;
 	}
 
 	@PostMapping

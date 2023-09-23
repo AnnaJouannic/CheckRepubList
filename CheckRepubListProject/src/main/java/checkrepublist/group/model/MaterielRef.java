@@ -3,6 +3,8 @@ package checkrepublist.group.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import checkrepublist.group.api.Views;
@@ -13,15 +15,14 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "materielref")
 @JsonView(Views.Admin.class)
-public class MaterielRef {
+public class MaterielRef{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,11 +36,16 @@ public class MaterielRef {
 	@JsonView(Views.Admin.class)
 	private Categorie categorie;
 	
-	
 
 	@OneToMany(mappedBy = "materielref")
 	@JsonView(Views.MaterielDetail.class)
+	@JsonIgnoreProperties("materiels")
 	private List<Critere> criteres = new ArrayList<>();
+	
+	
+	@ManyToMany(mappedBy="materiels")
+	@JsonIgnoreProperties("materiels")
+	private List<Voyage> voyages;
 	
 	public MaterielRef() {}
 
