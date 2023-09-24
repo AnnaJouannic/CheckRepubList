@@ -10,21 +10,49 @@
 	</head>
 
 <body>
-	<div>
-		<form (ngSubmit)="save()" novalidate autocomplete="off" [formGroup]="voyageForm">
+<div id="content" *ngIf="!showForm">
+			<div id="block1"></div>
+			<div id="center">
+		<div  id="nouveau">
+				<table class="tabStart">
+		  <tr id="lignetab">
+			  <td><h2>Un nouveau Voyage?</h2></td>
+		  </tr>
+				<tr id="lignetab">
+					<td><input id="btnStart"  value="Commencer" type="button" (click)="show()"></td>
+				</tr>
+				</table>
+				</div>
+				<div id="historique">
+					<table>
+						<tr id="lignetab">
+					  <td><h2>Voir vos anciens voyages</h2></td>
+				  </tr>
+						<tr id="lignetab">
+							<td><input id="btnOld"  value="Historique" type="button"></td>
+						</tr>
+					</table>
+		</div>
+	</div>
+</div>
+	
+
+
+<div class="form-container"  *ngIf="showForm">
+		<form  (ngSubmit)="save()" novalidate autocomplete="off" [formGroup]="voyageForm">
 		<h1>Un nouveau Voyage?</h1>
 		<div >
 			<div class="form-group" >
-				<div for="durée">Durée du voyage: </div> 
+				<!-- <div for="durée">Durée du voyage: </div>  -->
 				<label for="dateDebutVoyage">Départ</label> <input type="date"  class="form-control" id="dateDebutVoyage" name="dateDebutVoyage"  formControlName="dateDebutVoyage"/>
-				<span class="text-danger" *ngIf="voyageForm.get('dateDebutVoyage').hasError('required') ||voyageForm.get('dateDebutVoyage').hasError('pattern') ">
-					La date du départ  est obligatoire et doit être saisie au format jour-mois-année (DD-MM-YYYY).
+				<span class="text-danger" *ngIf="voyageForm.get('dateDebutVoyage').hasError('required')">
+					La date du départ  est obligatoire.
 				</span>
 			</div>
 			<div class="form-group">
 				<label for="dateFinVoyage">Retour:</label> <input type="date" class="form-control" id="dateFinVoyage" name="dateFinVoyage" formControlName="dateFinVoyage"/>
-				<span class="text-danger" *ngIf="voyageForm.get('dateFinVoyage').hasError('required') ||voyageForm.get('dateFinVoyage').hasError('pattern') ">
-					La date du retour est obligatoire et doit être saisie au format jour-mois-année (DD-MM-YYYY).
+				<span class="text-danger" *ngIf="voyageForm.get('dateFinVoyage').hasError('required')">
+					La date du retour est obligatoire.
 				</span>
 			</div>
 			<div class="form-group">
@@ -68,14 +96,19 @@
 					Le  climat est obligatoire.
 				</span>
 			</div>
-		<div class="btn-group btn-group-lg float-right">
-				<button type="submit" class="btn btn-success"  [disabled]="voyageForm.invalid"><i class="bi bi-check-square-fill"></i></button>
-			</div>
-			<div class="btn-group btn-group-lg float-right">
-				<a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
-			</div>
-	  
-	
+		 <div class="btn-group btn-group-lg float-right">
+			<button type="submit" class="btn btn-success" [disabled]="voyageForm.invalid">
+			  <i class="bi bi-check-square-fill"></i>
+			</button>
+		  </div>
+		  
+		 <div class="btn-group btn-group-lg float-right">
+			<a class="btn btn-success" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
+		  </div>
+</form>
+		</div>	
+	</body>	
+		
 	
 	
 

@@ -28,8 +28,8 @@ export class VoyageComponent   implements OnInit{
 
   ngOnInit(): void {
     this.voyageForm = this.formBuilder.group({
-      dateDebutVoyage: this.formBuilder.control('', [Validators.required ,Validators.pattern(/^\d{2}-\d{2}-\d{4}$/)]),
-      dateFinVoyage: this.formBuilder.control('', [Validators.required ,Validators.pattern(/^\d{2}-\d{2}-\d{4}$/)]),
+      dateDebutVoyage: this.formBuilder.control('', [Validators.required ]),
+      dateFinVoyage: this.formBuilder.control('', [Validators.required ]),
       libelle: this.formBuilder.control('', [Validators.required, Validators.maxLength(25)]),
       pays: this.formBuilder.control('', [Validators.required, Validators.maxLength(25)]),
       logement:this.formBuilder.control('', [Validators.required]),
@@ -62,6 +62,7 @@ add() {
 save() {
   this.voyageService.save(this.voyageForm.value);
   this.cancel();
+  this.showForm=true;
 }
 
 cancel() {
@@ -69,6 +70,9 @@ cancel() {
   this.voyageForm.reset();
 }
 
+show() {
+  this.showForm = true;
+}
 
 }
 
