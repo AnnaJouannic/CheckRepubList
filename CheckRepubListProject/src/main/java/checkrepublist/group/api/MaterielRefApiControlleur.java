@@ -37,7 +37,6 @@ public class MaterielRefApiControlleur {
 	IDAOCritere repoCritere;
 	
 	@GetMapping
-	@JsonView(Views.MaterielRef.class)
 	public List<MaterielRef> findAll() {
 		return this.repoMaterielRef.findAll();
 	}
@@ -57,7 +56,6 @@ public class MaterielRefApiControlleur {
 	}
 	
 	@PostMapping("")
-	@JsonView(Views.MaterielRef.class)
 	public MaterielRef add(@Valid @RequestBody MaterielRefRequest materielRefRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new MaterielRefNotValidException();
@@ -72,7 +70,6 @@ public class MaterielRefApiControlleur {
 	}
 	
 	@PutMapping("/{id}")
-	@JsonView(Views.MaterielRef.class)
 	public MaterielRef edit(@PathVariable Integer id, @Valid @RequestBody MaterielRefRequest materielRefRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new MaterielRefNotValidException();

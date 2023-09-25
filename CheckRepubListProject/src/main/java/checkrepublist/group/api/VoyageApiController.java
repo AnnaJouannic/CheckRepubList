@@ -47,7 +47,6 @@ public class VoyageApiController {
 	IDAOMaterielRef repoMaterielRef;
 	
 	@GetMapping
-	@JsonView(Views.Voyage.class)
 	public List<Voyage> findAll() {
 		return this.repoVoyage.findAll();
 	}
@@ -69,7 +68,6 @@ public class VoyageApiController {
 
 	@PostMapping
 	@Transactional 
-	@JsonView(Views.Voyage.class)
 	public Voyage add(@Valid @RequestBody VoyageRequest voyageRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new VoyageNotValidException();
@@ -94,7 +92,6 @@ public class VoyageApiController {
 	 
 	@PutMapping("/{id}")
 	@Transactional
-	@JsonView(Views.Voyage.class)
 	public Voyage edit(@PathVariable Integer id, @Valid @RequestBody VoyageRequest voyageRequest,
 			BindingResult result) {
 		if (result.hasErrors()) {

@@ -1,6 +1,6 @@
 package checkrepublist.group.api.response;
 
-import checkrepublist.group.model.Categorie;
+import checkrepublist.group.model.MaterielRef;
 import checkrepublist.group.model.TypeClimat;
 import checkrepublist.group.model.TypeDeplacement;
 import checkrepublist.group.model.TypeLogement;
@@ -11,9 +11,7 @@ public class CritereResponse {
 	private Integer id;
 	
 	
-	private String libelleMaterielref;
-	
-	private Categorie categorie;
+	private MaterielRef materielref;
 	
 	private TypeLogement logement;
 	
@@ -29,21 +27,14 @@ public class CritereResponse {
 		this.id = id;
 	}
 
-	public String getLibelleMaterielref() {
-		return libelleMaterielref;
+	public MaterielRef getMaterielref() {
+		return materielref;
 	}
 
-	public void setLibelleMaterielref(String libelleMaterielref) {
-		this.libelleMaterielref = libelleMaterielref;
+	public void setMaterielref(MaterielRef materielref) {
+		this.materielref = materielref;
 	}
 
-	public Categorie getCategorie() {
-		return categorie;
-	}
-
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
-	}
 
 	public TypeLogement getLogement() {
 		return logement;

@@ -34,7 +34,6 @@ public class CritereApiController {
 	
 	
 	@GetMapping("")
-	@JsonView(Views.Critere.class)
 	public List<Critere> findAll() {
 		return this.repoCritere.findAll();
 	}
@@ -47,14 +46,12 @@ public class CritereApiController {
 		
 		BeanUtils.copyProperties(critere, response);
 		
-		response.setLibelleMaterielref(critere.getMaterielref().getLibelleMateriel());
-		response.setCategorie(critere.getMaterielref().getCategorie());
+		response.setMaterielref(critere.getMaterielref());
 		
 		return response;
 	}
 	
 	@PostMapping("")
-	@JsonView(Views.Critere.class)
 	public Critere add(@Valid @RequestBody CritereRequest critereRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new CritereNotValidException();
@@ -70,7 +67,6 @@ public class CritereApiController {
 	}
 	
 	@PutMapping("/{id}")
-	@JsonView(Views.Critere.class)
 	public Critere edit(@PathVariable Integer id, @Valid @RequestBody CritereRequest critereRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new CritereNotValidException();

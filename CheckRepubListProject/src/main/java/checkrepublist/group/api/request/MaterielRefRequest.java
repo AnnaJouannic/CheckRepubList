@@ -26,11 +26,6 @@ public class MaterielRefRequest {
 
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
-	}
-
-	
-
-	
-	
+	}	
 	
 }
