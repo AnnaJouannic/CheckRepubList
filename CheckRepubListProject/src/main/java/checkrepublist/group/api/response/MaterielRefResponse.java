@@ -1,6 +1,10 @@
 package checkrepublist.group.api.response;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import checkrepublist.group.model.Categorie;
+import checkrepublist.group.model.Critere;
 
 public class MaterielRefResponse {
 
@@ -10,6 +14,8 @@ public class MaterielRefResponse {
 	private String libelleMateriel;
 	
 	private Categorie categorie;
+	
+	private List<Critere> criteres=new ArrayList<>();
 	
 
 	public Integer getId() {
@@ -34,6 +40,14 @@ public class MaterielRefResponse {
 
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
+	}
+
+	public List<Critere> getCriteres() {
+		return criteres;
+	}
+
+	public void setCriteres(List<Critere> criteres) {
+		this.criteres = criteres;
 	}
 
 	

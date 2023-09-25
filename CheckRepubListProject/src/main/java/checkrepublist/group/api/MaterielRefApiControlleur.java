@@ -37,7 +37,6 @@ public class MaterielRefApiControlleur {
 	IDAOCritere repoCritere;
 	
 	@GetMapping
-	@JsonView(Views.Admin.class)
 	public List<MaterielRef> findAll() {
 		return this.repoMaterielRef.findAll();
 	}
@@ -49,11 +48,14 @@ public class MaterielRefApiControlleur {
 		MaterielRefResponse response = new MaterielRefResponse();
 		
 		BeanUtils.copyProperties(materielRef, response);
+		
+		response.setCriteres(materielRef.getCriteres());
+		
+		
 		return response;
 	}
 	
 	@PostMapping("")
-	@JsonView(Views.Admin.class)
 	public MaterielRef add(@Valid @RequestBody MaterielRefRequest materielRefRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new MaterielRefNotValidException();
@@ -68,7 +70,6 @@ public class MaterielRefApiControlleur {
 	}
 	
 	@PutMapping("/{id}")
-	@JsonView(Views.MaterielDetail.class)
 	public MaterielRef edit(@PathVariable Integer id, @Valid @RequestBody MaterielRefRequest materielRefRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new MaterielRefNotValidException();
@@ -85,7 +86,6 @@ public class MaterielRefApiControlleur {
 
 	
 	@DeleteMapping("/{id}")
-	@JsonView(Views.Admin.class)
 	public void deleteById(@PathVariable Integer id) {
 		this.repoMaterielRef.deleteById(id);
 	}

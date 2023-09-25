@@ -34,14 +34,12 @@ public class VoyageurApiController {
 	private IDAOVoyageur repoVoyageur;
 
 	@GetMapping
-	@JsonView(Views.Voyageur.class)
 	public List<Voyageur> findAll() {
 		return this.repoVoyageur.findAll();
 	}
 
 	@GetMapping("/{id}")
 	@Transactional 
-	@JsonView(Views.VoyageurDetail.class)
 	public VoyageurResponse findById(@PathVariable Integer id) {
 		Voyageur voyageur = this.repoVoyageur.findById(id).orElseThrow(VoyageurNotFoundException::new);
 		VoyageurResponse response = new VoyageurResponse();
@@ -52,7 +50,6 @@ public class VoyageurApiController {
 	}
 
 	@PostMapping
-	@JsonView(Views.Voyageur.class)
 	public Voyageur add(@Valid @RequestBody VoyageurRequest voyageurRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new VoyageurNotValidException();
@@ -66,7 +63,6 @@ public class VoyageurApiController {
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.Voyageur.class)
 	public Voyageur edit(@PathVariable Integer id, @Valid @RequestBody VoyageurRequest voyageurRequest,
 			BindingResult result) {
 		if (result.hasErrors()) {
@@ -81,7 +77,6 @@ public class VoyageurApiController {
 	}
 
 	@DeleteMapping("/{id}")
-	@JsonView(Views.Voyageur.class)
 	public void deleteById(@PathVariable Integer id) {
 		this.repoVoyageur.deleteById(id);
 	}

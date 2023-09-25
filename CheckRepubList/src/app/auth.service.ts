@@ -13,7 +13,7 @@ export class AuthService {
   authentification(login: string, password: string) {
      let utilisateur=this.utilisateurService.connexion(login, password);
       sessionStorage.setItem("user", JSON.stringify( utilisateur));
-      this.router.navigate(["/"]);
+      this.router.navigate(["/voyage"]);
     };
   
 

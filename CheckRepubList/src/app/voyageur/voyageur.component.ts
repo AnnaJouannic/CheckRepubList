@@ -12,18 +12,16 @@ import { VoyageHttpService } from '../voyage/voyage-http.service';
 })
 export class VoyageurComponent implements OnInit{
 
-  voyageurs$: Observable<Voyageur[]>;
-  voyages$: Observable<Voyage[]>;
+
   voyageurForm: FormGroup;
-  showForm: boolean = false
+  showForm: boolean = false;
 
 
-  constructor(private formBuilder: FormBuilder, private voyageurService: VoyageurService, private voyageService: VoyageHttpService) {
+  constructor(private formBuilder: FormBuilder, private voyageurService: VoyageurService) {
   }
   
   ngOnInit(): void {
-   this.voyageurs$ = this.voyageurService.findAll();
-  this.voyages$ = this.voyageService.findAll();
+   
 
     this.voyageurForm = this.formBuilder.group({
       id: this.formBuilder.control('0'),
@@ -31,13 +29,14 @@ export class VoyageurComponent implements OnInit{
       prenom: this.formBuilder.control(''),
       naissance: this.formBuilder.control(''),
       accessibilite:this.formBuilder.control(''),
-      voyage: this.formBuilder.control(''),
+     
     });
   }
 
-  // list(){
-  //    return this.voyageurService.findAll();
-  // }
+  list(): Array<Voyageur>{
+   return this.voyageurService.findAll();
+   
+   }
   // listVoyage(): Array<Voyage> {
   //   return this.voyageService.findAll();
   // }
@@ -50,10 +49,6 @@ export class VoyageurComponent implements OnInit{
   edit(id: number) {
     this.voyageurService.findById(id).subscribe(resp => {
       this.voyageurForm.patchValue(resp);
-
-     if(!this.voyageurForm.get('voyage')?.value) {
-       this.voyageurForm.setValue(new Voyage());
-      }
       this.showForm = true;
     });
   }
@@ -65,19 +60,18 @@ export class VoyageurComponent implements OnInit{
   // }
 
   save() {  
-    this.voyageurService.save(this.voyageurForm.value).subscribe(resp => {
-      this.voyageurs$ = this.voyageurService.findAll();
-    });
+    this.voyageurService.save(this.voyageurForm.value);
+    this.cancel();
   }
 
   cancel() {
+    this.showForm = false;
     this.voyageurForm.reset();
   }
 
   remove(id: number) {
-    this.voyageurService.deleteById(id).subscribe(resp => {
-      this.voyageurs$ = this.voyageurService.findAll();
-    });
+    this.voyageurService.deleteById(id);
+  
   }
 
 }

@@ -3,6 +3,7 @@ package checkrepublist.group.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import checkrepublist.group.api.Views;
@@ -13,33 +14,36 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "materielref")
-@JsonView(Views.Admin.class)
-public class MaterielRef {
+public class MaterielRef{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.Common.class)
 	private Integer id;
 	
+	@JsonView(Views.Common.class)
 	private String libelleMateriel;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(columnDefinition = "ENUM('Vetement','Numerique', 'Outils', 'Toilette', 'Animaux', 'Pharmacie', 'Administratif')")
-
-	@JsonView(Views.Admin.class)
+	@JsonView(Views.Common.class)
 	private Categorie categorie;
-	
 	
 
 	@OneToMany(mappedBy = "materielref")
-	@JsonView(Views.MaterielDetail.class)
+	@JsonIgnoreProperties("materielref")
 	private List<Critere> criteres = new ArrayList<>();
+	
+	
+	@ManyToMany(mappedBy="materiels")
+	@JsonIgnoreProperties("materiels")
+	private List<Voyage> voyages;
 	
 	public MaterielRef() {}
 
@@ -56,7 +60,8 @@ public class MaterielRef {
 		this.categorie = categorie;
 	}
 
-
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -94,6 +99,16 @@ public class MaterielRef {
 
 	public void setCriteres(List<Critere> criteres) {
 		this.criteres = criteres;
+	}
+
+
+	public List<Voyage> getVoyages() {
+		return voyages;
+	}
+
+
+	public void setVoyages(List<Voyage> voyages) {
+		this.voyages = voyages;
 	}
 
 

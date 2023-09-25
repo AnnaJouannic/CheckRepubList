@@ -4,11 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import checkrepublist.group.model.ActiviteRef;
 import checkrepublist.group.model.MaterielRef;
 import checkrepublist.group.model.TypeClimat;
 import checkrepublist.group.model.TypeDeplacement;
 import checkrepublist.group.model.TypeLogement;
+import checkrepublist.group.model.Voyageur;
 
 public class VoyageResponse {
 	private Integer id;
@@ -19,6 +19,8 @@ public class VoyageResponse {
 	
 	private String libelle;
 	
+	private String pays;
+	
 	private TypeLogement logement;
 	
 	private TypeDeplacement deplacement;
@@ -27,7 +29,9 @@ public class VoyageResponse {
 	
 	//private List<ActiviteRef> activites= new ArrayList<>();
 	
-	//private List<MaterielRef> listeMateriel;
+	private List<MaterielRef> materiels=new ArrayList<>();
+	
+	private List<Voyageur> voyageurs=new ArrayList<>();
 
 	
 	
@@ -93,16 +97,32 @@ public class VoyageResponse {
 
 	public void setActivites(List<ActiviteRef> activites) {
 		this.activites = activites;
-	}
-	public List<MaterielRef> getListeMateriel() {
-		return listeMateriel;
-	}
-
-	public void setListeMateriel(List<MaterielRef> listeMateriel) {
-		this.listeMateriel = listeMateriel;
 	}*/
-	
-	
+	public List<MaterielRef> getMateriels() {
+		return materiels;
+	}
 
+	public void setMateriels(List<MaterielRef> materiels) {
+		this.materiels = materiels;
+	}
+
+	public List<Voyageur> getVoyageurs() {
+		return voyageurs;
+	}
+
+	public void setVoyageurs(List<Voyageur> voyageurs) {
+		this.voyageurs = voyageurs;
+	}
+
+	public String getPays() {
+		return pays;
+	}
+
+	public void setPays(String pays) {
+		this.pays = pays;
+	}
+	
+	
+	
 	
 }
