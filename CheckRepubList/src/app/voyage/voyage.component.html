@@ -16,20 +16,40 @@
 		<div  id="nouveau">
 				<table class="tabStart">
 		  <tr id="lignetab">
-			  <td><h2>Un nouveau Voyage?</h2></td>
+			  <td><h2>Un nouveau voyage</h2></td>
 		  </tr>
 				<tr id="lignetab">
-					<td><input id="btnStart"  value="Commencer" type="button" (click)="show()"></td>
+					<td>
+						<div class="btn-group btn-group-lg float-right">
+						<a class="btn btn-success" (click)="show()"><i class="bi bi-plus-circle"></i></a>
+					  </div>
+					</td>
 				</tr>
 				</table>
+				</div>
+				<div  id="nouveau">
+				<table class="tabStart">
+					<tr id="lignetab">
+						<td><h2>Un nouveau voyageur</h2></td>
+					</tr>
+						  <tr id="lignetab">
+							  <td>
+								  <div class="btn-group btn-group-lg float-right">
+								  <a class="btn btn-success" (click)="voyageur()"><i class="bi bi-plus-circle"></i></a>
+								</div>
+							  </td>
+						  </tr>
+						  </table>
 				</div>
 				<div id="historique">
 					<table>
 						<tr id="lignetab">
-					  <td><h2>Voir vos anciens voyages</h2></td>
+					  <td><h2>Vos anciens voyages</h2></td>
 				  </tr>
 						<tr id="lignetab">
-							<td><input id="btnOld"  value="Historique" type="button"></td>
+							<td><div class="btn-group btn-group-lg float-right">
+								<a class="btn btn-success" ><i class="bi bi-plus-circle"></i></a>
+							  </div></td>
 						</tr>
 					</table>
 		</div>
@@ -40,8 +60,17 @@
 
 <div class="form-container"  *ngIf="showForm">
 		<form  (ngSubmit)="save()" novalidate autocomplete="off" [formGroup]="voyageForm">
-		<h1>Un nouveau Voyage?</h1>
+		<h1>Un nouveau voyage </h1>
 		<div >
+			<div class="form-group">
+				<label for="voyageur">Voyageur:</label> 
+				<select class="form-control" id="voyageur" name="voyageur" formControlName="voyageur">
+					<option *ngFor="let voyageur of voyageurs$ | async" [value]="voyageur.id">{{voyageur.nom}} {{voyageur.prenom}}</option>
+				</select>
+				<span class="text-danger" *ngIf="voyageForm.get('voyageur').hasError('required')">
+					Un voyageur  est obligatoire.
+				</span>
+				</div>
 			<div class="form-group" >
 				<!-- <div for="durée">Durée du voyage: </div>  -->
 				<label for="dateDebutVoyage">Départ</label> <input type="date"  class="form-control" id="dateDebutVoyage" name="dateDebutVoyage"  formControlName="dateDebutVoyage"/>
