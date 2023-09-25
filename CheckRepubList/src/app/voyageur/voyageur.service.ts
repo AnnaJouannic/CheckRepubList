@@ -10,31 +10,46 @@ import { Observable } from 'rxjs';
 export class VoyageurService {
  
   apiVoyageurUrl: string = environment.apiUrl + "/voyageur";
+  voyageurs: Array<Voyageur> = new Array<Voyageur>();
 
   constructor(private http: HttpClient) { 
-    
+    this.load();
   }
 
-  findAll(): Observable<Voyageur[]> {
-    return this.http.get<Voyageur[]>(this.apiVoyageurUrl);
+  load(): void {
+    let obs: Observable<Voyageur[]> = this.http.get<Voyageur[]>(this.apiVoyageurUrl);
+
+    obs.subscribe(resp => {
+      this.voyageurs = resp;
+    });
+  }
+
+  findAll(): Array<Voyageur> {
+    return this.voyageurs;
   }
 
   findById(id: number): Observable<Voyageur> {
-    return this.http.get<Voyageur>(this.apiVoyageurUrl+"/"+id);
+    let obs: Observable<Voyageur> = this.http.get<Voyageur>(this.apiVoyageurUrl+"/"+id);
+  return obs;
   }
 
-  save(voyageur: Voyageur): Observable<Voyageur> {
+  save(voyageur: Voyageur): void {
     if(voyageur.id) { // mise à jour
-      return this.http.put<Voyageur>(this.apiVoyageurUrl+"/"+voyageur.id, voyageur);
-    } else { // création
-      return this.http.post<Voyageur>(this.apiVoyageurUrl, voyageur);;
-    }
-   }
+      this.http.put<Voyageur>(this.apiVoyageurUrl+"/"+voyageur.id, voyageur).subscribe(resp => {
+        this.load();
+    }); 
+  }else { // création
+     this.http.post<Voyageur>(this.apiVoyageurUrl, voyageur).subscribe(resp => {
+      this.load();
+    });
+   }}
 
-   deleteById(id: number): Observable<void> {
-    return this.http.delete<void>(this.apiVoyageurUrl+"/"+id);
-   }
+   deleteById(id: number) {
+   this.http.delete<void>(this.apiVoyageurUrl+"/"+id).subscribe(resp => {
+    this.load();
+   });
+  }
+
 }
-  
 
 
