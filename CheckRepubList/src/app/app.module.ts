@@ -13,6 +13,8 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { VoyageComponent } from './voyage/voyage.component';
 import { HttpClientModule } from '@angular/common/http';
 import { VoyageurComponent } from './voyageur/voyageur.component';
+import { CritereComponent } from './critere/critere.component';
+import { ChecklistComponent } from './checklist/checklist.component';
 
 
 
@@ -27,6 +29,8 @@ import { VoyageurComponent } from './voyageur/voyageur.component';
     AccueilComponent,
    VoyageurComponent,
     VoyageComponent,
+    CritereComponent,
+    ChecklistComponent
 
 
   ],

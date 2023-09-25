@@ -2,14 +2,14 @@
     font-family: "Playball";
     src: url("/assets/Playball-Regular.ttf") format("truetype");
   }
+
    body {
-    background: url(/assets/paccueil.jpg) center;
-      background-size: 100% 100%;
-    background-attachment : fixed;
-      background-repeat: no-repeat;
-    margin:0;
-    margin-top: 4.5%;
-        overflow : hidden;
+    background-image: url("/assets/paccueil.jpg");
+  background-size: cover; /* Pour couvrir toute la surface */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0; 
+  height: 100vh;/* Réinitialise la marge par défaut du body */
   }
   
   #header{

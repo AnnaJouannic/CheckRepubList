@@ -1,9 +1,14 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    margin: 0;
-    padding: 0;
-    }
+
+    body {
+        background-image: url("/assets/paccueil.jpg");
+      background-size: cover; /* Pour couvrir toute la surface */
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      backdrop-filter: blur(10px);
+      margin: 0; 
+      height: 100vh;/* Réinitialise la marge par défaut du body */
+      }
+ 
     
     h1 {
     text-align: center;
@@ -14,7 +19,7 @@ body {
     form {
     max-width: 400px;
     margin: 0 auto;
-    background: #a4b7a885;
+    background: #a4b7a8;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
