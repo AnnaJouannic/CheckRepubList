@@ -47,7 +47,6 @@ public class VoyageApiController {
 	IDAOMaterielRef repoMaterielRef;
 	
 	@GetMapping
-	@JsonView(Views.Voyage.class)
 	public List<Voyage> findAll() {
 		return this.repoVoyage.findAll();
 	}
@@ -55,14 +54,16 @@ public class VoyageApiController {
 	@GetMapping("/{id}")
 	@Transactional 
 	public VoyageResponse findById(@PathVariable Integer id) {
-		Voyage voyage = this.repoVoyage.findById(id).orElseThrow(VoyageNotFoundException::new);
-		VoyageResponse response = new VoyageResponse();
+        Voyage voyage = this.repoVoyage.findById(id).orElseThrow(VoyageNotFoundException::new);
+        VoyageResponse response = new VoyageResponse();
 
-		BeanUtils.copyProperties(voyage, response);
+        BeanUtils.copyProperties(voyage, response);
+        
+        response.setVoyageurs(voyage.getVoyageurs());
+        response.setMateriels(voyage.getMateriels());
+      
 
-		//response.setListeMateriel(voyage.getMateriels());
-
-		return response;
+        return response;
 	}
 
 	@PostMapping
@@ -76,11 +77,14 @@ public class VoyageApiController {
 
 		BeanUtils.copyProperties(voyageRequest, voyage);
 		
+		List<Critere> criteres = this.repoCritere.findAllTest(voyage.getLogement(), voyage.getDeplacement(), voyage.getClimat());
+		List<MaterielRef> listeMateriel = new ArrayList<>();
+		for (Critere critere : criteres) {
+	        listeMateriel.add(critere.getMaterielref());
+	    }
 		
-		//List<Critere> criteres = this.repoCritere.findAllTest(voyage.getLogement(), voyage.getDeplacement(), voyage.getClimat());
-		//List<MaterielRef> listeMateriel = materielFiltre(criteres, voyageRequest.getDeplacement(), voyageRequest.getClimat(), voyageRequest.getLogement());
 		
-		//voyage.setMateriels(listeMateriel);
+		voyage.setMateriels(listeMateriel);
 
 		return this.repoVoyage.save(voyage);
 	}

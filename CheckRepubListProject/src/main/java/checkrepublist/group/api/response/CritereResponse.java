@@ -1,16 +1,17 @@
 package checkrepublist.group.api.response;
 
+import checkrepublist.group.model.MaterielRef;
 import checkrepublist.group.model.TypeClimat;
 import checkrepublist.group.model.TypeDeplacement;
 import checkrepublist.group.model.TypeLogement;
-import jakarta.validation.constraints.NotBlank;
+
 
 public class CritereResponse {
 	
 	private Integer id;
 	
-	@NotBlank
-	private String libelleMateriel;
+	
+	private MaterielRef materielref;
 	
 	private TypeLogement logement;
 	
@@ -26,13 +27,14 @@ public class CritereResponse {
 		this.id = id;
 	}
 
-	public String getLibelleMateriel() {
-		return libelleMateriel;
+	public MaterielRef getMaterielref() {
+		return materielref;
 	}
 
-	public void setLibelleMateriel(String libelleMateriel) {
-		this.libelleMateriel = libelleMateriel;
+	public void setMaterielref(MaterielRef materielref) {
+		this.materielref = materielref;
 	}
+
 
 	public TypeLogement getLogement() {
 		return logement;

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import checkrepublist.group.api.Views;
@@ -19,25 +20,35 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "voyageur")
-@JsonView(Views.Common.class)
 public class Voyageur {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.Common.class)
 	private Integer id;
+	
 	@Column(length = 25)
+	@JsonView(Views.Common.class)
 	private String nom;
+	
 	@Column(length = 25)
+	@JsonView(Views.Common.class)
 	private String prenom;
+
+	@JsonView(Views.Common.class)
 	private LocalDate naissance;
-	@Column(length = 10)
+	
+
+	@JsonView(Views.Common.class)
 	private boolean animal;
-	@Column(length = 10)
+
+	@JsonView(Views.Common.class)
 	private boolean accessibilite;
 	
 	@ManyToMany
 	@JoinTable(name="enregistrement",joinColumns = @JoinColumn(name="voyageur"),inverseJoinColumns = @JoinColumn(name="voyage"))
-	@JsonView(Views.VoyageurDetail.class)
+	@JsonIgnoreProperties("voyageurs")
+	@JsonView(Views.Voyageur.class)
 	private List<Voyage> voyages=new ArrayList<>();
 	
 	
