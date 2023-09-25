@@ -54,9 +54,10 @@ export class Utilisateur {
     prenom: string;
     login: string;
     password: string;
+     mail: string;
     tel: string;
-    mail: string;
-    roles: Array<string> = new Array<string>;
+   
+    role: Array<string> = new Array<string>;
 
     constructor(
         id?: number,
@@ -66,7 +67,7 @@ export class Utilisateur {
         password?: string,
         mail?: string,
         tel?: string,
-        ...roles: string[]
+        ...role: string[]
     ) {
         this.id = id;
         this.nom = nom;
@@ -75,7 +76,7 @@ export class Utilisateur {
         this.password = password;
         this.mail = mail;
         this.tel = tel;
-        this.roles = roles;
+        this.role= role;
     }
 }
 

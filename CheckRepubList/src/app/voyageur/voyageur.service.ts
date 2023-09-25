@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class VoyageurService {
- 
+   voyageurs: Array<Voyageur> = new Array<Voyageur>();
   apiVoyageurUrl: string = environment.apiUrl + "/voyageur";
-  voyageurs: Array<Voyageur> = new Array<Voyageur>();
+
 
   constructor(private http: HttpClient) { 
     this.load();
@@ -18,10 +18,7 @@ export class VoyageurService {
 
   load(): void {
     let obs: Observable<Voyageur[]> = this.http.get<Voyageur[]>(this.apiVoyageurUrl);
-
-    obs.subscribe(resp => {
-      this.voyageurs = resp;
-    });
+    obs.subscribe(resp => { this.voyageurs = resp;});
   }
 
   findAll(): Array<Voyageur> {
