@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Utilisateur } from '../model';
 import { UtilisateurService } from './utilisateur.service';
 import { Observable } from 'rxjs';
+import { UtilisateurHttpService } from './utilisateur-http.service';
 
 
 
@@ -10,73 +11,74 @@ import { Observable } from 'rxjs';
   templateUrl: './utilisateur.component.html',
   styleUrls: ['./utilisateur.component.scss']
 })
-export class UtilisateurComponent {
+export class UtilisateurComponent implements OnInit{
 
- // utilisateurs$: Observable<Utilisateur[]>;
+ 
+ 
+  utilisateurs$: Observable<Utilisateur[]>;
   utilisateurForm: Utilisateur = null;
 
-  // utilisateurs$!: Observable<Utilisateur[]>;
-  // utilisateurForm: Utilisateur = new Utilisateur();
+ 
 
-  constructor(private utilisateurService: UtilisateurService) {
+
+  constructor(private utilisateurService: UtilisateurHttpService) {
 
   }
-  // ngOnInit(): void {
-  //   this.utilisateurs$ = this.utilisateurService.findAll();
-  // }
-
-  list(): Array<Utilisateur> {
-    return this.utilisateurService.findAll();
+  ngOnInit(): void {
+    this.utilisateurs$ = this.utilisateurService.findAll();
   }
 
-  // add() {
-  //   this.utilisateurForm = new Utilisateur(null, nom, prenom, login, password, mail, tel, false);
+  // list(): Array<Utilisateur> {
+  //   return this.utilisateurService.findAll();
   // }
 
   add() {
-    
-    this.utilisateurForm = new Utilisateur( );
+    this.utilisateurForm = new Utilisateur();
   }
 
-  edit(id: number) {
-    this.utilisateurForm = {...this.utilisateurService.findById(id)};
-   
-  }
-  // edit(id: number) {
-  //   this.utilisateurService.findById(id).subscribe((utilisateur: Utilisateur) => {
-  //     this.utilisateurForm = utilisateur;
-  //   });
+  // add() {
+    
+  //   this.utilisateurForm = new Utilisateur( );
   // }
 
-  save() {
-    this.utilisateurService.save(this.utilisateurForm)
-    this.cancel();
+  // edit(id: number) {
+  //   this.utilisateurForm = {...this.utilisateurService.findById(id)};
+   
+  // }
+  edit(id: number) {
+    this.utilisateurService.findById(id).subscribe(resp => {
+      this.utilisateurForm = resp;
+    });
   }
 
   // save() {
-  //   this.utilisateurService.save(this.utilisateurForm).subscribe(() => {
-  //     this.cancel(); // Réinitialisez le formulaire après la sauvegarde.
-  //     this.utilisateurs$ = this.utilisateurService.findAll(); // Mettez à jour la liste des utilisateurs.
-  //   });
+  //   this.utilisateurService.save(this.utilisateurForm)
+  //   this.cancel();
   // }
 
-  cancel() {
-    this.utilisateurForm = null;
+  save() {
+    this.utilisateurService.save(this.utilisateurForm).subscribe(resp => {
+      this.utilisateurs$ = this.utilisateurService.findAll(); // Mettez à jour la liste des utilisateurs.
+    });
   }
 
   // cancel() {
-  //   this.utilisateurForm = new Utilisateur(); // Réinitialisez le formulaire.
+  //   this.utilisateurForm = null;
   // }
 
-  remove(id: number) {
-    this.utilisateurService.deleteById(id)
+  cancel() {
+    this.utilisateurForm = null; 
   }
 
   // remove(id: number) {
-  //   this.utilisateurService.deleteById(id).subscribe(() => {
-  //     this.utilisateurs$ = this.utilisateurService.findAll(); // Mettez à jour la liste des utilisateurs après la suppression.
-  //   });
+  //   this.utilisateurService.deleteById(id)
   // }
+
+  remove(id: number) {
+    this.utilisateurService.deleteById(id).subscribe(resp => {
+      this.utilisateurs$ = this.utilisateurService.findAll(); 
+    });
+  }
 
 }
 
