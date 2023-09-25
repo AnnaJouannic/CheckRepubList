@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Critere, MaterielRef } from '../model';
+import { Categorie, Critere, MaterielRef } from '../model';
 import { MaterielRefService } from './materiel-ref.service';
 import { CritereService } from '../critere/critere.service';
 import { MaterielRefHttpService } from './materiel-ref-http.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-materiel-ref',
@@ -15,25 +16,31 @@ export class MaterielRefComponent implements OnInit {
   //materielRefForm: MaterielRef = null;
  materielRefForm: FormGroup;
  showForm: boolean = false;
+ materielsRef$: Observable<MaterielRef[]>;
+ criteres$: Observable<Critere[]>;
+ categorie = Object.values(Categorie);
+
 
   constructor(private materielRefHttpService: MaterielRefHttpService, private critereService: CritereService, private formBuilder: FormBuilder){}
 
   ngOnInit(): void {
     this.materielRefForm = this.formBuilder.group({
       id: this.formBuilder.control(0),
-      libelleMateriel: this.formBuilder.control(Validators.required),
+      libelleMateriel: this.formBuilder.control('', [Validators.required]),
       categorie: this.formBuilder.control(''),
       critere: this.formBuilder.control('')
     });
+
+    this.materielsRef$ = this.materielRefHttpService.findAll();
   }
 
-  list(): Array<MaterielRef>{
-    return this.materielRefHttpService.findAll();
-  }
-
-  listCritere(): Array<Critere>{
-    return this.critereService.findAll();
-  }
+  //  list(): Array<MaterielRef>{
+  //   return this.materielRefHttpService.findAll();
+  // }
+   
+  // listCritere(): Array<Critere>{
+  //   return this.critereService.findAll();
+  // }
 
   add(){
     this.materielRefForm.reset();
@@ -49,20 +56,20 @@ export class MaterielRefComponent implements OnInit {
   }
 
   save() {
-    this.materielRefHttpService.save(this.materielRefForm.value);
-    this.cancel();
+    this.materielRefHttpService.save(this.materielRefForm.value).subscribe(response => {
+      this.materielsRef$ = this.materielRefHttpService.findAll();
+    });
   }
-
-  remove(id: number) {
-    this.materielRefHttpService.deleteById(id);
-  }
-  
   cancel() {
     this.materielRefForm.reset();
     this.showForm = false;
   }
 
- 
+  remove(id: number) {
+    this.materielRefHttpService.deleteById(id).subscribe(response => {
+      this.materielsRef$ = this.materielRefHttpService.findAll();
+    });
+  } 
 
 }
 

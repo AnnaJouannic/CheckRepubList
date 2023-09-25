@@ -14,7 +14,7 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let crit of list()">
+                <tr *ngFor="let crit of criteres$ | async">
                     <td>{{crit.id}}</td>
                     <td>{{crit.materielRef}}</td>
                     <td>{{crit.logement}}</td>
@@ -22,7 +22,7 @@
                     <td>{{crit.climat}}</td>
                     <td>
                         <div class="btn-group btn-group-sm">
-                            <a class="btn btn-primary" (click)="edit(crit.id)"><i
+                            <a class="btn btn-primary" (click)="edit(crit.id)"><i -->
                                     class="bi bi-pencil-square"></i></a>
                             <a class="btn btn-danger" (click)="remove(crit.id)"><i class="bi bi-trash"></i></a>
                         </div>
@@ -50,17 +50,30 @@
 
         </div>
         <div class="form-group">
-            <label for="logement">logement:</label> <input type="text" class="form-control" id="logement" name="logement" readonly formControlName="logement"/>
+            <label for="logement">logement:</label>
+             <!-- <input type="text" class="form-control" id="logement" name="logement" readonly formControlName="logement"/> -->
+             <select class="form-control" id="logement" name="logement" formControlName="logement">
+                <option *ngFor="let mode of modeLogement" >{{mode}}</option>
+            </select>
         </div>
         <div class="form-group">
-            <label for="deplacement">deplacement:</label> <input type="text" class="form-control" id="deplacement" name="deplacement" readonly formControlName="deplacement"/>
+            <label for="deplacement">deplacement:</label> 
+            <!-- <input type="text" class="form-control" id="deplacement" name="deplacement" readonly formControlName="deplacement"/> -->
+            <select class="form-control" id="deplacement" name="deplacement" formControlName="deplacement">
+                <option *ngFor="let mode of modeDeplacement" >{{mode}}</option>
+            </select>
         </div>
         <div class="form-group">
-            <label for="climat">climat:</label> <input type="text" class="form-control" id="climat" name="climat" readonly formControlName="climat"/>
+            <label for="climat">climat:</label> 
+            <!-- <input type="text" class="form-control" id="climat" name="climat" readonly formControlName="climat"/> -->
+            <select class="form-control" id="climat" name="climat" formControlName="climat">
+                <option *ngFor="let mode of modeClimat" >{{mode}}</option>
+            </select>
         </div>
     </div>
     <div class="card-footer">
         <div class="btn-group btn-group-lg float-right">
+            <!-- <button type="submit" class="btn btn-success"  [disabled]="critereForm.invalid"><i class="bi bi-check-square-fill"></i></button> -->
             <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
             <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
         </div>

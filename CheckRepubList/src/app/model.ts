@@ -30,13 +30,13 @@ export class Critere{
 
     constructor(
         id?: number,
-       //materieleRef?: MaterielRef,
+       materieleRef?: MaterielRef,
         logement?: TypeLogement,
         deplacement?: TypeDeplacement,
         climat?: TypeClimat,
     ){
         this.id = id
-        //this.materielRef = materieleRef
+        this.materielRef = materieleRef
         this.logement = logement
         this.deplacement = deplacement,
         this.climat = climat
@@ -44,7 +44,13 @@ export class Critere{
 }
 
 export enum Categorie{
-    Vetement, Numerique, Outils, Toilette, Animaux, Pharmacie, Administratif
+    Vetement = 'Vetement', 
+    Numerique = 'Numerique', 
+    Outils = 'Outils', 
+    Toilette = 'Toilette', 
+    Animaux = 'Animaux', 
+    Pharmacie = 'Pharmacie', 
+    Administratif = 'Administratif',
 }
 
 
