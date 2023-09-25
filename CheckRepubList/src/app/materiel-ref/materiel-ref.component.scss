@@ -1,0 +1,119 @@
+@font-face {
+    font-family: "Playball";
+    src: url("/assets/Playball-Regular.ttf") format("truetype");
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    }
+    
+    h2 {
+    text-align: center;
+    padding: 20px;
+    }
+    
+    
+    form {
+    max-width: 400px;
+    margin: 0 auto;
+    background: #a4b7a885;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    label {
+    font-weight: bold;
+    }
+    
+    input[type="text"],
+    input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    }
+    
+    
+    input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0px 0px 5px rgba(52, 152, 219, 0.5);
+    }
+
+
+
+/* Style pour la carte (card) principale */
+.card {
+    margin-top: 1rem;
+    //background-image: url("/assets/paccueil.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+    margin: 0;
+}
+
+// /* Style pour l'en-tête de la carte principale */
+// .card-header {
+//     background-color: #007BFF; /* Couleur de fond bleue */
+//     color: white; /* Texte blanc */
+//     font-size: 1.5rem; /* Taille de police */
+//     font-weight: bold; /* Police en gras */
+//     text-align: center; /* Alignement du texte au centre */
+// }
+
+// /* Style pour la table */
+// .table {
+//     width: 100%; /* Largeur de 100% */
+// }
+
+// /* Style pour les boutons d'édition et de suppression */
+// .btn-group-sm .btn {
+//     padding: 0.25rem 0.5rem; /* Espacement du bouton */
+// }
+
+// /* Style pour le bouton d'ajout en bas de la carte */
+// .card-footer .btn-success {
+//     float: right; /* Aligner le bouton à droite */
+// }
+
+// /* Style pour les champs de formulaire */
+// .form-group { margin-bottom: 1rem; /* Espacement entre les champs */
+//     input[type="text"],
+//     input[type="date"],
+//     th {
+//       width: 100%;
+//       padding: 10px;
+//       margin-bottom: 15px;
+//       border: 1px solid #ccc;
+//       border-radius: 3px;
+//       background-color: #ffffff; /* Blanc */}
+   
+// }
+
+// /* Style pour les messages d'erreur */
+// .text-danger {
+//     color: red; /* Texte en rouge pour les erreurs */
+// }
+
+// /* Style pour le bouton de sauvegarde */
+// .card-footer .btn-success {
+//     float: right; /* Aligner le bouton à droite */
+// }
+
+// /* Style pour le bouton d'annulation */
+// .card-footer .btn-warning {
+//     margin-right: 1rem; /* Marge à droite du bouton */
+// }
+
+
+
+
+

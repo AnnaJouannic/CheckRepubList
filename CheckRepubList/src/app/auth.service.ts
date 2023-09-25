@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   hasRole(role: string): boolean {
-    return this.getUtilisateur().roles.indexOf(role) > -1;
+    return this.getUtilisateur().role.indexOf(role) > -1;
   }
 }
 

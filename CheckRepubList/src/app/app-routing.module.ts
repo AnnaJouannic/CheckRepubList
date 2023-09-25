@@ -7,6 +7,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { VoyageComponent } from './voyage/voyage.component';
 import { MaterielRefComponent } from './materiel-ref/materiel-ref.component';
 import { VoyageurComponent } from './voyageur/voyageur.component';
+import { CritereComponent } from './critere/critere.component';
 
 
 const routes: Routes = [
@@ -15,8 +16,9 @@ const routes: Routes = [
   {path: "inscription", component: InscriptionComponent},
   {path: "voyage", component: VoyageComponent},
   {path: "voyageur", component: VoyageurComponent},
+  //{path: "voyageur", component: VoyageurComponent},
   {path: "materielRef", component: MaterielRefComponent},
-   // {path: "critere", component: CritereComponent},
+  {path: "critere", component: CritereComponent},
   {path: "connexion", component: ConnexionComponent},
   
 ];

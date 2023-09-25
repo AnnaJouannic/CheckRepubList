@@ -569,6 +569,74 @@ class CheckRepublistApplicationTest {
 	
 
 	
+	Critere crvand = new Critere ();
+	crvand.setDeplacement(TypeDeplacement.Van);
+	crvand= critereRepo.save(crvand);
+	
+	Critere crccd1 = new Critere ();
+	crccd1.setDeplacement(TypeDeplacement.Campingcar);
+	crccd1= critereRepo.save(crccd1);
+	
+	Critere crbateau1 = new Critere ();
+	crbateau1.setDeplacement(TypeDeplacement.Bateau);
+	crbateau1= critereRepo.save(crbateau1);
+	
+	Critere crtrain1 = new Critere ();
+	crtrain1.setDeplacement(TypeDeplacement.Train);
+	crtrain1= critereRepo.save(crtrain1);
+	
+	Critere cravion1 = new Critere ();
+	cravion1.setDeplacement(TypeDeplacement.Avion);
+	cravion1= critereRepo.save(cravion1);
+	
+	Critere crmoto1 = new Critere ();
+	crmoto1.setDeplacement(TypeDeplacement.Moto);
+	crmoto1= critereRepo.save(crmoto1);
+	
+	Critere crhotel1 = new Critere ();
+	crhotel1.setLogement(TypeLogement.Hotel);
+	crhotel1= critereRepo.save(crhotel1);
+	
+	Critere crgite1 = new Critere ();
+	crgite1.setLogement(TypeLogement.Gite);
+	crgite1= critereRepo.save(crgite1);
+	
+	Critere crcdh1 = new Critere ();
+	crcdh1.setLogement(TypeLogement.ChambreDHote);
+	crcdh1= critereRepo.save(crcdh1);
+	
+	Critere crlocation1 = new Critere ();
+	crlocation1.setLogement(TypeLogement.Location);
+	crlocation1= critereRepo.save(crlocation1);
+	
+	Critere crairbnb1 = new Critere ();
+	crairbnb1.setLogement(TypeLogement.AirBnB);
+	crairbnb1= critereRepo.save(crairbnb1);
+	
+	Critere cradj1 = new Critere ();
+	cradj1.setLogement(TypeLogement.AubergeDeJeunesse);
+	cradj1= critereRepo.save(cradj1);
+	
+	Critere crmh1 = new Critere ();
+	crmh1.setLogement(TypeLogement.MobilHome);
+	crmh1= critereRepo.save(crmh1);
+	
+	
+	
+	/*Critere craquatique = new Critere ();
+	craquatique.setActivites(aquatique);*/
+	
+	//Catégorie Vêtement
+	MaterielRef v1 = new MaterielRef("Maillot de bain", Categorie.Vetement);
+	v1 = materielRefRepo.save(v1);
+	Critere crchaud1 = new Critere ();
+	crchaud1.setClimat(TypeClimat.Chaud);
+	crchaud1.setMaterielref(v1);
+	crchaud1 = critereRepo.save(crchaud1);
+	Critere crtropical1 = new Critere ();
+	crtropical1.setClimat(TypeClimat.Tropical);
+	crtropical1.setMaterielref(v1);
+	crtropical1 = critereRepo.save(crtropical1);
 
 
 

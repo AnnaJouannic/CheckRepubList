@@ -7,14 +7,15 @@ import { Critere, MaterielRef, TypeClimat, TypeDeplacement, TypeLogement } from 
 export class CritereService {
 
   criteres: Array<Critere> = new Array<Critere>();
+  materielsRef: MaterielRef;
   constructor() { 
-    this.criteres.push(new Critere(1, TypeLogement.Hotel ,TypeDeplacement.Voiture, TypeClimat.Froid));
-    this.criteres.push(new Critere(2, TypeLogement.Gite ,TypeDeplacement.Van, TypeClimat.Chaud));
-    this.criteres.push(new Critere(4, TypeLogement.ChambreDhote ,TypeDeplacement.Campingcar, TypeClimat.Tropical));
-    this.criteres.push(new Critere(5, TypeLogement.Location ,TypeDeplacement.Bateau, TypeClimat.Tempere));
-    this.criteres.push(new Critere(7, TypeLogement.AirBnB,TypeDeplacement.Train, TypeClimat.Desertique));
-    this.criteres.push(new Critere(9, TypeLogement.AubergeDeJeunesse,TypeDeplacement.Avion, TypeClimat.Autre));
-    this.criteres.push(new Critere(13, TypeLogement.MobilHome,TypeDeplacement.Moto, TypeClimat.Chaud));
+    this.criteres.push(new Critere(1, this.materielsRef, TypeLogement.Hotel,TypeDeplacement.Voiture, TypeClimat.Froid));
+    this.criteres.push(new Critere(2, this.materielsRef,TypeLogement.Gite ,TypeDeplacement.Van, TypeClimat.Chaud));
+    this.criteres.push(new Critere(4, this.materielsRef,TypeLogement.ChambreDhote ,TypeDeplacement.Campingcar, TypeClimat.Tropical));
+    this.criteres.push(new Critere(5, this.materielsRef,TypeLogement.Location ,TypeDeplacement.Bateau, TypeClimat.Tempere));
+    this.criteres.push(new Critere(7, this.materielsRef,TypeLogement.AirBnB,TypeDeplacement.Train, TypeClimat.Desertique));
+    this.criteres.push(new Critere(9, this.materielsRef,TypeLogement.AubergeDeJeunesse,TypeDeplacement.Avion, TypeClimat.Autre));
+    this.criteres.push(new Critere(13, this.materielsRef,TypeLogement.MobilHome,TypeDeplacement.Moto, TypeClimat.Chaud));
   }
 
   findAll() : Array<Critere> {

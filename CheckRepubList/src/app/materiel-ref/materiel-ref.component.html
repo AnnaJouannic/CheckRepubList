@@ -1,4 +1,4 @@
-<div class="card mt-3">
+<!-- <div class="card mt-3">
     <div class="card-header bg-primary text-white display-6">Liste des materiels</div>
     <div class="card-body">
         <table class="table table-striped">
@@ -12,7 +12,7 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let matRef of list()">
+                <tr *ngFor="let matRef of materielsRef$ |async">
                     <td>{{matRef.id}}</td>
                     <td>{{matRef.libelleMateriel}}</td>
                     <td>{{matRef.categorie}}</td>
@@ -42,14 +42,21 @@
         </div>
         <div class="form-group">
             <label for="libelleMateriel">libellemateriel:</label> <input type="text" class="form-control" id="libelleMateriel" name="libelleMateriel" readonly formControlName="libelleMateriel"/>
-            <span class="text-danger" *ngIf="materielRefForm.get('libelleMateriel')?.dirty && materielRefForm.get('libelleMateriel')?.hasError('required')">Le libelleMateriel est obligatoire</span>
+            <span class="text-danger" *ngIf="materielRefForm.get('libelleMateriel')?.dirty && materielRefForm.get('libelleMateriel')?.hasError('required')">Le libelleMateriel est obligatoire</span> 
 
         </div>
         <div class="form-group">
-            <label for="categorie">categorie:</label> <input type="text" class="form-control" id="categorie" name="categorie" readonly formControlName="categorie"/>
+            <label for="categorie">categorie:</label>
+            <select class="form-control" id="categorie" name="categorie" formControlName="categorie">
+					<option *ngFor="let mode of categorie" >{{mode}}</option>
+			</select>
         </div>
         <div class="form-group">
-            <label for="critere">critere:</label> <input type="text" class="form-control" id="critere" name="critere" readonly formControlName="critere"/>
+            <label for="critere">critere:</label>
+             <option *ngFor="let crit of criteres$ |async" [value]="crit.id">{{crit.logement}}</option>
+				 <select type = "text" class="form-control" id="critere" name="critere" formControlName="critere">
+					<option *ngFor="let crit of criteres$ |async" [value]="crit.id">{{crit}}</option>
+				</select>
         </div>
     </div>
     <div class="card-footer">
@@ -58,7 +65,55 @@
             <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
         </div>
     </div>
-</div>
+</div> -->
 
 
 
+
+
+ <head>
+    <div id="site">
+      <div id="header">
+    		<div id="logo"><img id="imgLogo" src="assets/logorond.png"/> </div>
+        <div id="CheckRepublist">
+            <div><span id="textCheckRepublist">Check Republist</span></div>div></div>
+      </div>
+	</div>
+	</head>
+
+<body>
+	<div>
+		<form (ngSubmit)="save()" novalidate autocomplete="off" [formGroup]="materielRefForm">
+		<h2>Un nouveau MaterielRef?</h2>
+		<div >
+			<div class="form-group" >
+				<label for="id">Identifiant:</label> 
+                <input type="number" class="form-control" id="id" name="id" readonly formControlName="id"/> 
+				 
+			</div>
+			<div class="form-group">
+                    <label for="libelleMateriel">libellemateriel:</label> <input type="text" class="form-control" id="libelleMateriel" name="libelleMateriel" readonly formControlName="libelleMateriel"/>
+                    
+                    <div class="text-danger" *ngIf="materielRefForm.get('libelleMateriel')?.dirty && materielRefForm.get('libelleMateriel')?.hasError('required')">Le libelleMateriel est obligatoire</div>
+			</div>
+			<div class="form-group">
+				<label for="categorie">Categorie:</label>
+					<select class="form-control" id="categorie" name="categorie" formControlName="categorie">
+						<option *ngFor="let mode of categorie" >{{mode}}</option>
+					</select>
+				
+			</div>
+			<div class="form-group">
+                <label for="critere">Critere:</label>
+                
+				<select type = "text" class="form-control" id="critere" name="critere" formControlName="critere">
+					<option *ngFor="let crit of criteres$ |async" [value]="crit.id">{{crit.logement}}</option>
+				</select>
+            </div>
+		<div class="btn-group btn-group-lg float-right">
+				
+			</div>
+			<div class="btn-group btn-group-lg float-right">
+                <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
+				<a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
+			</div>
