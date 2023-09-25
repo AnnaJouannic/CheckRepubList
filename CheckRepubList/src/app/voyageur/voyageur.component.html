@@ -26,19 +26,18 @@
                     <th>Prenom</th>
                     <th>Naissance</th>
                     <th>Accessibilite</th>
-                    <th>Voyage</th>
                     
                 </tr>
             </thead>
 
             <tbody>
-                <tr *ngFor="let voyageur of voyageurs$ | async">
+                <tr *ngFor="let voyageur of list()">
                     <td>{{voyageur.id}}</td>
                     <td>{{voyageur.nom}}</td>
                     <td>{{voyageur.prenom}}</td>
                     <td>{{voyageur.naissance}}</td>
                     <td>{{voyageur.accessibilite}}</td>
-                     <!-- //<td>{{voyageur.voyage?.id}} - {{voyageur.voyage?.libelle}}</td> -->
+                 
                     <td>
                         <div class="btn-group btn-group-sm">
                             <a class="btn btn-primary" (click)="edit(voyageur.id)"><i
@@ -82,12 +81,7 @@
                 </label>
               </div>
         </div>
-        <div class="form-group">
-            <label for="voyage">Voyage:</label> 
-            <select class="form-control" id="voyage" name="voyage" formControlName="voyage">
-                <option *ngFor="let voyage of voyages$ | async" [value]="voyage.id">{{voyage.libelle}}</option>
-            </select>
-        </div>
+       
     </div>
     <div class="card-footer">
         <div class="btn-group btn-group-lg float-right">
