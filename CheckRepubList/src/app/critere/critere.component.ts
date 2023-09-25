@@ -41,6 +41,10 @@ export class CritereComponent implements OnInit {
 
 //  }
 
+//   return this.critereHttpService.findAll();
+
+//  }
+
  add() {
   this.critereForm.reset();
   //this.showForm = true;
@@ -52,15 +56,29 @@ edit(id: number) {
   });
 }
 
-remove(id: number) {
-  this.critereHttpService.deleteById(id);
-}
+// save() {
+//   this.critereHttpService.save(this.critereForm).subscribe(response => {
+//     this.criteres$ = this.critereHttpService.findAll();
+//   });
+// }
+
 save() {
-  this.critereHttpService.save(this.critereForm.value);
+  let critere = this.critereForm.value; // Récupérer les données du formulaire sous forme d'objet
+  this.critereHttpService.save(critere).subscribe(response => {
+    this.criteres$ = this.critereHttpService.findAll();
+    this.showForm = false; // Masquer le formulaire après l'enregistrement
+  });
 }
 
 cancel() {
   this.critereForm.reset();
   //this.showForm = false;
 }
+
+remove(id: number) {
+  this.critereHttpService.deleteById(id).subscribe(response => {
+    this.criteres$ = this.critereHttpService.findAll();
+  });
+}
+
 }

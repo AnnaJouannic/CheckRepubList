@@ -175,24 +175,6 @@ class CheckRepublistApplicationTest {
 	
 	
 	
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	/*Critere craquatique = new Critere ();
 	craquatique.setActivites(aquatique);*/
 	

@@ -27,6 +27,7 @@ export class Critere{
     logement: TypeLogement;
     deplacement: TypeDeplacement;
     climat: TypeClimat;
+  value: any;
 
     constructor(
         id?: number,

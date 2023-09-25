@@ -43,6 +43,6 @@ export class MaterielRefHttpService {
     }
    }
    deleteById(id: number) {
-    return this.http.delete<void>(this.apiMaterielRefUrl + "/"+id)
+    return this.http.delete<void>(this.apiMaterielRefUrl + "/"+id);
    }
 }

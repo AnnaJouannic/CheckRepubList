@@ -14,7 +14,9 @@ import { Observable } from 'rxjs';
 export class MaterielRefComponent implements OnInit {
 
   //materielRefForm: MaterielRef = null;
- materielRefForm: FormGroup;
+ materielsRef$: Observable<MaterielRef[]>;
+ criteres$: Observable<Critere[]>;
+ materielRefForm!: FormGroup;
  showForm: boolean = false;
  materielsRef$: Observable<MaterielRef[]>;
  criteres$: Observable<Critere[]>;
@@ -52,6 +54,13 @@ export class MaterielRefComponent implements OnInit {
     this.materielRefHttpService.findById(id).subscribe(response => {
       this.materielRefForm.patchValue(response);
       this.showForm = true;
+
+      // if(!this.materielRefForm.critere){
+      //   this.materielRefForm.critere = new Critere();
+      // }
+      if(!this.materielRefForm.get('critere')?.value) {
+         this.materielRefForm = new Critere();
+       }
     });
   }
 
@@ -61,7 +70,7 @@ export class MaterielRefComponent implements OnInit {
     });
   }
   cancel() {
-    this.materielRefForm.reset();
+    this.materielRefForm = null;
     this.showForm = false;
   }
 
