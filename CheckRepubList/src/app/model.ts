@@ -126,6 +126,8 @@ export class Voyage {
     logement: TypeLogement;
     deplacement: TypeDeplacement;
     climat: TypeClimat;
+    voyageur: Voyageur;
+    
 
 
     constructor(
@@ -137,6 +139,8 @@ export class Voyage {
        logement?: TypeLogement,
        deplacement?: TypeDeplacement,
        climat?: TypeClimat,
+       voyageur?: Voyageur,
+      
     ) {
         this.id=id;
         this.dateDebutVoyage = dateDebutVoyage;
@@ -146,6 +150,8 @@ export class Voyage {
         this.logement = logement;
         this.deplacement = deplacement;
         this.climat=climat;
+        this.voyageur=voyageur;
+        
     }
 }
     

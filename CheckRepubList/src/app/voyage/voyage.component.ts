@@ -5,7 +5,8 @@ import { VoyageService } from './voyage.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { VoyageHttpService } from './voyage-http.service';
-import { TypeClimat, TypeDeplacement, TypeLogement, Voyage } from '../model';
+import { TypeClimat, TypeDeplacement, TypeLogement, Voyage, Voyageur } from '../model';
+import { VoyageurService } from '../voyageur/voyageur.service';
 
 @Component({
   selector: 'app-voyage',
@@ -20,14 +21,16 @@ export class VoyageComponent   implements OnInit{
   modesLogement = Object.values(TypeLogement);
   modesDeplacement = Object.values(TypeDeplacement);
   modesClimat = Object.values(TypeClimat);
+  voyageurs$: Observable<Voyageur[]>;
 
 
-  constructor( private router: Router, private formBuilder: FormBuilder, private voyageService: VoyageHttpService ) {}
+  constructor( private router: Router, private formBuilder: FormBuilder, private voyageHttpService: VoyageHttpService ,private voyageurService : VoyageurService ) {}
 
 
 
   ngOnInit(): void {
     this.voyageForm = this.formBuilder.group({
+      voyageur:this.formBuilder.control('',[Validators.required]),
       dateDebutVoyage: this.formBuilder.control('', [Validators.required ]),
       dateFinVoyage: this.formBuilder.control('', [Validators.required ]),
       libelle: this.formBuilder.control('', [Validators.required, Validators.maxLength(25)]),
@@ -37,7 +40,8 @@ export class VoyageComponent   implements OnInit{
       climat:this.formBuilder.control('', [Validators.required]),
   });
   
-  this.voyages$ = this.voyageService.findAll();
+  this.voyages$ = this.voyageHttpService.findAll();
+ //this.voyageur$ = this.voyageurService.findAllForAsync();
   
   }
 
@@ -60,7 +64,7 @@ add() {
 }
 */
 save() {
-  this.voyageService.save(this.voyageForm.value);
+  this.voyageHttpService.save(this.voyageForm.value);
   this.cancel();
   this.showForm=true;
 }
@@ -72,6 +76,9 @@ cancel() {
 
 show() {
   this.showForm = true;
+}
+voyageur(){
+  this.router.navigate(["/voyageur"]);
 }
 
 }
