@@ -49,7 +49,7 @@ export class UtilisateurService {
 
    inscription(nom: string,prenom: string,login: string,password: string,tel: string,mail: string) {
     let utilisateur: Utilisateur = new Utilisateur(null, nom, prenom,login,password,tel,mail);
-    utilisateur.role.push("user");
+    utilisateur.roles.push("User");
 
     this.save(utilisateur);
    }

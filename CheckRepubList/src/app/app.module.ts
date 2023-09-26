@@ -18,6 +18,7 @@ import { CritereComponent } from './critere/critere.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

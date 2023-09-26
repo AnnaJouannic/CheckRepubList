@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { MaterielRefService } from './materiel-ref.service';
+import { MaterielRefHttpService } from './materiel-ref-http.service';
 
 @Component({
   selector: 'app-materiel-ref',
@@ -21,7 +22,10 @@ export class MaterielRefComponent implements OnInit {
  showForm: boolean = false;
  categorie = Object.values(Categorie);
  
-  constructor(private materielRefService: MaterielRefService, private critereService: CritereService, private formBuilder: FormBuilder, private router: Router){}
+  constructor( private materielRefService: MaterielRefService, private formBuilder: FormBuilder, private router: Router){}
+  
+  
+  
 
   ngOnInit(): void {
     
@@ -36,7 +40,8 @@ export class MaterielRefComponent implements OnInit {
     //this.materielsRef$ = this.materielRefService.findAll();
   }
 
-   list(): Array<MaterielRef>{
+   list(): Array<MaterielRef> {
+
     return this.materielRefService.findAll();
   }
 
@@ -74,6 +79,12 @@ export class MaterielRefComponent implements OnInit {
       this.showForm = true;
     });
   }
+  // edit(id: number){
+  //   this.materielRefService.findById(id).subscribe(response => {
+  //     this.materielRefForm = response;
+  //     this.showForm = true;
+  //   });
+  // }
 
   // save() {
   //   this.materielRefHttpService.save(this.materielRefForm.value).subscribe(response => {
@@ -86,18 +97,21 @@ export class MaterielRefComponent implements OnInit {
   //   this.cancel();
   // }
 
-  save() {
-    this.materielRefService.save(this.materielRefForm.value).subscribe(response => {
-      // Réactivez le formulaire après avoir sauvegardé
-      this.materielRefForm.reset();
-      this.showForm = false;
-    });
-  }
+  // save() {
+  //   this.materielRefService.save(this.materielRefForm.value).subscribe(response => {
+  //     // Réactivez le formulaire après avoir sauvegardé
+  //     this.materielRefForm.reset();
+  //     this.showForm = false;
+  //   });
+  // }
   cancel() {
     this.materielRefForm.reset();
     this.showForm = false;
   }
 
+  save() {
+    this.materielRefService.save(this.materielRefForm.value);
+  }
   // remove(id: number) {
   //   this.materielRefHttpService.deleteById(id).subscribe(response => {
   //     this.materielsRef$ = this.materielRefHttpService.findAll();
