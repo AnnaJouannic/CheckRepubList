@@ -25,10 +25,10 @@ export class MaterielRefService {
       this.materielsref.push(new MaterielRef(17, "Sandales", Categorie.Vetement));
     }
   
-    materielsRef$: Observable<MaterielRef[]> = of(this.materielsref);
-    // findAll(): Array<MaterielRef>{
-    //   return this.materielsref;
-    // }
+    
+    findAll(): Array<MaterielRef>{
+      return this.materielsref;
+    }
 
     // findAll(): Observable<MaterielRef[]> {
     //   return this.materielsRef$;
@@ -88,7 +88,7 @@ export class MaterielRefService {
     // }
 
     deleteById(id: number): Observable<void> {
-      const index = this.materielsref.findIndex(matRef => matRef.id === id);
+      const index = this.materielsref.findIndex(matRef => matRef.id == id);
       if (index !== -1) {
         this.materielsref.splice(index, 1);
       }

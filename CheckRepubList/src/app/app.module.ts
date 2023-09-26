@@ -14,6 +14,7 @@ import { VoyageComponent } from './voyage/voyage.component';
 import { HttpClientModule } from '@angular/common/http';
 import { VoyageurComponent } from './voyageur/voyageur.component';
 import { PageFrontComponent } from './page-front/page-front.component';
+import { CritereComponent } from './critere/critere.component';
 
 
 
@@ -29,6 +30,7 @@ import { PageFrontComponent } from './page-front/page-front.component';
    VoyageurComponent,
     VoyageComponent,
     PageFrontComponent,
+    CritereComponent
 
 
   ],

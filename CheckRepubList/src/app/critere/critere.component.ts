@@ -22,29 +22,35 @@ export class CritereComponent implements OnInit {
   modesClimat = Object.values(TypeClimat);
   materielsRef$: Observable<MaterielRef[]>;
 
-  constructor(private critereHttpService: CritereHttpService,private critereService: CritereService, private formBuilder: FormBuilder, private router: Router){}
+
+  constructor(private critereService: CritereService, private formBuilder: FormBuilder, private router: Router){}
 
   ngOnInit(): void {
     this.  critereForm = this.formBuilder.group({
-      id: this.formBuilder.control(0),
+      id: this.formBuilder.control(''),
       materielRef: this.formBuilder.control('',[Validators.required]),
       logement: this.formBuilder.control(''),
       deplacement: this.formBuilder.control(''),
       climat: this.formBuilder.control(''),
     });
-    this.criteres$ = this.critereHttpService.findAll();
+   // this.criteres$ = this.critereHttpService.findAll();
     
   }
 
-//  list(): Array<Critere>{
+ list(): Array<Critere>{
+
+  return this.critereService.findAll();
+
+ }
 
 //   return this.critereHttpService.findAll();
 
 //  }
 
-//   return this.critereHttpService.findAll();
-
-//  }
+// list(): Observable<Critere[]> {
+//   return this.critereService.findAll();
+// }
+ 
 
  add() {
   this.critereForm.reset();
@@ -52,7 +58,7 @@ export class CritereComponent implements OnInit {
 }
 
 edit(id: number) {
-  this.critereHttpService.findById(id).subscribe(response => {
+  this.critereService.findById(id).subscribe(response => {
     this.critereForm.patchValue(response);
     this.showForm = true;
   });
@@ -73,9 +79,11 @@ edit(id: number) {
 // }
 
 save() {
-  this.critereHttpService.save(this.critereForm.value);
-  this.cancel();
-  this.showForm=true;
+  this.critereService.save(this.critereForm.value).subscribe(response => {
+    this.critereForm.reset();
+    this.showForm=true;
+  });
+ 
 }
 
 cancel() {
@@ -84,15 +92,16 @@ cancel() {
 }
 
 remove(id: number) {
-  this.critereHttpService.deleteById(id).subscribe(response => {
-    this.criteres$ = this.critereHttpService.findAll();
+  this.critereService.deleteById(id).subscribe(response => {
+    //this.criteres$ = this.critereService.findAll();
+   
   });
 }
 
 show() {
   this.showForm = true;
 }
-voyageur(){
+MaterielRef(){
   this.router.navigate(["/materielRef"]);
 }
 
