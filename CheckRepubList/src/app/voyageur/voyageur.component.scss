@@ -29,16 +29,16 @@
   }
   
   /* Style pour les en-têtes des colonnes et les étiquettes */
-  th,
-  label {
+  
+  label , thead{
     font-weight: bold;
-    color: #000000; /* Vert */
+    color: #000000; 
   }
   
   /* Style pour les champs de texte et les cellules du tableau */
   input[type="text"],
   input[type="date"],
-  th {
+  thead {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;

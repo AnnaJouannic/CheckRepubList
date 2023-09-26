@@ -1,7 +1,8 @@
 <html>
-  <body>
-      <h1>Connexion</h1>
-      <form (ngSubmit)="auth()" [formGroup]="connexionForm" novalidate autocomplete="off">
+  <body class="card mt-3">
+      
+      <form  (ngSubmit)="auth()" [formGroup]="connexionForm" novalidate autocomplete="off">
+        <h1>Connexion</h1>
         <div>
           <label for="login">Identifiant :</label>
           <input type="text" id="login" name="login" placeholder="Saisir votre identifiant" required formControlName="login"><br>
@@ -15,7 +16,7 @@
           <span class="text-danger" *ngIf="connexionForm.get('password').hasError('required')">
             Le mot de passe est obligatoire.
           </span>
-          <span class="text-danger" *ngIf="connexionForm.get('password').hasError('minlength') || connexionForm.get('password').hasError('pattern')">
+          <span class="text-danger" *ngIf="connexionForm.get('password').hasError('minlength') && connexionForm.get('password').hasError('pattern')">
             Le mot de passe doit contenir au moins 5 caractères, au moins une majuscule, un chiffre et un caractère spécial.
           </span>
         </div>
