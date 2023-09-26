@@ -2,8 +2,11 @@ package checkrepublist.group.api.response;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import checkrepublist.group.model.Voyage;
+import org.springframework.beans.BeanUtils;
+
+import checkrepublist.group.model.Voyageur;
 
 public class VoyageurResponse {
 
@@ -19,7 +22,7 @@ public class VoyageurResponse {
 	
 	private boolean accessibilite;
 	
-	private List<Voyage> voyages;
+	private List<VoyageResponse> voyages;
 
 	public Integer getId() {
 		return id;
@@ -69,13 +72,25 @@ public class VoyageurResponse {
 		this.accessibilite = accessibilite;
 	}
 
-	public List<Voyage> getVoyages() {
+	
+	
+	public List<VoyageResponse> getVoyages() {
 		return voyages;
 	}
 
-	public void setVoyages(List<Voyage> voyages) {
+	public void setVoyages(List<VoyageResponse> voyages) {
 		this.voyages = voyages;
 	}
 
+	public static VoyageurResponse convertVoyageur (Voyageur voyageur) {
+		VoyageurResponse response = new VoyageurResponse();
+		
+		BeanUtils.copyProperties(voyageur, response);
+		
+		response.setVoyages(voyageur.getVoyages().stream().map(VoyageResponse::convertVoyageur).collect(Collectors.toList()));
+				
+		return response;
+		
+	}
 	
 }

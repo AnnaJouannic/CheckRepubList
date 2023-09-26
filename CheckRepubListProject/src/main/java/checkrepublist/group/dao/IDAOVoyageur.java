@@ -6,4 +6,6 @@ import checkrepublist.group.model.Voyageur;
 
 public interface IDAOVoyageur extends JpaRepository<Voyageur, Integer> {
 
+
+
 }

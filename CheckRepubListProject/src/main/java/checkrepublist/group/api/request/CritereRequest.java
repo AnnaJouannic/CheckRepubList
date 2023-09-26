@@ -1,50 +1,45 @@
 package checkrepublist.group.api.request;
 
-import checkrepublist.group.model.MaterielRef;
-import checkrepublist.group.model.TypeClimat;
-import checkrepublist.group.model.TypeDeplacement;
-import checkrepublist.group.model.TypeLogement;
-
 public class CritereRequest {
 
 	
-	private MaterielRef materielref;
+	private MaterielRefRequest materielref;
 	
-	private TypeLogement logement;
+	private String logement;
 	
-	private TypeDeplacement deplacement;
+	private String deplacement;
 
-	private TypeClimat climat;
+	private String climat;
 
-	public MaterielRef getMaterielref() {
+	public MaterielRefRequest getMaterielref() {
 		return materielref;
 	}
 
-	public void setMaterielRef(MaterielRef materielref) {
+	public void setMaterielRef(MaterielRefRequest materielref) {
 		this.materielref = materielref;
 	}
 
-	public TypeLogement getLogement() {
+	public String getLogement() {
 		return logement;
 	}
 
-	public void setLogement(TypeLogement logement) {
+	public void setLogement(String logement) {
 		this.logement = logement;
 	}
 
-	public TypeDeplacement getDeplacement() {
+	public String getDeplacement() {
 		return deplacement;
 	}
 
-	public void setDeplacement(TypeDeplacement deplacement) {
+	public void setDeplacement(String deplacement) {
 		this.deplacement = deplacement;
 	}
 
-	public TypeClimat getClimat() {
+	public String getClimat() {
 		return climat;
 	}
 
-	public void setClimat(TypeClimat climat) {
+	public void setClimat(String climat) {
 		this.climat = climat;
 	}
 	

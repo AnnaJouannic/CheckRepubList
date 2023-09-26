@@ -1,6 +1,5 @@
 package checkrepublist.group.api.request;
 
-import checkrepublist.group.model.Categorie;
 import jakarta.validation.constraints.NotBlank;
 
 public class MaterielRefRequest {
@@ -9,7 +8,7 @@ public class MaterielRefRequest {
 	private String libelleMateriel;
 	
 	
-	private Categorie categorie;
+	private String categorie;
 	
 	
 	public String getLibelleMateriel() {
@@ -20,11 +19,11 @@ public class MaterielRefRequest {
 		this.libelleMateriel = libelleMateriel;
 	}
 
-	public Categorie getCategorie() {
+	public String getCategorie() {
 		return categorie;
 	}
 
-	public void setCategorie(Categorie categorie) {
+	public void setCategorie(String categorie) {
 		this.categorie = categorie;
 	}	
 	

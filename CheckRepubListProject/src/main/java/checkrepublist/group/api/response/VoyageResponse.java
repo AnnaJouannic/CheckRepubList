@@ -3,12 +3,11 @@ package checkrepublist.group.api.response;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import checkrepublist.group.model.MaterielRef;
-import checkrepublist.group.model.TypeClimat;
-import checkrepublist.group.model.TypeDeplacement;
-import checkrepublist.group.model.TypeLogement;
-import checkrepublist.group.model.Voyageur;
+import org.springframework.beans.BeanUtils;
+
+import checkrepublist.group.model.Voyage;
 
 public class VoyageResponse {
 	private Integer id;
@@ -21,17 +20,17 @@ public class VoyageResponse {
 	
 	private String pays;
 	
-	private TypeLogement logement;
+	private String logement;
 	
-	private TypeDeplacement deplacement;
+	private String deplacement;
 	
-	private TypeClimat climat;
+	private String climat;
 	
 	//private List<ActiviteRef> activites= new ArrayList<>();
 	
-	private List<MaterielRef> materiels=new ArrayList<>();
+	private List<MaterielRefResponse> materiels=new ArrayList<>();
 	
-	private List<Voyageur> voyageurs=new ArrayList<>();
+	private List<VoyageurResponse> voyageurs=new ArrayList<>();
 
 	
 	
@@ -67,27 +66,27 @@ public class VoyageResponse {
 		this.libelle = libelle;
 	}
 
-	public TypeLogement getLogement() {
+	public String getLogement() {
 		return logement;
 	}
 
-	public void setLogement(TypeLogement logement) {
+	public void setLogement(String logement) {
 		this.logement = logement;
 	}
 
-	public TypeDeplacement getDeplacement() {
+	public String getDeplacement() {
 		return deplacement;
 	}
 
-	public void setDeplacement(TypeDeplacement deplacement) {
+	public void setDeplacement(String deplacement) {
 		this.deplacement = deplacement;
 	}
 
-	public TypeClimat getClimat() {
+	public String getClimat() {
 		return climat;
 	}
 
-	public void setClimat(TypeClimat climat) {
+	public void setClimat(String climat) {
 		this.climat = climat;
 	}
 
@@ -98,19 +97,19 @@ public class VoyageResponse {
 	public void setActivites(List<ActiviteRef> activites) {
 		this.activites = activites;
 	}*/
-	public List<MaterielRef> getMateriels() {
+	public List<MaterielRefResponse> getMateriels() {
 		return materiels;
 	}
 
-	public void setMateriels(List<MaterielRef> materiels) {
+	public void setMateriels(List<MaterielRefResponse> materiels) {
 		this.materiels = materiels;
 	}
 
-	public List<Voyageur> getVoyageurs() {
+	public List<VoyageurResponse> getVoyageurs() {
 		return voyageurs;
 	}
 
-	public void setVoyageurs(List<Voyageur> voyageurs) {
+	public void setVoyageurs(List<VoyageurResponse> voyageurs) {
 		this.voyageurs = voyageurs;
 	}
 
@@ -122,7 +121,44 @@ public class VoyageResponse {
 		this.pays = pays;
 	}
 	
+	public static VoyageResponse convert(Voyage voyage) {
+		VoyageResponse response = new VoyageResponse();
+
+		BeanUtils.copyProperties(voyage, response);
+
+		response.setLogement(String.valueOf(voyage.getLogement()));
+		response.setDeplacement(String.valueOf(voyage.getDeplacement()));
+		response.setClimat(String.valueOf(voyage.getClimat()));
+		
+		//response.setMateriels(String.join(",", voyage.getMateriels().stream().map(voyage).collect(Collectors.toList())));
+		//response.setMateriels(List.of(voyage.getMateriels().stream().map(m_-> new MaterielRef(m.getLibelleMaterielRef(), m.getCategorie()).collect(Collectors.toList()))));
+		response.setMateriels(voyage.getMateriels().stream().map(MaterielRefResponse::convertVoyage).collect(Collectors.toList()));
+		
+		response.setVoyageurs(voyage.getVoyageurs().stream().map(VoyageurResponse::convertVoyageur).collect(Collectors.toList()));
+		
+		return response;
+	}
 	
-	
+	public static VoyageResponse convertVoyageur(Voyage voyage) {
+		VoyageResponse response = new VoyageResponse();
+
+		BeanUtils.copyProperties(voyage, response);
+
+		response.setLogement(String.valueOf(voyage.getLogement()));
+		response.setDeplacement(String.valueOf(voyage.getDeplacement()));
+		response.setClimat(String.valueOf(voyage.getClimat()));
+		
+		//response.setMateriels(String.join(",", voyage.getMateriels().stream().map(voyage).collect(Collectors.toList())));
+		//response.setMateriels(List.of(voyage.getMateriels().stream().map(m_-> new MaterielRef(m.getLibelleMaterielRef(), m.getCategorie()).collect(Collectors.toList()))));
+		response.setMateriels(voyage.getMateriels().stream().map(MaterielRefResponse::convertVoyage).collect(Collectors.toList()));
+		
+		
+		return response;
+	}
 	
 }
+	
+	
+	
+	
+

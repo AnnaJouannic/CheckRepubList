@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import checkrepublist.group.api.Views;
@@ -24,6 +23,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "voyage")
+
 public class Voyage{
 
 	@Id
@@ -70,14 +70,16 @@ public class Voyage{
 	private List<ActiviteRef> activites = new ArrayList<>();
 	
 	@ManyToMany
-	@JsonIgnoreProperties("voyages")
-	@JsonView(Views.Common.class)
+	//@JsonIgnoreProperties("voyages")
+	@JsonView(Views.Voyage.class)
+	@JoinTable(name="enregistrement",joinColumns = @JoinColumn(name="voyage"),inverseJoinColumns = @JoinColumn(name="voyageur"))
 	private List <Voyageur> voyageurs;
 	
 	
 	@ManyToMany 
 	@JoinTable(name="voyagematerielref",joinColumns = @JoinColumn(name="voyage"),inverseJoinColumns = @JoinColumn(name="materielref"))
-	@JsonIgnoreProperties("voyages")
+	//@JsonIgnoreProperties({"voyages","criteres"})
+	@JsonView(Views.Voyage.class)
 	private List<MaterielRef> materiels;
 	
 
