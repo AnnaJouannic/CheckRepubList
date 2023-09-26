@@ -17,8 +17,8 @@ const routes: Routes = [
   {path: "inscription", component: InscriptionComponent},
   {path: "voyage", component: VoyageComponent},
   {path: "voyageur", component: VoyageurComponent},
-  {path: "materielRef", component: MaterielRefComponent, canActivate:[authGuard]},
-  {path: "critere", component: CritereComponent, canActivate:[authGuard]},
+  {path: "materielRef", component: MaterielRefComponent},
+  {path: "critere", component: CritereComponent},
   {path: "connexion", component: ConnexionComponent},
   
 ];
