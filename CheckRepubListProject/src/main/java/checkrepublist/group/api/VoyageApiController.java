@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import checkrepublist.group.api.request.VoyageRequest;
 import checkrepublist.group.api.response.VoyageResponse;
 import checkrepublist.group.dao.IDAOCritere;
