@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { VoyageService } from './voyage.service';
+// import { VoyageService } from './voyage.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { VoyageHttpService } from './voyage-http.service';
@@ -16,12 +16,13 @@ import { VoyageurService } from '../voyageur/voyageur.service';
 export class VoyageComponent   implements OnInit{
 
   voyages$: Observable<Voyage[]>;
-  voyageForm!: FormGroup;
+  voyageForm: FormGroup;
   showForm: boolean = false;
   modesLogement = Object.values(TypeLogement);
   modesDeplacement = Object.values(TypeDeplacement);
   modesClimat = Object.values(TypeClimat);
-  voyageurs$: Observable<Voyageur[]>;
+  // voyageurs$: Observable<Voyageur[]>;
+  
 
 
   constructor( private router: Router, private formBuilder: FormBuilder, private voyageHttpService: VoyageHttpService ,private voyageurService : VoyageurService ) {}
@@ -30,7 +31,6 @@ export class VoyageComponent   implements OnInit{
 
   ngOnInit(): void {
     this.voyageForm = this.formBuilder.group({
-      voyageur:this.formBuilder.control('',[Validators.required]),
       dateDebutVoyage: this.formBuilder.control('', [Validators.required ]),
       dateFinVoyage: this.formBuilder.control('', [Validators.required ]),
       libelle: this.formBuilder.control('', [Validators.required, Validators.maxLength(25)]),
@@ -38,31 +38,47 @@ export class VoyageComponent   implements OnInit{
       logement:this.formBuilder.control('', [Validators.required]),
       deplacement:this.formBuilder.control('', [Validators.required]),
       climat:this.formBuilder.control('', [Validators.required]),
+      voyageur:this.formBuilder.control('',[Validators.required]),
+     
   });
   
-  this.voyages$ = this.voyageHttpService.findAll();
- //this.voyageur$ = this.voyageurService.findAllForAsync();
   
+    //  this.voyageurs$ = this.voyageurService.findAllForAsync(); 
   }
-
+  
+  list(): Array<Voyageur> {
+    return this.voyageurService.findAll();
+  }
 
 add() {
   this.voyageForm.reset();
   this.showForm = true;
+
+
 }
 
-/*edit(id: number) {
-  this.voyageService.findById(id).subscribe(response => {
-    this.voyageForm.patchValue(response);
+// edit(id: number) {
+//   this.voyageHttpService.findById(id).subscribe(resp => {
+//     this.voyageForm=resp;
+//     if(!this.voyageForm.voyageur) {
+//       this.voyageForm.voyageur= new Voyageur ();
+//     }
+
+//   }); 
+
+// }
+
+edit(id: number) {
+  this.voyageHttpService.findById(id).subscribe(resp => {
+    this.voyageForm.patchValue(resp);
     this.showForm = true;
-  }); 
+  });
+}
 
-}*/
-
-/*remove(id: number) {
+remove(id: number) {
   this.voyageHttpService.deleteById(id);
 }
-*/
+
 save() {
   this.voyageHttpService.save(this.voyageForm.value);
   this.cancel();
@@ -79,6 +95,7 @@ show() {
 }
 voyageur(){
   this.router.navigate(["/voyageur"]);
+  
 }
 
 }

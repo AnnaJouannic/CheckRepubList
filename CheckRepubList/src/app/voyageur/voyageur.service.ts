@@ -29,6 +29,9 @@ export class VoyageurService {
     let obs: Observable<Voyageur> = this.http.get<Voyageur>(this.apiVoyageurUrl+"/"+id);
   return obs;
   }
+  findAllForAsync(): Observable<Voyageur[]> {
+    return this.http.get<Voyageur[]>(this.apiVoyageurUrl);
+  } 
 
   save(voyageur: Voyageur): void {
     if(voyageur.id) { // mise à jour
