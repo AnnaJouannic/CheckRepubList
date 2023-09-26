@@ -13,5 +13,6 @@ export class NavBarComponent {
 
   deconnexion() {
     this.authService.deconnexion();
+    
   }
 }
