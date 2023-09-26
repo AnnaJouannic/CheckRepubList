@@ -63,7 +63,7 @@ export class Utilisateur {
      mail: string;
     tel: string;
    
-    role: Array<string> = new Array<string>;
+    roles: Array<string> = new Array<string>;
 
     constructor(
         id?: number,
@@ -73,7 +73,7 @@ export class Utilisateur {
         password?: string,
         mail?: string,
         tel?: string,
-        ...role: string[]
+        ...roles: string[]
     ) {
         this.id = id;
         this.nom = nom;
@@ -82,7 +82,7 @@ export class Utilisateur {
         this.password = password;
         this.mail = mail;
         this.tel = tel;
-        this.role= role;
+        this.roles= roles;
     }
 }
 

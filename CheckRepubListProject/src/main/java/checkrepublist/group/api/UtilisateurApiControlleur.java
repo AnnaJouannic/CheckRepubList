@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,11 +20,13 @@ import checkrepublist.group.api.response.UtilisateurResponse;
 import checkrepublist.group.dao.IDAOUtilisateur;
 import checkrepublist.group.exception.InscriptionNotValidException;
 import checkrepublist.group.exception.UtilisateurNotFoundException;
+import checkrepublist.group.model.Roles;
 import checkrepublist.group.model.Utilisateur;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/utilisateur")
+@CrossOrigin("*")
 public class UtilisateurApiControlleur {
 	@Autowired
 	private IDAOUtilisateur repoUtilisateur;
@@ -51,10 +54,11 @@ public class UtilisateurApiControlleur {
 		
 		BeanUtils.copyProperties(inscriptionRequest, utilisateur);
 		
+		utilisateur.getRoles().add(Roles.User);
 		
 		this.repoUtilisateur.save(utilisateur);
 		
-		return (UtilisateurResponse) repoUtilisateur.findAll();
+		return UtilisateurResponse.convert(utilisateur);
 	}
 	
 	@PostMapping("/connexion")

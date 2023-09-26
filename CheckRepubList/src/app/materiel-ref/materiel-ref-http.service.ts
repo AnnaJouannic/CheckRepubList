@@ -13,7 +13,9 @@ export class MaterielRefHttpService {
 
   apiMaterielRefUrl: string = environment.apiUrl + "/materielRef";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    //this.load();
+  }
 
   //  load(): void{
   //   let obs: Observable<MaterielRef[]> = this.http.get<MaterielRef[]>(this.apiMaterielRefUrl);
