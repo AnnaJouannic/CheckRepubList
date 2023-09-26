@@ -61,15 +61,6 @@
 		<form  (ngSubmit)="save()" novalidate autocomplete="off" [formGroup]="voyageForm">
 		<h1>Un nouveau voyage </h1>
 		<div >
-			<div class="form-group">
-				<label for="voyageur">Voyageur:</label> 
-				<select class="form-control" id="voyageur" name="voyageur" formControlName="voyageur">
-					<option *ngFor="let voyageur of voyageurs$ | async" [value]="voyageur.id">{{voyageur.nom}} {{voyageur.prenom}}</option>
-				</select>
-				<span class="text-danger" *ngIf="voyageForm.get('voyageur').hasError('required')">
-					Un voyageur  est obligatoire.
-				</span>
-				</div>
 			<div class="form-group" >
 				<!-- <div for="durée">Durée du voyage: </div>  -->
 				<label for="dateDebutVoyage">Départ</label> <input type="date"  class="form-control" id="dateDebutVoyage" name="dateDebutVoyage"  formControlName="dateDebutVoyage"/>
@@ -124,6 +115,16 @@
 					Le  climat est obligatoire.
 				</span>
 			</div>
+	<div class="form-group">
+				<label for="voyageur">Choisir un voyageur existant :</label> 
+				<select class="form-control" id="voyageur" name="voyageur" formControlName="voyageur">
+					<option *ngFor="let voyageur of list()" [value]="voyageur.id">{{voyageur.nom}} {{voyageur.prenom}}</option>
+				</select>
+				<span class="text-danger" *ngIf="voyageForm.get('voyageur').hasError('required')">
+					Un voyageur  est obligatoire.
+				</span>
+				</div>
+
 		 <div class="btn-group btn-group-lg float-right">
 			<button type="submit" class="btn btn-success" [disabled]="voyageForm.invalid">
 			  <i class="bi bi-check-square-fill"></i>
