@@ -8,7 +8,7 @@ import { Injectable } from "@angular/core";
     providedIn: 'root'
   })
   export class VoyageHttpService {
-   
+    voyages: Array<Voyage> = new Array<Voyage>();
     apiVoyageUrl: string = environment.apiUrl + "/voyage";
   
     constructor(private http: HttpClient) { 
