@@ -21,6 +21,7 @@ export class AuthService {
 
   deconnexion() {
     sessionStorage.removeItem("User");
+    this.router.navigate([""]);
   }
 
   getUtilisateur(): Utilisateur {
