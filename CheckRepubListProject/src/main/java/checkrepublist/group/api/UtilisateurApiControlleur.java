@@ -20,6 +20,7 @@ import checkrepublist.group.api.response.UtilisateurResponse;
 import checkrepublist.group.dao.IDAOUtilisateur;
 import checkrepublist.group.exception.InscriptionNotValidException;
 import checkrepublist.group.exception.UtilisateurNotFoundException;
+import checkrepublist.group.model.Roles;
 import checkrepublist.group.model.Utilisateur;
 import jakarta.validation.Valid;
 
@@ -53,10 +54,11 @@ public class UtilisateurApiControlleur {
 		
 		BeanUtils.copyProperties(inscriptionRequest, utilisateur);
 		
+		utilisateur.getRoles().add(Roles.User);
 		
 		this.repoUtilisateur.save(utilisateur);
 		
-		return (UtilisateurResponse) repoUtilisateur.findAll();
+		return UtilisateurResponse.convert(utilisateur);
 	}
 	
 	@PostMapping("/connexion")

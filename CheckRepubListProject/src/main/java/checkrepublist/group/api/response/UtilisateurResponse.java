@@ -1,5 +1,14 @@
 package checkrepublist.group.api.response;
 
+import java.util.stream.Collectors;
+
+import org.springframework.beans.BeanUtils;
+
+import checkrepublist.group.model.Roles;
+import checkrepublist.group.model.Utilisateur;
+
+
+
 public class UtilisateurResponse {
 	private Integer id;
 	
@@ -13,6 +22,7 @@ public class UtilisateurResponse {
 	
 	private String tel;
 
+	private String roles;
 	
 	public Integer getId() {
 		return id;
@@ -62,6 +72,24 @@ public class UtilisateurResponse {
 		this.tel = tel;
 	}
 
+	public String getRoles() {
+		return roles;
+	}
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
+	public static UtilisateurResponse convert(Utilisateur utilisateur) {
+		UtilisateurResponse response = new UtilisateurResponse();
+
+		// Permer de recopier les infos communes de utilisateur vers response
+		BeanUtils.copyProperties(utilisateur, response);
+
+		response.setRoles(String.join(",", utilisateur.getRoles().stream().map(Roles::name).collect(Collectors.toSet())));
+
+		return response;
+	}
 }
 
 
