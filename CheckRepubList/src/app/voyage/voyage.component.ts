@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { VoyageHttpService } from './voyage-http.service';
 import { TypeClimat, TypeDeplacement, TypeLogement, Voyage, Voyageur } from '../model';
 import { VoyageurService } from '../voyageur/voyageur.service';
+import { VoyageService } from './voyage.service';
 
 @Component({
   selector: 'app-voyage',
@@ -22,10 +23,12 @@ export class VoyageComponent   implements OnInit{
   modesDeplacement = Object.values(TypeDeplacement);
   modesClimat = Object.values(TypeClimat);
   // voyageurs$: Observable<Voyageur[]>;
+  FormHidden: boolean = true;
+  
   
 
 
-  constructor( private router: Router, private formBuilder: FormBuilder, private voyageHttpService: VoyageHttpService ,private voyageurService : VoyageurService ) {}
+  constructor( private router: Router, private formBuilder: FormBuilder, private voyageHttpService: VoyageHttpService ,private voyageurService : VoyageurService, private voyageService: VoyageService ) {}
 
 
 
@@ -41,18 +44,23 @@ export class VoyageComponent   implements OnInit{
       voyageur:this.formBuilder.control('',[Validators.required]),
      
   });
+  // this.voyageurs$ = this.voyageurService.findAllForAsync();
   
-  
-    //  this.voyageurs$ = this.voyageurService.findAllForAsync(); 
+  //   //  this.voyageurs$ = this.voyageurService.findAllForAsync(); 
   }
   
   list(): Array<Voyageur> {
     return this.voyageurService.findAll();
   }
 
+  listvoyage(): Array<Voyage>{
+    return this.voyageService.findAll();
+  }
+
 add() {
   this.voyageForm.reset();
   this.showForm = true;
+  
 
 
 }
@@ -72,6 +80,7 @@ edit(id: number) {
   this.voyageHttpService.findById(id).subscribe(resp => {
     this.voyageForm.patchValue(resp);
     this.showForm = true;
+   
   });
 }
 
@@ -83,6 +92,8 @@ save() {
   this.voyageHttpService.save(this.voyageForm.value);
   this.cancel();
   this.showForm=true;
+  
+  
 }
 
 cancel() {
@@ -92,11 +103,14 @@ cancel() {
 
 show() {
   this.showForm = true;
+  
 }
 voyageur(){
   this.router.navigate(["/voyageur"]);
   
 }
-
+ hidden(){
+  this.FormHidden=! this.FormHidden
+ }
 }
 
