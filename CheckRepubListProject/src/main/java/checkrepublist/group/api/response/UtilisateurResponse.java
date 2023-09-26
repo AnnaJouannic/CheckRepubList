@@ -1,5 +1,6 @@
 package checkrepublist.group.api.response;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
@@ -23,6 +24,10 @@ public class UtilisateurResponse {
 	private String tel;
 
 	private String roles;
+	
+	private List<VoyageResponse> voyages;
+	
+	private List<VoyageurResponse> voyageurs;
 	
 	public Integer getId() {
 		return id;
@@ -79,15 +84,36 @@ public class UtilisateurResponse {
 	public void setRoles(String roles) {
 		this.roles = roles;
 	}
+	
+	
+
+	public List<VoyageResponse> getVoyages() {
+		return voyages;
+	}
+
+	public void setVoyages(List<VoyageResponse> voyages) {
+		this.voyages = voyages;
+	}
+
+	public List<VoyageurResponse> getVoyageurs() {
+		return voyageurs;
+	}
+
+	public void setVoyageurs(List<VoyageurResponse> voyageurs) {
+		this.voyageurs = voyageurs;
+	}
 
 	public static UtilisateurResponse convert(Utilisateur utilisateur) {
 		UtilisateurResponse response = new UtilisateurResponse();
 
-		// Permer de recopier les infos communes de utilisateur vers response
 		BeanUtils.copyProperties(utilisateur, response);
 
 		response.setRoles(String.join(",", utilisateur.getRoles().stream().map(Roles::name).collect(Collectors.toSet())));
+		
+		response.setVoyages(utilisateur.getVoyages().stream().map(VoyageResponse::convert).collect(Collectors.toList()));
 
+		response.setVoyageurs(utilisateur.getVoyageurs().stream().map(VoyageurResponse::convertVoyageur).collect(Collectors.toList()));
+		
 		return response;
 	}
 }

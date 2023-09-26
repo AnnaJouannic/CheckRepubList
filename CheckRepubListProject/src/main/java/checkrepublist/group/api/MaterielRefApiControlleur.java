@@ -39,6 +39,7 @@ public class MaterielRefApiControlleur {
 	IDAOCritere repoCritere;
 	
 	@GetMapping
+	@JsonView(Views.MaterielRef.class)
 	public List<MaterielRef> findAll() {
 		return this.repoMaterielRef.findAll();
 	}
@@ -51,14 +52,11 @@ public class MaterielRefApiControlleur {
 		
 		BeanUtils.copyProperties(materielRef, response);
 		
-		response.setCriteres(materielRef.getCriteres());
-		
-		
-		return response;
+		return MaterielRefResponse.convertCritere(materielRef);
 	}
 	
 	@PostMapping("")
-	public MaterielRef add(@Valid @RequestBody MaterielRefRequest materielRefRequest, BindingResult result) {
+	public MaterielRefResponse add(@Valid @RequestBody MaterielRefRequest materielRefRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new MaterielRefNotValidException();
 		}
@@ -67,12 +65,13 @@ public class MaterielRefApiControlleur {
 		
 		BeanUtils.copyProperties(materielRefRequest, materielRef);
 		
+		this.repoMaterielRef.save(materielRef);
 
-		return this.repoMaterielRef.save(materielRef);
+		return MaterielRefResponse.convertCritere(materielRef);
 	}
 	
 	@PutMapping("/{id}")
-	public MaterielRef edit(@PathVariable Integer id, @Valid @RequestBody MaterielRefRequest materielRefRequest, BindingResult result) {
+	public MaterielRefResponse edit(@PathVariable Integer id, @Valid @RequestBody MaterielRefRequest materielRefRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new MaterielRefNotValidException();
 		}
@@ -81,13 +80,15 @@ public class MaterielRefApiControlleur {
 		
 		BeanUtils.copyProperties(materielRefRequest, materielRef);
 		
+		this.repoMaterielRef.save(materielRef);
 
-		return this.repoMaterielRef.save(materielRef);
+		return MaterielRefResponse.convertCritere(materielRef);
 	}
 	
 
 	
 	@DeleteMapping("/{id}")
+	@JsonView(Views.MaterielRef.class)
 	public void deleteById(@PathVariable Integer id) {
 		this.repoMaterielRef.deleteById(id);
 	}

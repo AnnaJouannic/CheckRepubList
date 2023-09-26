@@ -2,9 +2,13 @@ package checkrepublist.group.api.response;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.BeanUtils;
 
 import checkrepublist.group.model.Categorie;
 import checkrepublist.group.model.Critere;
+import checkrepublist.group.model.MaterielRef;
 
 public class MaterielRefResponse {
 
@@ -13,9 +17,9 @@ public class MaterielRefResponse {
 	
 	private String libelleMateriel;
 	
-	private Categorie categorie;
+	private String categorie;
 	
-	private List<Critere> criteres=new ArrayList<>();
+	private List<CritereResponse> criteres=new ArrayList<>();
 	
 
 	public Integer getId() {
@@ -34,22 +38,44 @@ public class MaterielRefResponse {
 		this.libelleMateriel = libelleMateriel;
 	}
 
-	public Categorie getCategorie() {
+	public String getCategorie() {
 		return categorie;
 	}
 
-	public void setCategorie(Categorie categorie) {
+	public void setCategorie(String categorie) {
 		this.categorie = categorie;
 	}
 
-	public List<Critere> getCriteres() {
+	public List<CritereResponse> getCriteres() {
 		return criteres;
 	}
 
-	public void setCriteres(List<Critere> criteres) {
+	public void setCriteres(List<CritereResponse> criteres) {
 		this.criteres = criteres;
 	}
-
+	
+	public static MaterielRefResponse convertVoyage (MaterielRef materielRef) {
+		MaterielRefResponse response = new MaterielRefResponse();
+		
+		BeanUtils.copyProperties(materielRef, response);
+		
+		response.setCategorie(String.valueOf(materielRef.getCategorie()));
+		
+		return response;
+		
+	}
+	
+	public static MaterielRefResponse convertCritere (MaterielRef materielRef) {
+		MaterielRefResponse response = new MaterielRefResponse();
+		
+		BeanUtils.copyProperties(materielRef, response);
+		
+		response.setCategorie(String.valueOf(materielRef.getCategorie()));
+		response.setCriteres(materielRef.getCriteres().stream().map(CritereResponse::convertBis).collect(Collectors.toList()));
+		
+		return response;
+		
+	}
 	
 	
 

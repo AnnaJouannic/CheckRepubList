@@ -33,7 +33,7 @@ public class Critere {
 	@ManyToOne
 	@JoinColumn(name="materielref_id")
 	@JsonIgnoreProperties("criteres")
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Critere.class)
 	private MaterielRef materielref;
 
 	@Enumerated(EnumType.STRING)

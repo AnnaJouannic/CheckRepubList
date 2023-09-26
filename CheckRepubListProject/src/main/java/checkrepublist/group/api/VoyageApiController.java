@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import checkrepublist.group.api.request.VoyageRequest;
 import checkrepublist.group.api.response.VoyageResponse;
 import checkrepublist.group.dao.IDAOCritere;
@@ -25,9 +27,6 @@ import checkrepublist.group.exception.VoyageNotFoundException;
 import checkrepublist.group.exception.VoyageNotValidException;
 import checkrepublist.group.model.Critere;
 import checkrepublist.group.model.MaterielRef;
-import checkrepublist.group.model.TypeClimat;
-import checkrepublist.group.model.TypeDeplacement;
-import checkrepublist.group.model.TypeLogement;
 import checkrepublist.group.model.Voyage;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -47,6 +46,7 @@ public class VoyageApiController {
 	IDAOMaterielRef repoMaterielRef;
 	
 	@GetMapping
+	@JsonView(Views.Voyage.class)
 	public List<Voyage> findAll() {
 		return this.repoVoyage.findAll();
 	}
@@ -59,16 +59,12 @@ public class VoyageApiController {
 
         BeanUtils.copyProperties(voyage, response);
         
-        response.setVoyageurs(voyage.getVoyageurs());
-        response.setMateriels(voyage.getMateriels());
-      
-
-        return response;
+        return VoyageResponse.convert(voyage);
 	}
 
 	@PostMapping
 	@Transactional 
-	public Voyage add(@Valid @RequestBody VoyageRequest voyageRequest, BindingResult result) {
+	public VoyageResponse add(@Valid @RequestBody VoyageRequest voyageRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new VoyageNotValidException();
 		}
@@ -82,17 +78,17 @@ public class VoyageApiController {
 		for (Critere critere : criteres) {
 	        listeMateriel.add(critere.getMaterielref());
 	    }
-		
-		
 		voyage.setMateriels(listeMateriel);
+		
+		this.repoVoyage.save(voyage);
 
-		return this.repoVoyage.save(voyage);
+		return VoyageResponse.convert(voyage);
 	}
 	
 	 
 	@PutMapping("/{id}")
 	@Transactional
-	public Voyage edit(@PathVariable Integer id, @Valid @RequestBody VoyageRequest voyageRequest,
+	public VoyageResponse edit(@PathVariable Integer id, @Valid @RequestBody VoyageRequest voyageRequest,
 			BindingResult result) {
 		if (result.hasErrors()) {
 			throw new VoyageNotValidException();
@@ -102,7 +98,9 @@ public class VoyageApiController {
 
 		BeanUtils.copyProperties(voyageRequest, voyage);
 
-		return this.repoVoyage.save(voyage);
+		this.repoVoyage.save(voyage);
+		
+		return VoyageResponse.convert(voyage);
 	}
 
 	@DeleteMapping("/{id}")
@@ -110,45 +108,5 @@ public class VoyageApiController {
 		this.repoVoyage.deleteById(id);
 	}
 	
-	public List<MaterielRef> materielFiltre (List <Critere> criteres, TypeDeplacement deplacement,TypeClimat climat, TypeLogement logement){
-		
-		List<MaterielRef> listeMateriel = new ArrayList<>();
-		
-		for (Critere critere : criteres) {
-			if (climat == null && deplacement == null && logement == null) {
-				listeMateriel.add(critere.getMaterielref());
-			}
-            // Vérifiez si les trois critères correspondent.
-            if (critereMatch(critere, climat, deplacement, logement, 3)) {
-            	listeMateriel.add(critere.getMaterielref());
-            }
-            // Sinon, vérifiez si deux critères correspondent.
-            else if (critereMatch(critere, climat, deplacement, logement, 2)) {
-            	listeMateriel.add(critere.getMaterielref());
-            }
-            // Sinon, vérifiez si un critère correspond.
-            else if (critereMatch(critere, climat, deplacement, logement, 1)) {
-            	listeMateriel.add(critere.getMaterielref());
-            }
-        }
-		return listeMateriel;
-	}
-	
 
-	    private boolean critereMatch(Critere critere, TypeClimat climat, TypeDeplacement deplacement, TypeLogement logement, int numMatches) {
-	        int matches = 0;
-
-	        if (climat != null && climat.equals(critere.getClimat())) {
-	            matches++;
-	        }
-	        if (deplacement != null && deplacement.equals(critere.getDeplacement())) {
-	            matches++;
-	        }
-	        if (logement != null && logement.equals(critere.getLogement())) {
-	            matches++;
-	        }
-
-	        return matches == numMatches;
-	    }
-	
 }

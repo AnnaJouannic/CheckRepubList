@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import checkrepublist.group.api.request.VoyageurRequest;
 import checkrepublist.group.api.response.VoyageurResponse;
 import checkrepublist.group.dao.IDAOVoyageur;
@@ -34,6 +36,7 @@ public class VoyageurApiController {
 	private IDAOVoyageur repoVoyageur;
 
 	@GetMapping
+	@JsonView(Views.Voyageur.class)
 	public List<Voyageur> findAll() {
 		return this.repoVoyageur.findAll();
 	}
@@ -46,11 +49,11 @@ public class VoyageurApiController {
 
 		BeanUtils.copyProperties(voyageur, response);
 
-		return response;
+		return VoyageurResponse.convertVoyageur(voyageur);
 	}
 
 	@PostMapping
-	public Voyageur add(@Valid @RequestBody VoyageurRequest voyageurRequest, BindingResult result) {
+	public VoyageurResponse add(@Valid @RequestBody VoyageurRequest voyageurRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new VoyageurNotValidException();
 		}
@@ -58,12 +61,14 @@ public class VoyageurApiController {
 		Voyageur voyageur = new Voyageur();
 
 		BeanUtils.copyProperties(voyageurRequest, voyageur);
-
-		return this.repoVoyageur.save(voyageur);
+		
+		this.repoVoyageur.save(voyageur);
+		
+		return VoyageurResponse.convertVoyageur(voyageur);
 	}
 
 	@PutMapping("/{id}")
-	public Voyageur edit(@PathVariable Integer id, @Valid @RequestBody VoyageurRequest voyageurRequest,
+	public VoyageurResponse edit(@PathVariable Integer id, @Valid @RequestBody VoyageurRequest voyageurRequest,
 			BindingResult result) {
 		if (result.hasErrors()) {
 			throw new VoyageurNotValidException();
@@ -73,10 +78,13 @@ public class VoyageurApiController {
 
 		BeanUtils.copyProperties(voyageurRequest, voyageur);
 
-		return this.repoVoyageur.save(voyageur);
+		 this.repoVoyageur.save(voyageur);
+		 
+		return VoyageurResponse.convertVoyageur(voyageur);
 	}
 
 	@DeleteMapping("/{id}")
+	@JsonView(Views.Voyageur.class)
 	public void deleteById(@PathVariable Integer id) {
 		this.repoVoyageur.deleteById(id);
 	}
