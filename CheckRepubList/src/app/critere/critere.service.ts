@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Critere, MaterielRef, TypeClimat, TypeDeplacement, TypeLogement } from '../model';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CritereService {
+ 
 
   criteres: Array<Critere> = new Array<Critere>();
   materielsRef: MaterielRef;
@@ -18,33 +20,70 @@ export class CritereService {
     this.criteres.push(new Critere(13, this.materielsRef,TypeLogement.MobilHome,TypeDeplacement.Moto, TypeClimat.Chaud));
   }
 
+ 
+
   findAll() : Array<Critere> {
     return this.criteres;
    }
 
-   findById(id: number): Critere {
-    return this.criteres.find(crit => crit.id == id);
-   }
+   findById(id: number): Observable<Critere> {
+    let foundCritere = this.criteres.find(crit => crit.id === id);
+    return foundCritere ? of(foundCritere) : of(null);
+  }
 
-   save(critere: Critere): void {
-    if(critere.id) {
-      let pos = this.criteres.findIndex(crit => crit.id == critere.id);
-      this.criteres[pos] = critere;
+  //  findById(id: number): Critere {
+  //   return this.criteres.find(crit => crit.id == id);
+  //  }
+
+  //  save(critere: Critere): void {
+  //   if(critere.id) {
+  //     let pos = this.criteres.findIndex(crit => crit.id == critere.id);
+  //     this.criteres[pos] = critere;
+  //   } else {
+  //     let max = 0;
+  //     this.criteres.forEach(crit=> {
+  //       if(crit.id > max) {
+  //         max = crit.id;
+  //       }
+  //     });
+  //     critere.id = ++max;
+
+  //     this.criteres.push(critere);
+  // }
+  //  }
+  //  deleteById(id: number) {
+  //   let pos = this.criteres.findIndex(crit => crit.id == id);
+
+  //   this.criteres.splice(pos, 1);
+  //  }
+
+   save(critere: Critere): Observable<void> {
+    if (critere.id) {
+      const index = this.criteres.findIndex(crit => crit.id == critere.id);
+      if (index !== -1) {
+        this.criteres[index] = critere;
+        return of(null);
+      }
     } else {
-      let max = 0;
-      this.criteres.forEach(crit=> {
-        if(crit.id > max) {
-          max = crit.id;
+      let maxId = 0;
+      this.criteres.forEach(crit => {
+        if (crit.id > maxId) {
+          maxId = crit.id;
         }
       });
-      critere.id = ++max;
-
+      critere.id = maxId + 1;
       this.criteres.push(critere);
-  }
-   }
-   deleteById(id: number) {
-    let pos = this.criteres.findIndex(crit => crit.id == id);
+      return of(null);
+    }
+    return of(null);
 
-    this.criteres.splice(pos, 1);
-   }
+  }
+
+  deleteById(id: number): Observable<void> {
+    const index = this.criteres.findIndex(crit => crit.id === id);
+    if (index !== -1) {
+      this.criteres.splice(index, 1);
+    }
+    return of(null);
+  }
 }

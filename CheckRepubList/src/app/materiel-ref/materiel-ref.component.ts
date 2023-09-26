@@ -26,7 +26,7 @@ export class MaterielRefComponent implements OnInit {
   ngOnInit(): void {
     
     this.materielRefForm = this.formBuilder.group({
-      id: this.formBuilder.control(0),
+      id: this.formBuilder.control(''),
       libelleMateriel: this.formBuilder.control('', [Validators.required]),
       categorie: this.formBuilder.control(''),
       critere: this.formBuilder.control(''),
@@ -36,13 +36,13 @@ export class MaterielRefComponent implements OnInit {
     //this.materielsRef$ = this.materielRefService.findAll();
   }
 
-  //  list(): Array<MaterielRef>{
-  //   return this.materielRefService.findAll();
-  // }
-
-  list(): Observable<MaterielRef[]> {
-    return this.materielRefService['findAll']();
+   list(): Array<MaterielRef>{
+    return this.materielRefService.findAll();
   }
+
+  // list(): Observable<MaterielRef[]> {
+  //   return this.materielRefService['findAll']();
+  // }
    
   // listCritere(): Array<Critere>{
   //   return this.critereService.findAll();
@@ -112,7 +112,7 @@ export class MaterielRefComponent implements OnInit {
   remove(id: number) {
     this.materielRefService.deleteById(id).subscribe(() => {
       // Mettez à jour la liste après la suppression
-      this.list().subscribe();
+      
     });
   }
 
