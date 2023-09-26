@@ -8,6 +8,7 @@ import { VoyageHttpService } from './voyage-http.service';
 import { TypeClimat, TypeDeplacement, TypeLogement, Voyage, Voyageur } from '../model';
 import { VoyageurService } from '../voyageur/voyageur.service';
 import { VoyageService } from './voyage.service';
+//import { VoyageService } from './voyage.service';
 
 @Component({
   selector: 'app-voyage',
@@ -16,84 +17,165 @@ import { VoyageService } from './voyage.service';
 })
 export class VoyageComponent   implements OnInit{
 
-  voyages$: Observable<Voyage[]>;
-  voyageForm: FormGroup;
-  showForm: boolean = false;
-  modesLogement = Object.values(TypeLogement);
-  modesDeplacement = Object.values(TypeDeplacement);
-  modesClimat = Object.values(TypeClimat);
-  // voyageurs$: Observable<Voyageur[]>;
-  FormHidden: boolean = true;
+//   voyages$: Observable<Voyage[]>;
+//   voyageForm: FormGroup;
+//   showForm: boolean = false;
+//   modesLogement = Object.values(TypeLogement);
+//   modesDeplacement = Object.values(TypeDeplacement);
+//   modesClimat = Object.values(TypeClimat);
+//   // voyageurs$: Observable<Voyageur[]>;
+//   FormHidden: boolean = true;
   
   
 
 
-  constructor( private router: Router, private formBuilder: FormBuilder, private voyageHttpService: VoyageHttpService ,private voyageurService : VoyageurService, private voyageService: VoyageService ) {}
+//   constructor( private router: Router, private formBuilder: FormBuilder, private voyageHttpService: VoyageHttpService ,private voyageurService : VoyageurService, private voyageService: VoyageService ) {}
 
 
 
-  ngOnInit(): void {
-    this.voyageForm = this.formBuilder.group({
-      dateDebutVoyage: this.formBuilder.control('', [Validators.required ]),
-      dateFinVoyage: this.formBuilder.control('', [Validators.required ]),
-      libelle: this.formBuilder.control('', [Validators.required, Validators.maxLength(25)]),
-      pays: this.formBuilder.control('', [Validators.required, Validators.maxLength(25)]),
-      logement:this.formBuilder.control('', [Validators.required]),
-      deplacement:this.formBuilder.control('', [Validators.required]),
-      climat:this.formBuilder.control('', [Validators.required]),
-      voyageur:this.formBuilder.control('',[Validators.required]),
+//   ngOnInit(): void {
+//     this.voyageForm = this.formBuilder.group({
+//       dateDebutVoyage: this.formBuilder.control('', [Validators.required ]),
+//       dateFinVoyage: this.formBuilder.control('', [Validators.required ]),
+//       libelle: this.formBuilder.control('', [Validators.required, Validators.maxLength(25)]),
+//       pays: this.formBuilder.control('', [Validators.required, Validators.maxLength(25)]),
+//       logement:this.formBuilder.control('', [Validators.required]),
+//       deplacement:this.formBuilder.control('', [Validators.required]),
+//       climat:this.formBuilder.control('', [Validators.required]),
+//       voyageur:this.formBuilder.control('',[Validators.required]),
      
-  });
-  // this.voyageurs$ = this.voyageurService.findAllForAsync();
+//   });
+//   // this.voyageurs$ = this.voyageurService.findAllForAsync();
   
-  //   //  this.voyageurs$ = this.voyageurService.findAllForAsync(); 
-  }
+//   //   //  this.voyageurs$ = this.voyageurService.findAllForAsync(); 
+//   }
   
-  list(): Array<Voyageur> {
-    return this.voyageurService.findAll();
-  }
+//   list(): Array<Voyageur> {
+//     return this.voyageurService.findAll();
+//   }
 
-  listvoyage(): Array<Voyage>{
-    return this.voyageService.findAll();
-  }
+//   listvoyage(): Array<Voyage>{
+//     return this.voyageService.findAll();
+//   }
+
+// add() {
+//   this.voyageForm.reset();
+//   this.showForm = true;
+  
+
+
+// }
+
+// // edit(id: number) {
+// //   this.voyageHttpService.findById(id).subscribe(resp => {
+// //     this.voyageForm=resp;
+// //     if(!this.voyageForm.voyageur) {
+// //       this.voyageForm.voyageur= new Voyageur ();
+// //     }
+
+// //   }); 
+
+// // }
+
+// edit(id: number) {
+//   this.voyageHttpService.findById(id).subscribe(resp => {
+//     this.voyageForm.patchValue(resp);
+//     this.showForm = true;
+   
+//   });
+// }
+
+// remove(id: number) {
+//   this.voyageHttpService.deleteById(id);
+// }
+
+// save() {
+//   this.voyageHttpService.save(this.voyageForm.value);
+//   this.cancel();
+//   this.showForm=true;
+//   this.voyages$ = this.voyageHttpService.findAll();
+  
+  
+// }
+
+// cancel() {
+//   this.showForm = false;
+//   this.voyageForm.reset();
+// }
+
+// show() {
+//   this.showForm = true;
+  
+// }
+// voyageur(){
+//   this.router.navigate(["/voyageur"]);
+  
+// }
+//  hidden(){
+// this.FormHidden=! this.FormHidden
+//  }
+// }
+
+
+voyageForm: FormGroup;
+showForm: boolean = false;
+FormHidden: boolean = true;
+modesLogement = Object.values(TypeLogement);
+modesDeplacement = Object.values(TypeDeplacement);
+modesClimat = Object.values(TypeClimat);
+  
+
+
+constructor( private router: Router,private formBuilder: FormBuilder, private voyageService: VoyageService, private voyageurService: VoyageurService) {
+}
+
+ngOnInit(): void {
+    this.voyageForm = this.formBuilder.group({
+    dateDebutVoyage: this.formBuilder.control('', [Validators.required ]),
+    dateFinVoyage: this.formBuilder.control('', [Validators.required ]),
+    libelle: this.formBuilder.control('', [Validators.required, Validators.maxLength(25)]),
+    pays: this.formBuilder.control('', [Validators.required, Validators.maxLength(25)]),
+    logement:this.formBuilder.control('', [Validators.required]),
+    deplacement:this.formBuilder.control('', [Validators.required]),
+    climat:this.formBuilder.control('', [Validators.required]),
+    voyageur:this.formBuilder.control('',[Validators.required]),
+       
+    });
+}
+
+list(): Array<Voyage>{
+ return this.voyageService.findAll();
+ 
+ }
+
+ listvoy(): Array<Voyageur> {
+      return this.voyageurService.findAll();
+    }
+// listVoyage(): Array<Voyage> {
+//   return this.voyageService.findAll();
+// }
 
 add() {
   this.voyageForm.reset();
   this.showForm = true;
-  
-
-
 }
-
-// edit(id: number) {
-//   this.voyageHttpService.findById(id).subscribe(resp => {
-//     this.voyageForm=resp;
-//     if(!this.voyageForm.voyageur) {
-//       this.voyageForm.voyageur= new Voyageur ();
-//     }
-
-//   }); 
-
-// }
 
 edit(id: number) {
-  this.voyageHttpService.findById(id).subscribe(resp => {
-    this.voyageForm.patchValue(resp);
-    this.showForm = true;
-   
-  });
+  // this.voyageService.findById(id).subscribe(resp => {
+  //   this.voyageForm.patchValue(resp);
+  //   this.showForm = true;
+  // });
 }
 
-remove(id: number) {
-  this.voyageHttpService.deleteById(id);
-}
+// majVoyage(event: any) {
+//   if(!this.voyageurForm.voyage) {
+//     this.voyageurForm.voyage = new Voyage(event);
+//   }
+// }
 
-save() {
-  this.voyageHttpService.save(this.voyageForm.value);
+save() {  
+  this.voyageService.save(this.voyageForm.value);
   this.cancel();
-  this.showForm=true;
-  
-  
 }
 
 cancel() {
@@ -101,16 +183,21 @@ cancel() {
   this.voyageForm.reset();
 }
 
+remove(id: number) {
+  this.voyageService.deleteById(id);
+
+}
+hidden(){
+  this.FormHidden=! this.FormHidden
+   }
+
 show() {
-  this.showForm = true;
-  
+this.showForm = true;
+      
 }
 voyageur(){
   this.router.navigate(["/voyageur"]);
-  
-}
- hidden(){
-  this.FormHidden=! this.FormHidden
+        
  }
-}
 
+}
