@@ -17,6 +17,7 @@ import { PageFrontComponent } from './page-front/page-front.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +30,7 @@ import { PageFrontComponent } from './page-front/page-front.component';
    VoyageurComponent,
     VoyageComponent,
     PageFrontComponent,
+    
 
 
   ],
