@@ -15,10 +15,10 @@ const routes: Routes = [
   {path: "", component: AccueilComponent, pathMatch: "full" },
   {path: "utilisateur", component: UtilisateurComponent, canActivate:[authGuard] },
   {path: "inscription", component: InscriptionComponent},
-  {path: "voyage", component: VoyageComponent},
-  {path: "voyageur", component: VoyageurComponent},
-  {path: "materielRef", component: MaterielRefComponent},
-  {path: "critere", component: CritereComponent},
+  {path: "voyage", component: VoyageComponent, canActivate:[authGuard]},
+  {path: "voyageur", component: VoyageurComponent, canActivate:[authGuard]},
+  {path: "materielRef", component: MaterielRefComponent, canActivate:[authGuard]},
+  {path: "critere", component: CritereComponent, canActivate:[authGuard]},
   {path: "connexion", component: ConnexionComponent},
   
 ];

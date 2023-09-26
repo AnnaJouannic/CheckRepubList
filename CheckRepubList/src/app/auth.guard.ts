@@ -5,13 +5,13 @@ import { AuthService } from './auth.service';
 export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
 
-  if (authService.isAuthenticated()) {
+  if (!authService.isAuthenticated()) {
     const router = inject(Router);
-    router.navigate([ '' ]);
+    router.navigate([ '/connexion' ]);
   }
 
-  // if(state.url == "/utilisateur" && !authService.hasRole("ADMIN")) {
-  //   return false;
+  // if(state.url == "/utilisateur" && !authService.hasRole("Admin")) {
+  //    return false;
   // }
 
   return true;
