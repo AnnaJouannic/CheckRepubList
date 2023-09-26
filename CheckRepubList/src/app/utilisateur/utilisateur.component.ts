@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Utilisateur } from '../model';
-import { UtilisateurService } from './utilisateur.service';
 import { Observable } from 'rxjs';
 import { UtilisateurHttpService } from './utilisateur-http.service';
 
