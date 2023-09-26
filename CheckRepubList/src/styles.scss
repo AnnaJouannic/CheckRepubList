@@ -12,4 +12,37 @@ body {
   margin: 0; 
   height: 100vh;/* Réinitialise la marge par défaut du body */
   }
+    
+#header{
+    background : rgba(255, 255, 255, 0.8);
+    height:85px;
+    border-radius: 0 0 15px 15px;
+    display:flex;
+    justify-content : center;
+    align-items : center;
   
+  }
+  #logo
+  {
+      margin-top : 0;
+    margin-left:0;
+      float:left;
+  }
+ #imgLogo
+  {
+    position:relative;
+  }
+  
+  
+  #CheckRepublist
+  {
+      text-align:center;
+  }
+  
+  #textCheckRepublist
+  {
+      font-family : "Playball", sans-serif;
+      position: relative;
+      font-size:50px;
+      color : #da664b;
+  }
