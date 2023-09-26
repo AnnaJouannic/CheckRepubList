@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Categorie, Critere, MaterielRef } from '../model';
-import { CritereService } from '../critere/critere.service';
+import { Categorie, MaterielRef } from '../model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { MaterielRefService } from './materiel-ref.service';
 import { MaterielRefHttpService } from './materiel-ref-http.service';
 
 @Component({
@@ -12,17 +10,13 @@ import { MaterielRefHttpService } from './materiel-ref-http.service';
   templateUrl: './materiel-ref.component.html',
   styleUrls: ['./materiel-ref.component.scss']
 })
-export class MaterielRefComponent implements OnInit {
-
-  //materielRefForm: MaterielRef = null;
- 
- criteres$: Observable<Critere[]>;
- materielsRef$: Observable<MaterielRef[]>;
- materielRefForm!: FormGroup;
+export class MaterielRefComponent implements OnInit { 
+materielsRef$: Observable<MaterielRef>;
+ materielRefForm: FormGroup;
  showForm: boolean = false;
  categorie = Object.values(Categorie);
  
-  constructor( private materielRefService: MaterielRefService, private formBuilder: FormBuilder, private router: Router){}
+  constructor(private materielRefHttpService: MaterielRefHttpService, private formBuilder: FormBuilder, private router: Router){}
   
   
   
@@ -40,25 +34,33 @@ export class MaterielRefComponent implements OnInit {
     //this.materielsRef$ = this.materielRefService.findAll();
   }
 
+  // ngOnInit(): void {
+  //   this.materielsRef$ = this.materielRefHttpService.findAll();
+  // }
+
    list(): Array<MaterielRef> {
 
-    return this.materielRefService.findAll();
+    return this.materielRefHttpService.findAll();
   }
 
   // list(): Observable<MaterielRef[]> {
-  //   return this.materielRefService['findAll']();
+  //   return this.materielRefHttpService['findAll']();
   // }
    
   // listCritere(): Array<Critere>{
   //   return this.critereService.findAll();
   // }
 
-  add(){
+  // add(){
+  //   this.materielRefForm.reset();
+  //   //this.materielRefForm.critere = new Critere();
+  //   this.showForm = true;
+  // }
+
+  add() {
     this.materielRefForm.reset();
-    //this.materielRefForm.critere = new Critere();
     this.showForm = true;
   }
-
   // edit(id: number) {
   //   this.materielRefHttpService.findById(id).subscribe(response => {
   //     this.materielRefForm.patchValue(response);
@@ -73,18 +75,18 @@ export class MaterielRefComponent implements OnInit {
   //   });
   // }
 
+  // edit(id: number){
+  //   this.materielRefHttpService.findById(id).subscribe(response => {
+  //     this.materielRefForm.patchValue(response);
+  //     this.showForm = true;
+  //   });
+  // }
   edit(id: number){
-    this.materielRefService.findById(id).subscribe(response => {
+    this.materielRefHttpService.findById(id).subscribe(response => {
       this.materielRefForm.patchValue(response);
       this.showForm = true;
     });
   }
-  // edit(id: number){
-  //   this.materielRefService.findById(id).subscribe(response => {
-  //     this.materielRefForm = response;
-  //     this.showForm = true;
-  //   });
-  // }
 
   // save() {
   //   this.materielRefHttpService.save(this.materielRefForm.value).subscribe(response => {
@@ -92,10 +94,11 @@ export class MaterielRefComponent implements OnInit {
   //   });
   // }
 
-  // save() {  
-  //   this.materielRefService.save(this.materielRefForm.value);
-  //   this.cancel();
-  // }
+  save() {
+    this.materielRefHttpService.save(this.materielRefForm.value)
+      this.cancel(); // Réinitialisez le formulaire après la sauvegarde.
+    
+  }
 
   // save() {
   //   this.materielRefService.save(this.materielRefForm.value).subscribe(response => {
@@ -104,31 +107,34 @@ export class MaterielRefComponent implements OnInit {
   //     this.showForm = false;
   //   });
   // }
+  // cancel() {
+  //   this.materielRefForm.reset();
+  //   this.showForm = false;
+  // }
+
   cancel() {
-    this.materielRefForm.reset();
+    this.materielRefForm.reset() // Réinitialisez avec une instance vide.
     this.showForm = false;
   }
 
-  save() {
-    this.materielRefService.save(this.materielRefForm.value);
-  }
+  // save() {
+  //   this.materielRefHttpService.save(this.materielRefForm.value);
+  // }
   // remove(id: number) {
-  //   this.materielRefHttpService.deleteById(id).subscribe(response => {
+  //   this.materielRefHttpService.deleteById(id).subscribe(() => {
   //     this.materielsRef$ = this.materielRefHttpService.findAll();
   //   });
-  // } 
-
-  // remove(id: number) {
-  //   this.materielRefService.deleteById(id);
-  
   // }
 
   remove(id: number) {
-    this.materielRefService.deleteById(id).subscribe(() => {
-      // Mettez à jour la liste après la suppression
-      
-    });
+    this.materielRefHttpService.deleteById(id);
+  
   }
+
+  // remove(id: number) {
+  //   this.materielRefHttpService.deleteById(id);
+  //     // Mettez à jour la liste après la suppression
+  // }
 
   show() {
     this.showForm = true;
@@ -138,6 +144,7 @@ export class MaterielRefComponent implements OnInit {
   }
 
 }
+
 
 
 

@@ -3,8 +3,6 @@ export class MaterielRef{
     libelleMateriel: string;
     categorie: Categorie;
     critere: Critere;
-
-
     constructor( 
         id?: number,
         libelleMateriel?: string,
@@ -16,7 +14,6 @@ export class MaterielRef{
             this.libelleMateriel = libelleMateriel
             this.categorie = categorie
             this.critere = critere
-        
     }
 }
 
@@ -26,8 +23,6 @@ export class Critere{
     logement: TypeLogement;
     deplacement: TypeDeplacement;
     climat: TypeClimat;
-  value: any;
-
     constructor(
         id?: number,
        materieleRef?: MaterielRef,

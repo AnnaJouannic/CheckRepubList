@@ -23,7 +23,7 @@ export class CritereComponent implements OnInit {
   materielsRef$: Observable<MaterielRef[]>;
 
 
-  constructor(private critereService: CritereService, private formBuilder: FormBuilder, private router: Router){}
+  constructor(private critereHttpService: CritereHttpService, private formBuilder: FormBuilder, private router: Router){}
 
   ngOnInit(): void {
     this.  critereForm = this.formBuilder.group({
@@ -39,7 +39,7 @@ export class CritereComponent implements OnInit {
 
  list(): Array<Critere>{
 
-  return this.critereService.findAll();
+  return this.critereHttpService.findAll();
 
  }
 
@@ -58,7 +58,7 @@ export class CritereComponent implements OnInit {
 }
 
 edit(id: number) {
-  this.critereService.findById(id).subscribe(response => {
+  this.critereHttpService.findById(id).subscribe(response => {
     this.critereForm.patchValue(response);
     this.showForm = true;
   });
@@ -78,24 +78,36 @@ edit(id: number) {
 //   });
 // }
 
-save() {
-  this.critereService.save(this.critereForm.value).subscribe(response => {
-    this.critereForm.reset();
-    this.showForm=true;
-  });
+// save() {
+//   this.critereHttpService.save(this.critereForm.value).subscribe(response => {
+//     this.critereForm.reset();
+//     this.showForm=true;
+//   });
  
-}
+// }
+
+save() {
+    this.critereHttpService.save(this.critereForm.value);
+      this.showForm=true;
+   
+  }
+
+
 
 cancel() {
   this.critereForm.reset();
   this.showForm = false;
 }
 
-remove(id: number) {
-  this.critereService.deleteById(id).subscribe(response => {
-    //this.criteres$ = this.critereService.findAll();
+// remove(id: number) {
+//   this.critereHttpService.deleteById(id).subscribe(response => {
+//     //this.criteres$ = this.critereService.findAll();
    
-  });
+//   });
+// }
+
+remove(id: number) {
+  this.critereHttpService.deleteById(id);
 }
 
 show() {

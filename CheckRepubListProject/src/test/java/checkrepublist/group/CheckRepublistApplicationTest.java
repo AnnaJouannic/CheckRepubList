@@ -513,15 +513,34 @@ class CheckRepublistApplicationTest {
 	    	
 		List<MaterielRef> listevoyage = new ArrayList <>();
 		  Collections.addAll(listevoyage, v2, v6, v8);
-		     
+		  
+		  
+		  Voyageur p1 = new Voyageur("Even","Manon",LocalDate.parse("1998-05-23"), true, false);
+		  p1 = voyageurRepo.save(p1);
+
+		  Voyageur p2 = new Voyageur("Andraos","Rawad",LocalDate.parse("1997-03-09"), false, false);
+		  p2 = voyageurRepo.save(p2);
+
+		  Voyageur p3 = new Voyageur("Portet","Anais",LocalDate.parse("1994-11-13"), true, false);
+		  p3 = voyageurRepo.save(p3);
+			
+			List<Voyageur> utilisateur1 = new ArrayList<>();
+			Collections.addAll(utilisateur1, p1);
+			
+			List<Voyageur> utilisateur2 = new ArrayList<>();
+			Collections.addAll(utilisateur2, p2,p3);
+	
 	Voyage voyage1 = new Voyage(LocalDate.parse("2023-09-11"), LocalDate.parse("2023-09-25"), "Vacances fin d'été !!", "Japon", TypeLogement.Hotel, TypeDeplacement.Avion, TypeClimat.Tempere );
 	//voyage1.setActivite(aquatique);
 	voyage1.setMateriels(listevoyage);
+	voyage1.setVoyageurs(utilisateur1);
 	voyage1 = voyageRepo.save(voyage1);
 	
-	
 	Voyage voyage2 = new Voyage(LocalDate.parse("2023-07-09"), LocalDate.parse("2023-07-21"), "Vacances d'été !!", "Espagne", TypeLogement.Van, TypeDeplacement.Van, TypeClimat.Chaud );
+	voyage2.setVoyageurs(utilisateur2);
+	voyage2.setVoyageurs(utilisateur2);
 	voyage2 = voyageRepo.save(voyage2);
+	
 	
 	Voyage voyage3 = new Voyage(LocalDate.parse("2023-05-23"),LocalDate.parse("2023-06-02"), "Vacances de printemps !!", "Italie", TypeLogement.AirBnB, TypeDeplacement.Moto, TypeClimat.Chaud );
 	voyage3 = voyageRepo.save(voyage3);
@@ -532,23 +551,7 @@ class CheckRepublistApplicationTest {
      List<Voyage> Voyage2 = new ArrayList<>();
      Collections.addAll(Voyage2, voyage2,voyage3);
      
-	Voyageur p1 = new Voyageur("Even","Manon",LocalDate.parse("1998-05-23"), true, false);
-	p1.setVoyages(Voyage1);
-	p1 = voyageurRepo.save(p1);
 	
-	Voyageur p2 = new Voyageur("Andraos","Rawad",LocalDate.parse("1997-03-09"), false, false);
-	p2.setVoyages(Voyage1);
-	p2 = voyageurRepo.save(p2);
-	
-	Voyageur p3 = new Voyageur("Portet","Anais",LocalDate.parse("1994-11-13"), true, false);
-	p3.setVoyages(Voyage2);
-	p3 = voyageurRepo.save(p3);
-	
-	List<Voyageur> utilisateur1 = new ArrayList<>();
-	Collections.addAll(utilisateur1, p1);
-	
-	List<Voyageur> utilisateur2 = new ArrayList<>();
-	Collections.addAll(utilisateur2, p2,p3);
 	
 	Utilisateur c1 = new Utilisateur("Even","Manon", "Manondu56", "12345", "manoneven@gmail.com", "0650265588");
 	c1.getRoles().add(Roles.User);
@@ -564,9 +567,8 @@ class CheckRepublistApplicationTest {
 	
 	c2 = utilisateurRepo.save(c2);
 	
-	
-	
-	
+
+
 	
 
 	

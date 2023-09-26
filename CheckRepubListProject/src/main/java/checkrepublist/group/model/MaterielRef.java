@@ -37,12 +37,12 @@ public class MaterielRef{
 	
 
 	@OneToMany(mappedBy = "materielref")
-	@JsonIgnoreProperties("materielref")
+	@JsonView(Views.MaterielRef.class)
 	private List<Critere> criteres = new ArrayList<>();
 	
 	
 	@ManyToMany(mappedBy="materiels")
-	@JsonIgnoreProperties("materiels")
+	@JsonView(Views.MaterielRef.class)
 	private List<Voyage> voyages;
 	
 	public MaterielRef() {}

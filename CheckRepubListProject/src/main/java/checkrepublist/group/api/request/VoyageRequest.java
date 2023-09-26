@@ -2,10 +2,6 @@ package checkrepublist.group.api.request;
 
 import java.time.LocalDate;
 
-import checkrepublist.group.model.TypeClimat;
-import checkrepublist.group.model.TypeDeplacement;
-import checkrepublist.group.model.TypeLogement;
-import checkrepublist.group.model.Voyageur;
 import jakarta.validation.constraints.NotBlank;
 
 public class VoyageRequest {
@@ -20,13 +16,13 @@ public class VoyageRequest {
 	
 	private String pays;
 	
-	private TypeLogement logement;
+	private String logement;
 	
-	private TypeDeplacement deplacement;
+	private String deplacement;
 	
-	private TypeClimat climat;
+	private String climat;
 	
-	private Voyageur voyageur;
+	private VoyageurRequest voyageur;
 	
 	//private List<ActiviteRef> activites= new ArrayList<>();
 
@@ -54,27 +50,27 @@ public class VoyageRequest {
 		this.libelle = libelle;
 	}
 
-	public TypeLogement getLogement() {
+	public String getLogement() {
 		return logement;
 	}
 
-	public void setLogement(TypeLogement logement) {
+	public void setLogement(String logement) {
 		this.logement = logement;
 	}
 
-	public TypeDeplacement getDeplacement() {
+	public String getDeplacement() {
 		return deplacement;
 	}
 
-	public void setDeplacement(TypeDeplacement deplacement) {
+	public void setDeplacement(String deplacement) {
 		this.deplacement = deplacement;
 	}
 
-	public TypeClimat getClimat() {
+	public String getClimat() {
 		return climat;
 	}
 
-	public void setClimat(TypeClimat climat) {
+	public void setClimat(String climat) {
 		this.climat = climat;
 	}
 
@@ -86,11 +82,11 @@ public class VoyageRequest {
 		this.pays = pays;
 	}
 
-	public Voyageur getVoyageur() {
+	public VoyageurRequest getVoyageur() {
 		return voyageur;
 	}
 
-	public void setVoyageur(Voyageur voyageur) {
+	public void setVoyageur(VoyageurRequest voyageur) {
 		this.voyageur = voyageur;
 	}
 
