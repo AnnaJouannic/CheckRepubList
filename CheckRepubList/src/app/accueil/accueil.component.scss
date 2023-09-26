@@ -1,16 +1,4 @@
-// @font-face {
-//     font-family: "Playball";
-//     src: url("/assets/Playball-Regular.ttf") format("truetype");
-//   }
 
-   body {
-    background-image: url("/assets/paccueil.jpg");
-  background-size: cover; /* Pour couvrir toute la surface */
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  margin: 0; 
-  height: 100vh;/* Réinitialise la marge par défaut du body */
-  }
   
   #header{
     background : rgba(255, 255, 255, 0.8);
