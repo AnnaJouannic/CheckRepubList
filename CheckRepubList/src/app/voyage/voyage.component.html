@@ -7,9 +7,56 @@
       </div>
 	</div>
 	</head> -->
+	
+		<div  [hidden]="FormHidden" class="form-container" >
+
+		  <div id="recap">
+			<h1 >Liste des voyages</h1>
+			   <table class="table table-striped">
+			  
+					<thead >
+						<tr>
+							<th>Identifiant</th>
+							<th>Départ</th>
+							<th>Retour</th>
+							<th>Libelle</th>
+							<th>Destination</th>
+							<th>Mode de logement:</th>
+							<th>Mode de déplacement</th>
+							<th>Climat</th>
+							<th>Voyageur</th>
+							
+						</tr>
+					</thead>
+		
+					<tbody>
+						<tr *ngFor="let voyage of listvoyage()">
+							<td>{{voyage.id}}</td>
+							<td>{{voyage.dateDebutVoyage}}</td>
+							<td>{{voyage.dateFinVoyage}}</td>
+							<td>{{voyage.libelle}}</td>
+							<td>{{voyage.pays}}</td>
+							<td>{{voyage.logement}}</td>
+							<td>{{voyage.deplacement}}</td>
+							<td>{{voyage.climat}}</td>
+							<td>{{voyage.voyageur}}</td>
+						 
+							<td>
+								<div class="btn-group btn-group-sm">
+									<a class="btn btn-primary" (click)="edit(voyage.id)"><i
+											class="bi bi-pencil-square"></i></a>
+									<a class="btn btn-danger" (click)="remove(voyage.id)"><i class="bi bi-trash"></i></a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
 
 <body>
-<div id="content" *ngIf="!showForm">
+<div id="content" *ngIf="!showForm" [hidden]="!FormHidden">
 			<div id="block1"></div>
 			<div id="center">
 		<div  id="nouveau">
@@ -57,7 +104,7 @@
 	
 
 
-<div class="form-container"  *ngIf="showForm">
+<div class="form-container"  *ngIf="showForm" [hidden]="!FormHidden" >
 		<form  (ngSubmit)="save()" novalidate autocomplete="off" [formGroup]="voyageForm">
 		<h1>Un nouveau voyage </h1>
 		<div >
@@ -125,9 +172,9 @@
 				</span>
 				</div>
 
-		 <div class="btn-group btn-group-lg float-right">
-			<button type="submit" class="btn btn-success" [disabled]="voyageForm.invalid">
-			  <i class="bi bi-check-square-fill"></i>
+		 <div  class="btn-group btn-group-lg float-right">
+			<button type="submit"  class="btn btn-success" [disabled]="voyageForm.invalid">
+				<a  (click)="hidden()"><i class="bi bi-check-square-fill"></i></a>
 			</button>
 		  </div>
 		  

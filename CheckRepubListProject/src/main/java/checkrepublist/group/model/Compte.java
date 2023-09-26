@@ -3,7 +3,9 @@ package checkrepublist.group.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonView;
 
+import checkrepublist.group.api.Views;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.ElementCollection;
@@ -28,12 +30,16 @@ public abstract class Compte {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.Common.class)
 	protected Integer id;
 	@Column(length = 25)
+	@JsonView(Views.Common.class)
 	protected String nom;
 	@Column(length = 25)
+	@JsonView(Views.Common.class)
 	protected String prenom;
 	@Column(length = 25)
+	@JsonView(Views.Common.class)
 	protected String login;
 	@Column(length = 130)
 	protected String password;
@@ -42,6 +48,7 @@ public abstract class Compte {
 	@JoinTable(name = "compte_roles", joinColumns = @JoinColumn(name = "utilisateur_id"))
 	@Column(name = "role", nullable = false)
 	@Enumerated(EnumType.STRING)
+	@JsonView(Views.Admin.class)
 	protected Set<Roles> roles = new HashSet<>();
 	
 	public Compte() {}

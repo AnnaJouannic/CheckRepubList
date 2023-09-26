@@ -1,23 +1,22 @@
 package checkrepublist.group.api.response;
 
-import checkrepublist.group.model.MaterielRef;
-import checkrepublist.group.model.TypeClimat;
-import checkrepublist.group.model.TypeDeplacement;
-import checkrepublist.group.model.TypeLogement;
+import org.springframework.beans.BeanUtils;
+
+import checkrepublist.group.model.Critere;
 
 
 public class CritereResponse {
 	
 	private Integer id;
 	
+	private String logement;
 	
-	private MaterielRef materielref;
-	
-	private TypeLogement logement;
-	
-	private TypeDeplacement deplacement;
+	private String deplacement;
 
-	private TypeClimat climat;
+	private String climat;
+	
+	private MaterielRefResponse materielref;
+	
 
 	public Integer getId() {
 		return id;
@@ -27,39 +26,65 @@ public class CritereResponse {
 		this.id = id;
 	}
 
-	public MaterielRef getMaterielref() {
+	public MaterielRefResponse getMaterielref() {
 		return materielref;
 	}
 
-	public void setMaterielref(MaterielRef materielref) {
+	public void setMaterielref(MaterielRefResponse materielref) {
 		this.materielref = materielref;
 	}
 
 
-	public TypeLogement getLogement() {
+	public String getLogement() {
 		return logement;
 	}
 
-	public void setLogement(TypeLogement logement) {
+	public void setLogement(String logement) {
 		this.logement = logement;
 	}
 
-	public TypeDeplacement getDeplacement() {
+	public String getDeplacement() {
 		return deplacement;
 	}
 
-	public void setDeplacement(TypeDeplacement deplacement) {
+	public void setDeplacement(String deplacement) {
 		this.deplacement = deplacement;
 	}
 
-	public TypeClimat getClimat() {
+	public String getClimat() {
 		return climat;
 	}
 
-	public void setClimat(TypeClimat climat) {
+	public void setClimat(String climat) {
 		this.climat = climat;
 	}
 	
+	public static CritereResponse convert (Critere critere) {
+		CritereResponse response = new CritereResponse();
+		
+		BeanUtils.copyProperties(critere, response);
+		
+		response.setLogement(String.valueOf(critere.getLogement()));
+		response.setDeplacement(String.valueOf(critere.getDeplacement()));
+		response.setClimat(String.valueOf(critere.getClimat()));
+		response.setMaterielref(MaterielRefResponse.convertCritere(critere.getMaterielref()));
+		
+		return response;
+		
+		
+	}
+	
+	public static CritereResponse convertBis (Critere critere) {
+CritereResponse response = new CritereResponse();
+		
+		BeanUtils.copyProperties(critere, response);
+		
+		response.setLogement(String.valueOf(critere.getLogement()));
+		response.setDeplacement(String.valueOf(critere.getDeplacement()));
+		response.setClimat(String.valueOf(critere.getClimat()));
+		
+		return response;
+	}
 	
 
 }

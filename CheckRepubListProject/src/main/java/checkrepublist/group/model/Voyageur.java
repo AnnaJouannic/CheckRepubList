@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import checkrepublist.group.api.Views;
@@ -35,19 +34,20 @@ public class Voyageur {
 	@JsonView(Views.Common.class)
 	private String prenom;
 
+
 	@JsonView(Views.Common.class)
 	private LocalDate naissance;
 	
 
 	@JsonView(Views.Common.class)
 	private boolean animal;
+	
 
 	@JsonView(Views.Common.class)
 	private boolean accessibilite;
 	
 	@ManyToMany
 	@JoinTable(name="enregistrement",joinColumns = @JoinColumn(name="voyageur"),inverseJoinColumns = @JoinColumn(name="voyage"))
-	@JsonIgnoreProperties("voyageurs")
 	@JsonView(Views.Voyageur.class)
 	private List<Voyage> voyages=new ArrayList<>();
 	

@@ -1,0 +1,40 @@
+h1 {
+    text-align: center;
+    padding: 20px;
+    color: #ffffff; /* Blanc */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Style pour le formulaire */
+  form {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #a4b7a8;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style pour les en-têtes des colonnes et les étiquettes */
+  
+  label , thead{
+    font-weight: bold;
+    color: #000000; 
+  }
+  
+  /* Style pour les champs de texte et les cellules du tableau */
+  input[type="text"],
+  input[type="number"],
+  thead {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #ffffff; /* Blanc */
+  }
+  
+  /* Style pour la mise au point des champs de texte */
+  input:focus {
+    outline: none;
+    border-color: #a4b7a885; }
