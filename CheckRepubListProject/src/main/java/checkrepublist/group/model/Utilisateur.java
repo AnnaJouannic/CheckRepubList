@@ -37,16 +37,16 @@ public class Utilisateur extends Compte {
 
 	public Utilisateur() {}
 
-	public Utilisateur(Integer id, String nom, String prenom, String login, String password, boolean isAdmin,
+	public Utilisateur(Integer id, String nom, String prenom, String login, String password,
 			String mail, String tel) {
-		super(id, nom, prenom, login, password, isAdmin);
+		super(id, nom, prenom, login, password);
 		this.mail = mail;
 		this.tel = tel;
 	}
 
-	public Utilisateur(String nom, String prenom, String login, String password, boolean isAdmin, String mail,
+	public Utilisateur(String nom, String prenom, String login, String password, String mail,
 			String tel) {
-		super(nom, prenom, login, password, isAdmin);
+		super(nom, prenom, login, password);
 		this.mail = mail;
 		this.tel = tel;
 	}

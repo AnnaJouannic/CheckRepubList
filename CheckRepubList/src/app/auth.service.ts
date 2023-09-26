@@ -1,44 +1,53 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { UtilisateurService } from './utilisateur/utilisateur.service';
+
 import { Utilisateur } from './model';
+import { UtilisateurHttpService } from './utilisateur/utilisateur-http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private utilisateurService: UtilisateurService, private router: Router) { }
+  constructor(private utilisateurService: UtilisateurHttpService, private router: Router) { }
 
   authentification(login: string, password: string) {
-     let utilisateur=this.utilisateurService.connexion(login, password);
-      sessionStorage.setItem("user", JSON.stringify( utilisateur));
+  this.utilisateurService.connexion(login, password).subscribe(resp =>{
+      sessionStorage.setItem("User", JSON.stringify( resp));
       this.router.navigate(["/voyage"]);
-    };
+    });
+    }
   
 
   deconnexion() {
-    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("User");
+    this.router.navigate([""]);
   }
 
   getUtilisateur(): Utilisateur {
-    let struser = sessionStorage.getItem("user");
-
-    if(struser) {
-      let utilisateur: Utilisateur = JSON.parse(struser);
-
-      return utilisateur
+    let struser = sessionStorage.getItem("User");
+  
+    if (struser !== null) { // Vérifiez si struser n'est pas null ou undefined.
+      try {
+        let utilisateur: Utilisateur | null = JSON.parse(struser);
+  
+        if (utilisateur && typeof utilisateur === 'object') {
+          return utilisateur;
+        }
+      } catch (e) {
+        console.error("Erreur lors de la conversion JSON : ", e);
+      }
     }
-
-    return null;
+  
+    return null; // Retournez null si la valeur n'existe pas ou si la conversion JSON échoue.
   }
 
   isAuthenticated(): boolean {
     return this.getUtilisateur() != null ;
   }
 
-  hasRole(role: string): boolean {
-    return this.getUtilisateur().role.indexOf(role) > -1;
+  hasRole(roles: string): boolean {
+    return this.getUtilisateur().roles.indexOf(roles) > -1;
   }
 }
 

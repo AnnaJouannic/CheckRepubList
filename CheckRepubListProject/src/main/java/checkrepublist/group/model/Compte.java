@@ -1,13 +1,23 @@
 package checkrepublist.group.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,26 +38,28 @@ public abstract class Compte {
 	@Column(length = 130)
 	protected String password;
 	
-	protected boolean isAdmin;
+	@ElementCollection(fetch = FetchType.EAGER)
+	@JoinTable(name = "compte_roles", joinColumns = @JoinColumn(name = "utilisateur_id"))
+	@Column(name = "role", nullable = false)
+	@Enumerated(EnumType.STRING)
+	protected Set<Roles> roles = new HashSet<>();
 	
 	public Compte() {}
 	
-	public Compte(Integer id, String nom, String prenom, String login, String password, boolean isAdmin) {
+	public Compte(Integer id, String nom, String prenom, String login, String password) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.login = login;
 		this.password = password;
-		this.isAdmin = isAdmin;
 
 	}
 
-	public Compte(String nom, String prenom, String login, String password, boolean isAdmin) {
+	public Compte(String nom, String prenom, String login, String password) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.login = login;
 		this.password = password;
-		this.isAdmin = isAdmin;
 	}
 
 	public Integer getId() {
@@ -70,9 +82,7 @@ public abstract class Compte {
 		return password;
 	}
 
-	public boolean isAdmin() {
-		return isAdmin;
-	}
+
 
 
 	public void setId(Integer id) {
@@ -95,11 +105,16 @@ public abstract class Compte {
 		this.password = password;
 	}
 
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public Set<Roles> getRoles() {
+		return roles;
 	}
 
+	public void setRoles(Set<Roles> roles) {
+		this.roles = roles;
+	}
+
+
+	
 
 	
 

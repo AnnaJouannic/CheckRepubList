@@ -43,7 +43,7 @@ export class UtilisateurHttpService {
    }
 
    connexion(login: string, password: string):Observable<Utilisateur> {
-    return this.http.post<Utilisateur>("http://localhost:8080/api/utilisateur/authentification", {
+    return this.http.post<Utilisateur>("http://localhost:8080/api/utilisateur/connexion", {
         
         "login": login,
         "password": password
