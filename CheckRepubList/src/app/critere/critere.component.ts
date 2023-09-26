@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Critere, TypeClimat, TypeDeplacement, TypeLogement } from '../model';
+import { Critere, MaterielRef, TypeClimat, TypeDeplacement, TypeLogement } from '../model';
 import { CritereService } from './critere.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CritereHttpService } from './critere-http.service';
@@ -20,18 +20,19 @@ export class CritereComponent implements OnInit {
   modesLogement = Object.values(TypeLogement);
   modesDeplacement = Object.values(TypeDeplacement);
   modesClimat = Object.values(TypeClimat);
+  materielsRef$: Observable<MaterielRef[]>;
 
-  constructor(private critereHttpService: CritereHttpService, private formBuilder: FormBuilder, private router: Router){}
+  constructor(private critereHttpService: CritereHttpService,private critereService: CritereService, private formBuilder: FormBuilder, private router: Router){}
 
   ngOnInit(): void {
     this.  critereForm = this.formBuilder.group({
       id: this.formBuilder.control(0),
-      materielRef: this.formBuilder.control(Validators.required),
+      materielRef: this.formBuilder.control('',[Validators.required]),
       logement: this.formBuilder.control(''),
       deplacement: this.formBuilder.control(''),
       climat: this.formBuilder.control(''),
     });
-    //this.criteres$ = this.critereHttpService.findAll();
+    this.criteres$ = this.critereHttpService.findAll();
     
   }
 
@@ -63,12 +64,18 @@ edit(id: number) {
 //   });
 // }
 
+// save() {
+//   let critere = this.critereForm.value; // Récupérer les données du formulaire sous forme d'objet
+//   this.critereHttpService.save(critere).subscribe(response => {
+//     this.criteres$ = this.critereHttpService.findAll();
+//     this.showForm = false; // Masquer le formulaire après l'enregistrement
+//   });
+// }
+
 save() {
-  let critere = this.critereForm.value; // Récupérer les données du formulaire sous forme d'objet
-  this.critereHttpService.save(critere).subscribe(response => {
-    this.criteres$ = this.critereHttpService.findAll();
-    this.showForm = false; // Masquer le formulaire après l'enregistrement
-  });
+  this.critereHttpService.save(this.critereForm.value);
+  this.cancel();
+  this.showForm=true;
 }
 
 cancel() {
@@ -80,6 +87,13 @@ remove(id: number) {
   this.critereHttpService.deleteById(id).subscribe(response => {
     this.criteres$ = this.critereHttpService.findAll();
   });
+}
+
+show() {
+  this.showForm = true;
+}
+voyageur(){
+  this.router.navigate(["/materielRef"]);
 }
 
 }
