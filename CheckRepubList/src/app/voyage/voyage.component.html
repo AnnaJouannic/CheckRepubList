@@ -8,7 +8,7 @@
 	</div>
 	</head> -->
 	
-		<div  [hidden]="FormHidden" class="form-container" >
+		<div  [hidden]="FormHidden" [hidden]="MatHidden" class="form-container" >
 
 		  <div id="recap">
 			<h1 >Liste des voyages</h1>
@@ -87,14 +87,14 @@
 						  </tr>
 						  </table>
 				</div>
-				<div id="historique">
+				<div id="historique" >
 					<table>
 						<tr id="lignetab">
 					  <td><h2>Vos anciens voyages</h2></td>
 				  </tr>
 						<tr id="lignetab">
 							<td><div class="btn-group btn-group-lg float-right">
-								<a class="btn btn-success" ><i class="bi bi-plus-circle"></i></a>
+								<a class="btn btn-success" (click)="hidden()"><i class="bi bi-plus-circle"></i></a>
 							  </div></td>
 						</tr>
 					</table>
@@ -186,9 +186,10 @@
 
 
   
-		<div class="btn-group btn-group-lg float-right" >
+		<div class="btn-group btn-group-lg float-right" [hidden]="FormHidden">
+			<button class="btn btn-success"> Générer ta Checklist</button>
 			<a class="btn btn-success" (click)="hiddenMat()"><i class="bi bi-backspace-fill"></i></a>
-		  
+		 
 		<div>
 			<select class="form-control" id="idVoyage" name="idVoyage" >
 				<option *ngFor="let voyage of voyages$|async" [value]="voyage.id">Checklist {{voyage.libelle}}</option>
@@ -217,7 +218,7 @@
 					  </tbody>
 				  </table>
 			  </div>
-		</div>
+			</div>
   
 	</body>	
 		 
