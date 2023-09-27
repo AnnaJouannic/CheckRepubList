@@ -51,6 +51,7 @@
             <label for="materielRef">MaterielRef:</label>
             <!-- <label for="formControlName="materielRef"">materielRef:</label> <input type="text" class="form-control" id="materielRef" name="materielRef" formControlName="materielRef"/>
             <span class="text-danger" *ngIf="critereForm.get('materielRef')?.dirty && critereForm.get('materielRef')?.hasError('required')">Le materielRef est obligatoire</span> -->
+            <label for="idMaterielref">MaterielRef</label>
             <select class="form-control" id="idMaterielref" name="idMaterielref" formControlName="idMaterielref">
                 <option *ngFor="let materielRef of materielsRef$ | async" [value]="materielRef.id">{{materielRef.libelleMateriel}}</option>
             </select>
