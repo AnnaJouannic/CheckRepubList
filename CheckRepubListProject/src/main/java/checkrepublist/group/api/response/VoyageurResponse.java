@@ -2,7 +2,6 @@ package checkrepublist.group.api.response;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 

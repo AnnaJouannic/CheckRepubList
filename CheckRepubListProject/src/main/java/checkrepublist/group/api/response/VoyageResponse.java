@@ -3,7 +3,6 @@ package checkrepublist.group.api.response;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 
@@ -102,7 +101,7 @@ public class VoyageResponse {
 		return idMateriels;
 	}
 
-	public void setMateriels(List<Integer> idMateriels) {
+	public void setIdMateriels(List<Integer> idMateriels) {
 		this.idMateriels = idMateriels;
 	}
 
@@ -110,7 +109,7 @@ public class VoyageResponse {
 		return idVoyageurs;
 	}
 
-	public void setVoyageurs(List<Integer> idVoyageurs) {
+	public void setIdVoyageurs(List<Integer> idVoyageurs) {
 		this.idVoyageurs = idVoyageurs;
 	}
 

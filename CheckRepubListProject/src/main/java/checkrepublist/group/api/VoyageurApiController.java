@@ -1,5 +1,6 @@
 package checkrepublist.group.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -22,6 +23,7 @@ import checkrepublist.group.api.response.VoyageurResponse;
 import checkrepublist.group.dao.IDAOVoyageur;
 import checkrepublist.group.exception.VoyageurNotFoundException;
 import checkrepublist.group.exception.VoyageurNotValidException;
+import checkrepublist.group.model.Voyage;
 import checkrepublist.group.model.Voyageur;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -48,8 +50,17 @@ public class VoyageurApiController {
 		VoyageurResponse response = new VoyageurResponse();
 
 		BeanUtils.copyProperties(voyageur, response);
-
-		return VoyageurResponse.convertVoyageur(voyageur);
+		
+		if (!voyageur.getVoyages().isEmpty()) {
+		List<Integer> id_voyages=new ArrayList<>();
+        List<Voyage> obj_voyages = voyageur.getVoyages();
+        for( Voyage voyage : obj_voyages) {
+            id_voyages.add(voyage.getId());
+        }
+        response.setIdVoyages(id_voyages);
+		}
+		
+		return response;
 	}
 
 	@PostMapping

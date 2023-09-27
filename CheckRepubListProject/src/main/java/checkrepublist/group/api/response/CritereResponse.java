@@ -82,6 +82,7 @@ CritereResponse response = new CritereResponse();
 		response.setDeplacement(String.valueOf(critere.getDeplacement()));
 		response.setClimat(String.valueOf(critere.getClimat()));
 		
+		
 		return response;
 	}
 	

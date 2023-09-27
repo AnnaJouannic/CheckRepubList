@@ -10,7 +10,6 @@ public class VoyageRequest {
 
 	private LocalDate dateFinVoyage;
 
-	@NotBlank
 	private String libelle;
 
 	private String pays;

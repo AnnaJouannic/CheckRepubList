@@ -20,4 +20,7 @@ public interface IDAOCritere  extends JpaRepository<Critere, Integer>  {
 			+ " or (c.logement = ?1 and c.climat = ?3)"
 			+ " or (c.deplacement = ?2 and c.climat = ?3)")
 	List<Critere> findAllTest(TypeLogement logement, TypeDeplacement deplacement, TypeClimat climat);
+	
+
+
 }

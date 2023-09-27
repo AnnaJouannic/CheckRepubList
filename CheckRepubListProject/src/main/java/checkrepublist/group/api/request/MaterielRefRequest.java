@@ -4,7 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 
 public class MaterielRefRequest {
 
-	@NotBlank
 	private String libelleMateriel;
 	
 	
