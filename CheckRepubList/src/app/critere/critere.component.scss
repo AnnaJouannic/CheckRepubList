@@ -2,9 +2,9 @@
 div.mt-3 {
     margin-top: 3rem;
     padding: 1rem;
-    background-color: #fff;
+    background-color: #a4b7a8;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     width: 80%;
     margin: 0 auto;
 }
@@ -17,31 +17,12 @@ div.mt-3 {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-// @font-face {
-//     font-family: "Playball";
-//     src: url("/assets/Playball-Regular.ttf") format("truetype");
-// }
-// body {
-//     // font-family: Arial, sans-serif;
-//     // background-color: #fff;
-//     // margin: 0;
-//     // padding: 0;
 
-//     font-family: 'Roboto', sans-serif;
-//     background-color: #fff;
-//     margin: 0;
-//     padding: 0;
-// 	background-image : url("/assets/paccueil.jpg");
-// 	background-attachment : fixed;
-// 	background-repeat: no-repeat;
-// 	background-size:100% 100%;
-// 	backdrop-filter: blur(100px);
     
-//     }
-    
-    h2 {
+    h1 {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
+    color: #ffffff; /* Blanc */
     }
 
     thead{
@@ -56,31 +37,31 @@ div.mt-3 {
         border: 1px solid #ddd; /* Bordures */
         }
     
-    /* Style pour la dernière colonne (espace pour les boutons) */
-    th:last-child {
-
-        text-align: center;
-    }
+    // /* Style pour la dernière colonne (espace pour les boutons) */
+    // th:last-child {
+    //     text-align: center;
+    // }
     
-    /* Style pour les boutons d'icônes dans l'en-tête */
-    th i {
-        font-size: 20px;
-        margin-right: 5px;  
-    }
-    form {
-    max-width: 800px;
-    margin: 0 auto;
-    background: #a4b7a885;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    }
+    // /* Style pour les boutons d'icônes dans l'en-tête */
+    // th i {
+    //     font-size: 20px;
+    //     margin-right: 5px;  
+    // }
+    // form {
+    // max-width: 800px;
+    // margin: 0 auto;
+    // background: #a4b7a885;
+    // padding: 20px;
+    // border-radius: 5px;
+    // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    // }
     
     label {
     font-weight: bold;
+    color: #000000; 
     }
     
-    
+   
     
     input:focus {
     outline: none;
@@ -91,18 +72,18 @@ div.mt-3 {
 
 
 /* Style pour la carte (card) principale */
-.card {
-    margin-top: 1rem;
-    //background-image: url("/assets/paccueil.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-    overflow: hidden;
-    margin: 0;
-}
+// .card {
+//     margin-top: 1rem;
+//     //background-image: url("/assets/paccueil.jpg");
+//     background-size: cover;
+//     background-attachment: fixed;
+//     background-repeat: no-repeat;
+//     background-size: 100% 100%;
+//     -webkit-backdrop-filter: blur(15px);
+//     backdrop-filter: blur(15px);
+//     overflow: hidden;
+//     margin: 0;
+// }
 
 
 

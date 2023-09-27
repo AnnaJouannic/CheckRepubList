@@ -1,12 +1,12 @@
 <body>
 <div class="mt-3">
     <form >
-        <h2>Liste des materiels</h2>
+        <h1>Liste des materiels</h1>
     <div class="card-body">
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Identifiant</th>
+                    <!-- <th>Identifiant</th> -->
                     <th>LibelleMateriel</th>
                     <th>Categorie</th>
                     <th></th>
@@ -16,7 +16,7 @@
 
             <tbody>
                 <tr *ngFor="let matRef of list()">
-                    <td>{{matRef.id}}</td>
+                    <!-- <td>{{matRef.id}}</td> -->
                     <td>{{matRef.libelleMateriel}}</td>
                     <td>{{matRef.categorie}}</td>
                     <!-- <td>{{matRef.critere?.id}}</td> -->
@@ -40,11 +40,11 @@
 
 <div class="mt-3" *ngIf="showForm">
     <form (ngSubmit)="save()" [formGroup]="materielRefForm">
-    <div>Edition d'un materielRef</div>
+    <h1>Edition d'un materielRef</h1>
     
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" readonly formControlName="id"/>
-        </div>
+        </div> -->
         <div class="form-group">
             <label for="libelleMateriel">libelle du Materiel:</label> <input type="text" class="form-control" id="libelleMateriel" name="libelleMateriel" formControlName="libelleMateriel"/>
             <span class="text-danger" *ngIf="materielRefForm.get('libelleMateriel')?.dirty && materielRefForm.get('libelleMateriel')?.hasError('required')">Le libelleMateriel est obligatoire</span>
