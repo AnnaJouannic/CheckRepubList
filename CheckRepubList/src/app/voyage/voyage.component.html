@@ -30,7 +30,7 @@
 					</thead>
 		
 					<tbody>
-						<tr *ngFor="let voyage of list()">
+						<tr *ngFor="let voyage of voyages$|async">
 							<td>{{voyage.id}}</td>
 							<td>{{voyage.dateDebutVoyage}}</td>
 							<td>{{voyage.dateFinVoyage}}</td>
@@ -39,7 +39,7 @@
 							<td>{{voyage.logement}}</td>
 							<td>{{voyage.deplacement}}</td>
 							<td>{{voyage.climat}}</td>
-							<td>{{voyage.voyageur}}</td>
+							<td>{{voyage.voyageur?.prenom}}</td>
 						 
 							<td>
 								<div class="btn-group btn-group-sm">
@@ -165,7 +165,7 @@
 	<div class="form-group">
 				<label for="voyageur">Choisir un voyageur existant :</label> 
 				<select class="form-control" id="voyageur" name="voyageur" formControlName="voyageur">
-					<option *ngFor="let voyageur of listvoy()" [value]="voyageur.id">{{voyageur.nom}} {{voyageur.prenom}}</option>
+					<option *ngFor="let voyageur of voyageurs$|async" [value]="voyageur">{{voyageur.nom}}-{{voyageur.prenom}}</option>
 				</select>
 				<span class="text-danger" *ngIf="voyageForm.get('voyageur').hasError('required')">
 					Un voyageur  est obligatoire.
