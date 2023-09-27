@@ -62,14 +62,13 @@ export class CritereComponent implements OnInit {
 }
 
 edit(id: number) {
-  this.critereHttpService.findById(id).subscribe(response => {
-    this.critereForm.patchValue(response);
-    this.showForm = true;
-    if(!this.critereForm.value.materielref) {
-      this.critereForm.patchValue(new MaterielRef());
-    }
-  });
+   this.critereHttpService.findById(id).subscribe(response => {
+     this.critereForm.patchValue(response) ;
+      this.showForm = true;
+});
+ 
 }
+
 
 save() {
   console.log(this.critereForm.value);
