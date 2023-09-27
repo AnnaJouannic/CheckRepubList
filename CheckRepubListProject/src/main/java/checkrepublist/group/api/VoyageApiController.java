@@ -23,11 +23,14 @@ import checkrepublist.group.api.response.VoyageResponse;
 import checkrepublist.group.dao.IDAOCritere;
 import checkrepublist.group.dao.IDAOMaterielRef;
 import checkrepublist.group.dao.IDAOVoyage;
+import checkrepublist.group.dao.IDAOVoyageur;
 import checkrepublist.group.exception.VoyageNotFoundException;
 import checkrepublist.group.exception.VoyageNotValidException;
+import checkrepublist.group.exception.VoyageurNotFoundException;
 import checkrepublist.group.model.Critere;
 import checkrepublist.group.model.MaterielRef;
 import checkrepublist.group.model.Voyage;
+import checkrepublist.group.model.Voyageur;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
@@ -45,6 +48,9 @@ public class VoyageApiController {
 	@Autowired
 	IDAOMaterielRef repoMaterielRef;
 	
+	@Autowired
+	IDAOVoyageur repoVoyageur;
+	
 	@GetMapping
 	@JsonView(Views.Voyage.class)
 	public List<Voyage> findAll() {
@@ -58,8 +64,25 @@ public class VoyageApiController {
         VoyageResponse response = new VoyageResponse();
 
         BeanUtils.copyProperties(voyage, response);
-        
-        return VoyageResponse.convert(voyage);
+        response.setLogement(String.valueOf(voyage.getLogement()));
+		response.setDeplacement(String.valueOf(voyage.getDeplacement()));
+		response.setClimat(String.valueOf(voyage.getClimat()));
+		
+		List<Integer> id_materiels=new ArrayList<>();
+		List<MaterielRef> obj_materiels = voyage.getMateriels();
+		for( MaterielRef materiel : obj_materiels) {
+			id_materiels.add(materiel.getId());
+		}
+		response.setIdMateriels(id_materiels);
+		
+		List<Integer> id_voyageurs=new ArrayList<>();
+        List<Voyageur> obj_voyageurs = voyage.getVoyageurs();
+        for( Voyageur voyageur : obj_voyageurs) {
+            id_voyageurs.add(voyageur.getId());
+        }
+        response.setIdVoyageurs(id_voyageurs);
+       
+        return response;
 	}
 
 	@PostMapping
@@ -81,8 +104,33 @@ public class VoyageApiController {
 		voyage.setMateriels(listeMateriel);
 		
 		this.repoVoyage.save(voyage);
-
-		return VoyageResponse.convert(voyage);
+		System.out.println(voyage);
+		
+		VoyageResponse response = new VoyageResponse();
+		
+		BeanUtils.copyProperties(voyage, response);
+        response.setLogement(String.valueOf(voyage.getLogement()));
+		response.setDeplacement(String.valueOf(voyage.getDeplacement()));
+		response.setClimat(String.valueOf(voyage.getClimat()));
+		
+		List<Integer> id_materiels=new ArrayList<>();
+		List<MaterielRef> obj_materiels = voyage.getMateriels();
+		for( MaterielRef materiel : obj_materiels) {
+			id_materiels.add(materiel.getId());
+		}
+		response.setIdMateriels(id_materiels);
+		
+		
+		if (voyageRequest.getIdVoyageur() != null) {
+		List<Integer> id_voyageurs=new ArrayList<>();
+        List<Voyageur> obj_voyageurs = voyage.getVoyageurs();
+        for( Voyageur voyageur : obj_voyageurs) {
+            id_voyageurs.add(voyageur.getId());
+        }
+        response.setIdVoyageurs(id_voyageurs);
+		}
+		
+		return response;
 	}
 	
 	 
@@ -97,10 +145,41 @@ public class VoyageApiController {
 		Voyage voyage = this.repoVoyage.findById(id).orElseThrow(VoyageNotFoundException::new);
 
 		BeanUtils.copyProperties(voyageRequest, voyage);
+		
+		System.out.println(voyageRequest.getIdVoyageur());
+		if (voyageRequest.getIdVoyageur() != null) {
+			System.out.println(voyageRequest.getIdVoyageur());
+		Voyageur voyageur1 = this.repoVoyageur.findById(voyageRequest.getIdVoyageur()).orElseThrow(VoyageurNotFoundException::new);
+		
+		List<Voyageur> list = new ArrayList<>();
+		list.add(voyageur1);
+		voyage.setVoyageurs(list);
+		}
 
 		this.repoVoyage.save(voyage);
+		System.out.println(voyage.getVoyageurs());
 		
-		return VoyageResponse.convert(voyage);
+		VoyageResponse response = new VoyageResponse();
+		
+		BeanUtils.copyProperties(voyage, response);
+        response.setLogement(String.valueOf(voyage.getLogement()));
+		response.setDeplacement(String.valueOf(voyage.getDeplacement()));
+		response.setClimat(String.valueOf(voyage.getClimat()));
+		
+		System.out.println(response);
+		System.out.println(voyageRequest.getIdVoyageur());
+		if (voyageRequest.getIdVoyageur() != null) {
+		List<Integer> id_voyageurs=new ArrayList<>();
+        List<Voyageur> obj_voyageurs = voyage.getVoyageurs();
+        for( Voyageur voyageur : obj_voyageurs) {
+        	
+            id_voyageurs.add(voyageur.getId());
+            System.out.println(id_voyageurs);
+        }
+        response.setIdVoyageurs(id_voyageurs);
+		}
+		
+		return response;
 	}
 
 	@DeleteMapping("/{id}")

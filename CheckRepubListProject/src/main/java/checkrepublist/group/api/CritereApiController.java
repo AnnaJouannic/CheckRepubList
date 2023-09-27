@@ -26,6 +26,9 @@ import checkrepublist.group.exception.CritereNotValidException;
 import checkrepublist.group.exception.MaterielRefNotFoundException;
 import checkrepublist.group.model.Critere;
 import checkrepublist.group.model.MaterielRef;
+import checkrepublist.group.model.TypeClimat;
+import checkrepublist.group.model.TypeDeplacement;
+import checkrepublist.group.model.TypeLogement;
 import jakarta.validation.Valid;
 
 @RestController
@@ -68,17 +71,23 @@ public class CritereApiController {
 		Critere critere = new Critere();
 		
 		
-		BeanUtils.copyProperties(critereRequest, critere);
+		if (critereRequest.getLogement() != null) {
+			critere.setLogement(TypeLogement.valueOf(critereRequest.getLogement()));;
+		}
+		if (critereRequest.getDeplacement() != null) {
+			critere.setDeplacement(TypeDeplacement.valueOf(critereRequest.getDeplacement()));;
+		}
+		if (critereRequest.getClimat() != null) {
+			critere.setClimat(TypeClimat.valueOf(critereRequest.getClimat()));;
+		}
 		
 		Integer id_mat = critereRequest.getIdMaterielref();
-		
 		if (id_mat != null) {
 			MaterielRef mat = this.repoMaterielRef.findById(id_mat).orElseThrow(MaterielRefNotFoundException::new);
 			critere.setMaterielref(mat);
 		}
 		
 		this.repoCritere.save(critere);
-		
 		return CritereResponse.convert(critere);
 	}
 	
@@ -91,6 +100,16 @@ public class CritereApiController {
 		Critere critere = this.repoCritere.findById(id).orElseThrow(CritereNotFoundException::new);
 		
 		BeanUtils.copyProperties(critereRequest, critere);
+		System.out.println(critere.getMaterielref());
+		if (critereRequest.getLogement() != null) {
+			critere.setLogement(TypeLogement.valueOf(critereRequest.getLogement()));;
+		}
+		if (critereRequest.getDeplacement() != null) {
+			critere.setDeplacement(TypeDeplacement.valueOf(critereRequest.getDeplacement()));;
+		}
+		if (critereRequest.getClimat() != null) {
+			critere.setClimat(TypeClimat.valueOf(critereRequest.getClimat()));;
+		}
 		
 		this.repoCritere.save(critere);
 		

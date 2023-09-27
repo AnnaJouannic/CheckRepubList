@@ -2,12 +2,9 @@ package checkrepublist.group.api.response;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 
-import checkrepublist.group.model.Categorie;
-import checkrepublist.group.model.Critere;
 import checkrepublist.group.model.MaterielRef;
 
 public class MaterielRefResponse {
@@ -54,25 +51,17 @@ public class MaterielRefResponse {
 		this.idCriteres = idCriteres;
 	}
 	
-	public static MaterielRefResponse convertVoyage (MaterielRef materielRef) {
-		MaterielRefResponse response = new MaterielRefResponse();
-		
-		BeanUtils.copyProperties(materielRef, response);
-		
-		response.setCategorie(String.valueOf(materielRef.getCategorie()));
-		
-		return response;
-		
-	}
-	
+
 	public static MaterielRefResponse convertCritere (MaterielRef materielRef) {
 		MaterielRefResponse response = new MaterielRefResponse();
 		
 		BeanUtils.copyProperties(materielRef, response);
 		
 		response.setCategorie(String.valueOf(materielRef.getCategorie()));
-		//response.setIdCriteres(materielRef.getCriteres().stream().map(CritereResponse::convertBis).collect(Collectors.toList()));
 		
+		//response.setIdCriteres(materielRef.getCriteres().stream().map(CritereResponse::convert).collect(Collectors.toList()));
+		
+
 		return response;
 		
 	}

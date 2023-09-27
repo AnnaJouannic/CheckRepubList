@@ -2,22 +2,15 @@ package checkrepublist.group.api.request;
 
 import java.time.LocalDate;
 
-import jakarta.validation.constraints.NotBlank;
-
 public class VoyageurRequest {
 	
-	@NotBlank
 	private String nom;
 	
-	@NotBlank
 	private String prenom;
 	
-
 	private LocalDate naissance;
 	
-	
 	private boolean animal;
-	
 	
 	private boolean accessibilite;
 

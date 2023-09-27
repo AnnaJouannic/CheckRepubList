@@ -1,5 +1,6 @@
 package checkrepublist.group.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -23,6 +24,8 @@ import checkrepublist.group.dao.IDAOCritere;
 import checkrepublist.group.dao.IDAOMaterielRef;
 import checkrepublist.group.exception.MaterielRefNotFoundException;
 import checkrepublist.group.exception.MaterielRefNotValidException;
+import checkrepublist.group.model.Categorie;
+import checkrepublist.group.model.Critere;
 import checkrepublist.group.model.MaterielRef;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -51,8 +54,19 @@ public class MaterielRefApiControlleur {
 		MaterielRefResponse response = new MaterielRefResponse();
 		
 		BeanUtils.copyProperties(materielRef, response);
+		if (materielRef.getCategorie() != null) {
+			materielRef.setCategorie(Categorie.valueOf(response.getCategorie()));
+		}
 		
-		return MaterielRefResponse.convertCritere(materielRef);
+		List<Integer> id_criteres=new ArrayList<>();
+		List<Critere> obj_criteres = materielRef.getCriteres();
+		for( Critere critere : obj_criteres) {
+			id_criteres.add(critere.getId());
+		}
+		response.setIdCriteres(id_criteres);
+		
+		
+		return response;
 	}
 	
 	@PostMapping("")
@@ -64,6 +78,9 @@ public class MaterielRefApiControlleur {
 		MaterielRef materielRef = new MaterielRef();
 		
 		BeanUtils.copyProperties(materielRefRequest, materielRef);
+		if (materielRefRequest.getCategorie() != null) {
+			materielRef.setCategorie(Categorie.valueOf(materielRefRequest.getCategorie()));;
+		}
 		
 		this.repoMaterielRef.save(materielRef);
 
@@ -76,10 +93,15 @@ public class MaterielRefApiControlleur {
 			throw new MaterielRefNotValidException();
 		}
 
-		MaterielRef materielRef = new MaterielRef();
+		MaterielRef materielRef = this.repoMaterielRef.findById(id).orElseThrow(MaterielRefNotFoundException::new);
 		
 		BeanUtils.copyProperties(materielRefRequest, materielRef);
 		
+		if (materielRefRequest.getCategorie() != null) {
+			materielRef.setCategorie(Categorie.valueOf(materielRefRequest.getCategorie()));;
+		}
+		
+	
 		this.repoMaterielRef.save(materielRef);
 
 		return MaterielRefResponse.convertCritere(materielRef);
