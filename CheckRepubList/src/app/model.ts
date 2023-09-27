@@ -19,19 +19,19 @@ export class MaterielRef{
 
 export class Critere{
     id: number;
-    materielRef: MaterielRef;
+    materielref: MaterielRef;
     logement: string;
     deplacement: string;
     climat: string;
     constructor(
         id?: number,
-       materielRef?: MaterielRef,
+       materielref?: MaterielRef,
         logement?: string,
         deplacement?: string,
         climat?: string,
     ){
         this.id = id
-        this.materielRef = materielRef
+        this.materielref = materielref
         this.logement = logement
         this.deplacement = deplacement,
         this.climat = climat

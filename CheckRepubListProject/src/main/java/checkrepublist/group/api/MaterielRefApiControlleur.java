@@ -55,7 +55,7 @@ public class MaterielRefApiControlleur {
 		
 		BeanUtils.copyProperties(materielRef, response);
 		if (materielRef.getCategorie() != null) {
-			materielRef.setCategorie(Categorie.valueOf(response.getCategorie()));
+			response.setCategorie(materielRef.getCategorie().name());
 		}
 		
 		List<Integer> id_criteres=new ArrayList<>();
