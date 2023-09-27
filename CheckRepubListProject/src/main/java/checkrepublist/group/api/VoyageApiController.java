@@ -109,9 +109,10 @@ public class VoyageApiController {
 		VoyageResponse response = new VoyageResponse();
 		
 		BeanUtils.copyProperties(voyage, response);
-        response.setLogement(String.valueOf(voyage.getLogement()));
-		response.setDeplacement(String.valueOf(voyage.getDeplacement()));
-		response.setClimat(String.valueOf(voyage.getClimat()));
+        
+		response.setLogement(String.valueOf(voyageRequest.getLogement()));
+		response.setDeplacement(String.valueOf(voyageRequest.getDeplacement()));
+		response.setClimat(String.valueOf(voyageRequest.getClimat()));
 		
 		List<Integer> id_materiels=new ArrayList<>();
 		List<MaterielRef> obj_materiels = voyage.getMateriels();
@@ -129,7 +130,7 @@ public class VoyageApiController {
         }
         response.setIdVoyageurs(id_voyageurs);
 		}
-		
+		System.out.println(response.getClimat());
 		return response;
 	}
 	
