@@ -28,4 +28,42 @@
         <a class="nav-link"  (click)="deconnexion()"  routerLinkActive="active">Déconnexion</a>
     </li>
 </ul>
- 
+
+
+<!-- 
+<ul class="nav justify-content-center">
+    <div class="dropdown">
+        <button class="dropbtn">Nav Bar 
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+    <li  >
+        <a  [routerLink]="['']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><i class="bi bi-house"></i></a>
+    </li>
+    <li  *ngIf="authService.isAuthenticated()" >
+        <a  [routerLink]="['/voyage']" routerLinkActive="active">Voyage</a>
+    </li>
+    <li *ngIf="authService.isAuthenticated()">
+        <a  [routerLink]="['/voyageur']" routerLinkActive="active">Voyageur</a>
+    </li>
+    <li *ngIf="authService.isAuthenticated() " >
+        <a  [routerLink]="['/materielRef']" routerLinkActive="active">MaterielRef</a>
+    </li>
+    <li *ngIf="authService.isAuthenticated()" >
+        <a [routerLink]="['/critere']" routerLinkActive="active">Critere</a>
+    </li>
+    <li   *ngIf="authService.isAuthenticated()">
+        <a [routerLink]="['/utilisateur']" routerLinkActive="active">Utilisateur</a>
+    </li>
+    <li  *ngIf="!authService.isAuthenticated()">
+        <a  [routerLink]="['/inscription']" routerLinkActive="active">Inscription</a>
+    </li>
+    <li *ngIf="!authService.isAuthenticated()" >
+        <a  [routerLink]="['/connexion']" routerLinkActive="active">Connexion</a>
+    </li>
+    <li *ngIf="authService.isAuthenticated()">
+        <a  (click)="deconnexion()"  routerLinkActive="active">Déconnexion</a>
+    </li>
+</div>
+</div>
+</ul> -->

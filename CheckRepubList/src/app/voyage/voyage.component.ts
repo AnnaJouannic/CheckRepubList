@@ -157,10 +157,12 @@ ngOnInit(): void {
 }
 
 
-// list(): Array<Voyage>{
-//  return this.voyageService.findAll();
- 
-//  }
+list(id: number){
+  this.voyageService.findById(id).subscribe(resp => {
+    this.voyageForm.value;
+    this.showForm = true;
+  });
+  }
 
 //  listvoy(): Array<Voyageur> {
 //       return this.voyageurService.findAll();
@@ -172,8 +174,7 @@ ngOnInit(): void {
 add() {
 
   this.voyageForm.patchValue(new Voyage());
-  this.voyageForm.patchValue(new Voyageur());
-  this.voyageForm.patchValue(new MaterielRef());
+
   this.showForm = true;
 }
 
@@ -181,9 +182,9 @@ edit(id: number) {
   this.voyageService.findById(id).subscribe(resp => {
     this.voyageForm.patchValue(resp);
     this.showForm = true;
-    if(!this.voyageForm.value.voyageur) {
-      this.voyageForm.patchValue(new Voyageur());
-    }
+    // if(!this.voyageForm.value.voyageur) {
+    //   this.voyageForm.patchValue(new Voyageur());
+    // }
   });
 }
 
@@ -197,13 +198,22 @@ save() {
   // this.voyageService.save(this.voyageForm.value);
   // 
   // this.cancel();
-
+  
    console.log(this.voyageForm.value);
   this.voyageService.save(this.voyageForm.value).subscribe(resp => {
     this.voyages$ = this.voyageService.findAll();
-   
-}); 
+    
+});  
+
 }
+
+//  recap(id:number){
+
+//    this.voyageService.findById(id).subscribe(resp => {
+//     this.voyageForm.patchValue(this.voyageForm.value);
+//   });
+//   this.showForm = true;
+// }
 
 cancel() {
   this.showForm = false;
