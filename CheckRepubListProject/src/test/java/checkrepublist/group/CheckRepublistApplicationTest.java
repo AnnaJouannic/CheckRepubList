@@ -554,13 +554,13 @@ class CheckRepublistApplicationTest {
 	
 	
 	Utilisateur c1 = new Utilisateur("Even","Manon", "Manondu56", "12345", "manoneven@gmail.com", "0650265588");
-	c1.getRoles().add(Roles.User);
+	c1.getRole().add(Roles.User);
 	c1.setVoyageurs(utilisateur1);
 	c1.setVoyages(Voyage1);
 	c1 = utilisateurRepo.save(c1);
 	
 	Utilisateur c2 = new Utilisateur("Andraos","Rawad", "Rads", "12345", "rawadandraos@gmail.com", "0778050623");
-	c2.getRoles().add(Roles.Admin);
+	c2.getRole().add(Roles.Admin);
 	c2.setVoyageurs(utilisateur2);
 	c2.setVoyages(Voyage1);
 	c2.setVoyages(Voyage2);

@@ -3,7 +3,7 @@ package checkrepublist.group.api.request;
 public class CritereRequest {
 
 	
-	private Integer materielref;
+	private Integer idMaterielref;
 	
 	private String logement;
 	
@@ -11,12 +11,12 @@ public class CritereRequest {
 
 	private String climat;
 
-	public MaterielRefRequest getMaterielref() {
-		return materielref;
+	public Integer getIdMaterielref() {
+		return idMaterielref;
 	}
 
-	public void setMaterielRef(MaterielRefRequest materielref) {
-		this.materielref = materielref;
+	public void setIdMaterielRef(Integer idMaterielref) {
+		this.idMaterielref = idMaterielref;
 	}
 
 	public String getLogement() {

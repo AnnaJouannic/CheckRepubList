@@ -28,9 +28,9 @@ public class VoyageResponse {
 	
 	//private List<ActiviteRef> activites= new ArrayList<>();
 	
-	private List<Integer> materiels=new ArrayList<>();
+	private List<Integer> idMateriels=new ArrayList<>();
 	
-	private List<Integer> voyageurs=new ArrayList<>();
+	private List<Integer> idVoyageurs=new ArrayList<>();
 	
 	
 	
@@ -98,20 +98,20 @@ public class VoyageResponse {
 	public void setActivites(List<ActiviteRef> activites) {
 		this.activites = activites;
 	}*/
-	public List<MaterielRefResponse> getMateriels() {
-		return materiels;
+	public List<Integer> getIdMateriels() {
+		return idMateriels;
 	}
 
-	public void setMateriels(List<MaterielRefResponse> materiels) {
-		this.materiels = materiels;
+	public void setMateriels(List<Integer> idMateriels) {
+		this.idMateriels = idMateriels;
 	}
 
-	public List<Integer> getVoyageurs() {
-		return voyageurs;
+	public List<Integer> getIdVoyageurs() {
+		return idVoyageurs;
 	}
 
-	public void setVoyageurs(List<Integer> voyageurs) {
-		this.voyageurs = voyageurs;
+	public void setVoyageurs(List<Integer> idVoyageurs) {
+		this.idVoyageurs = idVoyageurs;
 	}
 
 	public String getPays() {
@@ -133,7 +133,7 @@ public class VoyageResponse {
 		
 		//response.setMateriels(String.join(",", voyage.getMateriels().stream().map(voyage).collect(Collectors.toList())));
 		//response.setMateriels(List.of(voyage.getMateriels().stream().map(m_-> new MaterielRef(m.getLibelleMaterielRef(), m.getCategorie()).collect(Collectors.toList()))));
-		response.setMateriels(voyage.getMateriels().stream().map(MaterielRefResponse::convertVoyage).collect(Collectors.toList()));
+		//response.setMateriels(voyage.getMateriels().stream().map(MaterielRefResponse::convertVoyage).collect(Collectors.toList()));
 		
 		//response.setVoyageurs(voyage.getVoyageurs().stream().map(VoyageurResponse::convertVoyageur).collect(Collectors.toList()));
 		
@@ -151,7 +151,7 @@ public class VoyageResponse {
 		
 		//response.setMateriels(String.join(",", voyage.getMateriels().stream().map(voyage).collect(Collectors.toList())));
 		//response.setMateriels(List.of(voyage.getMateriels().stream().map(m_-> new MaterielRef(m.getLibelleMaterielRef(), m.getCategorie()).collect(Collectors.toList()))));
-		response.setMateriels(voyage.getMateriels().stream().map(MaterielRefResponse::convertVoyage).collect(Collectors.toList()));
+		//response.setMateriels(voyage.getMateriels().stream().map(MaterielRefResponse::convertVoyage).collect(Collectors.toList()));
 		
 		
 		return response;
