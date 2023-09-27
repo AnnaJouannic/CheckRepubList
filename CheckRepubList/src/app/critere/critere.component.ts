@@ -28,13 +28,13 @@ export class CritereComponent implements OnInit {
   constructor(private critereHttpService: CritereHttpService, private formBuilder: FormBuilder, private router: Router, private materielRefService: MaterielRefHttpService){}
 
   ngOnInit(): void {
-    this.criteres$ = this.critereHttpService.findAllForAsync();
+    this.criteres$ = this.critereHttpService.findAll();
     this.materielsRef$ = this.materielRefService.findAllforAsync();
 
 
     this.critereForm = this.formBuilder.group({
       id: this.formBuilder.control(''),
-      materielref: this.formBuilder.control('',[Validators.required]),
+      idMaterielref: this.formBuilder.control('',[Validators.required]),
       logement: this.formBuilder.control(''),
       deplacement: this.formBuilder.control(''),
       climat: this.formBuilder.control(''),
@@ -58,8 +58,6 @@ export class CritereComponent implements OnInit {
 
  add() {
   this.critereForm.reset();
-  this.critereHttpService.findAll().subscribe(res => {
-  this.critereForm.value.materielref;});
   this.showForm = true; //afficher le formulaire
 }
 
@@ -74,9 +72,10 @@ edit(id: number) {
 }
 
 save() {
-  this.critereHttpService.save(this.critereForm.value)
+  console.log(this.critereForm.value);
+  this.critereHttpService.save(this.critereForm.value).subscribe(resp => {
     this.criteres$ = this.critereHttpService.findAll();
-  
+  }); 
 }
 
 // save() {
@@ -116,7 +115,9 @@ cancel() {
 // }
 
 remove(id: number) {
-  this.critereHttpService.deleteById(id);
+  this.critereHttpService.deleteById(id).subscribe(resp => {
+    this.criteres$ = this.critereHttpService.findAll();
+  });
 }
 
 show() {
