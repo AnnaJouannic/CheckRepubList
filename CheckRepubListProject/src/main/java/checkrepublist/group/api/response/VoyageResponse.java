@@ -30,8 +30,9 @@ public class VoyageResponse {
 	
 	private List<MaterielRefResponse> materiels=new ArrayList<>();
 	
-	private List<VoyageurResponse> voyageurs=new ArrayList<>();
-
+	private List<Integer> voyageurs=new ArrayList<>();
+	
+	
 	
 	
 	public Integer getId() {
@@ -105,11 +106,11 @@ public class VoyageResponse {
 		this.materiels = materiels;
 	}
 
-	public List<VoyageurResponse> getVoyageurs() {
+	public List<Integer> getVoyageurs() {
 		return voyageurs;
 	}
 
-	public void setVoyageurs(List<VoyageurResponse> voyageurs) {
+	public void setVoyageurs(List<Integer> voyageurs) {
 		this.voyageurs = voyageurs;
 	}
 
@@ -134,7 +135,7 @@ public class VoyageResponse {
 		//response.setMateriels(List.of(voyage.getMateriels().stream().map(m_-> new MaterielRef(m.getLibelleMaterielRef(), m.getCategorie()).collect(Collectors.toList()))));
 		response.setMateriels(voyage.getMateriels().stream().map(MaterielRefResponse::convertVoyage).collect(Collectors.toList()));
 		
-		response.setVoyageurs(voyage.getVoyageurs().stream().map(VoyageurResponse::convertVoyageur).collect(Collectors.toList()));
+		//response.setVoyageurs(voyage.getVoyageurs().stream().map(VoyageurResponse::convertVoyageur).collect(Collectors.toList()));
 		
 		return response;
 	}

@@ -5,26 +5,25 @@ import java.time.LocalDate;
 import jakarta.validation.constraints.NotBlank;
 
 public class VoyageRequest {
-	
+
 	private LocalDate dateDebutVoyage;
-	
 
 	private LocalDate dateFinVoyage;
-	
+
 	@NotBlank
 	private String libelle;
-	
+
 	private String pays;
-	
+
 	private String logement;
-	
+
 	private String deplacement;
-	
+
 	private String climat;
-	
-	private VoyageurRequest voyageur;
-	
-	//private List<ActiviteRef> activites= new ArrayList<>();
+
+	private Integer idVoyageur;
+
+	// private List<ActiviteRef> activites= new ArrayList<>();
 
 	public LocalDate getDateDebutVoyage() {
 		return dateDebutVoyage;
@@ -82,21 +81,19 @@ public class VoyageRequest {
 		this.pays = pays;
 	}
 
-	public VoyageurRequest getVoyageur() {
-		return voyageur;
+	public Integer getIdVoyageur() {
+		return idVoyageur;
 	}
 
-	public void setVoyageur(VoyageurRequest voyageur) {
-		this.voyageur = voyageur;
+	public void setIdVoyageur(Integer idVoyageur) {
+		this.idVoyageur = idVoyageur;
 	}
 
-	/*public List<ActiviteRef> getActivites() {
-		return activites;
-	}
+	/*
+	 * public List<ActiviteRef> getActivites() { return activites; }
+	 * 
+	 * public void setActivites(List<ActiviteRef> activites) { this.activites =
+	 * activites; }
+	 */
 
-	public void setActivites(List<ActiviteRef> activites) {
-		this.activites = activites;
-	}*/
-
-	
 }

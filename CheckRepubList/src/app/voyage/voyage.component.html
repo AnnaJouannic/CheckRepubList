@@ -164,10 +164,10 @@
 			</div>
 	<div class="form-group">
 				<label for="voyageur">Choisir un voyageur existant :</label> 
-				<select class="form-control" id="voyageur" name="voyageur" formControlName="voyageur">
-					<option *ngFor="let voyageur of voyageurs$|async" [value]="voyageur">{{voyageur.nom}}-{{voyageur.prenom}}</option>
+				<select class="form-control" id="idVoyageur" name="idVoyageur" formControlName="idVoyageur">
+					<option *ngFor="let voyageur of voyageurs$|async" [value]="voyageur.id">{{voyageur.nom}}-{{voyageur.prenom}}</option>
 				</select>
-				<span class="text-danger" *ngIf="voyageForm.get('voyageur').hasError('required')">
+				<span class="text-danger" *ngIf="voyageForm.get('idVoyageur').hasError('required')">
 					Un voyageur  est obligatoire.
 				</span>
 				</div>
