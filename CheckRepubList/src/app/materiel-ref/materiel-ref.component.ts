@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Categorie, MaterielRef } from '../model';
+import {  MaterielRef, Type } from '../model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ export class MaterielRefComponent implements OnInit {
 materielsRef$: Observable<MaterielRef>;
  materielRefForm: FormGroup;
  showForm: boolean = false;
- categorie = Object.values(Categorie);
+ categorie = Type.typeCategories;
  
   constructor(private materielRefHttpService: MaterielRefHttpService, private formBuilder: FormBuilder, private router: Router){}
   

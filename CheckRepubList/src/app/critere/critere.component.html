@@ -50,7 +50,7 @@
         <div class="form-group">
             <!-- <label for="formControlName="materielRef"">materielRef:</label> <input type="text" class="form-control" id="materielRef" name="materielRef" formControlName="materielRef"/>
             <span class="text-danger" *ngIf="critereForm.get('materielRef')?.dirty && critereForm.get('materielRef')?.hasError('required')">Le materielRef est obligatoire</span> -->
-            <select class="form-control" id="materielRef" name="materielRef" formControlName="materielRef">
+            <select class="form-control" id="materielref" name="materielref" formControlName="materielref">
                 <option *ngFor="let materielRef of materielsRef$ | async" [value]="materielRef.id">{{materielRef.libelleMateriel}}</option>
             </select>
         </div>
@@ -58,21 +58,21 @@
             <label for="logement">logement:</label>
              <!-- <input type="text" class="form-control" id="logement" name="logement" readonly formControlName="logement"/> -->
              <select class="form-control" id="logement" name="logement" formControlName="logement">
-                <option *ngFor="let mode of modesLogement" >{{mode}}</option>
+                <option *ngFor="let mode of modesLogement" [value]="mode.code">{{mode.label}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="deplacement">deplacement:</label> 
             <!-- <input type="text" class="form-control" id="deplacement" name="deplacement" readonly formControlName="deplacement"/> -->
             <select class="form-control" id="deplacement" name="deplacement" formControlName="deplacement">
-                <option *ngFor="let mode of modesDeplacement" >{{mode}}</option>
+                <option *ngFor="let mode of modesDeplacement" [value]="mode.code">{{mode.label}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="climat">climat:</label> 
             <!-- <input type="text" class="form-control" id="climat" name="climat" readonly formControlName="climat"/> -->
             <select class="form-control" id="climat" name="climat" formControlName="climat">
-                <option *ngFor="let mode of modesClimat" >{{mode}}</option>
+                <option *ngFor="let mode of modesClimat" [value]="mode.code">{{mode.label}}</option>
             </select>
         </div>
         <!-- <div class="form-group mt-2">

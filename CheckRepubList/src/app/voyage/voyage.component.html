@@ -136,7 +136,7 @@
 			<div class="form-group">
 				<label for="logement">Mode de logement:</label>  
 					<select class="form-control" id="logement" name="logement" formControlName="logement">
-						<option *ngFor="let mode of modesLogement" >{{mode}}</option>
+						<option *ngFor="let mode of modeslogement" [value]="mode.code">{{mode.label}}</option>
 					</select>
 				<span class="text-danger" *ngIf="voyageForm.get('logement')?.hasError('required')">
 					Le mode de logement est obligatoire.
@@ -147,7 +147,7 @@
 			<div class="form-group">
                 <label for="deplacement">Mode de déplacement:</label>
 				<select class="form-control" id="deplacement" name="deplacement" formControlName="deplacement">
-					<option *ngFor="let mode of modesDeplacement" >{{mode}}</option>
+					<option *ngFor="let mode of modesDeplacement" [value]="mode.code">{{mode.label}}</option>
 				</select>
                 <div *ngIf="voyageForm.get('deplacement').hasError('required')" class="text-danger">
                     Le mode de déplacement est obligatoire.
@@ -156,7 +156,7 @@
 			<div class="form-group">
 				<label for="climat">Climat: </label> 
 				<select class="form-control" id="climat" name="climat" formControlName="climat">
-					<option *ngFor="let mode of modesClimat" >{{mode}}</option>
+					<option *ngFor="let mode of modesClimat" [value]="mode.code">{{mode.label}}</option>
 				</select>
 				<span class="text-danger" *ngIf="voyageForm.get('climat')?.hasError('required')">
 					Le  climat est obligatoire.
@@ -186,14 +186,14 @@
 
 
   
-		<div class="btn-group btn-group-lg float-right" *ngIf="!showForm" [hidden]="!MatHidden" class="form-container">
+		<div class="btn-group btn-group-lg float-right" >
 			<a class="btn btn-success" (click)="hiddenMat()"><i class="bi bi-backspace-fill"></i></a>
 		  
 		<div>
 			<select class="form-control" id="idVoyage" name="idVoyage" >
 				<option *ngFor="let voyage of voyages$|async" [value]="voyage.id">Checklist {{voyage.libelle}}</option>
 			</select>
-				 <table class="table table-striped">
+				 <table class="table table-striped" *ngIf="showForm" [hidden]="MatHidden" class="form-container">
 				
 					  <thead >
 						  <tr>
@@ -203,14 +203,14 @@
 					  </thead>
 		  
 					  <tbody>
-						  <tr *ngFor="let matRef of materielRef$|async" >  
-							<td>{{matRef.categorie}}</td>
-							 <td>{{matRef.libelleMateriel}}</td>
+						  <tr *ngFor="let voyage of voyages$|async" >  
+							<td>{{voyage.materielRef?.categorie}}</td>
+							 <td>{{voyage.materielRef?.libelleMateriel}}</td>
 							  <td>
 								  <div class="btn-group btn-group-sm">
-									  <a class="btn btn-primary" (click)="edit(matRef.id)"><i
+									  <a class="btn btn-primary" (click)="edit(voyage.materielRef?.id)"><i
 											  class="bi bi-pencil-square"></i></a>
-									  <a class="btn btn-danger" (click)="remove(matRef.id)"><i class="bi bi-trash"></i></a>
+									  <a class="btn btn-danger" (click)="remove(voyage.materielRef?.id)"><i class="bi bi-trash"></i></a>
 								  </div>
 							  </td>
 						  </tr>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Critere, MaterielRef, TypeClimat, TypeDeplacement, TypeLogement } from '../model';
-import { CritereService } from './critere.service';
+import { Critere, MaterielRef, Type} from '../model';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CritereHttpService } from './critere-http.service';
 import { Observable } from 'rxjs';
@@ -18,9 +18,9 @@ export class CritereComponent implements OnInit {
   critereForm: FormGroup;
   showForm: boolean  =false;
   criteres$: Observable<Critere[]>;
-  modesLogement = Object.values(TypeLogement);
-  modesDeplacement = Object.values(TypeDeplacement);
-  modesClimat = Object.values(TypeClimat);
+  modesLogement=  Type.typeLogements;
+  modesDeplacement= Type.typeDeplacements;
+  modesClimat= Type.typeClimats;
   materielsRef$: Observable<MaterielRef[]>;
 
 
@@ -34,7 +34,7 @@ export class CritereComponent implements OnInit {
 
     this.critereForm = this.formBuilder.group({
       id: this.formBuilder.control(''),
-      materielRef: this.formBuilder.control('',[Validators.required]),
+      materielref: this.formBuilder.control('',[Validators.required]),
       logement: this.formBuilder.control(''),
       deplacement: this.formBuilder.control(''),
       climat: this.formBuilder.control(''),
@@ -59,7 +59,7 @@ export class CritereComponent implements OnInit {
  add() {
   this.critereForm.reset();
   this.critereHttpService.findAll().subscribe(res => {
-  this.critereForm.get('materielRef')?.value;});
+  this.critereForm.value.materielref;});
   this.showForm = true; //afficher le formulaire
 }
 
@@ -67,7 +67,7 @@ edit(id: number) {
   this.critereHttpService.findById(id).subscribe(response => {
     this.critereForm.patchValue(response);
     this.showForm = true;
-    if(!this.critereForm.get('materielRef')?.value) {
+    if(!this.critereForm.value.materielref) {
       this.critereForm.patchValue(new MaterielRef());
     }
   });
