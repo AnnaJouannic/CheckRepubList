@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  MaterielRef, Type } from '../model';
+import {  Critere, MaterielRef, Type } from '../model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -85,7 +85,9 @@ materielsRef$: Observable<MaterielRef>;
     this.materielRefHttpService.findById(id).subscribe(response => {
       this.materielRefForm.patchValue(response);
       this.showForm = true;
-    });
+
+     
+    });  
   }
 
   // save() {

@@ -61,12 +61,12 @@ export class CritereComponent implements OnInit {
   this.showForm = true; //afficher le formulaire
 }
 
-edit(id: number) {
+edit(id: number): void{
   this.critereHttpService.findById(id).subscribe(response => {
-    this.critereForm.patchValue(response);
+    this.critereForm.setValue(response);
     this.showForm = true;
     if(!this.critereForm.value.materielref) {
-      this.critereForm.patchValue(new MaterielRef());
+      this.critereForm.setValue(new MaterielRef());
     }
   });
 }
