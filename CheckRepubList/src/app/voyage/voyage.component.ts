@@ -142,7 +142,7 @@ ngOnInit(): void {
     logement:this.formBuilder.control('', [Validators.required]),
     deplacement:this.formBuilder.control('', [Validators.required]),
     climat:this.formBuilder.control('', [Validators.required]),
-    voyageur:this.formBuilder.control('',[Validators.required]),
+    idVoyageur:this.formBuilder.control('',[Validators.required]),
        
     });
 
@@ -189,10 +189,12 @@ save() {
   // this.voyageService.save(this.voyageForm.value);
   // 
   // this.cancel();
+
+   console.log(this.voyageForm.value);
   this.voyageService.save(this.voyageForm.value).subscribe(resp => {
     this.voyages$ = this.voyageService.findAll();
    
-}); console.log(this.voyageForm.value);
+}); 
 }
 
 cancel() {

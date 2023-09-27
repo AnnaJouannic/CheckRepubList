@@ -13,14 +13,14 @@ export class InscriptionComponent  implements OnInit {
 
   inscriptionForm: FormGroup;
   showForm: boolean = false;
-  constructor(private utilisateurService: UtilisateurService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private utilisateurService: UtilisateurHttpService, private router: Router, private formBuilder: FormBuilder) {
   }
 
-  /*valider() {
-    this.utilisateurHttpService.inscription(this.nom,this.prenom,this.login, this.password, this.passwordVerif, this.mail,this.tel).subscribe(resp => {
-      this.router.navigate(["/connexion"]);
-    });
-  }*/
+  // valider() {
+  //   this.utilisateurService.inscription(this.inscriptionForm.value).subscribe(resp => {
+  //     this.router.navigate(["/connexion"]);
+  //   });
+  // }
   
   ngOnInit(): void {
     this.inscriptionForm = this.formBuilder.group({
@@ -44,7 +44,7 @@ export class InscriptionComponent  implements OnInit {
       if (password === passwordVerif) {
        
         this.utilisateurService.inscription(this.inscriptionForm.get('nom')?.value, this.inscriptionForm.get('prenom')?.value, this.inscriptionForm.get('login')?.value, this.inscriptionForm.get('password')?.value, 
-        this.inscriptionForm.get('tel')?.value,this.inscriptionForm.get('mail')?.value);
+       this.inscriptionForm.get('passwordValue')?.value, this.inscriptionForm.get('mail')?.value, this.inscriptionForm.get('tel')?.value);
             this.router.navigate(['/connexion']);
   
       } else {
