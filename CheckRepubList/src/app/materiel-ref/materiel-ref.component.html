@@ -46,14 +46,14 @@
             <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" readonly formControlName="id"/>
         </div>
         <div class="form-group">
-            <label for="libelleMateriel">libellemateriel:</label> <input type="text" class="form-control" id="libelleMateriel" name="libelleMateriel" formControlName="libelleMateriel"/>
+            <label for="libelleMateriel">libelle du Materiel:</label> <input type="text" class="form-control" id="libelleMateriel" name="libelleMateriel" formControlName="libelleMateriel"/>
             <span class="text-danger" *ngIf="materielRefForm.get('libelleMateriel')?.dirty && materielRefForm.get('libelleMateriel')?.hasError('required')">Le libelleMateriel est obligatoire</span>
 
         </div>
         <div class="form-group">
-            <label for="categorie">categorie:</label>
+            <label for="categorie">Categorie:</label>
             <select type="text" class="form-control" id="categorie" name="categorie" formControlName="categorie">
-					<option *ngFor="let mode of categorie" >{{mode}}</option>
+					<option *ngFor="let mode of categorie" [value]="mode" >{{mode}}</option>
 			</select>
         </div>
         <!-- <div class="form-group">

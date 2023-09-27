@@ -6,7 +6,6 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class MaterielRefService {
-  [x: string]: any;
 
 
   materielsref: Array<MaterielRef> = new Array<MaterielRef>
@@ -29,7 +28,7 @@ export class MaterielRefService {
     findAll(): Array<MaterielRef>{
       return this.materielsref;
     }
-
+    
     // findAll(): Observable<MaterielRef[]> {
     //   return this.materielsRef$;
     // }

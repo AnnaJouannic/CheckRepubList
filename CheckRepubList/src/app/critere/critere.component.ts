@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CritereHttpService } from './critere-http.service';
 import { Observable } from 'rxjs';
 import { Router, Routes } from '@angular/router';
+import { MaterielRefHttpService } from '../materiel-ref/materiel-ref-http.service';
 
 @Component({
   selector: 'app-critere',
@@ -13,7 +14,7 @@ import { Router, Routes } from '@angular/router';
 })
 export class CritereComponent implements OnInit {
 
-  //critereForm: Critere = null;
+
   critereForm: FormGroup;
   showForm: boolean  =false;
   criteres$: Observable<Critere[]>;
@@ -23,27 +24,30 @@ export class CritereComponent implements OnInit {
   materielsRef$: Observable<MaterielRef[]>;
 
 
-  constructor(private critereHttpService: CritereHttpService, private formBuilder: FormBuilder, private router: Router){}
+
+  constructor(private critereHttpService: CritereHttpService, private formBuilder: FormBuilder, private router: Router, private materielRefService: MaterielRefHttpService){}
 
   ngOnInit(): void {
-    this.  critereForm = this.formBuilder.group({
+    this.criteres$ = this.critereHttpService.findAllForAsync();
+    this.materielsRef$ = this.materielRefService.findAllforAsync();
+
+
+    this.critereForm = this.formBuilder.group({
       id: this.formBuilder.control(''),
       materielRef: this.formBuilder.control('',[Validators.required]),
       logement: this.formBuilder.control(''),
       deplacement: this.formBuilder.control(''),
       climat: this.formBuilder.control(''),
     });
-   // this.criteres$ = this.critereHttpService.findAll();
-    
   }
 
- list(): Array<Critere>{
-
-  return this.critereHttpService.findAll();
-
- }
+//  list(): Array<Critere>{
 
 //   return this.critereHttpService.findAll();
+
+//  }
+
+//   return 
 
 //  }
 
@@ -54,6 +58,8 @@ export class CritereComponent implements OnInit {
 
  add() {
   this.critereForm.reset();
+  this.critereHttpService.findAll().subscribe(res => {
+  this.critereForm.get('materielRef')?.value;});
   this.showForm = true; //afficher le formulaire
 }
 
@@ -61,14 +67,17 @@ edit(id: number) {
   this.critereHttpService.findById(id).subscribe(response => {
     this.critereForm.patchValue(response);
     this.showForm = true;
+    if(!this.critereForm.get('materielRef')?.value) {
+      this.critereForm.patchValue(new MaterielRef());
+    }
   });
 }
 
-// save() {
-//   this.critereHttpService.save(this.critereForm).subscribe(response => {
-//     this.criteres$ = this.critereHttpService.findAll();
-//   });
-// }
+save() {
+  this.critereHttpService.save(this.critereForm.value)
+    this.criteres$ = this.critereHttpService.findAll();
+  
+}
 
 // save() {
 //   let critere = this.critereForm.value; // Récupérer les données du formulaire sous forme d'objet
@@ -86,11 +95,11 @@ edit(id: number) {
  
 // }
 
-save() {
-    this.critereHttpService.save(this.critereForm.value);
-      this.showForm=true;
+// save() {
+//     this.critereHttpService.save(this.critereForm.value);
+//       this.showForm=true;
    
-  }
+//   }
 
 
 
