@@ -25,9 +25,9 @@ public class UtilisateurResponse {
 
 	private String roles;
 	
-	private List<VoyageResponse> voyages;
+	private List<Integer> voyages;
 	
-	private List<VoyageurResponse> voyageurs;
+	private List<Integer> voyageurs;
 	
 	public Integer getId() {
 		return id;

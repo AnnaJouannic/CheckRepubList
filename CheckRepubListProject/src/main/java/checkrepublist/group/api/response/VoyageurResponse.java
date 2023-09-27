@@ -22,7 +22,7 @@ public class VoyageurResponse {
 	
 	private boolean accessibilite;
 	
-	private List<VoyageResponse> voyages;
+	private List<Integer> voyages;
 
 	public Integer getId() {
 		return id;

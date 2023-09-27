@@ -28,7 +28,7 @@ public class VoyageResponse {
 	
 	//private List<ActiviteRef> activites= new ArrayList<>();
 	
-	private List<MaterielRefResponse> materiels=new ArrayList<>();
+	private List<Integer> materiels=new ArrayList<>();
 	
 	private List<Integer> voyageurs=new ArrayList<>();
 	

@@ -3,7 +3,7 @@ package checkrepublist.group.api.request;
 public class CritereRequest {
 
 	
-	private MaterielRefRequest materielref;
+	private Integer materielref;
 	
 	private String logement;
 	
