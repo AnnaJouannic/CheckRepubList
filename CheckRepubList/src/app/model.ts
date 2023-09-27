@@ -38,15 +38,6 @@ export class Critere{
     }
 }
 
-export enum Categorie{
-    Vetement = 'Vetement', 
-    Numerique = 'Numerique', 
-    Outils = 'Outils', 
-    Toilette = 'Toilette', 
-    Animaux = 'Animaux', 
-    Pharmacie = 'Pharmacie', 
-    Administratif = 'Administratif',
-}
 
 
 export class Utilisateur {
@@ -81,44 +72,58 @@ export class Utilisateur {
     }
 }
 
- export enum TypeLogement {
-    Hotel='Hotel',
-    Gite='Gite',
-    ChambreDhote='ChambreDhote',
-    Location='Location',
-    AirBnB='AirBnB',
-    AubergeDeJeunesse='AubergeDeJeunesse',
-    MobilHome='MobilHome',
-    Van='Van',
-    CampingCar='CampingCar',
-    Tente='Tente',
-    Voiture='Voiture',
-    Autre='Autre'
+
+ export class Type {
+    static typeLogements: Array<any> = new Array<any>();
+    static typeDeplacements: Array<any> = new Array<any>();
+    static typeClimats: Array<any> = new Array<any>();
+    static typeCategories: Array<any> = new Array<any>();
+
+    static {
+        Type.typeDeplacements.push({"code": "Marche", "label":"Marche"});
+        Type.typeDeplacements.push({"code": "Velo", "label":"Vélo"});
+        Type.typeDeplacements.push({"code": "Voiture", "label":"Voiture"});
+        Type.typeDeplacements.push({"code": "Van", "label":"Van"});
+        Type.typeDeplacements.push({"code": "Campingcar", "label":"Camping-Car"});
+        Type.typeDeplacements.push({"code": "Train", "label":"Train"});
+        Type.typeDeplacements.push({"code": "Avion", "label":"Avion"});
+        Type.typeDeplacements.push({"code": "Bateau", "label":"Bâteau"});
+        Type.typeDeplacements.push({"code": "Autre", "label":"Autre"});
+
+        Type.typeLogements.push({"code": "Hotel", "label":"Hôtel"});
+        Type.typeLogements.push({"code": "Gite", "label":"Gîte"});
+        Type.typeLogements.push({"code": "ChambreDhote", "label":"Chambre D'hôte"});
+        Type.typeLogements.push({"code": "Location", "label":"Location"});
+        Type.typeLogements.push({"code": "AirBnB", "label":"AirBnB"});
+        Type.typeLogements.push({"code": "AubergeDeJeunesse", "label":"Auberge De Jeunesse"});
+        Type.typeLogements.push({"code": "MobilHome", "label":"Mobil Home"});
+        Type.typeLogements.push({"code": "Van", "label":"Van"});
+        Type.typeLogements.push({"code": "CampingCar", "label":"Camping-Car"});
+        Type.typeLogements.push({"code": "Tente", "label":"Tente"});
+        Type.typeLogements.push({"code": "Voiture", "label":"Voiture"});
+        Type.typeLogements.push({"code": "Autre", "label":"Autre"});
+
+        Type.typeClimats.push({"code": "Chaud", "label":"Chaud"});
+        Type.typeClimats.push({"code": "Froid", "label":"Froid"});
+        Type.typeClimats.push({"code": "Tempere", "label":"Tempéré"});
+        Type.typeClimats.push({"code": "Tropical", "label":"Tropical"});
+        Type.typeClimats.push({"code": "Desertique", "label":"Desertique"});
+        Type.typeClimats.push({"code": "Autre", "label":"Autre"});
+
+        Type.typeCategories.push({"code": "Vetement", "label":"Vêtement"});
+        Type.typeCategories.push({"code": "Numerique", "label":"Numérique"});
+        Type.typeCategories.push({"code": "Outils", "label":"Outils"});
+        Type.typeCategories.push({"code": "Toilette", "label":"Toilette"});
+        Type.typeCategories.push({"code": "Animaux", "label":"Animaux"});
+        Type.typeCategories.push({"code": "Pharmacie", "label":"Pharmacie"});
+        Type.typeCategories.push({"code": "Administratif", "label":"Administratif"});
+    }
+
+   
  }
 
- export enum TypeDeplacement {
-    Marche='Marche',
-    Velo='Velo',
-    Voiture='Voiture',
-    Van= 'Van',
-    Campingcar='Campingcar',
-    Bateau='Bateau',
-    Train='Train',
-    Avion='Avion',
-    Moto='Moto',
-    Autre='Autre',
 
-}
 
-export enum TypeClimat {
-  Chaud = 'Chaud',
-  Froid = 'Froid',
-  Tempere = 'Tempéré',
-  Tropical = 'Tropical',
-  Desertique = 'Désertique',
-  Autre = 'Autre'
-}
- 
 export class Voyage {
     id: number;
     dateDebutVoyage: string;

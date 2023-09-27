@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { VoyageHttpService } from './voyage-http.service';
-import { Categorie, MaterielRef, TypeClimat, TypeDeplacement, TypeLogement, Voyage, Voyageur } from '../model';
+import {  MaterielRef, Type, Voyage, Voyageur } from '../model';
 import { VoyageurService } from '../voyageur/voyageur.service';
 import { VoyageService } from './voyage.service';
 import { MaterielRefHttpService } from '../materiel-ref/materiel-ref-http.service';
@@ -29,8 +29,8 @@ export class VoyageComponent   implements OnInit{
   
   
 
-  materielRef: Array<MaterielRef>;
-  categorie = Object.values(Categorie);
+  // materielRef: Array<MaterielRef>;
+  
 
 //   constructor( private router: Router, private formBuilder: FormBuilder, private voyageHttpService: VoyageHttpService ,private voyageurService : VoyageurService, private voyageService: VoyageService ) {}
 
@@ -124,16 +124,19 @@ voyageForm: FormGroup;
 showForm: boolean = false;
 FormHidden: boolean = true;
 MatHidden: boolean = true;
-modesLogement = Object.values(TypeLogement);
-modesDeplacement = Object.values(TypeDeplacement);
-modesClimat = Object.values(TypeClimat);
+modeslogement=  Type.typeLogements;
+modesDeplacement = Type.typeDeplacements;
+modesClimat = Type.typeClimats;
 voyages$: Observable<Voyage[]>;
 voyageurs$: Observable<Voyageur[]>;
 materielRef$: Observable<MaterielRef[]>;
 
 
+
 constructor( private router: Router,private formBuilder: FormBuilder, private voyageService: VoyageHttpService, private voyageurService: VoyageurService, private materielRefService: MaterielRefHttpService) {
 }
+
+
 
 ngOnInit(): void {
     this.voyageForm = this.formBuilder.group({
@@ -152,6 +155,7 @@ ngOnInit(): void {
     this.voyageurs$ = this.voyageurService.findAllForAsync();
     this.materielRef$ = this.materielRefService.findAllforAsync();
 }
+
 
 // list(): Array<Voyage>{
 //  return this.voyageService.findAll();
@@ -219,6 +223,7 @@ hidden(){
 
    hiddenMat(){
     this.MatHidden=! this.MatHidden
+    this.showForm = true;
      }
      
 

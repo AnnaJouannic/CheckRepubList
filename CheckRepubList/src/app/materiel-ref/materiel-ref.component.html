@@ -53,7 +53,7 @@
         <div class="form-group">
             <label for="categorie">Categorie:</label>
             <select type="text" class="form-control" id="categorie" name="categorie" formControlName="categorie">
-					<option *ngFor="let mode of categorie" [value]="mode" >{{mode}}</option>
+					<option *ngFor="let mode of categorie" [value]="mode"[value]="mode.code">{{mode.label}}</option>
 			</select>
         </div>
         <!-- <div class="form-group">

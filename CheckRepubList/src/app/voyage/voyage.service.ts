@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TypeClimat, TypeDeplacement, TypeLogement, Voyage } from '../model';
+import {  Voyage } from '../model';
 import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
