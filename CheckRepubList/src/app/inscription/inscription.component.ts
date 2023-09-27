@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UtilisateurService } from '../utilisateur/utilisateur.service';
+import { UtilisateurHttpService } from '../utilisateur/utilisateur-http.service';
 
 @Component({
   selector: 'app-inscription',

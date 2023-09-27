@@ -125,10 +125,12 @@ FormHidden: boolean = true;
 modesLogement = Object.values(TypeLogement);
 modesDeplacement = Object.values(TypeDeplacement);
 modesClimat = Object.values(TypeClimat);
-  
+voyages$: Observable<Voyage[]>;
+voyageurs$: Observable<Voyageur[]>;
 
 
-constructor( private router: Router,private formBuilder: FormBuilder, private voyageService: VoyageService, private voyageurService: VoyageurService) {
+
+constructor( private router: Router,private formBuilder: FormBuilder, private voyageService: VoyageHttpService, private voyageurService: VoyageurService) {
 }
 
 ngOnInit(): void {
@@ -143,30 +145,38 @@ ngOnInit(): void {
     voyageur:this.formBuilder.control('',[Validators.required]),
        
     });
+
+    this.voyages$ = this.voyageService.findAll();
+    this.voyageurs$ = this.voyageurService.findAllForAsync();
 }
 
-list(): Array<Voyage>{
- return this.voyageService.findAll();
+// list(): Array<Voyage>{
+//  return this.voyageService.findAll();
  
- }
+//  }
 
- listvoy(): Array<Voyageur> {
-      return this.voyageurService.findAll();
-    }
+//  listvoy(): Array<Voyageur> {
+//       return this.voyageurService.findAll();
+//     }
 // listVoyage(): Array<Voyage> {
 //   return this.voyageService.findAll();
 // }
 
 add() {
-  this.voyageForm.reset();
+
+  this.voyageForm.patchValue(new Voyage());
+  this.voyageForm.patchValue(new Voyageur());
   this.showForm = true;
 }
 
 edit(id: number) {
-  // this.voyageService.findById(id).subscribe(resp => {
-  //   this.voyageForm.patchValue(resp);
-  //   this.showForm = true;
-  // });
+  this.voyageService.findById(id).subscribe(resp => {
+    this.voyageForm.patchValue(resp);
+    this.showForm = true;
+    if(!this.voyageForm.get('voyageur')?.value) {
+      this.voyageForm.patchValue(new Voyageur());
+    }
+  });
 }
 
 // majVoyage(event: any) {
@@ -176,18 +186,26 @@ edit(id: number) {
 // }
 
 save() {  
-  this.voyageService.save(this.voyageForm.value);
-  this.cancel();
+  // this.voyageService.save(this.voyageForm.value);
+  // 
+  // this.cancel();
+  this.voyageService.save(this.voyageForm.value).subscribe(resp => {
+    this.voyages$ = this.voyageService.findAll();
+   
+}); console.log(this.voyageForm.value);
 }
 
 cancel() {
   this.showForm = false;
   this.voyageForm.reset();
+  
 }
 
 remove(id: number) {
-  this.voyageService.deleteById(id);
-
+  // this.voyageService.deleteById(id);
+  this.voyageService.deleteById(id).subscribe(resp => {
+    this.voyages$ = this.voyageService.findAll();
+  });
 }
 hidden(){
   this.FormHidden=! this.FormHidden
