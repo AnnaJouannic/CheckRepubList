@@ -92,7 +92,7 @@ export class Utilisateur {
 
         Type.typeLogements.push({"code": "Hotel", "label":"Hôtel"});
         Type.typeLogements.push({"code": "Gite", "label":"Gîte"});
-        Type.typeLogements.push({"code": "ChambreDhote", "label":"Chambre D'hôte"});
+        Type.typeLogements.push({"code": "ChambreDHote", "label":"Chambre D'hôte"});
         Type.typeLogements.push({"code": "Location", "label":"Location"});
         Type.typeLogements.push({"code": "AirBnB", "label":"AirBnB"});
         Type.typeLogements.push({"code": "AubergeDeJeunesse", "label":"Auberge De Jeunesse"});
