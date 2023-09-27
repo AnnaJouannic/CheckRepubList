@@ -185,11 +185,14 @@
 		</div>	
 
 
-<!-- 
-		<div  [hidden]="FormHidden" class="form-container" >
-
-			<div id="checklist" *ngFor="let voyage of listvoyage()" >
-			  <h1 >Checklist {{voyage.libelle}}</h1>
+  
+		<div class="btn-group btn-group-lg float-right" *ngIf="!showForm" [hidden]="!MatHidden" class="form-container">
+			<a class="btn btn-success" (click)="hiddenMat()"><i class="bi bi-backspace-fill"></i></a>
+		  
+		<div>
+			<select class="form-control" id="idVoyage" name="idVoyage" >
+				<option *ngFor="let voyage of voyages$|async" [value]="voyage.id">Checklist {{voyage.libelle}}</option>
+			</select>
 				 <table class="table table-striped">
 				
 					  <thead >
@@ -200,22 +203,22 @@
 					  </thead>
 		  
 					  <tbody>
-						  <tr *ngFor="let voyage of listvoyage()">  
-							<td>{{voyage.materielRef.categorie}}</td>
-							 <td>{{voyage.materielRef.libelleMateriel}}</td>
+						  <tr *ngFor="let matRef of materielRef$|async" >  
+							<td>{{matRef.categorie}}</td>
+							 <td>{{matRef.libelleMateriel}}</td>
 							  <td>
 								  <div class="btn-group btn-group-sm">
-									  <a class="btn btn-primary" (click)="edit(voyage.materielRef.id)"><i
+									  <a class="btn btn-primary" (click)="edit(matRef.id)"><i
 											  class="bi bi-pencil-square"></i></a>
-									  <a class="btn btn-danger" (click)="remove(voyage.materielRef.id)"><i class="bi bi-trash"></i></a>
+									  <a class="btn btn-danger" (click)="remove(matRef.id)"><i class="bi bi-trash"></i></a>
 								  </div>
 							  </td>
 						  </tr>
 					  </tbody>
 				  </table>
 			  </div>
-		  </div>
-   -->
+		</div>
+  
 	</body>	
 		 
 	

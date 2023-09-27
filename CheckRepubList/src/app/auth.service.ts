@@ -29,7 +29,7 @@ export class AuthService {
   
     if (struser !== null) { // Vérifiez si struser n'est pas null ou undefined.
       try {
-        let utilisateur: Utilisateur | null = JSON.parse(struser);
+        let utilisateur: Utilisateur = JSON.parse(struser);
   
         if (utilisateur && typeof utilisateur === 'object') {
           return utilisateur;

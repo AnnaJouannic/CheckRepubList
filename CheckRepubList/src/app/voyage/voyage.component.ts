@@ -8,6 +8,7 @@ import { VoyageHttpService } from './voyage-http.service';
 import { Categorie, MaterielRef, TypeClimat, TypeDeplacement, TypeLogement, Voyage, Voyageur } from '../model';
 import { VoyageurService } from '../voyageur/voyageur.service';
 import { VoyageService } from './voyage.service';
+import { MaterielRefHttpService } from '../materiel-ref/materiel-ref-http.service';
 //import { VoyageService } from './voyage.service';
 
 @Component({
@@ -122,15 +123,16 @@ export class VoyageComponent   implements OnInit{
 voyageForm: FormGroup;
 showForm: boolean = false;
 FormHidden: boolean = true;
+MatHidden: boolean = true;
 modesLogement = Object.values(TypeLogement);
 modesDeplacement = Object.values(TypeDeplacement);
 modesClimat = Object.values(TypeClimat);
 voyages$: Observable<Voyage[]>;
 voyageurs$: Observable<Voyageur[]>;
+materielRef$: Observable<MaterielRef[]>;
 
 
-
-constructor( private router: Router,private formBuilder: FormBuilder, private voyageService: VoyageHttpService, private voyageurService: VoyageurService) {
+constructor( private router: Router,private formBuilder: FormBuilder, private voyageService: VoyageHttpService, private voyageurService: VoyageurService, private materielRefService: MaterielRefHttpService) {
 }
 
 ngOnInit(): void {
@@ -148,6 +150,7 @@ ngOnInit(): void {
 
     this.voyages$ = this.voyageService.findAll();
     this.voyageurs$ = this.voyageurService.findAllForAsync();
+    this.materielRef$ = this.materielRefService.findAllforAsync();
 }
 
 // list(): Array<Voyage>{
@@ -166,6 +169,7 @@ add() {
 
   this.voyageForm.patchValue(new Voyage());
   this.voyageForm.patchValue(new Voyageur());
+  this.voyageForm.patchValue(new MaterielRef());
   this.showForm = true;
 }
 
@@ -173,7 +177,7 @@ edit(id: number) {
   this.voyageService.findById(id).subscribe(resp => {
     this.voyageForm.patchValue(resp);
     this.showForm = true;
-    if(!this.voyageForm.get('voyageur')?.value) {
+    if(!this.voyageForm.value.voyageur) {
       this.voyageForm.patchValue(new Voyageur());
     }
   });
@@ -212,6 +216,11 @@ remove(id: number) {
 hidden(){
   this.FormHidden=! this.FormHidden
    }
+
+   hiddenMat(){
+    this.MatHidden=! this.MatHidden
+     }
+     
 
 show() {
 this.showForm = true;

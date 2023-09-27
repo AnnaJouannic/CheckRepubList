@@ -24,8 +24,8 @@ export class ConnexionComponent implements OnInit{
 
   auth() {
   if (this.connexionForm.valid) {
-    const login = this.connexionForm.get('login')?.value;
-   const  password = this.connexionForm.get('password')?.value;
+    const login = this.connexionForm.value.login;
+   const  password = this.connexionForm.value.password;
    this.authService.authentification(login, password);
   } else {
     this.markFormGroupTouched(this.connexionForm);
