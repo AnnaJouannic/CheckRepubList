@@ -27,7 +27,7 @@ materielsRef$: Observable<MaterielRef>;
       id: this.formBuilder.control(''),
       libelleMateriel: this.formBuilder.control('', [Validators.required]),
       categorie: this.formBuilder.control(''),
-      critere: this.formBuilder.control(''),
+    
       
     });
     

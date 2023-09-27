@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Critere } from '../model';
+import { Critere, MaterielRef } from '../model';
 import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 export class CritereHttpService {
   
   criteres: Array<Critere> = new Array<Critere>();
+  materielRef: Array<MaterielRef> = new Array<MaterielRef>;
 
   apiCritereUrl: string = environment.apiUrl + "/critere";
 
@@ -25,12 +26,10 @@ export class CritereHttpService {
     });
   }
 
-    findAll(): Array<Critere>{
-      return this.criteres;
-    }
-  // findAll(): Observable<Critere[]> {
-  //   return this.http.get<Critere[]>(this.apiCritereUrl);
-  // } 
+
+  findAll(): Observable<Critere[]> {
+    return this.http.get<Critere[]>(this.apiCritereUrl);
+  } 
 
   findAllForAsync(): Observable<Critere[]>{
     return this.http.get<Critere[]>(this.apiCritereUrl);

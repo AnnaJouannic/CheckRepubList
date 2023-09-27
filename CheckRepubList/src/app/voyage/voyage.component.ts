@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { VoyageHttpService } from './voyage-http.service';
-import { TypeClimat, TypeDeplacement, TypeLogement, Voyage, Voyageur } from '../model';
+import { Categorie, MaterielRef, TypeClimat, TypeDeplacement, TypeLogement, Voyage, Voyageur } from '../model';
 import { VoyageurService } from '../voyageur/voyageur.service';
 import { VoyageService } from './voyage.service';
 //import { VoyageService } from './voyage.service';
@@ -28,6 +28,8 @@ export class VoyageComponent   implements OnInit{
   
   
 
+  materielRef: Array<MaterielRef>;
+  categorie = Object.values(Categorie);
 
 //   constructor( private router: Router, private formBuilder: FormBuilder, private voyageHttpService: VoyageHttpService ,private voyageurService : VoyageurService, private voyageService: VoyageService ) {}
 

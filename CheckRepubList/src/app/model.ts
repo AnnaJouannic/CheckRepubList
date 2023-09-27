@@ -1,37 +1,37 @@
 export class MaterielRef{
     id: number;
     libelleMateriel: string;
-    categorie: Categorie;
-    critere: Critere;
+    categorie: string;
+    
     constructor( 
         id?: number,
         libelleMateriel?: string,
-        categorie?: Categorie,
-        critere?: Critere,
+        categorie?: string,
+        
         )
         {
             this.id = id
             this.libelleMateriel = libelleMateriel
             this.categorie = categorie
-            this.critere = critere
+            
     }
 }
 
 export class Critere{
     id: number;
     materielRef: MaterielRef;
-    logement: TypeLogement;
-    deplacement: TypeDeplacement;
-    climat: TypeClimat;
+    logement: string;
+    deplacement: string;
+    climat: string;
     constructor(
         id?: number,
-       materieleRef?: MaterielRef,
-        logement?: TypeLogement,
-        deplacement?: TypeDeplacement,
-        climat?: TypeClimat,
+       materielRef?: MaterielRef,
+        logement?: string,
+        deplacement?: string,
+        climat?: string,
     ){
         this.id = id
-        this.materielRef = materieleRef
+        this.materielRef = materielRef
         this.logement = logement
         this.deplacement = deplacement,
         this.climat = climat
@@ -125,10 +125,11 @@ export class Voyage {
     dateFinVoyage: string;
     libelle: string;
     pays: string;
-    logement: TypeLogement;
-    deplacement: TypeDeplacement;
-    climat: TypeClimat;
+    logement: string;
+    deplacement: string;
+    climat: string;
     voyageur: Voyageur;
+    materielRef: MaterielRef;
     
 
 
@@ -138,11 +139,11 @@ export class Voyage {
        dateFinVoyage?: string,
        libelle?: string,
        pays?: string,
-       logement?: TypeLogement,
-       deplacement?: TypeDeplacement,
-       climat?: TypeClimat,
+       logement?: string,
+       deplacement?: string,
+       climat?: string,
        voyageur?: Voyageur,
-      
+      materielRef?: MaterielRef,
     ) {
         this.id=id;
         this.dateDebutVoyage = dateDebutVoyage;
@@ -153,7 +154,7 @@ export class Voyage {
         this.deplacement = deplacement;
         this.climat=climat;
         this.voyageur=voyageur;
-        
+        this.materielRef= materielRef;
     }
 }
     

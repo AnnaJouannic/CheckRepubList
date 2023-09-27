@@ -183,8 +183,41 @@
 		  </div>
 </form>
 		</div>	
+
+
+<!-- 
+		<div  [hidden]="FormHidden" class="form-container" >
+
+			<div id="checklist" *ngFor="let voyage of listvoyage()" >
+			  <h1 >Checklist {{voyage.libelle}}</h1>
+				 <table class="table table-striped">
+				
+					  <thead >
+						  <tr>
+							  <th>Catégorie</th>
+							  <th>Materiel</th>
+						  </tr>
+					  </thead>
+		  
+					  <tbody>
+						  <tr *ngFor="let voyage of listvoyage()">  
+							<td>{{voyage.materielRef.categorie}}</td>
+							 <td>{{voyage.materielRef.libelleMateriel}}</td>
+							  <td>
+								  <div class="btn-group btn-group-sm">
+									  <a class="btn btn-primary" (click)="edit(voyage.materielRef.id)"><i
+											  class="bi bi-pencil-square"></i></a>
+									  <a class="btn btn-danger" (click)="remove(voyage.materielRef.id)"><i class="bi bi-trash"></i></a>
+								  </div>
+							  </td>
+						  </tr>
+					  </tbody>
+				  </table>
+			  </div>
+		  </div>
+   -->
 	</body>	
-		
+		 
 	
 	
 

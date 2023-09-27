@@ -11,7 +11,7 @@ export class MaterielRefHttpService {
 
   materielsRef: Array<MaterielRef> = new Array<MaterielRef>();
 
-  apiMaterielRefUrl: string = environment.apiUrl + "/materielRef";
+  apiMaterielRefUrl: string = environment.apiUrl + "/materielref";
 
   constructor(private http: HttpClient) {
    this.load();
