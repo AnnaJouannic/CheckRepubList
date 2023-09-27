@@ -20,9 +20,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 import checkrepublist.group.api.request.CritereRequest;
 import checkrepublist.group.api.response.CritereResponse;
 import checkrepublist.group.dao.IDAOCritere;
+import checkrepublist.group.dao.IDAOMaterielRef;
 import checkrepublist.group.exception.CritereNotFoundException;
 import checkrepublist.group.exception.CritereNotValidException;
+import checkrepublist.group.exception.MaterielRefNotFoundException;
 import checkrepublist.group.model.Critere;
+import checkrepublist.group.model.MaterielRef;
 import jakarta.validation.Valid;
 
 @RestController
@@ -32,6 +35,9 @@ public class CritereApiController {
 
 	@Autowired
 	IDAOCritere repoCritere;
+	
+	@Autowired
+	IDAOMaterielRef repoMaterielRef;
 	
 	
 	@GetMapping("")
@@ -46,10 +52,10 @@ public class CritereApiController {
 		Critere critere = this.repoCritere.findById(id).orElseThrow(CritereNotFoundException::new);
 		CritereResponse response = new CritereResponse();
 		
+		
 		BeanUtils.copyProperties(critere, response);
-		
-		//response.setMaterielref(critere.getMaterielref());
-		
+	
+		response.setIdMaterielref(critere.getMaterielref().getId());
 		return CritereResponse.convert(critere);
 	}
 	
@@ -61,10 +67,17 @@ public class CritereApiController {
 		
 		Critere critere = new Critere();
 		
+		
 		BeanUtils.copyProperties(critereRequest, critere);
 		
-		//critere.setMaterielref(critereRequest.getMaterielref());
-		 this.repoCritere.save(critere);
+		Integer id_mat = critereRequest.getIdMaterielref();
+		
+		if (id_mat != null) {
+			MaterielRef mat = this.repoMaterielRef.findById(id_mat).orElseThrow(MaterielRefNotFoundException::new);
+			critere.setMaterielref(mat);
+		}
+		
+		this.repoCritere.save(critere);
 		
 		return CritereResponse.convert(critere);
 	}

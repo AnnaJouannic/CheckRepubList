@@ -23,11 +23,11 @@ public class UtilisateurResponse {
 	
 	private String tel;
 
-	private String roles;
+	private String role;
 	
-	private List<Integer> voyages;
+	private List<Integer> idVoyages;
 	
-	private List<Integer> voyageurs;
+	private List<Integer> idVoyageurs;
 	
 	public Integer getId() {
 		return id;
@@ -77,30 +77,30 @@ public class UtilisateurResponse {
 		this.tel = tel;
 	}
 
-	public String getRoles() {
-		return roles;
+	public String getRole() {
+		return role;
 	}
 
-	public void setRoles(String roles) {
-		this.roles = roles;
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	
 
-	public List<VoyageResponse> getVoyages() {
-		return voyages;
+	public List<Integer> getIdVoyages() {
+		return idVoyages;
 	}
 
-	public void setVoyages(List<VoyageResponse> voyages) {
-		this.voyages = voyages;
+	public void setIdVoyages(List<Integer> idVoyages) {
+		this.idVoyages = idVoyages;
 	}
 
-	public List<VoyageurResponse> getVoyageurs() {
-		return voyageurs;
+	public List<Integer> getIdVoyageurs() {
+		return idVoyageurs;
 	}
 
-	public void setVoyageurs(List<VoyageurResponse> voyageurs) {
-		this.voyageurs = voyageurs;
+	public void setVoyageurs(List<Integer> voyageurs) {
+		this.idVoyageurs = voyageurs;
 	}
 
 	public static UtilisateurResponse convert(Utilisateur utilisateur) {
@@ -108,11 +108,11 @@ public class UtilisateurResponse {
 
 		BeanUtils.copyProperties(utilisateur, response);
 
-		response.setRoles(String.join(",", utilisateur.getRoles().stream().map(Roles::name).collect(Collectors.toSet())));
+		response.setRole(String.join(",", utilisateur.getRole().stream().map(Roles::name).collect(Collectors.toSet())));
 		
-		response.setVoyages(utilisateur.getVoyages().stream().map(VoyageResponse::convert).collect(Collectors.toList()));
+		//response.setIdVoyages(utilisateur.getVoyages().stream().map(VoyageResponse::convert).collect(Collectors.toList()));
 
-		response.setVoyageurs(utilisateur.getVoyageurs().stream().map(VoyageurResponse::convertVoyageur).collect(Collectors.toList()));
+		//response.setIdVoyageurs(utilisateur.getVoyageurs().stream().map(VoyageurResponse::convertVoyageur).collect(Collectors.toList()));
 		
 		return response;
 	}

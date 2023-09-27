@@ -15,7 +15,7 @@ public class CritereResponse {
 
 	private String climat;
 	
-	private MaterielRefResponse materielref;
+	private Integer idMaterielref;
 	
 
 	public Integer getId() {
@@ -26,12 +26,12 @@ public class CritereResponse {
 		this.id = id;
 	}
 
-	public MaterielRefResponse getMaterielref() {
-		return materielref;
+	public Integer getIdMaterielref() {
+		return idMaterielref;
 	}
 
-	public void setMaterielref(MaterielRefResponse materielref) {
-		this.materielref = materielref;
+	public void setIdMaterielref(Integer idMaterielref) {
+		this.idMaterielref = idMaterielref;
 	}
 
 
@@ -67,8 +67,7 @@ public class CritereResponse {
 		response.setLogement(String.valueOf(critere.getLogement()));
 		response.setDeplacement(String.valueOf(critere.getDeplacement()));
 		response.setClimat(String.valueOf(critere.getClimat()));
-		response.setMaterielref(MaterielRefResponse.convertCritere(critere.getMaterielref()));
-		
+		response.setIdMaterielref(Integer.valueOf(critere.getMaterielref().getId()));
 		return response;
 		
 		

@@ -22,7 +22,7 @@ public class VoyageurResponse {
 	
 	private boolean accessibilite;
 	
-	private List<Integer> voyages;
+	private List<Integer> idVoyages;
 
 	public Integer getId() {
 		return id;
@@ -74,12 +74,12 @@ public class VoyageurResponse {
 
 	
 	
-	public List<VoyageResponse> getVoyages() {
-		return voyages;
+	public List<Integer> getIdVoyages() {
+		return idVoyages;
 	}
 
-	public void setVoyages(List<VoyageResponse> voyages) {
-		this.voyages = voyages;
+	public void setIdVoyages(List<Integer> idVoyages) {
+		this.idVoyages = idVoyages;
 	}
 
 	public static VoyageurResponse convertVoyageur (Voyageur voyageur) {
@@ -87,7 +87,7 @@ public class VoyageurResponse {
 		
 		BeanUtils.copyProperties(voyageur, response);
 		
-		response.setVoyages(voyageur.getVoyages().stream().map(VoyageResponse::convertVoyageur).collect(Collectors.toList()));
+		//response.setVoyages(voyageur.getVoyages().stream().map(VoyageResponse::convertVoyageur).collect(Collectors.toList()));
 				
 		return response;
 		
