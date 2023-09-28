@@ -11,8 +11,8 @@ export class AuthService {
 
   constructor(private utilisateurService: UtilisateurHttpService, private router: Router) { }
 
-  authentification(login: string, password: string) {
-  this.utilisateurService.connexion(login, password).subscribe(resp =>{
+  authentification(username: string, password: string) {
+  this.utilisateurService.connexion(username, password).subscribe(resp =>{
       sessionStorage.setItem("User", JSON.stringify( resp));
       this.router.navigate(["/voyage"]);
     });

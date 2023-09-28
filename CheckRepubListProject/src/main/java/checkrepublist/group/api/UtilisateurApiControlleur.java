@@ -1,7 +1,9 @@
 package checkrepublist.group.api;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +83,7 @@ public class UtilisateurApiControlleur {
 	}
 	
 	@PostMapping
+	@Transactional
 	public UtilisateurResponse inscription(@Valid @RequestBody InscriptionRequest inscriptionRequest, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new InscriptionNotValidException();
@@ -92,9 +95,14 @@ public class UtilisateurApiControlleur {
 		
 		Utilisateur utilisateur = new Utilisateur();
 		
+		
 		BeanUtils.copyProperties(inscriptionRequest, utilisateur);
 		
-		utilisateur.getRoles().add(Roles.User);
+		
+		Set<Roles> role = new HashSet<>();
+		role.add(Roles.User);
+		utilisateur.setRoles(role);
+
 		
 		this.repoUtilisateur.save(utilisateur);
 		

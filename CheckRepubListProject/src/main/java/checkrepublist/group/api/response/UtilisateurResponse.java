@@ -11,6 +11,7 @@ import checkrepublist.group.model.Utilisateur;
 
 
 public class UtilisateurResponse {
+	
 	private Integer id;
 	
 	private String nom;
@@ -26,8 +27,9 @@ public class UtilisateurResponse {
 	private String roles;
 	
 	private List<Integer> idVoyages;
+
+    private List<Integer> idVoyageurs;
 	
-	private List<Integer> idVoyageurs;
 	
 	public Integer getId() {
 		return id;
@@ -99,8 +101,8 @@ public class UtilisateurResponse {
 		return idVoyageurs;
 	}
 
-	public void setVoyageurs(List<Integer> voyageurs) {
-		this.idVoyageurs = voyageurs;
+	public void setIdVoyageurs(List<Integer> idVoyageurs) {
+		this.idVoyageurs = idVoyageurs;
 	}
 
 	public static UtilisateurResponse convert(Utilisateur utilisateur) {

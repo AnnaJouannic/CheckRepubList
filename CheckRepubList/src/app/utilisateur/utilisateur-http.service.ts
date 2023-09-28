@@ -30,6 +30,7 @@ export class UtilisateurHttpService {
    }
 
    inscription(nom:string, prenom: string, username: string, password: string, passwordVerif: string, mail: string, tel: number): Observable<any> {
+    console.log("test")
     return this.http.post<any>("http://localhost:8080/api/utilisateur", {
        "nom":nom,
        "prenom":prenom,
@@ -37,14 +38,12 @@ export class UtilisateurHttpService {
         "password": password,
         "passwordVerif": passwordVerif , 
         "mail": mail,
-        "tel": tel, 
-        
+        "tel": tel
       });
    }
 
    connexion(username: string, password: string):Observable<Utilisateur> {
-    return this.http.post<Utilisateur>("http://localhost:8080/api/utilisateur/connexion", {
-        
+    return this.http.post<Utilisateur>("http://localhost:8080/api/utilisateur/authentification", {
         "username": username,
         "password": password
       });

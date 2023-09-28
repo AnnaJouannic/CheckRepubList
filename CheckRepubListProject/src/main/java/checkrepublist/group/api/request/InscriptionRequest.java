@@ -3,25 +3,19 @@ package checkrepublist.group.api.request;
 import jakarta.validation.constraints.NotBlank;
 
 public class InscriptionRequest {
-	@NotBlank
+	
 	private String nom;
 	
-	@NotBlank
 	private String prenom;
 	
-	@NotBlank
-	private String login;
+	private String username;
 	
-	@NotBlank
 	private String password;
 	
-	@NotBlank
 	private String passwordVerif;
 	
-	@NotBlank
 	private String mail;
 	
-	@NotBlank
 	private String tel;
 
 	public String getNom() {
@@ -40,12 +34,12 @@ public class InscriptionRequest {
 		this.prenom = prenom;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
