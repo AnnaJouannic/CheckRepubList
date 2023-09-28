@@ -58,12 +58,12 @@ public class MaterielRefApiControlleur {
 			response.setCategorie(materielRef.getCategorie().name());
 		}
 		
-		List<Integer> id_criteres=new ArrayList<>();
+		/*List<Integer> id_criteres=new ArrayList<>();
 		List<Critere> obj_criteres = materielRef.getCriteres();
 		for( Critere critere : obj_criteres) {
 			id_criteres.add(critere.getId());
 		}
-		response.setIdCriteres(id_criteres);
+		response.setIdCriteres(id_criteres);*/
 		
 		
 		return response;

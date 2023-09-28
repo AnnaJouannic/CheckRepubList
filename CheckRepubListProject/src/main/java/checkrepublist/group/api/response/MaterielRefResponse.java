@@ -16,7 +16,7 @@ public class MaterielRefResponse {
 	
 	private String categorie;
 	
-	private List<Integer> idCriteres=new ArrayList<>();
+	//private List<Integer> idCriteres=new ArrayList<>();
 	
 
 	public Integer getId() {
@@ -43,13 +43,13 @@ public class MaterielRefResponse {
 		this.categorie = categorie;
 	}
 
-	public List<Integer> getIdCriteres() {
+	/*public List<Integer> getIdCriteres() {
 		return idCriteres;
 	}
 
 	public void setIdCriteres(List<Integer> idCriteres) {
 		this.idCriteres = idCriteres;
-	}
+	}*/
 	
 
 	public static MaterielRefResponse convertCritere (MaterielRef materielRef) {
@@ -63,7 +63,19 @@ public class MaterielRefResponse {
 		
 
 		return response;
-		
+		}
+
+		public static MaterielRefResponse convertVoyage (MaterielRef materielRef) {
+			MaterielRefResponse response = new MaterielRefResponse();
+			
+			BeanUtils.copyProperties(materielRef, response);
+			
+			response.setCategorie(String.valueOf(materielRef.getCategorie()));
+			
+			//response.setIdCriteres(materielRef.getCriteres().stream().map(CritereResponse::convert).collect(Collectors.toList()));
+			
+
+			return response;
 	}
 	
 	

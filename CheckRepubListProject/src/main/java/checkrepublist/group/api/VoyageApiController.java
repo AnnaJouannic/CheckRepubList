@@ -61,32 +61,14 @@ public class VoyageApiController {
 		return this.repoVoyage.findAll();
 	}
 
+	
+	
 	@GetMapping("/{id}")
-	@Transactional 
+	@Transactional
 	public VoyageResponse findById(@PathVariable Integer id) {
-        Voyage voyage = this.repoVoyage.findById(id).orElseThrow(VoyageNotFoundException::new);
-        VoyageResponse response = new VoyageResponse();
-
-        BeanUtils.copyProperties(voyage, response);
-        response.setLogement(String.valueOf(voyage.getLogement()));
-		response.setDeplacement(String.valueOf(voyage.getDeplacement()));
-		response.setClimat(String.valueOf(voyage.getClimat()));
+		Voyage voyage = this.repoVoyage.findById(id).orElseThrow(VoyageNotFoundException::new);
 		
-		List<Integer> id_materiels=new ArrayList<>();
-		List<MaterielRef> obj_materiels = voyage.getMateriels();
-		for( MaterielRef materiel : obj_materiels) {
-			id_materiels.add(materiel.getId());
-		}
-		response.setIdMateriels(id_materiels);
-		
-		List<Integer> id_voyageurs=new ArrayList<>();
-        List<Voyageur> obj_voyageurs = voyage.getVoyageurs();
-        for( Voyageur voyageur : obj_voyageurs) {
-            id_voyageurs.add(voyageur.getId());
-        }
-        response.setIdVoyageurs(id_voyageurs);
-       
-        return response;
+		return VoyageResponse.convert(voyage);
 	}
 
 	@PostMapping
@@ -144,7 +126,7 @@ public class VoyageApiController {
 		System.out.println(response.getClimat());
 		
 		
-		List<Integer> id_materiels=new ArrayList<>();
+		/*List<Integer> id_materiels=new ArrayList<>();
 		List<MaterielRef> obj_materiels = voyage.getMateriels();
 		for( MaterielRef materiel : obj_materiels) {
 			id_materiels.add(materiel.getId());
@@ -159,13 +141,13 @@ public class VoyageApiController {
             id_voyageurs.add(voyageur.getId());
         }
         response.setIdVoyageurs(id_voyageurs);
-		}
+		}*/
 		
-		return response;
+		return VoyageResponse.convert(voyage);
 	}
 	
 	 
-	@PutMapping("/{id}")
+	/*@PutMapping("/{id}")
 	@Transactional
 	public VoyageResponse edit(@PathVariable Integer id, @Valid @RequestBody VoyageRequest voyageRequest,
 			BindingResult result) {
@@ -214,7 +196,7 @@ public class VoyageApiController {
 		}
 		}
 		return response;
-	}
+	}*/
 
 	@DeleteMapping("/{id}")
 	public void deleteById(@PathVariable Integer id) {
