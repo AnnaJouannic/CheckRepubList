@@ -24,7 +24,9 @@ export class AuthService {
     this.router.navigate([""]);
   }
 
+  
   getUtilisateur(): Utilisateur {
+
     let struser = sessionStorage.getItem("User");
   
     if (struser !== null) { // Vérifiez si struser n'est pas null ou undefined.

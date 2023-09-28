@@ -23,7 +23,7 @@ public class UtilisateurResponse {
 	
 	private String tel;
 
-	private String role;
+	private String roles;
 	
 	private List<Integer> idVoyages;
 	
@@ -77,12 +77,12 @@ public class UtilisateurResponse {
 		this.tel = tel;
 	}
 
-	public String getRole() {
-		return role;
+	public String getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 	
 	
@@ -108,7 +108,7 @@ public class UtilisateurResponse {
 
 		BeanUtils.copyProperties(utilisateur, response);
 
-		response.setRole(String.join(",", utilisateur.getRole().stream().map(Roles::name).collect(Collectors.toSet())));
+		response.setRoles(String.join(",", utilisateur.getRoles().stream().map(Roles::name).collect(Collectors.toSet())));
 		
 		//response.setIdVoyages(utilisateur.getVoyages().stream().map(VoyageResponse::convert).collect(Collectors.toList()));
 

@@ -46,7 +46,7 @@ export class Utilisateur {
     prenom: string;
     username: string;
     password: string;
-     mail: string;
+    mail: string;
     tel: string;
    
     roles: Array<string> = new Array<string>;
@@ -133,8 +133,8 @@ export class Voyage {
     logement: string;
     deplacement: string;
     climat: string;
-    voyageur: Voyageur;
-    materielRef: MaterielRef;
+    voyageurs: Array<Voyageur>= new Array<Voyageur>;
+    materiels:Array<MaterielRef>= new Array< MaterielRef>;
     
 
 
@@ -147,8 +147,8 @@ export class Voyage {
        logement?: string,
        deplacement?: string,
        climat?: string,
-       voyageur?: Voyageur,
-      materielRef?: MaterielRef,
+       voyageurs?: Voyageur [],
+      materiels?: MaterielRef [],
     ) {
         this.id=id;
         this.dateDebutVoyage = dateDebutVoyage;
@@ -158,8 +158,8 @@ export class Voyage {
         this.logement = logement;
         this.deplacement = deplacement;
         this.climat=climat;
-        this.voyageur=voyageur;
-        this.materielRef= materielRef;
+        this.voyageurs=voyageurs;
+        this.materiels= materiels;
     }
 }
     

@@ -49,7 +49,7 @@ public abstract class Compte {
 	@Column(name = "role", nullable = false)
 	@Enumerated(EnumType.STRING)
 	@JsonView(Views.Admin.class)
-	protected Set<Roles> role = new HashSet<>();
+	protected Set<Roles> roles = new HashSet<>();
 	
 	public Compte() {}
 	
@@ -112,12 +112,12 @@ public abstract class Compte {
 		this.password = password;
 	}
 
-	public Set<Roles> getRole() {
-		return role;
+	public Set<Roles> getRoles() {
+		return roles;
 	}
 
-	public void setRole(Set<Roles> role) {
-		this.role = role;
+	public void setRoles(Set<Roles> roles) {
+		this.roles = roles;
 	}
 
 

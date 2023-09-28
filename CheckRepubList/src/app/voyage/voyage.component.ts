@@ -130,7 +130,7 @@ modesClimat = Type.typeClimats;
 voyages$: Observable<Voyage[]>;
 voyageurs$: Observable<Voyageur[]>;
 materielRef$: Observable<MaterielRef[]>;
-
+monvoyage: Observable<Voyage>;
 
 
 constructor( private router: Router,private formBuilder: FormBuilder, private voyageService: VoyageHttpService, private voyageurService: VoyageurService, private materielRefService: MaterielRefHttpService) {
@@ -246,4 +246,21 @@ voyageur(){
         
  }
 
-}
+ getvoyage(id: number) {
+
+    // let strvoyage = this.voyageService.findById(id);
+    // console.log(strvoyage);
+    //   return strvoyage;
+      this.voyageService.findById(id).subscribe(resp => {
+        this.voyageForm.patchValue(resp);
+        console.log(this.voyageForm)
+  
+    //  this.voyageService.findById(id).subscribe(resp => {
+    // this.monvoyage==resp;
+    
+   
+  });
+  // return this.monvoyage;
+ 
+
+} }
