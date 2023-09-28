@@ -489,6 +489,7 @@ class CheckRepublistApplicationTest {
 	
 	
 	Voyage voyage3 = new Voyage(LocalDate.parse("2023-05-23"),LocalDate.parse("2023-06-02"), "Vacances de printemps !!", "Italie", TypeLogement.AirBnB, TypeDeplacement.Moto, TypeClimat.Chaud );
+	voyage3.setVoyageurs(utilisateur2);
 	voyage3 = voyageRepo.save(voyage3);
 	
 	 List<Voyage> Voyage1 = new ArrayList<>();

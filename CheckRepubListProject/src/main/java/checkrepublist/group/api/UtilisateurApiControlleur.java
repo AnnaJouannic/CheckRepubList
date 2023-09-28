@@ -68,6 +68,7 @@ public class UtilisateurApiControlleur {
 	
 	@PutMapping("/{id}")
 	@Transactional
+	//@JsonView(Views.Utilisateur.class)
 	public UtilisateurResponse edit (@PathVariable Integer id, @Valid @RequestBody UtilisateurRequest utilisateurRequest, BindingResult result) {
 		if(result.hasErrors()) {
 			throw new InscriptionNotValidException();

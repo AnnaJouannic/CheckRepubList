@@ -31,14 +31,14 @@ public class Utilisateur extends Compte {
 	@JoinTable(name="mes_voyageurs",
 	joinColumns= @JoinColumn (name="utilisateur"),
 	inverseJoinColumns = @JoinColumn(name="voyageur"))
-	//@JsonView(Views.Common.class)
+	@JsonView(Views.Utilisateur.class)
 	private List<Voyageur> voyageurs=new ArrayList<>();
 	
 	@OneToMany
 	@JoinTable(name="mes_voyages",
 	joinColumns= @JoinColumn (name="utilisateur"),
 	inverseJoinColumns = @JoinColumn(name="voyages"))
-	//@JsonView(Views.Common.class)
+	@JsonView(Views.Utilisateur.class)
 	private List <Voyage> voyages = new ArrayList<>();
 	
 
