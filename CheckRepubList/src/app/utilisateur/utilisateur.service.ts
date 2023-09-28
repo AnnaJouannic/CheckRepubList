@@ -47,15 +47,15 @@ export class UtilisateurService {
     this.utilisateurs.splice(pos, 1);
    }
 
-   inscription(nom: string,prenom: string,login: string,password: string,tel: string,mail: string) {
-    let utilisateur: Utilisateur = new Utilisateur(null, nom, prenom,login,password,tel,mail);
+   inscription(nom: string,prenom: string,username: string,password: string,tel: string,mail: string) {
+    let utilisateur: Utilisateur = new Utilisateur(null, nom, prenom,username,password,tel,mail);
     utilisateur.roles.push("User");
 
     this.save(utilisateur);
    }
 
    connexion(login: string, password: string):Utilisateur {
-    return this.utilisateurs.find(u => u.login == login  && u.password == password);
+    return this.utilisateurs.find(u => u.username == login  && u.password == password);
    }
 
 }

@@ -17,16 +17,16 @@ export class ConnexionComponent implements OnInit{
 
   ngOnInit(): void {
     this.connexionForm= this.formBuilder.group({
-    login:  this.formBuilder.control("", Validators.required),
+    username:  this.formBuilder.control("", Validators.required),
     password: this.formBuilder.control("", [Validators.required, Validators.minLength(5), Validators.pattern("[A-z0-9!#@$*?-]{5,10}")])
     })
   }
 
   auth() {
   if (this.connexionForm.valid) {
-    const login = this.connexionForm.value.login;
+    const username = this.connexionForm.value.username;
    const  password = this.connexionForm.value.password;
-   this.authService.authentification(login, password);
+   this.authService.authentification(username, password);
   } else {
     this.markFormGroupTouched(this.connexionForm);
   }

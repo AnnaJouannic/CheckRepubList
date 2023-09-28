@@ -8,7 +8,7 @@
                     <th>Identifiant</th>
                     <th>Nom</th>
                     <th>Prénom</th>
-                    <th>Login</th>
+                    <th>username</th>
                     <td>mail</td>
                     <td>Tel</td>
                     <th>Roles</th>
@@ -21,7 +21,7 @@
                     <td>{{user.id}}</td>
                      <td>{{user.nom}}</td>
                     <td>{{user.prenom}}</td>
-                   <td>{{user.login}}</td>
+                   <td>{{user.username}}</td>
                     <td>{{user.mail}}</td>
                     <td>{{user.tel}}</td>
                     <td>{{user.roles}}</td>
@@ -57,7 +57,7 @@
             <label for="prenom">Prénom:</label> <input type="text" class="form-control" id="prenom" name="prenom" [(ngModel)]="utilisateurForm.prenom"/>
         </div>
         <div class="form-group">
-            <label for="login">Login:</label> <input type="text" class="form-control" id="login" name="login" [(ngModel)]="utilisateurForm.login"/>
+            <label for="username">username:</label> <input type="text" class="form-control" id="username" name="username" [(ngModel)]="utilisateurForm.username"/>
         </div> 
         <div class="form-group">
             <label for="mail">mail:</label> <input type="text" class="form-control" id="mail" name="mail" [(ngModel)]="utilisateurForm.mail"/>

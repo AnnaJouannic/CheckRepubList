@@ -44,7 +44,7 @@ export class Utilisateur {
     id: number;
     nom: string;
     prenom: string;
-    login: string;
+    username: string;
     password: string;
     mail: string;
     tel: string;
@@ -55,7 +55,7 @@ export class Utilisateur {
         id?: number,
         nom?: string,
         prenom?: string,
-        login?: string,
+        username?: string,
         password?: string,
         mail?: string,
         tel?: string,
@@ -64,7 +64,7 @@ export class Utilisateur {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        this.login = login;
+        this.username = username;
         this.password = password;
         this.mail = mail;
         this.tel = tel;
