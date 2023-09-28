@@ -39,11 +39,14 @@
 							<td>{{voyage.logement}}</td>
 							<td>{{voyage.deplacement}}</td>
 							<td>{{voyage.climat}}</td>
-							<td>{{voyage.voyageur?.prenom}}</td>
+							<td id="voyageurs" name="voyageurs"  >
+                                <li >{{voyage.voyageurs[0]?.prenom}} {{voyage.voyageurs[1]?.prenom}}</li> </td>
+                         
+                            <td>
 						 
 							<td>
 								<div class="btn-group btn-group-sm">
-									<a class="btn btn-primary" (click)="edit(voyage.id)"><i
+									<a class="btn btn-primary" (click)="getvoyage(voyage.id)"><i
 											class="bi bi-pencil-square"></i></a>
 									<a class="btn btn-danger" (click)="remove(voyage.id)"><i class="bi bi-trash"></i></a>
 								</div>
@@ -186,7 +189,7 @@
 
 
   
-		<div class="btn-group btn-group-lg float-right" [hidden]="FormHidden">
+		<!-- <div class="btn-group btn-group-lg float-right" [hidden]="FormHidden">
 			<button class="btn btn-success"> Générer ta Checklist</button>
 			<a class="btn btn-success" (click)="hiddenMat()"><i class="bi bi-backspace-fill"></i></a>
 		 
@@ -218,8 +221,20 @@
 					  </tbody>
 				  </table>
 			  </div>
-			</div>
-  
+			</div> -->
+  <div>
+			<!-- <tr >
+				<td>{{monvoyage.id}}</td>
+				<td>{{monvoyage.dateDebutVoyage}}</td>
+				<td>{{monvoyage.dateFinVoyage}}</td>
+				<td>{{monvoyage.libelle}}</td>
+				<td>{{monvoyage.pays}}</td>
+				<td>{{monvoyage.logement}}</td>
+				<td>{{monvoyage.deplacement}}</td>
+				<td>{{monvoyage.climat}}</td>
+
+				</tr> -->
+						</div>
 	</body>	
 		 
 	
