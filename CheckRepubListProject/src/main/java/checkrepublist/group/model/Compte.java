@@ -40,7 +40,7 @@ public abstract class Compte {
 	protected String prenom;
 	@Column(length = 25)
 	@JsonView(Views.Common.class)
-	protected String login;
+	protected String username;
 	@Column(length = 130)
 	protected String password;
 	
@@ -48,24 +48,24 @@ public abstract class Compte {
 	@JoinTable(name = "compte_roles", joinColumns = @JoinColumn(name = "utilisateur_id"))
 	@Column(name = "role", nullable = false)
 	@Enumerated(EnumType.STRING)
-	@JsonView(Views.Admin.class)
+	@JsonView(Views.Common.class)
 	protected Set<Roles> roles = new HashSet<>();
 	
 	public Compte() {}
 	
-	public Compte(Integer id, String nom, String prenom, String login, String password) {
+	public Compte(Integer id, String nom, String prenom, String username, String password) {
 		this.id = id;
 		this.nom = nom;
 		this.prenom = prenom;
-		this.login = login;
+		this.username = username;
 		this.password = password;
 
 	}
 
-	public Compte(String nom, String prenom, String login, String password) {
+	public Compte(String nom, String prenom, String username, String password) {
 		this.nom = nom;
 		this.prenom = prenom;
-		this.login = login;
+		this.username = username;
 		this.password = password;
 	}
 
@@ -81,8 +81,8 @@ public abstract class Compte {
 		return prenom;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
 	public String getPassword() {
@@ -104,8 +104,8 @@ public abstract class Compte {
 		this.prenom = prenom;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String login) {
+		this.username = login;
 	}
 
 	public void setPassword(String password) {

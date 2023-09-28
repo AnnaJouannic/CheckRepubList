@@ -511,7 +511,7 @@ class CheckRepublistApplicationTest {
 	Set<Roles> rolec2 = new HashSet<>();
 	rolec2.add(Roles.User);
 	rolec2.add(Roles.Admin);
-	c1.setRoles(rolec2);
+	c2.setRoles(rolec2);
 	c2.setVoyageurs(utilisateur2);
 	c2.setVoyages(Voyage1);
 	c2.setVoyages(Voyage2);
