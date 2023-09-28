@@ -173,8 +173,8 @@
 		<div class="mt-3">
 		<div id="groupe1" *ngIf="monvoyage">
 			<h1>Liste de fournitures pour : {{monvoyage.libelle}}</h1>
-			<h5>Date du Départ : {{monvoyage.dateDebutVoyage}}</h5> 
-			<h5>Date de Fin : {{monvoyage.dateFinVoyage}}</h5> 
+			<h5>Date du Départ : {{monvoyage.dateDebutVoyage | date: 'dd/MM/yyyy'}}</h5> 
+			<h5>Date de Fin : {{monvoyage.dateFinVoyage | date: 'dd/MM/yyyy'}}</h5> 
 			<h5>Destination : {{monvoyage.pays}}</h5>
 			<hr/>
 			<h4>Mes choix : </h4>
@@ -184,18 +184,37 @@
 				<li> Climat : {{monvoyage.climat}}</li>
 			</ul>
 			<hr/>
-			<div id="materiels" name="materiels">
-				<div class="form-check">
+
+			 <div id="categories" name="categories">
+          <h4>Catégories :</h4>
+          <ul>
+            <li *ngFor="let category of categoriesDistinctes"><h4 class="category"> {{ category }} </h4>
+			<div class="form-check">
 				<li *ngFor="let m of monvoyage.materiels" [value]="monvoyage.materiels">
-					<input class="form-check-input" type="checkbox"  id="flexCheckDefault"/>
-					 <label class="form-check-label" for="flexCheckDefault"></label>
-					{{m.libelleMateriel}} / {{m.categorie}} </li>  
-			</div>
-		</div>
-		</div>
-	</div>
-	
-	</div>
+					<div *ngIf="m.categorie == category">
+						<input class="form-check-input" type="checkbox" id="flexCheckDefault" />
+						<label class="form-check-label" for="flexCheckDefault"></label>
+						{{ m.libelleMateriel }}
+					</div>
+				</li>
+			  </div>
+			</li>
+          </ul>
+        </div>
+
+        <!-- Afficher la liste des matériels -->
+        <!-- <div id="materiels" name="materiels">
+          <div class="form-check">
+            <li *ngFor="let m of monvoyage.materiels" [value]="monvoyage.materiels">
+              <input class="form-check-input" type="checkbox" id="flexCheckDefault" />
+              <label class="form-check-label" for="flexCheckDefault"></label>
+              {{ m.libelleMateriel }} / {{ m.categorie }}
+            </li>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
 
 	
 </body>	
