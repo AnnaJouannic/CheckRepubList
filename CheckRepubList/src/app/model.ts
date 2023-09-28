@@ -46,7 +46,7 @@ export class Utilisateur {
     prenom: string;
     login: string;
     password: string;
-     mail: string;
+    mail: string;
     tel: string;
    
     roles: Array<string> = new Array<string>;

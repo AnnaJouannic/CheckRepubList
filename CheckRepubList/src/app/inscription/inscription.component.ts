@@ -40,12 +40,10 @@ export class InscriptionComponent  implements OnInit {
     if (this.inscriptionForm.valid) {
       const password = this.inscriptionForm.value.password;
       const passwordVerif = this.inscriptionForm.value.passwordVerif;
-console.log(this.inscriptionForm.value);
       if (password === passwordVerif) {
        
         this.utilisateurService.inscription(this.inscriptionForm.get('nom')?.value, this.inscriptionForm.get('prenom')?.value, this.inscriptionForm.get('login')?.value, this.inscriptionForm.get('password')?.value, 
-       this.inscriptionForm.get('passwordValue')?.value, this.inscriptionForm.get('mail')?.value, this.inscriptionForm.get('tel')?.value);
-            this.router.navigate(['/connexion']);
+       this.inscriptionForm.get('passwordVerif')?.value, this.inscriptionForm.get('mail')?.value, this.inscriptionForm.get('tel')?.value).subscribe(resp=>{this.router.navigate(['/connexion'])});;
   
       } else {
         console.error('Les mots de passe ne correspondent pas.');

@@ -89,7 +89,7 @@ public class UtilisateurApiControlleur {
 		
 		BeanUtils.copyProperties(inscriptionRequest, utilisateur);
 		
-		utilisateur.getRole().add(Roles.User);
+		utilisateur.getRoles().add(Roles.User);
 		
 		this.repoUtilisateur.save(utilisateur);
 		
