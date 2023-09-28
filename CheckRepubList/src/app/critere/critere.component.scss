@@ -37,24 +37,7 @@ div.mt-3 {
         border: 1px solid #ddd; /* Bordures */
         }
     
-    // /* Style pour la dernière colonne (espace pour les boutons) */
-    // th:last-child {
-    //     text-align: center;
-    // }
-    
-    // /* Style pour les boutons d'icônes dans l'en-tête */
-    // th i {
-    //     font-size: 20px;
-    //     margin-right: 5px;  
-    // }
-    // form {
-    // max-width: 800px;
-    // margin: 0 auto;
-    // background: #a4b7a885;
-    // padding: 20px;
-    // border-radius: 5px;
-    // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    // }
+ 
     
     label {
     font-weight: bold;
@@ -71,34 +54,12 @@ div.mt-3 {
 
 
 
-/* Style pour la carte (card) principale */
-// .card {
-//     margin-top: 1rem;
-//     //background-image: url("/assets/paccueil.jpg");
-//     background-size: cover;
-//     background-attachment: fixed;
-//     background-repeat: no-repeat;
-//     background-size: 100% 100%;
-//     -webkit-backdrop-filter: blur(15px);
-//     backdrop-filter: blur(15px);
-//     overflow: hidden;
-//     margin: 0;
-// }
-
-
-
-
-
-  
-  
-  
-  
-
-
-
-
-
-
-
-
-
+    .btn-success{
+        background-color: hsl(133, 13%, 47%);
+        border-color: hsl(133, 13%, 47%);
+       
+      }
+      .btn-success:hover{
+         background-color: #fd6710;
+        border-color: #fd6710;
+      }

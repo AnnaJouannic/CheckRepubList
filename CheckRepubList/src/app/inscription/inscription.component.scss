@@ -4,7 +4,7 @@
 h1 {
     text-align: center;
     padding: 20px;
-    font-weight: bold;
+    color: #ffffff;
 }
 
 
@@ -71,3 +71,17 @@ input[type="checkbox"] {
 .Type label {
     margin-right: 15px;
 }
+.btn-success{
+    background-color: hsl(133, 13%, 47%);
+    border-color: hsl(133, 13%, 47%);
+   
+  }
+  .btn-success:hover{
+     background-color: #fd6710;
+    border-color: #fd6710;
+  }
+  .btn-success:disabled{
+    background-color: hsl(133, 13%, 47%);
+    border-color: hsl(133, 13%, 47%);
+   
+  }

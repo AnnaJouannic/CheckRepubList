@@ -52,7 +52,7 @@
 {
     float:center;
     width:60%;
-    height: 500px;
+    height: 800px;
     background : #a4b7a8(110, 123, 88, 0.8);
     border-radius: 30px;
     display:flex;
@@ -68,17 +68,20 @@ body {
     background-color: #fff;
     margin: 0;
     padding: 0;
+   
   
 }
 h1 {
     text-align: center;
     padding: 20px;
     color: #ffffff; /* Blanc */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+   
   }
-    
+    h4{
+      color: #ffffff; 
+    }
 form {
-    max-width: 500px;
+    max-width: 800px;
     margin: 0 auto;
     background: #a4b7a8;
     padding: 20px;
@@ -155,7 +158,7 @@ li
 #recap {
 	margin: auto;
 	width: 80%; /* Vous pouvez ajuster la largeur selon vos besoins */
-	max-width: 500px; /* Définissez une largeur maximale pour éviter un tableau trop large */
+	max-width: 1500px; /* Définissez une largeur maximale pour éviter un tableau trop large */
 	padding: 20px;
 	background-color:#a4b7a8;
 	border-radius: 30px;
@@ -169,6 +172,7 @@ li
 	width: 100%;
 	border-collapse: collapse;
 	margin-top: 20px;
+ 
   }
   
   th, td {
@@ -176,6 +180,7 @@ li
 	text-align: center;
 
   }
+
   
 //   thead {
 // 	background-color: #a4b7a8; /* Couleur de fond de l'en-tête */
@@ -184,5 +189,22 @@ li
 //   }
   
 
+.form-check-input:checked {
+  background-color: #fd6710;
+  border-color: #e9810a;
+}
+
+.btn-success{
+  background-color: hsl(133, 13%, 47%);
+  border-color: hsl(133, 13%, 47%);
  
-  
+}
+.btn-success:hover{
+   background-color: #fd6710;
+  border-color: #fd6710;
+}
+.btn-success:disabled{
+  background-color: hsl(133, 13%, 47%);
+  border-color: hsl(133, 13%, 47%);
+ 
+}

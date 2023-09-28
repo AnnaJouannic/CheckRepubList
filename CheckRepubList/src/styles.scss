@@ -5,7 +5,7 @@
   }
 
 body {
-    background-image: url("/assets/paccueil.jpg");
+    background-image: url("/assets/accueil-flou.png");
   background-size: cover; /* Pour couvrir toute la surface */
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -47,3 +47,8 @@ body {
       font-size:50px;
       color : #da664b;
   }
+  // .footer{
+  //   display: flex;
+  //   align-items: flex-end;
+    
+  // }

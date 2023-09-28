@@ -15,7 +15,7 @@
     text-align: center;
     padding: 20px;
     color: #ffffff; /* Blanc */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+   
   }
   
   /* Style pour le formulaire */
@@ -58,3 +58,12 @@
   //   font-family: "Playball";
   //   src: url("/assets/Playball-Regular.ttf") format("truetype");
   // }
+  .btn-success{
+    background-color: hsl(133, 13%, 47%);
+    border-color: hsl(133, 13%, 47%);
+   
+  }
+  .btn-success:hover{
+     background-color: #fd6710;
+    border-color: #fd6710;
+  }

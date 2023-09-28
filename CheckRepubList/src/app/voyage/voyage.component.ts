@@ -114,7 +114,6 @@ save() {
 
 });  
  
-return 
 }
 
 //  recap(id:number){
@@ -142,11 +141,12 @@ remove(id: number) {
 historique(){
   this.action = "ancien";
   this.monvoyage = null;
+ 
    }
 show() {
 this.action = "nouveau";
 this.monvoyage = null;
-this.showForm=false;
+
 }
 voyageur(){
   this.router.navigate(["/voyageur"]);
@@ -160,7 +160,7 @@ generate(){
 
  getvoyage(id?:number) {
 
-
+this.action="checklist";
 
  this.voyageService.findById(id)
  .subscribe((data) => {

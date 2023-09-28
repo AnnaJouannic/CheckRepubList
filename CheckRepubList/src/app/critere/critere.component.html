@@ -1,9 +1,9 @@
 <body>
 <div class="mt-3">
     <form >
-    <h1>Liste des critéres</h1>
+    <h1>Liste des critères</h1>
     <div class="card-body">
-        <table class="table table-striped">
+        <table class="table table-striped table-hover">
             <thead>
                 <tr>
                     
@@ -17,7 +17,6 @@
 
             <tbody>
                 <tr *ngFor="let crit of criteres$ |async">
-                    <!-- <td>{{crit.id}}</td> -->
                     <td>{{crit.materielref?.libelleMateriel}}</td>
                     <td>{{crit.logement}}</td>
                     <td>{{crit.deplacement}}</td>
@@ -48,12 +47,11 @@
             <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" readonly formControlName="id"/>
         </div> -->
         <div class="form-group">
-            <label for="materielRef">MaterielRef:</label>
             <!-- <label for="formControlName="materielRef"">materielRef:</label> <input type="text" class="form-control" id="materielRef" name="materielRef" formControlName="materielRef"/>
             <span class="text-danger" *ngIf="critereForm.get('materielRef')?.dirty && critereForm.get('materielRef')?.hasError('required')">Le materielRef est obligatoire</span> -->
             <label for="idMaterielref">MaterielRef</label>
             <select class="form-control" id="idMaterielref" name="idMaterielref" formControlName="idMaterielref">
-                <option *ngFor="let materielRef of materielsRef$ | async" [value]="materielRef.id">{{materielRef.libelleMateriel}}</option>
+                <option *ngFor="let materielRef of materielsRef$ | async" [value]="materielRef.id">{{materielRef.id}}-{{materielRef.libelleMateriel}}</option>
             </select>
         </div>
         <div class="form-group">

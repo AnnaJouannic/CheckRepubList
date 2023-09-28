@@ -63,7 +63,7 @@ export class CritereComponent implements OnInit {
 
 edit(id: number) {
    this.critereHttpService.findById(id).subscribe(response => {
-     this.critereForm.patchValue(response) ;
+     this.critereForm.patchValue(response);
       this.showForm = true;
 });
  
