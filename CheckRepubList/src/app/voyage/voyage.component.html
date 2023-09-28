@@ -1,6 +1,6 @@
 
 <body>
-	<div class="form-container">
+	<div class="form-container" *ngIf="showForm">
 		<div id="content" >
 			<div id="center" class="mt-3">
 			<div  id="nouveau">
@@ -49,7 +49,7 @@
 		</div>
 	</div>
 
-	<div class="form-container" *ngIf="action == 'ancien'" >
+	<div class="form-container" *ngIf="action == 'ancien' && !showForm" >
 		<div id="recap">
 			<h1 >Liste des voyages</h1>
 			   <table class="table table-striped">
@@ -91,7 +91,7 @@
 		</div>
 	</div>
 	
-	<div class="form-container"  *ngIf="action == 'nouveau'" >
+	<div class="form-container"  *ngIf="action == 'nouveau'  && !showForm" >
 		<div >
 		<form  (ngSubmit)="save()" novalidate autocomplete="off" [formGroup]="voyageForm">
 			<h1>Un nouveau voyage </h1>
