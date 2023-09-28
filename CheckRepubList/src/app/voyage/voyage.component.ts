@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 // import { VoyageService } from './voyage.service';
@@ -18,111 +18,20 @@ import { MaterielRefHttpService } from '../materiel-ref/materiel-ref-http.servic
 })
 export class VoyageComponent   implements OnInit{
 
-//   voyages$: Observable<Voyage[]>;
-//   voyageForm: FormGroup;
-//   showForm: boolean = false;
-//   modesLogement = Object.values(TypeLogement);
-//   modesDeplacement = Object.values(TypeDeplacement);
-//   modesClimat = Object.values(TypeClimat);
-//   // voyageurs$: Observable<Voyageur[]>;
-//   FormHidden: boolean = true;
-  
-  
-
-  // materielRef: Array<MaterielRef>;
-  
-
-//   constructor( private router: Router, private formBuilder: FormBuilder, private voyageHttpService: VoyageHttpService ,private voyageurService : VoyageurService, private voyageService: VoyageService ) {}
+  // togg1.addEventListener("click", () => {
+  //   if(getComputedStyle(d1).display != "none"){
+  //     d1.style.display = "none";
+  //   } else {
+  //     d1.style.display = "block";
+  //   }
+  // })
 
 
-
-//   ngOnInit(): void {
-//     this.voyageForm = this.formBuilder.group({
-//       dateDebutVoyage: this.formBuilder.control('', [Validators.required ]),
-//       dateFinVoyage: this.formBuilder.control('', [Validators.required ]),
-//       libelle: this.formBuilder.control('', [Validators.required, Validators.maxLength(25)]),
-//       pays: this.formBuilder.control('', [Validators.required, Validators.maxLength(25)]),
-//       logement:this.formBuilder.control('', [Validators.required]),
-//       deplacement:this.formBuilder.control('', [Validators.required]),
-//       climat:this.formBuilder.control('', [Validators.required]),
-//       voyageur:this.formBuilder.control('',[Validators.required]),
-     
-//   });
-//   // this.voyageurs$ = this.voyageurService.findAllForAsync();
-  
-//   //   //  this.voyageurs$ = this.voyageurService.findAllForAsync(); 
-//   }
-  
-//   list(): Array<Voyageur> {
-//     return this.voyageurService.findAll();
-//   }
-
-//   listvoyage(): Array<Voyage>{
-//     return this.voyageService.findAll();
-//   }
-
-// add() {
-//   this.voyageForm.reset();
-//   this.showForm = true;
-  
-
-
-// }
-
-// // edit(id: number) {
-// //   this.voyageHttpService.findById(id).subscribe(resp => {
-// //     this.voyageForm=resp;
-// //     if(!this.voyageForm.voyageur) {
-// //       this.voyageForm.voyageur= new Voyageur ();
-// //     }
-
-// //   }); 
-
-// // }
-
-// edit(id: number) {
-//   this.voyageHttpService.findById(id).subscribe(resp => {
-//     this.voyageForm.patchValue(resp);
-//     this.showForm = true;
-   
-//   });
-// }
-
-// remove(id: number) {
-//   this.voyageHttpService.deleteById(id);
-// }
-
-// save() {
-//   this.voyageHttpService.save(this.voyageForm.value);
-//   this.cancel();
-//   this.showForm=true;
-//   this.voyages$ = this.voyageHttpService.findAll();
-  
-  
-// }
-
-// cancel() {
-//   this.showForm = false;
-//   this.voyageForm.reset();
-// }
-
-// show() {
-//   this.showForm = true;
-  
-// }
-// voyageur(){
-//   this.router.navigate(["/voyageur"]);
-  
-// }
-//  hidden(){
-// this.FormHidden=! this.FormHidden
-//  }
-// }
-
-
+ 
+checklist: boolean = false;
 voyageForm: FormGroup;
 showForm: boolean = false;
-FormHidden: boolean = true;
+action: string = null;
 MatHidden: boolean = true;
 modeslogement=  Type.typeLogements;
 modesDeplacement = Type.typeDeplacements;
@@ -130,8 +39,8 @@ modesClimat = Type.typeClimats;
 voyages$: Observable<Voyage[]>;
 voyageurs$: Observable<Voyageur[]>;
 materielRef$: Observable<MaterielRef[]>;
-monvoyage: Observable<Voyage>;
-
+strvoyage$:Observable<Voyage>;
+monvoyage: Voyage = null;
 
 constructor( private router: Router,private formBuilder: FormBuilder, private voyageService: VoyageHttpService, private voyageurService: VoyageurService, private materielRefService: MaterielRefHttpService) {
 }
@@ -202,9 +111,10 @@ save() {
    console.log(this.voyageForm.value);
   this.voyageService.save(this.voyageForm.value).subscribe(resp => {
     this.voyages$ = this.voyageService.findAll();
-    
-});  
 
+});  
+ 
+return 
 }
 
 //  recap(id:number){
@@ -227,40 +137,41 @@ remove(id: number) {
     this.voyages$ = this.voyageService.findAll();
   });
 }
-hidden(){
-  this.FormHidden=! this.FormHidden
+
+
+historique(){
+  this.action = "ancien";
+  this.monvoyage = null;
    }
-
-   hiddenMat(){
-    this.MatHidden=! this.MatHidden
-    this.showForm = false;
-     }
-     
-
 show() {
-this.showForm = true;
-      
+this.action = "nouveau";
+this.monvoyage = null;
+this.showForm=false;
 }
 voyageur(){
   this.router.navigate(["/voyageur"]);
         
  }
 
- getvoyage(id: number) {
+generate(){
+  this.checklist = true;
+  console.log("et peut être")
+}
 
-    // let strvoyage = this.voyageService.findById(id);
-    // console.log(strvoyage);
-    //   return strvoyage;
-      this.voyageService.findById(id).subscribe(resp => {
-        this.voyageForm.patchValue(resp);
-        console.log(this.voyageForm)
-  
-    //  this.voyageService.findById(id).subscribe(resp => {
-    // this.monvoyage==resp;
-    
-   
-  });
-  // return this.monvoyage;
- 
+ getvoyage(id?:number) {
 
-} }
+
+
+ this.voyageService.findById(id)
+ .subscribe((data) => {
+    this.monvoyage = data;
+    // this.monvoyageurs = data.voyageurs;
+    // this.monmateriels = data.materiels; 
+});
+
+  console.log(this.monvoyage);
+
+ }
+
+
+}

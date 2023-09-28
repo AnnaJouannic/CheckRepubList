@@ -108,13 +108,21 @@ form {
     box-shadow: 0px 0px 5px rgba(52, 152, 219, 0.5);
     }
 
+ #groupe1 {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #a4b7a8;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
 
 #center
 {
     float:center;
     width:60%;
     height: 500px;
-    background : rgba(110, 123, 88, 0.8);
+    background : #a4b7a8;
     border-radius: 30px;
     display:flex;
     justify-content:center;
@@ -149,7 +157,7 @@ li
 	width: 80%; /* Vous pouvez ajuster la largeur selon vos besoins */
 	max-width: 500px; /* Définissez une largeur maximale pour éviter un tableau trop large */
 	padding: 20px;
-	background-color: rgba(110, 123, 88, 0.8);
+	background-color:#a4b7a8;
 	border-radius: 30px;
 	display: flex;
 	flex-direction: column;

@@ -3,6 +3,7 @@ package checkrepublist.group.api.response;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 
@@ -27,9 +28,9 @@ public class VoyageResponse {
 	
 	//private List<ActiviteRef> activites= new ArrayList<>();
 	
-	private List<Integer> idMateriels=new ArrayList<>();
+	private List<MaterielRefResponse> materiels=new ArrayList<>();
 	
-	private List<Integer> idVoyageurs=new ArrayList<>();
+	private List<VoyageurResponse> voyageurs=new ArrayList<>();
 	
 	
 	
@@ -97,20 +98,20 @@ public class VoyageResponse {
 	public void setActivites(List<ActiviteRef> activites) {
 		this.activites = activites;
 	}*/
-	public List<Integer> getIdMateriels() {
-		return idMateriels;
+	public List<MaterielRefResponse> getMateriels() {
+		return materiels;
 	}
 
-	public void setIdMateriels(List<Integer> idMateriels) {
-		this.idMateriels = idMateriels;
+	public void setMateriels(List<MaterielRefResponse> materiels) {
+		this.materiels = materiels;
 	}
 
-	public List<Integer> getIdVoyageurs() {
-		return idVoyageurs;
+	public List<VoyageurResponse> getvoyageurs() {
+		return voyageurs;
 	}
 
-	public void setIdVoyageurs(List<Integer> idVoyageurs) {
-		this.idVoyageurs = idVoyageurs;
+	public void setVoyageurs(List<VoyageurResponse> voyageurs) {
+		this.voyageurs = voyageurs;
 	}
 
 	public String getPays() {
@@ -132,14 +133,14 @@ public class VoyageResponse {
 		
 		//response.setMateriels(String.join(",", voyage.getMateriels().stream().map(voyage).collect(Collectors.toList())));
 		//response.setMateriels(List.of(voyage.getMateriels().stream().map(m_-> new MaterielRef(m.getLibelleMaterielRef(), m.getCategorie()).collect(Collectors.toList()))));
-		//response.setMateriels(voyage.getMateriels().stream().map(MaterielRefResponse::convertVoyage).collect(Collectors.toList()));
+		response.setMateriels(voyage.getMateriels().stream().map(MaterielRefResponse::convertVoyage).collect(Collectors.toList()));
 		
-		//response.setVoyageurs(voyage.getVoyageurs().stream().map(VoyageurResponse::convertVoyageur).collect(Collectors.toList()));
+		response.setVoyageurs(voyage.getVoyageurs().stream().map(VoyageurResponse::convertVoyageur).collect(Collectors.toList()));
 		
 		return response;
 	}
 	
-	public static VoyageResponse convertVoyageur(Voyage voyage) {
+	/*public static VoyageResponse convertVoyageur(Voyage voyage) {
 		VoyageResponse response = new VoyageResponse();
 
 		BeanUtils.copyProperties(voyage, response);
@@ -154,7 +155,7 @@ public class VoyageResponse {
 		
 		
 		return response;
-	}
+	}*/
 	
 }
 	
