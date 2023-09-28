@@ -11,7 +11,7 @@ export class UtilisateurService {
   constructor() {
     this.utilisateurs.push(new Utilisateur(3, "Even","Manon", "Manondu56", "Manon12?",  "manoneven@gmail.com", "0650265588","user"));
     this.utilisateurs.push(new Utilisateur(5, "DIALLO","Tidiane","Tidiane","123456", "tidiane@gamil.com",  "7712489581", "user" ));
-    this.utilisateurs.push(new Utilisateur(13, "Andraos","Rawad", "Rads", "12345","rawadandraos@gmail.com", "0778050623" , "ADMIN"));
+    this.utilisateurs.push(new Utilisateur(13, "Andraos","Rawad", "Rads", "12345","rawadandraos@gmail.com", "0778050623" , "Admin", "User"));
    }
 
 
@@ -54,8 +54,8 @@ export class UtilisateurService {
     this.save(utilisateur);
    }
 
-   connexion(login: string, password: string):Utilisateur {
-    return this.utilisateurs.find(u => u.username == login  && u.password == password);
+   connexion(username: string, password: string):Utilisateur {
+    return this.utilisateurs.find(u => u.username == username  && u.password == password);
    }
 
 }

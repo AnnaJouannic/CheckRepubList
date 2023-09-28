@@ -26,7 +26,7 @@ export class InscriptionComponent  implements OnInit {
     this.inscriptionForm = this.formBuilder.group({
       nom: this.formBuilder.control('', Validators.required),
       prenom: this.formBuilder.control('', Validators.required),
-      login: this.formBuilder.control('', Validators.required),
+      username: this.formBuilder.control('', Validators.required),
       password: this.formBuilder.control('', [Validators.required, Validators.minLength(5), Validators.pattern("[A-z0-9!#@$*?-]{5,10}")]),
       passwordVerif: this.formBuilder.control('', Validators.required),
       mail: this.formBuilder.control('', [Validators.required, Validators.email]),
@@ -41,15 +41,8 @@ export class InscriptionComponent  implements OnInit {
       const password = this.inscriptionForm.value.password;
       const passwordVerif = this.inscriptionForm.value.passwordVerif;
       if (password === passwordVerif) {
-       
-<<<<<<< HEAD
-        this.utilisateurService.inscription(this.inscriptionForm.get('nom')?.value, this.inscriptionForm.get('prenom')?.value, this.inscriptionForm.get('login')?.value, this.inscriptionForm.get('password')?.value, 
-       this.inscriptionForm.get('passwordVerif')?.value, this.inscriptionForm.get('mail')?.value, this.inscriptionForm.get('tel')?.value).subscribe(resp=>{this.router.navigate(['/connexion'])});;
-=======
         this.utilisateurService.inscription(this.inscriptionForm.get('nom')?.value, this.inscriptionForm.get('prenom')?.value, this.inscriptionForm.get('username')?.value, this.inscriptionForm.get('password')?.value, 
-       this.inscriptionForm.get('passwordVerif')?.value, this.inscriptionForm.get('mail')?.value, this.inscriptionForm.get('tel')?.value);
-            this.router.navigate(['/connexion']);
->>>>>>> connexion+utilisateur
+       this.inscriptionForm.get('passwordVerif')?.value, this.inscriptionForm.get('mail')?.value, this.inscriptionForm.get('tel')?.value).subscribe(resp=>{this.router.navigate(['/connexion'])});
   
       } else {
         console.error('Les mots de passe ne correspondent pas.');
@@ -57,7 +50,7 @@ export class InscriptionComponent  implements OnInit {
     } else {
       // Afficher des messages d'erreur pour les champs non valides
       this.markFormGroupTouched(this.inscriptionForm);
-    }console.log(this.inscriptionForm.value);
+    }
   }
 
   cancel() {
