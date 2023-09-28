@@ -29,11 +29,11 @@ export class UtilisateurHttpService {
     return this.http.delete<void>("http://localhost:8080/api/utilisateur/"+id);
    }
 
-   inscription(nom:string, prenom: string, login: string, password: string, passwordVerif: string, mail: string, tel: number): Observable<any> {
+   inscription(nom:string, prenom: string, username: string, password: string, passwordVerif: string, mail: string, tel: number): Observable<any> {
     return this.http.post<any>("http://localhost:8080/api/utilisateur", {
        "nom":nom,
        "prenom":prenom,
-        "login": login,
+        "username": username,
         "password": password,
         "passwordVerif": passwordVerif , 
         "mail": mail,
@@ -42,10 +42,10 @@ export class UtilisateurHttpService {
       });
    }
 
-   connexion(login: string, password: string):Observable<Utilisateur> {
+   connexion(username: string, password: string):Observable<Utilisateur> {
     return this.http.post<Utilisateur>("http://localhost:8080/api/utilisateur/connexion", {
         
-        "login": login,
+        "username": username,
         "password": password
       });
    }

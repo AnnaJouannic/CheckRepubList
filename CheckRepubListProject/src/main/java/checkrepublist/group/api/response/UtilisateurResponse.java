@@ -17,13 +17,13 @@ public class UtilisateurResponse {
 	
 	private String prenom;
 	
-	private String login;
+	private String username;
 	
 	private String mail;
 	
 	private String tel;
 
-	private String role;
+	private String roles;
 	
 	private List<Integer> idVoyages;
 	
@@ -53,12 +53,12 @@ public class UtilisateurResponse {
 		this.prenom = prenom;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getMail() {
@@ -77,12 +77,12 @@ public class UtilisateurResponse {
 		this.tel = tel;
 	}
 
-	public String getRole() {
-		return role;
+	public String getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 	
 	
@@ -108,7 +108,7 @@ public class UtilisateurResponse {
 
 		BeanUtils.copyProperties(utilisateur, response);
 
-		response.setRole(String.join(",", utilisateur.getRole().stream().map(Roles::name).collect(Collectors.toSet())));
+		response.setRoles(String.join(",", utilisateur.getRoles().stream().map(Roles::name).collect(Collectors.toSet())));
 		
 		//response.setIdVoyages(utilisateur.getVoyages().stream().map(VoyageResponse::convert).collect(Collectors.toList()));
 

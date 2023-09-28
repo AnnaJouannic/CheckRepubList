@@ -3,7 +3,9 @@ package checkrepublist.group;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -498,13 +500,18 @@ class CheckRepublistApplicationTest {
 	
 	
 	Utilisateur c1 = new Utilisateur("Even","Manon", "Manondu56", "12345", "manoneven@gmail.com", "0650265588");
-	c1.getRole().add(Roles.User);
+	Set<Roles> rolec1 = new HashSet<>();
+	rolec1.add(Roles.User);
+	c1.setRoles(rolec1);
 	c1.setVoyageurs(utilisateur1);
 	c1.setVoyages(Voyage1);
 	c1 = utilisateurRepo.save(c1);
 	
 	Utilisateur c2 = new Utilisateur("Andraos","Rawad", "Rads", "12345", "rawadandraos@gmail.com", "0778050623");
-	c2.getRole().add(Roles.Admin);
+	Set<Roles> rolec2 = new HashSet<>();
+	rolec2.add(Roles.User);
+	rolec2.add(Roles.Admin);
+	c2.setRoles(rolec2);
 	c2.setVoyageurs(utilisateur2);
 	c2.setVoyages(Voyage1);
 	c2.setVoyages(Voyage2);

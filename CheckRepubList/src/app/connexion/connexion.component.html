@@ -4,9 +4,9 @@
       <form  (ngSubmit)="auth()" [formGroup]="connexionForm" novalidate autocomplete="off">
         <h1>Connexion</h1>
         <div>
-          <label for="login">Identifiant :</label>
-          <input type="text" id="login" name="login" placeholder="Saisir votre identifiant" required formControlName="login"><br>
-          <span class="text-danger" *ngIf="connexionForm.get('login').hasError('required')">
+          <label for="username">Identifiant :</label>
+          <input type="text" id="username" name="username" placeholder="Saisir votre identifiant" required formControlName="username"><br>
+          <span class="text-danger" *ngIf="connexionForm.get('username').hasError('required')">
             Le nom d'utilisateur est obligatoire.
           </span>
         </div>

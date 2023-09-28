@@ -4,6 +4,7 @@ package checkrepublist.group.api;
 public interface Views {
 	
 	public static interface Common { }
+	public static interface Utilisateur extends Common { }
 	
 	public static interface Admin extends Common { }
 	public static interface Voyageur extends Common {}
