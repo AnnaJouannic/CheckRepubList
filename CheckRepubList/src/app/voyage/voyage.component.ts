@@ -9,7 +9,10 @@ import {  MaterielRef, Type, Voyage, Voyageur } from '../model';
 import { VoyageurService } from '../voyageur/voyageur.service';
 import { VoyageService } from './voyage.service';
 import { MaterielRefHttpService } from '../materiel-ref/materiel-ref-http.service';
+import { waitForAsync } from '@angular/core/testing';
+import { DatePipe } from '@angular/common';
 //import { VoyageService } from './voyage.service';
+
 
 @Component({
   selector: 'app-voyage',
@@ -41,8 +44,10 @@ voyageurs$: Observable<Voyageur[]>;
 materielRef$: Observable<MaterielRef[]>;
 strvoyage$:Observable<Voyage>;
 monvoyage: Voyage = null;
+categoriesDistinctes: string[] = ['Vetement', 'Numerique', 'Outils', 'Toilette', 'Animaux', 'Pharmacie', 'Administratif'];
 
-constructor( private router: Router,private formBuilder: FormBuilder, private voyageService: VoyageHttpService, private voyageurService: VoyageurService, private materielRefService: MaterielRefHttpService) {
+
+constructor( private router: Router,private formBuilder: FormBuilder, private voyageService: VoyageHttpService, private voyageurService: VoyageurService, private materielRefService: MaterielRefHttpService, private datePipe :DatePipe) {
 }
 
 
@@ -155,10 +160,9 @@ voyageur(){
 
 generate(){
   this.checklist = true;
-  console.log("et peut être")
 }
 
- getvoyage(id?:number) {
+getvoyage(id?:number) {
 
 this.action="checklist";
 

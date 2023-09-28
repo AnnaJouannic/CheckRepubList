@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { VoyageurComponent } from './voyageur/voyageur.component';
 import { PageFrontComponent } from './page-front/page-front.component';
 import { CritereComponent } from './critere/critere.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -45,7 +46,7 @@ import { CritereComponent } from './critere/critere.component';
 
     
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
