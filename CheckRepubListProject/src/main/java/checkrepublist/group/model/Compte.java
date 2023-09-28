@@ -30,7 +30,7 @@ public abstract class Compte {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView(Views.Utilisateur.class)
+	@JsonView(Views.Common.class)
 	protected Integer id;
 	@Column(length = 25)
 	@JsonView(Views.Common.class)
