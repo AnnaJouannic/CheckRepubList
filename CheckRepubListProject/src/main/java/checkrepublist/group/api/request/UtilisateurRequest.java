@@ -6,7 +6,7 @@ public class UtilisateurRequest {
 	
 	private String prenom;
 	
-	private String login;
+	private String username;
 	
 	private String mail;
 	
@@ -28,12 +28,12 @@ public class UtilisateurRequest {
 		this.prenom = prenom;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getMail() {

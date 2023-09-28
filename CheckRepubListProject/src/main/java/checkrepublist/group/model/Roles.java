@@ -4,7 +4,7 @@ public enum Roles {
 	
 	Admin, User;
 	
-	/*public String authority() {
+	public String authority() {
 		return "ROLE_" + name();
-	}*/
+	}
 }
