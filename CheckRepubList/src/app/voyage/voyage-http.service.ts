@@ -27,7 +27,7 @@ import { Injectable } from "@angular/core";
       if(voyage.id) { // mise à jour
         return this.http.put<Voyage>(this.apiVoyageUrl+"/"+voyage.id, voyage);
       } else { // création
-        return this.http.post<Voyage>(this.apiVoyageUrl, voyage);;
+        return this.http.post<Voyage>(this.apiVoyageUrl, voyage);
       }
      }
   

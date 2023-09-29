@@ -375,7 +375,13 @@ class CheckRepublistApplicationTest {
 				crvoiturel2.setLogement(TypeLogement.Voiture);
 				crvoiturel2.setMaterielref(o4);
 				crvoiturel2= critereRepo.save(crvoiturel2);
-		
+				
+			MaterielRef o5 = new MaterielRef("Guide de voyage",Categorie.Outils);
+			o5=materielRefRepo.save(o5);
+			Critere crtous35 = new Critere (TypeLogement.Tous, TypeDeplacement.Tous, TypeClimat.Tous);
+			crtous35.setMaterielref(o5);
+			crtous35 = critereRepo.save(crtous35);
+			
 		//Catégorie Toilette
 		MaterielRef t1 = new MaterielRef("Brosse à dent",Categorie.Toilette);
 		t1=materielRefRepo.save(t1);

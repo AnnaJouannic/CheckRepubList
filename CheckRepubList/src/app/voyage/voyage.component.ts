@@ -116,6 +116,7 @@ save() {
    console.log(this.voyageForm.value);
   this.voyageService.save(this.voyageForm.value).subscribe(resp => {
     this.voyages$ = this.voyageService.findAll();
+    this.historique();
 
 });  
  
