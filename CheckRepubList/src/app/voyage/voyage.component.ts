@@ -44,7 +44,7 @@ voyageurs$: Observable<Voyageur[]>;
 materielRef$: Observable<MaterielRef[]>;
 strvoyage$:Observable<Voyage>;
 monvoyage: Voyage = null;
-categoriesDistinctes: string[] = ['Vetement', 'Numerique', 'Outils', 'Toilette', 'Animaux', 'Pharmacie', 'Administratif'];
+categoriesDistinctes: string[] = ['Vetement', 'Numerique', 'Outils', 'Toilette', 'Pharmacie', 'Administratif']; // 'Animaux',
 
 
 constructor( private router: Router,private formBuilder: FormBuilder, private voyageService: VoyageHttpService, private voyageurService: VoyageurService, private materielRefService: MaterielRefHttpService, private datePipe :DatePipe) {

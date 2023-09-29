@@ -286,7 +286,7 @@ class CheckRepublistApplicationTest {
 		crtous17 = critereRepo.save(crtous17);
 		
 		//Catégorie Animaux
-		MaterielRef ani1 = new MaterielRef("Harnais",Categorie.Animaux);
+		/*MaterielRef ani1 = new MaterielRef("Harnais",Categorie.Animaux);
 		ani1=materielRefRepo.save(ani1);
 		Critere crtous19 = new Critere (TypeLogement.Tous, TypeDeplacement.Tous, TypeClimat.Tous);
 		crtous19.setMaterielref(ani1);
@@ -302,7 +302,7 @@ class CheckRepublistApplicationTest {
 		ani3=materielRefRepo.save(ani3);
 		Critere crtous21 = new Critere (TypeLogement.Tous, TypeDeplacement.Tous, TypeClimat.Tous);
 		crtous21.setMaterielref(ani3);
-		crtous21 = critereRepo.save(crtous21);
+		crtous21 = critereRepo.save(crtous21);*/
 		
 		//Catégorie Outils
 		
