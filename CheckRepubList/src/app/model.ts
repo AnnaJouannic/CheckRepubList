@@ -88,8 +88,7 @@ export class Utilisateur {
         Type.typeDeplacements.push({"code": "Train", "label":"Train"});
         Type.typeDeplacements.push({"code": "Avion", "label":"Avion"});
         Type.typeDeplacements.push({"code": "Bateau", "label":"Bâteau"});
-        Type.typeDeplacements.push({"code": "Autre", "label":"Autre"});
-        Type.typeDeplacements.push({"code": "Tous", "label":"Tous"});
+        Type.typeDeplacements.push({"code": "Tous", "label":"Autre"});
 
         Type.typeLogements.push({"code": "Hotel", "label":"Hôtel"});
         Type.typeLogements.push({"code": "Gite", "label":"Gîte"});
@@ -102,16 +101,14 @@ export class Utilisateur {
         Type.typeLogements.push({"code": "CampingCar", "label":"Camping-Car"});
         Type.typeLogements.push({"code": "Tente", "label":"Tente"});
         Type.typeLogements.push({"code": "Voiture", "label":"Voiture"});
-        Type.typeLogements.push({"code": "Autre", "label":"Autre"});
-        Type.typeLogements.push({"code": "Tous", "label":"Tous"});
+        Type.typeLogements.push({"code": "Tous", "label":"Autre"});
 
         Type.typeClimats.push({"code": "Chaud", "label":"Chaud"});
         Type.typeClimats.push({"code": "Froid", "label":"Froid"});
         Type.typeClimats.push({"code": "Tempere", "label":"Tempéré"});
         Type.typeClimats.push({"code": "Tropical", "label":"Tropical"});
         Type.typeClimats.push({"code": "Desertique", "label":"Desertique"});
-        Type.typeClimats.push({"code": "Autre", "label":"Autre"});
-        Type.typeClimats.push({"code": "Tous", "label":"Tous"});
+        Type.typeClimats.push({"code": "Tous", "label":"Autre"});
 
         Type.typeCategories.push({"code": "Vetement", "label":"Vêtement"});
         Type.typeCategories.push({"code": "Numerique", "label":"Numérique"});
